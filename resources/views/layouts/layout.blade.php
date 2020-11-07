@@ -19,7 +19,7 @@ Date : 27-10-20
 
         <!-- Styles -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-        <link href="./3rd/fontawesome-free-5.15.1-web/css/all.css" rel="stylesheet">
+        <link href="{{ asset('3rd/fontawesome-free-5.15.1-web/css/all.css') }}" rel="stylesheet">
         <link href="{{ asset('css/all.css') }}" rel="stylesheet">
         <style>
             body {
@@ -39,7 +39,8 @@ Date : 27-10-20
         @include('menus.navbar')
     @endif
     <div class="container-fluid">
-        @yield('content')
+        @include('root.message')
+          @yield('content')
     </div>
 
     <!-- affichez uniquement si l'utilisateur est authentifié -->

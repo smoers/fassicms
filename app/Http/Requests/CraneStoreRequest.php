@@ -13,7 +13,7 @@ class CraneStoreRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,23 @@ class CraneStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            
+            'serial' => 'required|max:20',
+            'model' => 'required|max:255',
+            'plate' => 'max:20'
         ];
     }
+
+    public function messages()
+    {
+        return [
+            'serial.required' => 'The serial number of the crane is required',
+            'serial.size' => 'The maximum size for a serial is 20 characters',
+            'model.required' => 'The model of the crane is required',
+            'model.size' => 'The maximum size for a model is 255 characters',
+            'plate.size' => 'The maximum size for a numberplate is 20 characters'
+
+        ];
+    }
+
+
 }

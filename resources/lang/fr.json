@@ -14,5 +14,17 @@
     "Add": "Ajouter",
     "List": "Lister",
     "Modify": "Modifier",
-    "Remove": "Supprimer"
+    "Remove": "Supprimer",
+    "Save": "Sauvegarder",
+    "Cancel": "Annuler",
+    "The serial number of the crane is required": "Le numéro de série de la grue est requis",
+    "The maximum size for a serial is 20 characters": "La taille maximum pour un sérial est de 20 caractères",
+    "The model of the crane is required": "Le modèle de la grue est requis",
+    "The maximum size for a model is 255 characters": "La taille maximum pour un modèle est 255 caractères",
+    "The maximum size for a numberplate is 20 characters": "La taile maximum pour un numéro de plaque est de 20 caractères",
+    "Add a crane": "Ajouter une grue",
+    "Serial number": "Numéro de série",
+    "Model": "Modèle",
+    "Numberplate": "Numéro de plaque",
+    "The crane has been saved": "La grue a été sauvée"
 }

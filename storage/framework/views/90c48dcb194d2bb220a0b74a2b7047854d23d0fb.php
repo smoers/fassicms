@@ -19,7 +19,7 @@ Date : 27-10-20
 
         <!-- Styles -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-        <link href="./3rd/fontawesome-free-5.15.1-web/css/all.css" rel="stylesheet">
+        <link href="<?php echo e(asset('3rd/fontawesome-free-5.15.1-web/css/all.css')); ?>" rel="stylesheet">
         <link href="<?php echo e(asset('css/all.css')); ?>" rel="stylesheet">
         <style>
             body {
@@ -39,7 +39,8 @@ Date : 27-10-20
         <?php echo $__env->make('menus.navbar', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
     <?php endif; ?>
     <div class="container-fluid">
-        <?php echo $__env->yieldContent('content'); ?>
+        <?php echo $__env->make('root.message', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+          <?php echo $__env->yieldContent('content'); ?>
     </div>
 
     <!-- affichez uniquement si l'utilisateur est authentifié -->

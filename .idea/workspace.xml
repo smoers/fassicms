@@ -1,7 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9ec171e7-05c7-490b-8f14-40ae5b7978c4" name="Default Changelist" comment="" />
+    <list default="true" id="9ec171e7-05c7-490b-8f14-40ae5b7978c4" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/resources/views/root/message.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/sessions/WjEzSCn9Gd9MAogk11gLhCotv3HGhxtagTQVKRfP" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/53fd60962b50afb3459b3cd9201f6ea36bc3470a.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/e3d0c57355cc34d71dd9c2b36348c372aa954e22.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/e8c27972c3ccc8742399b8dc8d759a4113a970f0.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/e9711f3e274ac83c54d3603a1ae57d35397308b3.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CraneController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CraneController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Kernel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Kernel.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Requests/CraneStoreRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/CraneStoreRequest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Cranes.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Crane.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/lang/fr.json" beforeDir="false" afterPath="$PROJECT_DIR$/resources/lang/fr.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/lang/nl.json" beforeDir="false" afterPath="$PROJECT_DIR$/resources/lang/nl.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/forms/crane.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/forms/crane.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/layout.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/layout.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/menus/navbar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/menus/navbar.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/KYnXFyx8091gzVjEC8dE6OkMEM2a7NwrfHbS2CbM" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/SBWBFv9IgxNCqhEFQtSE8Q48jPt9kqseI9eRQVD0" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/ZcZhsx8TelW719hb6vjHguMOkQKlS9rx6eDFmkIt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/ig1GmuwmYMgtlAA5x0Mo5Unadz70cPoqYeDC3OZZ" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/29e7b62de4b8a44fe992a98bbcf96ba531686162.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/29e7b62de4b8a44fe992a98bbcf96ba531686162.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/90c48dcb194d2bb220a0b74a2b7047854d23d0fb.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/90c48dcb194d2bb220a0b74a2b7047854d23d0fb.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/c63af29302a66a0773c312038557ed5b14a513a2.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/c63af29302a66a0773c312038557ed5b14a513a2.php" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -17,6 +43,9 @@
         <option value="JavaScript File" />
       </list>
     </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="PhpWorkspaceProjectConfiguration">
     <include_path>
@@ -131,6 +160,7 @@
     </include_path>
   </component>
   <component name="ProjectId" id="1jdZiM5812ctBuM0QfegVcPS6Km" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -138,8 +168,14 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views" />
     <property name="settings.editor.selected.configurable" value="configurable.group.tools" />
     <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\fassicms\resources\views" />
+    </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -164,17 +200,48 @@
       <workItem from="1604162151266" duration="1255000" />
       <workItem from="1604163980233" duration="783000" />
       <workItem from="1604167021599" duration="442000" />
+      <workItem from="1604167515912" duration="1203000" />
+      <workItem from="1604686923188" duration="1782000" />
+      <workItem from="1604688730530" duration="1400000" />
+      <workItem from="1604756473345" duration="1786000" />
+      <workItem from="1604758279301" duration="1787000" />
+      <workItem from="1604760089074" duration="1800000" />
+      <workItem from="1604761910777" duration="1157000" />
+      <workItem from="1604763719626" duration="1238000" />
+      <workItem from="1604765528126" duration="1788000" />
+      <workItem from="1604767337382" duration="1197000" />
+      <workItem from="1604769147553" duration="720000" />
+      <workItem from="1604772258001" duration="1449000" />
+      <workItem from="1604775299010" duration="1103000" />
     </task>
+    <task id="LOCAL-00001" summary="20201031 - Init">
+      <created>1604168127520</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1604168127520</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
+    <option name="CHECK_NEW_TODO" value="false" />
+    <MESSAGE value="20201031 - Init" />
+    <option name="LAST_COMMIT_MESSAGE" value="20201031 - Init" />
+  </component>
   <component name="WindowStateProjectService">
-    <state x="697" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1604162357909">
+    <state x="697" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1604766909431">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="697" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1604162357909" />
+    <state x="697" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1604766909431" />
+    <state x="576" y="88" key="CommitChangelistDialog2" timestamp="1604168125233">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="576" y="88" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1604168125233" />
     <state x="740" y="261" key="FileChooserDialogImpl" timestamp="1604167441008">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -183,13 +250,21 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="784" y="439" key="Github.CreateGistDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1604167271237" />
-    <state x="838" y="417" key="Github.ShareDialog" timestamp="1604167454260">
+    <state x="838" y="417" key="Github.ShareDialog" timestamp="1604167534076">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="838" y="417" key="Github.ShareDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1604167454260" />
-    <state x="794" y="443" key="NewPhpFileDialog" timestamp="1604160760205">
+    <state x="838" y="417" key="Github.ShareDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1604167534076" />
+    <state x="722" y="224" key="Github.UntrackedFilesDialog" timestamp="1604167553616">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="794" y="443" key="NewPhpFileDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1604160760205" />
+    <state x="722" y="224" key="Github.UntrackedFilesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1604167553616" />
+    <state x="794" y="443" key="NewPhpFileDialog" timestamp="1604689434020">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="794" y="443" key="NewPhpFileDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1604689434020" />
+    <state x="552" y="252" key="Vcs.Push.Dialog.v2" timestamp="1604168130806">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="552" y="252" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1604168130806" />
   </component>
 </project>

@@ -14,5 +14,17 @@
     "Add": "Toevoegen",
     "List": "Oplijsten",
     "Modify": "Bewerken",
-    "Remove": "Verwijderen"
+    "Remove": "Verwijderen",
+    "Save": "Besparen",
+    "Cancel": "Annuleren",
+    "The serial number of the crane is required": "Het serienummer van de kraan is vereist",
+    "The maximum size for a serial is 20 characters": "De maximale grootte voor een serie is 20 tekens",
+    "The model of the crane is required": "Kraanmodel is vereist",
+    "The maximum size for a model is 255 characters": "De maximale grootte voor een sjabloon is 255 tekens",
+    "The maximum size for a numberplate is 20 characters": "De maximale grootte voor een plaatnummer is 20 tekens",
+    "Add a crane": "Voeg een kraan toe",
+    "Serial number": "Serienummer",
+    "Model": "Model",
+    "Numberplate": "Kentekenplaatnummer",
+    "The crane has been saved": "De kraan is gered"
 }

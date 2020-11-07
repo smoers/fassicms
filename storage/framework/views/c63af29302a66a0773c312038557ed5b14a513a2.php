@@ -1,10 +1,10 @@
-    <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark position-sticky">
-        <a class="navbar-brand" href="<?php echo e(route('dashboard')); ?>"><img src="./images/logo.png"></a>
+    <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark position-sticky" style="z-index:999">
+        <a class="navbar-brand" href="<?php echo e(route('dashboard')); ?>"><img src="<?php echo e(asset('./images/logo.png')); ?>"></a>
         <!-- Navbar-->
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="#"><?php echo e(__('Dashboard')); ?> <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="<?php echo e(route('dashboard')); ?>"><?php echo e(__('Dashboard')); ?> <span class="sr-only">(current)</span></a>
                 </li>
 
                 <li class="nav-item dropdown">
@@ -19,7 +19,7 @@
                             </ul>
                         </li>
                         <div class="dropdown-divider"></div>
-                        <li><a class="dropdown-item" href="#"> <?php echo e(__('Cranes')); ?>   <i class="fa fa-caret-right"></i></a>
+                        <li><a class="dropdown-item" href="#"> <?php echo e(__('Crane')); ?>   <i class="fa fa-caret-right"></i></a>
                             <ul class="submenu dropdown-menu">
                                 <li><a class="dropdown-item" href=""><?php echo e(__('List')); ?></a></li>
                                 <li><a class="dropdown-item" href="<?php echo e(route('crane.create')); ?>"><?php echo e(__('Add')); ?></a></li>
@@ -55,7 +55,7 @@
                 </li>
 
             </ul>
-            <div class="navbar-nav ml-auto ml-md-0"><?php echo e(Auth()->user()->firstname); ?> <?php echo e(Auth()->user()->lastname); ?></div>
+            <div class="navbar-nav ml-auto ml-md-0 text-white-50"><?php echo e(Auth()->user()->firstname); ?> <?php echo e(Auth()->user()->lastname); ?></div>
 
             <ul class="navbar-nav ml-auto ml-md-0">
                 <li class="nav-item dropdown">

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CraneStoreRequest;
+use App\Models\Crane;
 use Illuminate\Http\Request;
 
 class CraneController extends Controller
@@ -32,9 +34,16 @@ class CraneController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CraneStoreRequest $request)
     {
-        
+        $validate = $request->validated();
+        $crane = new Crane();
+        $crane->serial = $validate['serial'];
+        $crane->model = $validate['model'];
+        $crane->plate = $validate['plate'];
+        $crane->save();
+
+        return redirect('/dashboard')->with('success','The crane has been saved');
     }
 
     /**

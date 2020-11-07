@@ -19,12 +19,13 @@ Route::get('/', function () {
     return redirect()->route('dashboard');
 })->name('main');
 
-Route::get('/dashboard', [DashboardController::class, 'index'])->name("dashboard")->middleware('auth');
-
 Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('/permissions',[PermissionController::class,'add'])->name('permissions.add');
 
-Route::resource('crane', \App\Http\Controllers\CraneController::class)->middleware("auth");
+Route::group(['middleware' => ['role_or_permission:admin','auth']],function (){
+
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name("dashboard");
+    Route::resource('crane', \App\Http\Controllers\CraneController::class);
+});
+
