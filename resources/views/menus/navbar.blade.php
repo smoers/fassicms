@@ -10,7 +10,7 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">{{ __('Company data') }}</a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#"> {{ __('Customers') }}   <i class="fa fa-caret-right"></i></a>
+                        <li><a class="dropdown-item" href="#"> {{ __('Customer') }}   <i class="fa fa-caret-right"></i></a>
                             <ul class="submenu dropdown-menu">
                                 <li><a class="dropdown-item" href="">{{ __('List') }}</a></li>
                                 <li><a class="dropdown-item" href="">{{ __('Add') }}</a></li>
@@ -33,7 +33,7 @@
 
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        {{ __('Worksheets') }}
+                        {{ __('Worksheet') }}
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="#">Item 1</a>

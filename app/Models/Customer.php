@@ -26,12 +26,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Crane extends Model
+class Customer extends Model
 {
     use HasFactory;
 
     /**
-     * Retourne les objets Worksheet pour cet objet Crane
+     * Retourne les objets Worksheet pour cet objet Customer
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function worksheets(){

@@ -26,15 +26,23 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Crane extends Model
+class Out extends Model
 {
     use HasFactory;
 
     /**
-     * Retourne les objets Worksheet pour cet objet Crane
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * Retourne l'objet Store lié à l'objet Out
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function worksheets(){
-        return $this->hasMany(Worksheet::class);
+    public function store(){
+        return $this->belongsTo(Store::class);
+    }
+
+    /**
+     * Retourne l'objet Reason lié à l'objet Out
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function reason(){
+        return $this->belongsTo(Reason::class);
     }
 }

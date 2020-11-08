@@ -2,29 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9ec171e7-05c7-490b-8f14-40ae5b7978c4" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/resources/views/root/message.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/sessions/WjEzSCn9Gd9MAogk11gLhCotv3HGhxtagTQVKRfP" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/53fd60962b50afb3459b3cd9201f6ea36bc3470a.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/e3d0c57355cc34d71dd9c2b36348c372aa954e22.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/e8c27972c3ccc8742399b8dc8d759a4113a970f0.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/e9711f3e274ac83c54d3603a1ae57d35397308b3.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/store/storesearch.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/fassicms.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/fassicms.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CraneController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CraneController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Kernel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Kernel.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Requests/CraneStoreRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/CraneStoreRequest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Cranes.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Crane.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/lang/fr.json" beforeDir="false" afterPath="$PROJECT_DIR$/resources/lang/fr.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/lang/nl.json" beforeDir="false" afterPath="$PROJECT_DIR$/resources/lang/nl.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/forms/crane.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/forms/crane.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Crane.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Crane.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Customers.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Customer.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Worksheets.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Worksheet.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2020_10_31_110053_create_cranes_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_10_31_110053_create_cranes_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/seeders/DatabaseSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/DatabaseSeeder.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/layouts/layout.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/layout.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/menus/navbar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/menus/navbar.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/KYnXFyx8091gzVjEC8dE6OkMEM2a7NwrfHbS2CbM" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/SBWBFv9IgxNCqhEFQtSE8Q48jPt9kqseI9eRQVD0" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/ZcZhsx8TelW719hb6vjHguMOkQKlS9rx6eDFmkIt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/ig1GmuwmYMgtlAA5x0Mo5Unadz70cPoqYeDC3OZZ" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/views/29e7b62de4b8a44fe992a98bbcf96ba531686162.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/29e7b62de4b8a44fe992a98bbcf96ba531686162.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/storage/framework/views/90c48dcb194d2bb220a0b74a2b7047854d23d0fb.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/90c48dcb194d2bb220a0b74a2b7047854d23d0fb.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/storage/framework/views/c63af29302a66a0773c312038557ed5b14a513a2.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/c63af29302a66a0773c312038557ed5b14a513a2.php" afterDir="false" />
     </list>
@@ -43,6 +33,7 @@
         <option value="JavaScript File" />
       </list>
     </option>
+    <option name="SCHEME" value="Project" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -157,10 +148,16 @@
       <path value="$PROJECT_DIR$/vendor/brick/math" />
       <path value="$PROJECT_DIR$/vendor/opis/closure" />
       <path value="$PROJECT_DIR$/vendor/laravel/ui" />
+      <path value="$PROJECT_DIR$/vendor/livewire/livewire" />
+      <path value="$PROJECT_DIR$/vendor/symfony/debug" />
+      <path value="$PROJECT_DIR$/vendor/maximebf/debugbar" />
+      <path value="$PROJECT_DIR$/vendor/barryvdh/laravel-debugbar" />
     </include_path>
   </component>
   <component name="ProjectId" id="1jdZiM5812ctBuM0QfegVcPS6Km" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -169,7 +166,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views" />
-    <property name="settings.editor.selected.configurable" value="configurable.group.tools" />
+    <property name="settings.editor.selected.configurable" value="reference.webide.settings.project.settings.php" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
@@ -212,7 +209,18 @@
       <workItem from="1604767337382" duration="1197000" />
       <workItem from="1604769147553" duration="720000" />
       <workItem from="1604772258001" duration="1449000" />
-      <workItem from="1604775299010" duration="1103000" />
+      <workItem from="1604775299010" duration="1742000" />
+      <workItem from="1604833208102" duration="716000" />
+      <workItem from="1604835116179" duration="1801000" />
+      <workItem from="1604836937687" duration="736000" />
+      <workItem from="1604839128731" duration="1790000" />
+      <workItem from="1604840938347" duration="980000" />
+      <workItem from="1604842750505" duration="1804000" />
+      <workItem from="1604844581200" duration="1783000" />
+      <workItem from="1604846388062" duration="1787000" />
+      <workItem from="1604848199592" duration="1527000" />
+      <workItem from="1604850011976" duration="1731000" />
+      <workItem from="1604855135639" duration="1751000" />
     </task>
     <task id="LOCAL-00001" summary="20201031 - Init">
       <created>1604168127520</created>
@@ -221,7 +229,14 @@
       <option name="project" value="LOCAL" />
       <updated>1604168127520</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="20201107 - v1.0">
+      <created>1604776452416</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1604776452416</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -231,17 +246,24 @@
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
     <MESSAGE value="20201031 - Init" />
-    <option name="LAST_COMMIT_MESSAGE" value="20201031 - Init" />
+    <MESSAGE value="20201107 - v1.0" />
+    <option name="LAST_COMMIT_MESSAGE" value="20201107 - v1.0" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="697" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1604766909431">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="1725" y="416" key="#com.intellij.ide.util.MemberChooser" timestamp="1604844363971">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="1725" y="416" key="#com.intellij.ide.util.MemberChooser/0.0.2560.1400@0.0.2560.1400" timestamp="1604844363971" />
+    <state x="929" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1604845764185">
+      <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="697" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1604766909431" />
-    <state x="576" y="88" key="CommitChangelistDialog2" timestamp="1604168125233">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="929" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1604845764185" />
+    <state x="768" y="118" key="CommitChangelistDialog2" timestamp="1604776451784">
+      <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="576" y="88" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1604168125233" />
+    <state x="768" y="118" key="CommitChangelistDialog2/0.0.2560.1400@0.0.2560.1400" timestamp="1604776451784" />
     <state x="740" y="261" key="FileChooserDialogImpl" timestamp="1604167441008">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -258,13 +280,31 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="722" y="224" key="Github.UntrackedFilesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1604167553616" />
-    <state x="794" y="443" key="NewPhpFileDialog" timestamp="1604689434020">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="1750" y="423" key="NewPhpClassDialog" timestamp="1604844378954">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="1750" y="423" key="NewPhpClassDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1604844378954" />
+    <state x="1059" y="596" key="NewPhpFileDialog" timestamp="1604851076960">
+      <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="794" y="443" key="NewPhpFileDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1604689434020" />
-    <state x="552" y="252" key="Vcs.Push.Dialog.v2" timestamp="1604168130806">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="1059" y="596" key="NewPhpFileDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1604851076960" />
+    <state x="1421" y="345" key="SettingsEditor" timestamp="1604856029906">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="1421" y="345" key="SettingsEditor/0.0.2560.1400@0.0.2560.1400" timestamp="1604856029906" />
+    <state x="736" y="339" key="Vcs.Push.Dialog.v2" timestamp="1604776457283">
+      <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="552" y="252" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1604168130806" />
+    <state x="736" y="339" key="Vcs.Push.Dialog.v2/0.0.2560.1400@0.0.2560.1400" timestamp="1604776457283" />
+    <state x="1669" y="444" key="com.jetbrains.php.test.PhpNewTestDialog" timestamp="1604843589275">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="1669" y="444" key="com.jetbrains.php.test.PhpNewTestDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1604843589275" />
+    <state x="943" y="315" width="672" height="678" key="search.everywhere.popup" timestamp="1604840961096">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="943" y="315" width="672" height="678" key="search.everywhere.popup/0.0.2560.1400@0.0.2560.1400" timestamp="1604840961096" />
   </component>
 </project>

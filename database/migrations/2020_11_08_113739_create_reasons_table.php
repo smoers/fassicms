@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCranesTable extends Migration
+class CreateReasonsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,10 @@ class CreateCranesTable extends Migration
      */
     public function up()
     {
-        Schema::create('cranes', function (Blueprint $table) {
+        Schema::create('reasons', function (Blueprint $table) {
             $table->id();
-            $table->string('serial')->unique();
-            $table->string('model',255);
-            $table->string('plate',20)->nullable();
+            $table->string('reason',100);
             $table->timestamps();
-
-            $table->index('serial');
-            $table->index('model');
-            $table->index('plate');
         });
     }
 
@@ -33,6 +27,6 @@ class CreateCranesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('cranes');
+        Schema::dropIfExists('reasons');
     }
 }

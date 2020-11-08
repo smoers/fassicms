@@ -26,15 +26,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Crane extends Model
+class Provider extends Model
 {
     use HasFactory;
 
     /**
-     * Retourne les objets Worksheet pour cet objet Crane
+     * Retourne les objets Catalogs pour cet objet Provider
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function worksheets(){
-        return $this->hasMany(Worksheet::class);
+    public function catalogs(){
+        return $this->hasMany(Catalog::class);
     }
 }
