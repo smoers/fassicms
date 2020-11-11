@@ -32,4 +32,4 @@
         Check the following errors :(
     </div>
 <?php endif; ?>
-<?php /**PATH /var/www/moco/fassicms/resources/views/message.blade.php ENDPATH**/ ?>
+<?php /**PATH /var/www/Moco/fassicms/resources/views/message.blade.php ENDPATH**/ ?>

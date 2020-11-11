@@ -81,4 +81,4 @@
     </div>
 </body>
 </html>
-<?php /**PATH /var/www/moco/fassicms/resources/views/layouts/app.blade.php ENDPATH**/ ?>
+<?php /**PATH /var/www/Moco/fassicms/resources/views/layouts/app.blade.php ENDPATH**/ ?>

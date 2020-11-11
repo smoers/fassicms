@@ -55,4 +55,4 @@ Date : 27-10-20
 
     </body>
 </html>
-<?php /**PATH /var/www/moco/fassicms/resources/views/layouts/layout.blade.php ENDPATH**/ ?>
+<?php /**PATH /var/www/Moco/fassicms/resources/views/layouts/layout.blade.php ENDPATH**/ ?>

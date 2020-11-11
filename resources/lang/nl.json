@@ -26,5 +26,10 @@
     "Serial number": "Serienummer",
     "Model": "Model",
     "Numberplate": "Kentekenplaatnummer",
-    "The crane has been saved": "De kraan is gered"
+    "The crane has been saved": "De kraan is gered",
+    "Quantity": "Kwantiteit",
+    "Description": "Beschrijving",
+    "Part Number": "Artikel nummer",
+    "Price": "Prijs",
+    "Actions": "Acties"
 }

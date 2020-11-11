@@ -1,4 +1,4 @@
-    <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark position-sticky" style="z-index:999">
+    <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark position-sticky fixed-top " style="z-index:999">
         <a class="navbar-brand" href="<?php echo e(route('dashboard')); ?>"><img src="<?php echo e(asset('./images/logo.png')); ?>"></a>
         <!-- Navbar-->
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -80,4 +80,4 @@
     </nav>
 
 
-<?php /**PATH /var/www/moco/fassicms/resources/views/menus/navbar.blade.php ENDPATH**/ ?>
+<?php /**PATH /var/www/Moco/fassicms/resources/views/menus/navbar.blade.php ENDPATH**/ ?>

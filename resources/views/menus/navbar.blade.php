@@ -1,4 +1,4 @@
-    <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark position-sticky" style="z-index:999">
+    <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark position-sticky fixed-top " style="z-index:999">
         <a class="navbar-brand" href="{{ route('dashboard') }}"><img src="{{ asset('./images/logo.png') }}"></a>
         <!-- Navbar-->
         <div class="collapse navbar-collapse" id="navbarSupportedContent">

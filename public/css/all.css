@@ -19,6 +19,13 @@ Date : 09-10-20
     -ms-filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/background', sizingMethod=scale);
 }
 
+.fassi-title{
+    font-family: monospace;
+    font-weight: bold;
+    font-size: 30px;
+    color: #761b18;
+}
+
 @media (min-width: 992px){
     .dropdown-menu .dropdown-toggle:after{
         border-top: .3em solid transparent;

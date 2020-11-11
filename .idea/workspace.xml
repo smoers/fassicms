@@ -2,13 +2,41 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9ec171e7-05c7-490b-8f14-40ae5b7978c4" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/resources/views/store/storelist.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Moco/Criteria/Criteria.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Moco/Criteria/Criterias.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/menus/store-list-sub.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/store/store-list-main.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/copyright/Fassi.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/copyright/Fassi.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/fassicms.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/fassicms.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/StoreController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/StoreController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/all.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/all.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/lang/fr.json" beforeDir="false" afterPath="$PROJECT_DIR$/resources/lang/fr.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/lang/nl.json" beforeDir="false" afterPath="$PROJECT_DIR$/resources/lang/nl.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/menus/navbar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/menus/navbar.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/store/storesearch.blade.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/store/storelist.blade.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/LyYZQiwAsWdwBOb7eJXhxESZVtto5H1ZdzVv5NQn" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/WjEzSCn9Gd9MAogk11gLhCotv3HGhxtagTQVKRfP" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/cnKWrYGuXirPaqq1ZbRjnyuHHh9w1b3caXSTe18o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/2070d39226d18c4907c446a8bd768a75c2228e74.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/2070d39226d18c4907c446a8bd768a75c2228e74.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/29e7b62de4b8a44fe992a98bbcf96ba531686162.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/29e7b62de4b8a44fe992a98bbcf96ba531686162.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/3a9cb162e431fad9bccbfe10382bb41b4792a30e.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/3a9cb162e431fad9bccbfe10382bb41b4792a30e.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/53fd60962b50afb3459b3cd9201f6ea36bc3470a.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/53fd60962b50afb3459b3cd9201f6ea36bc3470a.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/654a90afc80706a452fb1edffc0e0b6f076efb03.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/654a90afc80706a452fb1edffc0e0b6f076efb03.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/90c48dcb194d2bb220a0b74a2b7047854d23d0fb.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/90c48dcb194d2bb220a0b74a2b7047854d23d0fb.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/98572a6cfc5ed060e1b36f926575779961429050.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/98572a6cfc5ed060e1b36f926575779961429050.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/a3a78bccb9093afc93869176ef9d9a8b810e7503.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/a3a78bccb9093afc93869176ef9d9a8b810e7503.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/a5b5b0efc4408ad8fbfe882559004f213b5cfe64.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/a5b5b0efc4408ad8fbfe882559004f213b5cfe64.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/be997bd38d4f24aab0e5ee7bee2101a3b09efaa6.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/be997bd38d4f24aab0e5ee7bee2101a3b09efaa6.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/storage/framework/views/c63af29302a66a0773c312038557ed5b14a513a2.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/c63af29302a66a0773c312038557ed5b14a513a2.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/e3a301cf62a4ae53f0f664cfc371e23f189e2e35.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/e3a301cf62a4ae53f0f664cfc371e23f189e2e35.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/e3d0c57355cc34d71dd9c2b36348c372aa954e22.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/e3d0c57355cc34d71dd9c2b36348c372aa954e22.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/e8c27972c3ccc8742399b8dc8d759a4113a970f0.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/e8c27972c3ccc8742399b8dc8d759a4113a970f0.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/e9711f3e274ac83c54d3603a1ae57d35397308b3.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/e9711f3e274ac83c54d3603a1ae57d35397308b3.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -144,6 +172,7 @@
       <path value="$PROJECT_DIR$/vendor/symfony/debug" />
       <path value="$PROJECT_DIR$/vendor/maximebf/debugbar" />
       <path value="$PROJECT_DIR$/vendor/barryvdh/laravel-debugbar" />
+      <path value="$PROJECT_DIR$/vendor/rappasoft/laravel-livewire-tables" />
     </include_path>
   </component>
   <component name="ProjectId" id="1jdZiM5812ctBuM0QfegVcPS6Km" />
@@ -157,12 +186,15 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views" />
-    <property name="settings.editor.selected.configurable" value="reference.webide.settings.project.settings.php" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/vendor/rappasoft/laravel-livewire-tables/resources/lang/nl" />
+    <property name="php.override.implement.member.chooser.php.doc" value="NONE" />
+    <property name="settings.editor.selected.configurable" value="copyright.profiles" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\fassicms\vendor\rappasoft\laravel-livewire-tables\resources\lang\nl" />
+      <recent name="D:\fassicms\vendor\rappasoft\laravel-livewire-tables\resources\lang\fr" />
       <recent name="D:\fassicms\resources\views" />
     </key>
   </component>
@@ -217,6 +249,21 @@
       <workItem from="1605030686922" duration="1361000" />
       <workItem from="1605084663768" duration="1529000" />
       <workItem from="1605086512206" duration="596000" />
+      <workItem from="1605088320804" duration="813000" />
+      <workItem from="1605090137185" duration="1907000" />
+      <workItem from="1605092067051" duration="1784000" />
+      <workItem from="1605093876023" duration="1790000" />
+      <workItem from="1605095692005" duration="639000" />
+      <workItem from="1605098448618" duration="1782000" />
+      <workItem from="1605100257560" duration="1735000" />
+      <workItem from="1605102066489" duration="1784000" />
+      <workItem from="1605103876647" duration="1782000" />
+      <workItem from="1605105683958" duration="1812000" />
+      <workItem from="1605107521414" duration="1812000" />
+      <workItem from="1605109355276" duration="1784000" />
+      <workItem from="1605111164458" duration="1903000" />
+      <workItem from="1605113095842" duration="1780000" />
+      <workItem from="1605114904667" duration="1386000" />
     </task>
     <task id="LOCAL-00001" summary="20201031 - Init">
       <created>1604168127520</created>
@@ -239,7 +286,14 @@
       <option name="project" value="LOCAL" />
       <updated>1604864533719</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="20201111 - v1.0">
+      <created>1605088490985</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1605088490985</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -251,23 +305,24 @@
     <MESSAGE value="20201031 - Init" />
     <MESSAGE value="20201107 - v1.0" />
     <MESSAGE value="20201108 - v1.0" />
-    <option name="LAST_COMMIT_MESSAGE" value="20201108 - v1.0" />
+    <MESSAGE value="20201111 - v1.0" />
+    <option name="LAST_COMMIT_MESSAGE" value="20201111 - v1.0" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="1725" y="416" key="#com.intellij.ide.util.MemberChooser" timestamp="1604844363971">
+    <state x="1725" y="416" key="#com.intellij.ide.util.MemberChooser" timestamp="1605091865316">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="1725" y="416" key="#com.intellij.ide.util.MemberChooser/0.0.2560.1400@0.0.2560.1400" timestamp="1604844363971" />
-    <state x="929" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1604845764185">
+    <state x="1725" y="416" key="#com.intellij.ide.util.MemberChooser/0.0.2560.1400@0.0.2560.1400" timestamp="1605091865316" />
+    <state x="929" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1605112966162">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="697" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1604766909431" />
-    <state x="929" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1604845764185" />
-    <state x="768" y="118" key="CommitChangelistDialog2" timestamp="1604864533077">
+    <state x="929" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1605112966162" />
+    <state x="768" y="118" key="CommitChangelistDialog2" timestamp="1605088490505">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="576" y="88" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1604168125233" />
-    <state x="768" y="118" key="CommitChangelistDialog2/0.0.2560.1400@0.0.2560.1400" timestamp="1604864533077" />
+    <state x="768" y="118" key="CommitChangelistDialog2/0.0.2560.1400@0.0.2560.1400" timestamp="1605088490505" />
     <state x="740" y="261" key="FileChooserDialogImpl" timestamp="1604167441008">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -284,24 +339,24 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="722" y="224" key="Github.UntrackedFilesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1604167553616" />
-    <state x="1750" y="423" key="NewPhpClassDialog" timestamp="1604844378954">
+    <state x="1750" y="423" key="NewPhpClassDialog" timestamp="1605112917045">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="1750" y="423" key="NewPhpClassDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1604844378954" />
-    <state x="1059" y="596" key="NewPhpFileDialog" timestamp="1604851076960">
+    <state x="1750" y="423" key="NewPhpClassDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1605112917045" />
+    <state x="1059" y="596" key="NewPhpFileDialog" timestamp="1605101911156">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="794" y="443" key="NewPhpFileDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1604689434020" />
-    <state x="1059" y="596" key="NewPhpFileDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1604851076960" />
-    <state x="1421" y="345" key="SettingsEditor" timestamp="1604856029906">
+    <state x="1059" y="596" key="NewPhpFileDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1605101911156" />
+    <state x="1421" y="345" key="SettingsEditor" timestamp="1605091986276">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="1421" y="345" key="SettingsEditor/0.0.2560.1400@0.0.2560.1400" timestamp="1604856029906" />
-    <state x="736" y="339" key="Vcs.Push.Dialog.v2" timestamp="1604864536395">
+    <state x="1421" y="345" key="SettingsEditor/0.0.2560.1400@0.0.2560.1400" timestamp="1605091986276" />
+    <state x="736" y="339" key="Vcs.Push.Dialog.v2" timestamp="1605088494562">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="552" y="252" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1604168130806" />
-    <state x="736" y="339" key="Vcs.Push.Dialog.v2/0.0.2560.1400@0.0.2560.1400" timestamp="1604864536395" />
+    <state x="736" y="339" key="Vcs.Push.Dialog.v2/0.0.2560.1400@0.0.2560.1400" timestamp="1605088494562" />
     <state x="1669" y="444" key="com.jetbrains.php.test.PhpNewTestDialog" timestamp="1604843589275">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>

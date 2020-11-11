@@ -26,5 +26,12 @@
     "Serial number": "Numéro de série",
     "Model": "Modèle",
     "Numberplate": "Numéro de plaque",
-    "The crane has been saved": "La grue a été sauvée"
+    "The crane has been saved": "La grue a été sauvée",
+    "Quantity": "Quantité",
+    "Description": "Description",
+    "Part Number": "Numéro d'article",
+    "Price": "Prix",
+    "Actions": "Actions",
+    "Search...": "Chercher...",
+    "Parts List": "Liste des pièces"
 }

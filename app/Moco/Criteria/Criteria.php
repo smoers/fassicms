@@ -17,33 +17,46 @@
  *  Company : Fassi Belgium
  *  Developer : MO Consult
  *  Author : Moers Serge
- *  Date : 11/11/20 11:53
+ *  Date : 11/11/20 17:41
  */
 
-namespace App\Http\Controllers;
+/**
+ * Company : Fassi Belgium
+ * Developer : MO Consult
+ * Authority : Moers Serge
+ * Date : 11-11-20
+ */
 
-use App\Moco\Criteria\Criteria;
-use App\Moco\Criteria\Criterias;
-use Illuminate\Http\Request;
+namespace App\Moco\Criteria;
 
-class StoreController extends Controller
+
+class Criteria
 {
+    private $attributes = null;
 
-    private $criterias = null;
-
+    /**
+     * Criteria constructor.
+     */
     public function __construct()
     {
-        $this->criterias = Criterias::getInstance();
+        $this->attributes = collect();
     }
 
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
+     * @param String $key
+     * @param $value
      */
-    public function index()
+    public function put(String $key, $value) :void
     {
+        $this->attributes->put($key, $value);
+    }
 
-        return view('store.store-list-main');
+    /**
+     * @param String $key
+     * @return mixed
+     */
+    public function get(String $key)
+    {
+        return $this->attributes->get($key);
     }
 }

@@ -37,4 +37,4 @@
         </ul>
     </div>
 <?php endif; ?>
-<?php /**PATH /var/www/moco/fassicms/resources/views/root/message.blade.php ENDPATH**/ ?>
+<?php /**PATH /var/www/Moco/fassicms/resources/views/root/message.blade.php ENDPATH**/ ?>
