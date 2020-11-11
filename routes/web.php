@@ -27,5 +27,6 @@ Route::group(['middleware' => ['role_or_permission:admin','auth']],function (){
 
     Route::get('/dashboard', [DashboardController::class, 'index'])->name("dashboard");
     Route::resource('crane', \App\Http\Controllers\CraneController::class);
+    Route::resource('store',\App\Http\Controllers\StoreController::class);
 });
 
