@@ -6,7 +6,7 @@ Date : 27-10-20
 -->
 
 <!DOCTYPE html>
-<html lang="<?php echo e(str_replace('_', '-', app()->getLocale())); ?>" <?php if(! \Illuminate\Support\Facades\Auth::check()): ?> class="fassi-background" <?php endif; ?>>
+<html lang="<?php echo e(str_replace('_', '-', app()->getLocale())); ?>" <?php if(! \Illuminate\Support\Facades\Auth::check()): ?> class="moco-background" <?php endif; ?>>
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -14,25 +14,35 @@ Date : 27-10-20
         <title>Fassi Belgium CMS</title>
         <link href="/images/favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.icon" />
 
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+        <!-- Google Fonts -->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+        <!-- Bootstrap core CSS -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+        <!-- Material Design Bootstrap -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">
+        <!-- Bootstrap-Select -->
+        <link href="<?php echo e(asset('3rd/bootstrap-select-1.13.18/css/bootstrap-select.min.css')); ?>" rel="stylesheet">
 
-        <!-- Styles -->
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-        <link href="<?php echo e(asset('3rd/fontawesome-free-5.15.1-web/css/all.css')); ?>" rel="stylesheet">
+        <!-- CSS MOCO -->
         <link href="<?php echo e(asset('css/all.css')); ?>" rel="stylesheet">
-        <style>
-            body {
-                font-family: 'Nunito';
-            }
 
-        </style>
-
-        <!-- Script -->
-        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+        <!-- JQuery -->
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <!-- Bootstrap tooltips -->
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+        <!-- Bootstrap core JavaScript -->
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
+        <!-- MDB core JavaScript -->
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js"></script>
+        <!-- Bootstrap-Select -->
+        <script type="text/javascript" src="<?php echo e(asset('3rd/bootstrap-select-1.13.18/js/bootstrap-select.min.js')); ?>"></script>
+        <!-- Livewire -->
         <?php echo \Livewire\Livewire::styles(); ?>
+
+
+
 
     </head>
     <body>
@@ -55,4 +65,4 @@ Date : 27-10-20
 
     </body>
 </html>
-<?php /**PATH /var/www/Moco/fassicms/resources/views/layouts/layout.blade.php ENDPATH**/ ?>
+<?php /**PATH /var/www/moco/fassicms/resources/views/layouts/layout.blade.php ENDPATH**/ ?>

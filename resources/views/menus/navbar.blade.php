@@ -3,11 +3,11 @@
         <!-- Navbar-->
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
+                <li class="nav-item @if( Route::is('dashboard')) active @endif">
                     <a class="nav-link" href="{{ route('dashboard') }}">{{ __('Dashboard') }} <span class="sr-only">(current)</span></a>
                 </li>
 
-                <li class="nav-item dropdown">
+                <li class="nav-item dropdown  @if( Route::is('crane.*')) active @endif">
                     <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">{{ __('Company data') }}</a>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="#"> {{ __('Customer') }}   <i class="fa fa-caret-right"></i></a>
@@ -41,14 +41,15 @@
                         <a class="dropdown-item" href="#">Item 2</a>
                     </div>
                 </li>
-                <li class="nav-item dropdown">
+                <li class="nav-item dropdown @if( Route::is('store.*')) active @endif">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         {{ __('Stocks') }}
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="{{route('store.index')}}">{{__('List')}}</a>
+                        <a class="dropdown-item" href="{{route('store.create')}}">{{__('Add')}}</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Item 2</a>
+                        <a class="dropdown-item" href="{{route('store.barcode_sticker',10)}}">Item 2</a>
                     </div>
                 </li>
 

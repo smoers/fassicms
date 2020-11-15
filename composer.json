@@ -16,7 +16,8 @@
         "laravel/tinker": "^2.0",
         "livewire/livewire": "^2.3",
         "rappasoft/laravel-livewire-tables": "^0.3.2",
-        "spatie/laravel-permission": "^3.17"
+        "spatie/laravel-permission": "^3.17",
+        "tecnickcom/tcpdf": "^6.3"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.5",

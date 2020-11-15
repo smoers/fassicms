@@ -30,6 +30,8 @@
 namespace App\Moco\Criteria;
 
 
+use Illuminate\Support\Collection;
+
 class Criteria
 {
     private $attributes = null;
@@ -39,7 +41,7 @@ class Criteria
      */
     public function __construct()
     {
-        $this->attributes = collect();
+        $this->attributes = new Collection();
     }
 
     /**

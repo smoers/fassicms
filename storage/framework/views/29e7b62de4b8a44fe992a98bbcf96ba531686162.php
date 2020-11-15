@@ -1,5 +1,5 @@
 <?php $__env->startSection('content'); ?>
-    <div class="container p-5 h-100 fassi-layout-height">
+    <div class="container p-5 h-100 moco-layout-height">
         <div class="card">
             <div class="card-header text-center font-weight-bold">
                 <?php echo e(__('Add a crane')); ?>
@@ -36,4 +36,4 @@
 
 <?php $__env->stopSection(); ?>
 
-<?php echo $__env->make('layouts.layout', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /var/www/Moco/fassicms/resources/views/forms/crane.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('layouts.layout', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /var/www/moco/fassicms/resources/views/forms/crane.blade.php ENDPATH**/ ?>

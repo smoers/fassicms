@@ -3,11 +3,11 @@
         <!-- Navbar-->
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
+                <li class="nav-item <?php if( Route::is('dashboard')): ?> active <?php endif; ?>">
                     <a class="nav-link" href="<?php echo e(route('dashboard')); ?>"><?php echo e(__('Dashboard')); ?> <span class="sr-only">(current)</span></a>
                 </li>
 
-                <li class="nav-item dropdown">
+                <li class="nav-item dropdown  <?php if( Route::is('crane.*')): ?> active <?php endif; ?>">
                     <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"><?php echo e(__('Company data')); ?></a>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="#"> <?php echo e(__('Customer')); ?>   <i class="fa fa-caret-right"></i></a>
@@ -42,15 +42,16 @@
                         <a class="dropdown-item" href="#">Item 2</a>
                     </div>
                 </li>
-                <li class="nav-item dropdown">
+                <li class="nav-item dropdown <?php if( Route::is('store.*')): ?> active <?php endif; ?>">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <?php echo e(__('Stocks')); ?>
 
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="<?php echo e(route('store.index')); ?>"><?php echo e(__('List')); ?></a>
+                        <a class="dropdown-item" href="<?php echo e(route('store.create')); ?>"><?php echo e(__('Add')); ?></a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Item 2</a>
+                        <a class="dropdown-item" href="<?php echo e(route('store.barcode_sticker',10)); ?>">Item 2</a>
                     </div>
                 </li>
 
@@ -80,4 +81,4 @@
     </nav>
 
 
-<?php /**PATH /var/www/Moco/fassicms/resources/views/menus/navbar.blade.php ENDPATH**/ ?>
+<?php /**PATH /var/www/moco/fassicms/resources/views/menus/navbar.blade.php ENDPATH**/ ?>

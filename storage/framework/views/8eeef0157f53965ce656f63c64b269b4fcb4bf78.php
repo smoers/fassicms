@@ -1,6 +1,6 @@
 <?php $__env->startSection('content'); ?>
 
-    <div class="container-fluid p-5 h-100 fassi-layout-height">
+    <div class="container-fluid p-5 h-100 moco-layout-height">
         <?php
 if (! isset($_instance)) {
     $html = \Livewire\Livewire::mount('store-list', [])->html();

@@ -1,7 +1,7 @@
 @extends('layouts.layout')
 
 @section('content')
-    <div class="container p-5 h-100 fassi-layout-height">
+    <div class="container p-5 h-100 moco-layout-height">
         <div class="card">
             <div class="card-header text-center font-weight-bold">
                 {{ __('Add a crane') }}

@@ -30,6 +30,8 @@
 namespace App\Moco\Criteria;
 
 
+use Illuminate\Support\Collection;
+
 class Criterias
 {
     private static $_instance = null;
@@ -37,7 +39,7 @@ class Criterias
 
     private function __construct()
     {
-        $this->_filters = collect();
+        $this->_filters = new Collection();
     }
 
     /**
@@ -57,7 +59,8 @@ class Criterias
      */
     public function get(String $criteriaName) : Criteria
     {
-        if($this->_filters->contains($criteriaName))
+        $criteria = $this->_filters->get($criteriaName);
+        if(!is_null($criteria))
         {
             return $this->_filters->get($criteriaName);
         }
