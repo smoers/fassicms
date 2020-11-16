@@ -29,24 +29,28 @@
 
 namespace App\Moco\Common;
 
-
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Collection;
 
-class OldBag extends \App\Moco\Criteria\Criteria
+class OldBag
 {
+    protected $collection = null;
 
-    protected $formRequest = null;
-
-    public function __construct(FormRequest $formRequest)
+    public function __construct()
     {
-        $this->formRequest = $formRequest;
+        $this->collection = new Collection();
     }
 
-    protected function load()
+    public function load(FormRequest $formRequest)
     {
-        foreach ($this->formRequest->all() as $key => $value){
-            $this->put($key,$value);
+        foreach ($formRequest->all() as $key => $value){
+            $this->collection->put($key,$value);
         }
+    }
+
+    public function get(String $key)
+    {
+        return $this->collection->get($key);
     }
 
 }

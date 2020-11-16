@@ -89,6 +89,8 @@ class StorePartRequest extends FormRequest
 
     /**
      * Configure the validator instance.
+     * Recrée la function old() car il y a des problèmes si on
+     * combine Livewire validation online et un controller
      *
      * @param  \Illuminate\Validation\Validator $validator
      *
@@ -96,8 +98,9 @@ class StorePartRequest extends FormRequest
      */
     public function withValidator( $validator )
     {
-        $oldBag =new OldBag($this);
-        $this->session()->push('test',$oldBag);
+        $oldBag =new OldBag();
+        $oldBag->load($this);
+        $this->session()->flash('oldBag',$oldBag);
     }
 
 

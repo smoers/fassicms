@@ -2,39 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9ec171e7-05c7-490b-8f14-40ae5b7978c4" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Http/Requests/StorePartRequest.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Moco/Common/OldBag.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Moco/Common/OptionsView.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/layouts/store-layout.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/fassicms.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/fassicms.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/StoreController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/StoreController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Livewire/StoreList.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Livewire/StoreList.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Livewire/StoreListHead.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Livewire/StoreListHead.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Moco/Criteria/Criteria.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Moco/Criteria/Criteria.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Moco/Criteria/Criterias.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Moco/Criteria/Criterias.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/all.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/all.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/lang/fr.json" beforeDir="false" afterPath="$PROJECT_DIR$/resources/lang/fr.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/lang/nl.json" beforeDir="false" afterPath="$PROJECT_DIR$/resources/lang/nl.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/forms/crane.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/forms/crane.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/layout.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/layout.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/livewire/store-list-head.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/livewire/store-list-head.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/menus/navbar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/menus/navbar.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/root/dashboard.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/root/dashboard.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/store/store-list-main.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/store/store-list-main.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/tKEDrWtadGsjaCke1vCeYVPOT7TrjbUFKtcAwf0E" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/views/0ba889b3687cf500cee460b8c856fc72b73c43d3.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/0ba889b3687cf500cee460b8c856fc72b73c43d3.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/views/29e7b62de4b8a44fe992a98bbcf96ba531686162.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/29e7b62de4b8a44fe992a98bbcf96ba531686162.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/views/53a72d7f07d417bf2fea7fe5f8c8dff3db396121.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/53a72d7f07d417bf2fea7fe5f8c8dff3db396121.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/views/8eeef0157f53965ce656f63c64b269b4fcb4bf78.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/8eeef0157f53965ce656f63c64b269b4fcb4bf78.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/views/90c48dcb194d2bb220a0b74a2b7047854d23d0fb.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/90c48dcb194d2bb220a0b74a2b7047854d23d0fb.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/views/a5b5b0efc4408ad8fbfe882559004f213b5cfe64.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/a5b5b0efc4408ad8fbfe882559004f213b5cfe64.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/views/c63af29302a66a0773c312038557ed5b14a513a2.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/c63af29302a66a0773c312038557ed5b14a513a2.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/views/e3a301cf62a4ae53f0f664cfc371e23f189e2e35.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/e3a301cf62a4ae53f0f664cfc371e23f189e2e35.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Livewire/Store/StorePartForm.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Livewire/Store/StorePartForm.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Requests/StorePartRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/StorePartRequest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Moco/Common/OldBag.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Moco/Common/OldBag.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/livewire/store/store-part-form.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/livewire/store/store-part-form.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/root/message.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/root/message.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/H0m4KHfv1MIhG9E2oUibKbp6Sw7k2Yf1Z5wA6VCW" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/53fd60962b50afb3459b3cd9201f6ea36bc3470a.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/53fd60962b50afb3459b3cd9201f6ea36bc3470a.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/5b5ff4045400bd38a89939bed1a2b0920fa6acc6.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/5b5ff4045400bd38a89939bed1a2b0920fa6acc6.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -321,6 +297,13 @@
       <workItem from="1605463249827" duration="1783000" />
       <workItem from="1605465057221" duration="1766000" />
       <workItem from="1605468535643" duration="8392000" />
+      <workItem from="1605477015940" duration="70000" />
+      <workItem from="1605539690530" duration="1788000" />
+      <workItem from="1605541541617" duration="662000" />
+      <workItem from="1605543351293" duration="1406000" />
+      <workItem from="1605545164934" duration="3773000" />
+      <workItem from="1605548981037" duration="1615000" />
+      <workItem from="1605550889373" duration="12151000" />
     </task>
     <task id="LOCAL-00001" summary="20201031 - Init">
       <created>1604168127520</created>
@@ -357,7 +340,14 @@
       <option name="project" value="LOCAL" />
       <updated>1605132378588</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="20201115 - v1.0">
+      <created>1605477042756</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1605477042756</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -370,7 +360,8 @@
     <MESSAGE value="20201107 - v1.0" />
     <MESSAGE value="20201108 - v1.0" />
     <MESSAGE value="20201111 - v1.0" />
-    <option name="LAST_COMMIT_MESSAGE" value="20201111 - v1.0" />
+    <MESSAGE value="20201115 - v1.0" />
+    <option name="LAST_COMMIT_MESSAGE" value="20201115 - v1.0" />
   </component>
   <component name="WindowStateProjectService">
     <state x="1725" y="416" key="#com.intellij.ide.util.MemberChooser" timestamp="1605466048280">
@@ -386,11 +377,11 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="1011" y="455" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1605184317874" />
-    <state x="768" y="118" key="CommitChangelistDialog2" timestamp="1605132377869">
+    <state x="768" y="118" key="CommitChangelistDialog2" timestamp="1605477041676">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="576" y="88" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1604168125233" />
-    <state x="768" y="118" key="CommitChangelistDialog2/0.0.2560.1400@0.0.2560.1400" timestamp="1605132377869" />
+    <state x="768" y="118" key="CommitChangelistDialog2/0.0.2560.1400@0.0.2560.1400" timestamp="1605477041676" />
     <state x="987" y="351" key="FileChooserDialogImpl" timestamp="1605279149596">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
@@ -421,11 +412,11 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="1421" y="345" key="SettingsEditor/0.0.2560.1400@0.0.2560.1400" timestamp="1605259439523" />
-    <state x="736" y="339" key="Vcs.Push.Dialog.v2" timestamp="1605132392763">
+    <state x="736" y="339" key="Vcs.Push.Dialog.v2" timestamp="1605477044842">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="552" y="252" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1604168130806" />
-    <state x="736" y="339" key="Vcs.Push.Dialog.v2/0.0.2560.1400@0.0.2560.1400" timestamp="1605132392763" />
+    <state x="736" y="339" key="Vcs.Push.Dialog.v2/0.0.2560.1400@0.0.2560.1400" timestamp="1605477044842" />
     <state x="1669" y="444" key="com.jetbrains.php.test.PhpNewTestDialog" timestamp="1604843589275">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>

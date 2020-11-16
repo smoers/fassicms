@@ -60,7 +60,7 @@
                                 <label for="provider">{{ __('Provider')  }}</label>
                                 <select id="provider" name="provider" class="selectpicker form-control" data-live-search="true" title="{{__('Select a provider')}}">
                                     @foreach($providers as $_provider)
-                                        <option value="{{$_provider->id}}">{{$_provider->name}}</option>
+                                        <option value="{{$_provider->id}}" @if($_provider->id == $_provider) selected @endif>{{$_provider->name}}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -71,8 +71,8 @@
                                 <div class="form-group">
                                     <label for="enabled">{{ __('Enabled')  }}</label>
                                     <select @if(isset($enabled)) @if(!is_null($enabled)) readonly @endif @endif id="enabled" name="enabled" class="selectpicker form-control" data-width="fit" data-style="btn-primary">
-                                        <option value="true" @if(isset($enabled)) @if($enabled == 'Yes') selected @endif @endif>{{__('Yes')}}</option>
-                                        <option value="false" @if(isset($enabled)) @if($enabled == 'No') selected @endif @endif>{{__('No')}}</option>
+                                        <option value="true" @if(isset($enabled)) @if($enabled == 'true') selected @endif @endif>{{__('Yes')}}</option>
+                                        <option value="false" @if(isset($enabled)) @if($enabled == 'false') selected @endif @endif>{{__('No')}}</option>
                                     </select>
                                 </div>
                             </div>

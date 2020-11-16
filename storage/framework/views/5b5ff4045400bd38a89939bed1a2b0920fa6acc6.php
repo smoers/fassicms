@@ -102,7 +102,7 @@ unset($__errorArgs, $__bag); ?>
                                 <label for="provider"><?php echo e(__('Provider')); ?></label>
                                 <select id="provider" name="provider" class="selectpicker form-control" data-live-search="true" title="<?php echo e(__('Select a provider')); ?>">
                                     <?php $__currentLoopData = $providers; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $_provider): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                        <option value="<?php echo e($_provider->id); ?>"><?php echo e($_provider->name); ?></option>
+                                        <option value="<?php echo e($_provider->id); ?>" <?php if($_provider->id == $_provider): ?> selected <?php endif; ?>><?php echo e($_provider->name); ?></option>
                                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                 </select>
                             </div>
@@ -113,8 +113,8 @@ unset($__errorArgs, $__bag); ?>
                                 <div class="form-group">
                                     <label for="enabled"><?php echo e(__('Enabled')); ?></label>
                                     <select <?php if(isset($enabled)): ?> <?php if(!is_null($enabled)): ?> readonly <?php endif; ?> <?php endif; ?> id="enabled" name="enabled" class="selectpicker form-control" data-width="fit" data-style="btn-primary">
-                                        <option value="true" <?php if(isset($enabled)): ?> <?php if($enabled == 'Yes'): ?> selected <?php endif; ?> <?php endif; ?>><?php echo e(__('Yes')); ?></option>
-                                        <option value="false" <?php if(isset($enabled)): ?> <?php if($enabled == 'No'): ?> selected <?php endif; ?> <?php endif; ?>><?php echo e(__('No')); ?></option>
+                                        <option value="true" <?php if(isset($enabled)): ?> <?php if($enabled == 'true'): ?> selected <?php endif; ?> <?php endif; ?>><?php echo e(__('Yes')); ?></option>
+                                        <option value="false" <?php if(isset($enabled)): ?> <?php if($enabled == 'false'): ?> selected <?php endif; ?> <?php endif; ?>><?php echo e(__('No')); ?></option>
                                     </select>
                                 </div>
                             </div>

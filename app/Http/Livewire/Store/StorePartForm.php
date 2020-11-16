@@ -48,15 +48,33 @@ class StorePartForm extends Component
 
     public function mount()
     {
-        session()->get('oldBag');
         $this->year = Carbon::now()->year;
         $this->enabled = 'Yes';
-
+        $this->old();
     }
 
     public function render()
     {
         $providers = Provider::all()->sortBy('name');
         return view('livewire.store.store-part-form')->with('providers',$providers);
+    }
+
+    /**
+     * Charge les champs avec les anciennes valeurs dans le cas d'un retour avec erreur
+     */
+    protected function old(){
+        if(!is_null($oldBag = session()->get('oldBag')))
+        {
+            $this->part_number = $oldBag->get('part_number');
+            $this->description = $oldBag->get('description');
+            $this->qty = $oldBag->get('qty');
+            $this->location = $oldBag->get('location');
+            $this->price = $oldBag->get('price');
+            $this->year = $oldBag->get('year');
+            $this->provider = $oldBag->get('provider');
+            $this->enabled = $oldBag->get('enabled');
+            //suppression de l'objet dans la session
+            session()->remove('oldBag');
+        }
     }
 }
