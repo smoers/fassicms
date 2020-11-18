@@ -93,7 +93,6 @@ endif;
 unset($__errorArgs, $__bag); ?>
                             </div>
                         </div>
-
                     </div>
                     <div wire:ignore class="row">
                         <div class="col-10">
@@ -102,7 +101,7 @@ unset($__errorArgs, $__bag); ?>
                                 <label for="provider"><?php echo e(__('Provider')); ?></label>
                                 <select id="provider" name="provider" class="selectpicker form-control" data-live-search="true" title="<?php echo e(__('Select a provider')); ?>">
                                     <?php $__currentLoopData = $providers; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $_provider): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                        <option value="<?php echo e($_provider->id); ?>" <?php if($_provider->id == $_provider): ?> selected <?php endif; ?>><?php echo e($_provider->name); ?></option>
+                                        <option value="<?php echo e($_provider->id); ?>" ><?php echo e($_provider->name); ?></option>
                                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                 </select>
                             </div>

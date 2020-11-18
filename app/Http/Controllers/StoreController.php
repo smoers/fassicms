@@ -24,7 +24,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StorePartRequest;
 use App\Moco\Common\OptionsView;
+use App\Models\Catalog;
 use App\Models\Provider;
+use App\Models\Store;
 use Illuminate\Http\Request;
 
 
@@ -43,11 +45,20 @@ class StoreController extends Controller
     public function create()
     {
         //Options d'affichage
+        /*
         $options = new OptionsView();
         $options->setName('form01');
         $options->setContainer('container');
+        */
+        $_providers = Provider::all()->sortBy('name');
+        $_enabled = 1;
 
-        return view('layouts.store-layout')->with('options', $options);
+        return view('store.store-part-form',
+        [
+            '_providers' => $_providers,
+            '_enabled' => $_enabled
+        ]);
+        //return view('layouts.store-layout')->with('options', $options);
     }
 
     /**
@@ -55,9 +66,21 @@ class StoreController extends Controller
      */
     public function store(StorePartRequest  $request){
 
-        dd($request);
-        //$validatedData = $request->validate();
-
+        //Validation
+        $validatedData = $request->validated();
+        //recherche l'obet Provider
+        $provider = Provider::find($validatedData['provider']);
+        //Sauve objet Store
+        $store = new Store();
+        $store->fill((array)$validatedData);
+        $store->save();
+        //Sauve objet Catalog
+        $catalog = new Catalog();
+        $catalog->fill((array) $validatedData);
+        $catalog->store()->associate($store);
+        $catalog->provider()->associate($provider);
+        $catalog->save();
+        return redirect('store')->with('success','The part number has been saved');
     }
 
     /**

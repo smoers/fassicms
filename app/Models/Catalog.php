@@ -30,6 +30,8 @@ class Catalog extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['price','year'];
+
     /**
      * Retourne l'objet Store lié à l'objet Catalog
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
@@ -44,5 +46,18 @@ class Catalog extends Model
      */
     public function provider(){
         return $this->belongsTo(Provider::class);
+    }
+
+    /*
+     * Convertir en format MySQL
+     */
+    public function setPriceAttribute($value)
+    {
+        $this->attributes['price'] = floatval(str_replace(',','.',$value));
+    }
+
+    public function getPriceAttribute($value)
+    {
+        return number_format($value,',','.');
     }
 }

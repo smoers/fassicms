@@ -30,6 +30,14 @@ class Store extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'part_number',
+        'description',
+        'qty',
+        'location',
+        'enabled'
+    ];
+
     /**
      * Retourne les objets Catalog pour cet objet Store
      * @return \Illuminate\Database\Eloquent\Relations\HasMany

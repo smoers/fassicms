@@ -30,6 +30,8 @@ class Provider extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['name'];
+
     /**
      * Retourne les objets Catalogs pour cet objet Provider
      * @return \Illuminate\Database\Eloquent\Relations\HasMany

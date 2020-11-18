@@ -72,36 +72,19 @@ class StorePartRequest extends FormRequest
     public function messages()
     {
         return [
-            'part_number.required' => 'The part number is required',
-            'part_number.size' => 'The maximum size for a part number is 100 characters',
-            'part_number.unique' => 'This part number is already exist.',
-            'description.required' => 'The part number description is required',
-            'description.size' => 'The maximum size for a description is 255 characters',
-            'qty.required' => 'The quantity is required',
-            'location.size' => 'The maximum size for a location is 10 characters',
-            'price.required' => 'The price is required',
-            'price.regex' => 'The format of the price is not correct',
-            'year.required' => 'The year is required',
-            'enabled.required' => 'The activition is required',
-            'provider' => 'The provider is required',
+            'part_number.required' => trans('The part number is required'),
+            'part_number.size' => trans('The maximum size for a part number is 100 characters'),
+            'part_number.unique' => trans('This part number is already exist.'),
+            'description.required' => trans('The part number description is required'),
+            'description.size' => trans('The maximum size for a description is 255 characters'),
+            'qty.required' => trans('The quantity is required'),
+            'location.size' => trans('The maximum size for a location is 10 characters'),
+            'price.required' => trans('The price is required'),
+            'price.regex' => trans('The format of the price is not correct'),
+            'year.required' => trans('The year is required'),
+            'enabled.required' => trans('The activition is required'),
+            'provider' => trans('The provider is required'),
         ];
     }
-
-    /**
-     * Configure the validator instance.
-     * Recrée la function old() car il y a des problèmes si on
-     * combine Livewire validation online et un controller
-     *
-     * @param  \Illuminate\Validation\Validator $validator
-     *
-     * @return void
-     */
-    public function withValidator( $validator )
-    {
-        $oldBag =new OldBag();
-        $oldBag->load($this);
-        $this->session()->flash('oldBag',$oldBag);
-    }
-
 
 }
