@@ -13,11 +13,13 @@
                     <div class="form-group">
                         <label for="part_number">{{ __('Part Number') }}</label>
                         <input type="text" id="part_number" name="part_number" class="form-control" value="{{ old('part_number') }}">
+                        <div class="moco-error-small danger-darker-hover" id="part_numberError"></div>
                     </div>
                     <!-- Description -->
                     <div class="form-group">
                         <label for="description">{{ __('Description')  }}</label>
                         <input type="text" id="description" name="description" class="form-control" value="{{old('description')}}"></input>
+                        <div class="moco-error-small danger-darker-hover" id="descriptionError"></div>
                     </div>
                     <!-- Sur une ligne-->
                     <div class="row">
@@ -26,6 +28,7 @@
                             <div class="form-group">
                                 <label for="qty">{{ __('Quantity')  }}</label>
                                 <input type="number" id="qty "name="qty" class="form-control" value="{{old('qty')}}"></input>
+                                <div class="moco-error-small danger-darker-hover" id="qtyError"></div>
                             </div>
                         </div>
                         <!-- Location -->
@@ -33,6 +36,7 @@
                             <div class="form-group">
                                 <label for="location">{{ __('Location')  }}</label>
                                 <input type="text" id="location "name="location" class="form-control" value="{{old('location')}}"></input>
+                                <div class="moco-error-small danger-darker-hover" id="locationError"></div>
                             </div>
                         </div>
                         <!-- Price -->
@@ -40,6 +44,7 @@
                             <div class="form-group">
                                 <label for="price">{{ __('Price')  }}</label>
                                 <input type="text" id="price "name="price" class="form-control" value="{{old('price')}}"></input>
+                                <div class="moco-error-small danger-darker-hover" id="priceError"></div>
                             </div>
                         </div>
                         <!-- Year -->
@@ -47,6 +52,7 @@
                             <div class="form-group">
                                 <label for="year">{{ __('Year')  }}</label>
                                 <input type="number" id="year "name="year" class="form-control" value="{{ \Carbon\Carbon::now()->year }}" readonly="readonly"></input>
+                                <div class="moco-error-small danger-darker-hover" id="yearError"></div>
                             </div>
                         </div>
                     </div>
@@ -60,6 +66,7 @@
                                         <option value="{{$_provider->id}}" >{{$_provider->name}}</option>
                                     @endforeach
                                 </select>
+                                <div class="moco-error-small danger-darker-hover" id="providerError"></div>
                             </div>
                         </div>
                         <div class="col-2">
@@ -71,6 +78,7 @@
                                         <option value="1" @if(isset($_enabled)) @if($_enabled == 1) selected @endif @endif>{{__('Yes')}}</option>
                                         <option value="0" @if(isset($_enabled)) @if($_enabled == 0) selected @endif @endif>{{__('No')}}</option>
                                     </select>
+                                    <div class="moco-error-small danger-darker-hover" id="enabledError"></div>
                                 </div>
                             </div>
                         </div>
@@ -87,7 +95,59 @@
             </div>
         </div>
     </div>
-    <!-- Laravel Javascript Validation -->
-    <script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js')}}"></script>
-    {!! JsValidator::formRequest('App\Http\Requests\StorePartRequest','#part-form'); !!}
+    <script type="text/javascript">
+        $('#part_number').on('focusout', function (event) {
+            $.storeValidation();
+
+            /**
+            part_number = $('#part_number').val();
+            $.ajax({
+                url: "{{ route('store.ajaxvalidation') }}",
+                type:"POST",
+                data:{
+                    "_token": "{{ csrf_token() }}",
+                    part_number: part_number,
+                },
+                success:function (response) {
+                    console.log(response);
+                },
+                error:function (response) {
+                    message = response.responseJSON.errors.part_number
+                    if(message == null)
+                    {
+                        $('#part_number').addClass('is-valid').removeClass('is-invalid');
+                        $('#part_numberError').text("");
+                    }
+                    else
+                    {
+                        $('#part_number').addClass('is-invalid').removeClass('is-valid');
+                        $('#part_numberError').text(response.responseJSON.errors.part_number);
+                    }
+                }
+            })
+             **/
+        });
+
+        $.fn.extend({
+            storeValidation: function () {
+                part_number = $('#part_number').val();
+                description = $('#description').val();
+                $.ajax({
+                    url: "{{ route('store.ajaxvalidation') }}",
+                    type:"POST",
+                    data:{
+                        "_token": "{{ csrf_token() }}",
+                        part_number: part_number,
+                        description: description,
+                    },
+                    success: function (response){
+                        console.log(response);
+                    },
+                    error: function (response) {
+                      return response;
+                    }
+                })
+            }
+        })
+    </script>
 @endsection

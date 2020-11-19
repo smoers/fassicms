@@ -29,11 +29,7 @@
 
 namespace App\Http\Requests;
 
-use App\Moco\Common\OldBag;
-use http\Client\Request;
-use Illuminate\Contracts\Session\Session;
 use \Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Session\SessionManager;
 
 class StorePartRequest extends FormRequest
 {

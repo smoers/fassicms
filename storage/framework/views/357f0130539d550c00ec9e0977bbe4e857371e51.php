@@ -11,6 +11,7 @@
                     <div class="form-group">
                         <label for="part_number"><?php echo e(__('Part Number')); ?></label>
                         <input type="text" id="part_number" name="part_number" class="form-control" value="<?php echo e(old('part_number')); ?>">
+                        <div class="moco-error-small danger-darker-hover" id="part_numberError"></div>
                     </div>
                     <!-- Description -->
                     <div class="form-group">
@@ -85,10 +86,35 @@
             </div>
         </div>
     </div>
-    <!-- Laravel Javascript Validation -->
-    <script type="text/javascript" src="<?php echo e(asset('vendor/jsvalidation/js/jsvalidation.js')); ?>"></script>
-    <?php echo JsValidator::formRequest('App\Http\Requests\StorePartRequest','#part-form');; ?>
-
+    <script type="text/javascript">
+        $('#part_number').on('focusout', function (event) {
+            part_number = $('#part_number').val();
+            $.ajax({
+                url: "<?php echo e(route('store.ajaxvalidation')); ?>",
+                type:"POST",
+                data:{
+                    "_token": "<?php echo e(csrf_token()); ?>",
+                    part_number: part_number,
+                },
+                success:function (response) {
+                    console.log(response);
+                },
+                error:function (response) {
+                    message = response.responseJSON.errors.part_number
+                    if(message == null)
+                    {
+                        $('#part_number').addClass('is-valid').removeClass('is-invalid');
+                        $('#part_numberError').text("");
+                    }
+                    else
+                    {
+                        $('#part_number').addClass('is-invalid').removeClass('is-valid');
+                        $('#part_numberError').text(response.responseJSON.errors.part_number);
+                    }
+                }
+            })
+        });
+    </script>
 <?php $__env->stopSection(); ?>
 
 <?php echo $__env->make('layouts.layout', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /var/www/moco/fassicms/resources/views/store/store-part-form.blade.php ENDPATH**/ ?>

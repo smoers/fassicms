@@ -61,6 +61,19 @@ class StoreController extends Controller
         //return view('layouts.store-layout')->with('options', $options);
     }
 
+
+    public function ajaxValidation(request $request)
+    {
+        $formRequest = new StorePartRequest();
+        $this->validate($request, $formRequest->rules(), $formRequest->messages());
+        return response()->json();
+    }
+
+    public function show()
+    {
+        return 'test';
+    }
+
     /**
      * @param Request $request
      */

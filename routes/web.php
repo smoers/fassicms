@@ -30,6 +30,8 @@ Route::group(['middleware' => ['role_or_permission:admin','auth']],function (){
     Route::get('/dashboard', [DashboardController::class, 'index'])->name("dashboard");
     Route::resource('crane', CraneController::class);
     Route::resource('store',StoreController::class);
+    Route::post('/store/ajaxvalidation',[StoreController::class,'ajaxValidation'])->name('store.ajaxvalidation');
     Route::get('/store/bs/{id}',[StoreController::class,'barcodeSticker'])->name('store.barcode_sticker');
+
 });
 
