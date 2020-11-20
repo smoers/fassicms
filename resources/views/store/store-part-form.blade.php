@@ -27,7 +27,7 @@
                         <div class="col-3">
                             <div class="form-group">
                                 <label for="qty">{{ __('Quantity')  }}</label>
-                                <input type="number" id="qty "name="qty" class="form-control" value="{{old('qty')}}"></input>
+                                <input type="number" id="qty" name="qty" class="form-control" value="{{old('qty')}}"></input>
                                 <div class="moco-error-small danger-darker-hover" id="qtyError"></div>
                             </div>
                         </div>
@@ -35,7 +35,7 @@
                         <div class="col-3">
                             <div class="form-group">
                                 <label for="location">{{ __('Location')  }}</label>
-                                <input type="text" id="location "name="location" class="form-control" value="{{old('location')}}"></input>
+                                <input type="text" id="location" name="location" class="form-control" value="{{old('location')}}"></input>
                                 <div class="moco-error-small danger-darker-hover" id="locationError"></div>
                             </div>
                         </div>
@@ -43,7 +43,7 @@
                         <div class="col-3">
                             <div class="form-group">
                                 <label for="price">{{ __('Price')  }}</label>
-                                <input type="text" id="price "name="price" class="form-control" value="{{old('price')}}"></input>
+                                <input type="text" id="price" name="price" class="form-control" value="{{old('price')}}"></input>
                                 <div class="moco-error-small danger-darker-hover" id="priceError"></div>
                             </div>
                         </div>
@@ -51,7 +51,7 @@
                         <div class="col-3">
                             <div class="form-group">
                                 <label for="year">{{ __('Year')  }}</label>
-                                <input type="number" id="year "name="year" class="form-control" value="{{ \Carbon\Carbon::now()->year }}" readonly="readonly"></input>
+                                <input type="number" id="year" name="year" class="form-control" value="{{ \Carbon\Carbon::now()->year }}" readonly="readonly"></input>
                                 <div class="moco-error-small danger-darker-hover" id="yearError"></div>
                             </div>
                         </div>
@@ -96,42 +96,41 @@
         </div>
     </div>
     <script type="text/javascript">
-        $('#part_number').on('focusout', function (event) {
-            $.storeValidation();
+        $(function () {
+            $('#part_number').on('focusout', function () {
+                storeValidation('#part_number');
+            });
+            $('#description').on('focusout', function (){
+                storeValidation('#description');
+            });
+            $('#qty').on('focusout', function (){
+                storeValidation('#qty');
+            });
+            $('#location').on('focusout', function (){
+                storeValidation('#location');
+            });
+            $('#price').on('focusout', function (){
+                storeValidation('#price');
+            });
+            $('#year').on('focusout', function (){
+                storeValidation('#year');
+            });
+            $('#provider').on('focusout', function (){
+                storeValidation('#provider');
+            });
+            $('#enabled').on('focusout', function (){
+                storeValidation('#enabled');
+            });
 
-            /**
-            part_number = $('#part_number').val();
-            $.ajax({
-                url: "{{ route('store.ajaxvalidation') }}",
-                type:"POST",
-                data:{
-                    "_token": "{{ csrf_token() }}",
-                    part_number: part_number,
-                },
-                success:function (response) {
-                    console.log(response);
-                },
-                error:function (response) {
-                    message = response.responseJSON.errors.part_number
-                    if(message == null)
-                    {
-                        $('#part_number').addClass('is-valid').removeClass('is-invalid');
-                        $('#part_numberError').text("");
-                    }
-                    else
-                    {
-                        $('#part_number').addClass('is-invalid').removeClass('is-valid');
-                        $('#part_numberError').text(response.responseJSON.errors.part_number);
-                    }
-                }
-            })
-             **/
-        });
-
-        $.fn.extend({
-            storeValidation: function () {
+            function storeValidation(selector) {
                 part_number = $('#part_number').val();
                 description = $('#description').val();
+                qty = $('#qty').val();
+                loc = $('#location').val();
+                price = $('#price').val();
+                year = $('#year').val();
+                provider = $('#provider').val();
+                enabled = $('#enabled').val();
                 $.ajax({
                     url: "{{ route('store.ajaxvalidation') }}",
                     type:"POST",
@@ -139,12 +138,30 @@
                         "_token": "{{ csrf_token() }}",
                         part_number: part_number,
                         description: description,
+                        qty: qty,
+                        location: loc,
+                        price: price,
+                        year: year,
+                        provider: provider,
+                        enabled: enabled,
                     },
-                    success: function (response){
+                    success:function (response) {
                         console.log(response);
                     },
-                    error: function (response) {
-                      return response;
+                    error:function (response) {
+                        id = $(selector).attr('id');
+                        message = response.responseJSON.errors[id];
+                        if(message == null)
+                        {
+                            $(selector).removeClass('is-invalid').addClass('is-valid');
+                            $(selector+'Error').text("");
+                        }
+                        else
+                        {
+                            console.log([id, 'not null']);
+                            $(selector).removeClass('is-valid').addClass('is-invalid');
+                            $(selector+'Error').text(response.responseJSON.errors[id]);
+                        }
                     }
                 })
             }

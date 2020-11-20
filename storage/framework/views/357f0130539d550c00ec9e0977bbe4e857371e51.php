@@ -17,6 +17,7 @@
                     <div class="form-group">
                         <label for="description"><?php echo e(__('Description')); ?></label>
                         <input type="text" id="description" name="description" class="form-control" value="<?php echo e(old('description')); ?>"></input>
+                        <div class="moco-error-small danger-darker-hover" id="descriptionError"></div>
                     </div>
                     <!-- Sur une ligne-->
                     <div class="row">
@@ -24,28 +25,32 @@
                         <div class="col-3">
                             <div class="form-group">
                                 <label for="qty"><?php echo e(__('Quantity')); ?></label>
-                                <input type="number" id="qty "name="qty" class="form-control" value="<?php echo e(old('qty')); ?>"></input>
+                                <input type="number" id="qty" name="qty" class="form-control" value="<?php echo e(old('qty')); ?>"></input>
+                                <div class="moco-error-small danger-darker-hover" id="qtyError"></div>
                             </div>
                         </div>
                         <!-- Location -->
                         <div class="col-3">
                             <div class="form-group">
                                 <label for="location"><?php echo e(__('Location')); ?></label>
-                                <input type="text" id="location "name="location" class="form-control" value="<?php echo e(old('location')); ?>"></input>
+                                <input type="text" id="location" name="location" class="form-control" value="<?php echo e(old('location')); ?>"></input>
+                                <div class="moco-error-small danger-darker-hover" id="locationError"></div>
                             </div>
                         </div>
                         <!-- Price -->
                         <div class="col-3">
                             <div class="form-group">
                                 <label for="price"><?php echo e(__('Price')); ?></label>
-                                <input type="text" id="price "name="price" class="form-control" value="<?php echo e(old('price')); ?>"></input>
+                                <input type="text" id="price" name="price" class="form-control" value="<?php echo e(old('price')); ?>"></input>
+                                <div class="moco-error-small danger-darker-hover" id="priceError"></div>
                             </div>
                         </div>
                         <!-- Year -->
                         <div class="col-3">
                             <div class="form-group">
                                 <label for="year"><?php echo e(__('Year')); ?></label>
-                                <input type="number" id="year "name="year" class="form-control" value="<?php echo e(\Carbon\Carbon::now()->year); ?>" readonly="readonly"></input>
+                                <input type="number" id="year" name="year" class="form-control" value="<?php echo e(\Carbon\Carbon::now()->year); ?>" readonly="readonly"></input>
+                                <div class="moco-error-small danger-darker-hover" id="yearError"></div>
                             </div>
                         </div>
                     </div>
@@ -59,6 +64,7 @@
                                         <option value="<?php echo e($_provider->id); ?>" ><?php echo e($_provider->name); ?></option>
                                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                 </select>
+                                <div class="moco-error-small danger-darker-hover" id="providerError"></div>
                             </div>
                         </div>
                         <div class="col-2">
@@ -70,6 +76,7 @@
                                         <option value="1" <?php if(isset($_enabled)): ?> <?php if($_enabled == 1): ?> selected <?php endif; ?> <?php endif; ?>><?php echo e(__('Yes')); ?></option>
                                         <option value="0" <?php if(isset($_enabled)): ?> <?php if($_enabled == 0): ?> selected <?php endif; ?> <?php endif; ?>><?php echo e(__('No')); ?></option>
                                     </select>
+                                    <div class="moco-error-small danger-darker-hover" id="enabledError"></div>
                                 </div>
                             </div>
                         </div>
@@ -87,33 +94,76 @@
         </div>
     </div>
     <script type="text/javascript">
-        $('#part_number').on('focusout', function (event) {
-            part_number = $('#part_number').val();
-            $.ajax({
-                url: "<?php echo e(route('store.ajaxvalidation')); ?>",
-                type:"POST",
-                data:{
-                    "_token": "<?php echo e(csrf_token()); ?>",
-                    part_number: part_number,
-                },
-                success:function (response) {
-                    console.log(response);
-                },
-                error:function (response) {
-                    message = response.responseJSON.errors.part_number
-                    if(message == null)
-                    {
-                        $('#part_number').addClass('is-valid').removeClass('is-invalid');
-                        $('#part_numberError').text("");
+        $(function () {
+            $('#part_number').on('focusout', function () {
+                storeValidation('#part_number');
+            });
+            $('#description').on('focusout', function (){
+                storeValidation('#description');
+            });
+            $('#qty').on('focusout', function (){
+                storeValidation('#qty');
+            });
+            $('#location').on('focusout', function (){
+                storeValidation('#location');
+            });
+            $('#price').on('focusout', function (){
+                storeValidation('#price');
+            });
+            $('#year').on('focusout', function (){
+                storeValidation('#year');
+            });
+            $('#provider').on('focusout', function (){
+                storeValidation('#provider');
+            });
+            $('#enabled').on('focusout', function (){
+                storeValidation('#enabled');
+            });
+
+            function storeValidation(selector) {
+                part_number = $('#part_number').val();
+                description = $('#description').val();
+                qty = $('#qty').val();
+                loc = $('#location').val();
+                price = $('#price').val();
+                year = $('#year').val();
+                provider = $('#provider').val();
+                enabled = $('#enabled').val();
+                $.ajax({
+                    url: "<?php echo e(route('store.ajaxvalidation')); ?>",
+                    type:"POST",
+                    data:{
+                        "_token": "<?php echo e(csrf_token()); ?>",
+                        part_number: part_number,
+                        description: description,
+                        qty: qty,
+                        location: loc,
+                        price: price,
+                        year: year,
+                        provider: provider,
+                        enabled: enabled,
+                    },
+                    success:function (response) {
+                        console.log(response);
+                    },
+                    error:function (response) {
+                        id = $(selector).attr('id');
+                        message = response.responseJSON.errors[id];
+                        if(message == null)
+                        {
+                            $(selector).removeClass('is-invalid').addClass('is-valid');
+                            $(selector+'Error').text("");
+                        }
+                        else
+                        {
+                            console.log([id, 'not null']);
+                            $(selector).removeClass('is-valid').addClass('is-invalid');
+                            $(selector+'Error').text(response.responseJSON.errors[id]);
+                        }
                     }
-                    else
-                    {
-                        $('#part_number').addClass('is-invalid').removeClass('is-valid');
-                        $('#part_numberError').text(response.responseJSON.errors.part_number);
-                    }
-                }
-            })
-        });
+                })
+            }
+        })
     </script>
 <?php $__env->stopSection(); ?>
 

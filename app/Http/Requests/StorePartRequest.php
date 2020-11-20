@@ -56,9 +56,9 @@ class StorePartRequest extends FormRequest
         return [
             'part_number' => 'required|max:100|unique:stores,part_number',
             'description' => 'required|max:255',
-            'qty' => 'required|numeric',
+            'qty' => 'required|numeric|min:1',
             'location' => 'max:10',
-            'price' => array('required','regex:'.$this->regex),
+            'price' => array('required','regex:'.$this->regex,"min:0"),
             'year' => 'required|numeric|between:2000,2050',
             'provider' => 'required',
             'enabled' => 'required',

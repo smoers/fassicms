@@ -6,8 +6,7 @@
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/StoreController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/StoreController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Requests/StorePartRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/StorePartRequest.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/store/store-part-form.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/store/store-part-form.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/cVQDM6Z77mzMyB7BRbS51SlhEtlZPQ72kIpOwjkI" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/KRF8nyXocUPL2muzQHVybJ23TjpYKBbc1z53bLL7" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/storage/framework/views/357f0130539d550c00ec9e0977bbe4e857371e51.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/357f0130539d550c00ec9e0977bbe4e857371e51.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -322,6 +321,14 @@
       <workItem from="1605808558517" duration="1795000" />
       <workItem from="1605810380064" duration="1782000" />
       <workItem from="1605812186791" duration="944000" />
+      <workItem from="1605822516850" duration="105000" />
+      <workItem from="1605886897742" duration="1786000" />
+      <workItem from="1605888707722" duration="1788000" />
+      <workItem from="1605890518603" duration="923000" />
+      <workItem from="1605892326534" duration="1851000" />
+      <workItem from="1605894204420" duration="1590000" />
+      <workItem from="1605896170633" duration="2233000" />
+      <workItem from="1605898440251" duration="701000" />
     </task>
     <task id="LOCAL-00001" summary="20201031 - Init">
       <created>1604168127520</created>
@@ -379,7 +386,14 @@
       <option name="project" value="LOCAL" />
       <updated>1605737217962</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="20201119 - v1.0">
+      <created>1605822551266</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1605822551266</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -395,7 +409,8 @@
     <MESSAGE value="20201115 - v1.0" />
     <MESSAGE value="20201116 - v1.0" />
     <MESSAGE value="20201118 - v1.0" />
-    <option name="LAST_COMMIT_MESSAGE" value="20201118 - v1.0" />
+    <MESSAGE value="20201119 - v1.0" />
+    <option name="LAST_COMMIT_MESSAGE" value="20201119 - v1.0" />
   </component>
   <component name="WindowStateProjectService">
     <state x="1725" y="416" key="#com.intellij.ide.util.MemberChooser" timestamp="1605466048280">
@@ -411,11 +426,11 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="1011" y="455" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1605184317874" />
-    <state x="768" y="118" key="CommitChangelistDialog2" timestamp="1605737217217">
+    <state x="768" y="118" key="CommitChangelistDialog2" timestamp="1605822550650">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="576" y="88" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1604168125233" />
-    <state x="768" y="118" key="CommitChangelistDialog2/0.0.2560.1400@0.0.2560.1400" timestamp="1605737217216" />
+    <state x="768" y="118" key="CommitChangelistDialog2/0.0.2560.1400@0.0.2560.1400" timestamp="1605822550650" />
     <state x="987" y="351" key="FileChooserDialogImpl" timestamp="1605279149596">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
@@ -446,11 +461,11 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="1421" y="345" key="SettingsEditor/0.0.2560.1400@0.0.2560.1400" timestamp="1605259439523" />
-    <state x="736" y="339" key="Vcs.Push.Dialog.v2" timestamp="1605737219772">
+    <state x="736" y="339" key="Vcs.Push.Dialog.v2" timestamp="1605822554482">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="552" y="252" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1604168130806" />
-    <state x="736" y="339" key="Vcs.Push.Dialog.v2/0.0.2560.1400@0.0.2560.1400" timestamp="1605737219772" />
+    <state x="736" y="339" key="Vcs.Push.Dialog.v2/0.0.2560.1400@0.0.2560.1400" timestamp="1605822554482" />
     <state x="1669" y="444" key="com.jetbrains.php.test.PhpNewTestDialog" timestamp="1604843589275">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>

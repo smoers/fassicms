@@ -66,6 +66,7 @@ class StoreController extends Controller
     {
         $formRequest = new StorePartRequest();
         $this->validate($request, $formRequest->rules(), $formRequest->messages());
+
         return response()->json();
     }
 
