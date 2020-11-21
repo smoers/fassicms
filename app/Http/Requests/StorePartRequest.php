@@ -53,12 +53,13 @@ class StorePartRequest extends FormRequest
      */
     public function rules()
     {
+
         return [
-            'part_number' => 'required|max:100|unique:stores,part_number',
+            'part_number' => 'required|max:100|unique:stores,part_number,'.$this->post('id'),
             'description' => 'required|max:255',
             'qty' => 'required|numeric|min:1',
             'location' => 'max:10',
-            'price' => array('required','regex:'.$this->regex,"min:0"),
+            'price' => array('required','regex:'.$this->regex,"min:0.01"),
             'year' => 'required|numeric|between:2000,2050',
             'provider' => 'required',
             'enabled' => 'required',

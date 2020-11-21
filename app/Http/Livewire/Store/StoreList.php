@@ -17,10 +17,14 @@
  *  Company : Fassi Belgium
  *  Developer : MO Consult
  *  Author : Moers Serge
- *  Date : 11/11/20 11:53
+ *  Date : 21/11/20 16:07
  */
 
-namespace App\Http\Livewire;
+/**
+ * package https://github.com/rappasoft/laravel-livewire-tables
+ */
+
+namespace App\Http\Livewire\Store;
 
 
 use App\Models\Store;
@@ -55,7 +59,7 @@ class StoreList extends TableComponent
     public function query(): Builder
     {
         return Store::with('catalogs')
-            ->select('stores.*','catalogs.price')
+            ->select('stores.*','catalogs.id as cat_id','catalogs.price','catalogs.year')
             ->leftJoin('catalogs','stores.id','=','catalogs.store_id')
             ->where('catalogs.year','=',$this->year)
             ->where('stores.enabled','=', $this->enabled);
@@ -84,7 +88,7 @@ class StoreList extends TableComponent
                 }),
             Column::make(trans('Actions'))
                 ->format(function (Store $model){
-                    return view('menus.store-list-sub');
+                    return view('menus.store-list-sub',['store' => $model]);
                 }),
 
         ];

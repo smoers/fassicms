@@ -6,31 +6,31 @@
         </div>
         <?php
 if (! isset($_instance)) {
-    $html = \Livewire\Livewire::mount('store-list-head', [])->html();
-} elseif ($_instance->childHasBeenRendered('oPHhgSz')) {
-    $componentId = $_instance->getRenderedChildComponentId('oPHhgSz');
-    $componentTag = $_instance->getRenderedChildComponentTagName('oPHhgSz');
+    $html = \Livewire\Livewire::mount('store.store-list-head', [])->html();
+} elseif ($_instance->childHasBeenRendered('4lOx3bx')) {
+    $componentId = $_instance->getRenderedChildComponentId('4lOx3bx');
+    $componentTag = $_instance->getRenderedChildComponentTagName('4lOx3bx');
     $html = \Livewire\Livewire::dummyMount($componentId, $componentTag);
-    $_instance->preserveRenderedChild('oPHhgSz');
+    $_instance->preserveRenderedChild('4lOx3bx');
 } else {
-    $response = \Livewire\Livewire::mount('store-list-head', []);
+    $response = \Livewire\Livewire::mount('store.store-list-head', []);
     $html = $response->html();
-    $_instance->logRenderedChild('oPHhgSz', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
+    $_instance->logRenderedChild('4lOx3bx', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
 }
 echo $html;
 ?>
         <?php
 if (! isset($_instance)) {
-    $html = \Livewire\Livewire::mount('store-list', [])->html();
-} elseif ($_instance->childHasBeenRendered('YbmjyYw')) {
-    $componentId = $_instance->getRenderedChildComponentId('YbmjyYw');
-    $componentTag = $_instance->getRenderedChildComponentTagName('YbmjyYw');
+    $html = \Livewire\Livewire::mount('store.store-list', [])->html();
+} elseif ($_instance->childHasBeenRendered('sH5qQxR')) {
+    $componentId = $_instance->getRenderedChildComponentId('sH5qQxR');
+    $componentTag = $_instance->getRenderedChildComponentTagName('sH5qQxR');
     $html = \Livewire\Livewire::dummyMount($componentId, $componentTag);
-    $_instance->preserveRenderedChild('YbmjyYw');
+    $_instance->preserveRenderedChild('sH5qQxR');
 } else {
-    $response = \Livewire\Livewire::mount('store-list', []);
+    $response = \Livewire\Livewire::mount('store.store-list', []);
     $html = $response->html();
-    $_instance->logRenderedChild('YbmjyYw', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
+    $_instance->logRenderedChild('sH5qQxR', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
 }
 echo $html;
 ?>

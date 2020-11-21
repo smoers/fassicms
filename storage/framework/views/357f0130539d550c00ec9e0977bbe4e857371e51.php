@@ -5,18 +5,20 @@
                 <h2 class="blue-grey-darker-hover"><?php echo e(__('Add a part')); ?></h2>
             </div>
             <div class="card-body">
-                <form name="part-form" id="part-form" method="post" action="<?php echo e(route('store.store')); ?>">
+                <form name="part-form" id="part-form" method="post" action="<?php echo e($_action); ?>">
                 <?php echo csrf_field(); ?>
+                <input type="hidden" id="id" name="id" value="<?php echo e($store->id); ?>">
+                <input type="hidden" id="cat_id" name="cat_id" value="<?php echo e($catalog->id); ?>">
                 <!-- Part Number-->
                     <div class="form-group">
                         <label for="part_number"><?php echo e(__('Part Number')); ?></label>
-                        <input type="text" id="part_number" name="part_number" class="form-control" value="<?php echo e(old('part_number')); ?>">
+                        <input type="text" id="part_number" name="part_number" class="form-control" <?php if($store->id != null): ?> readonly <?php endif; ?> value="<?php echo e(old('part_number', $store->part_number)); ?>">
                         <div class="moco-error-small danger-darker-hover" id="part_numberError"></div>
                     </div>
                     <!-- Description -->
                     <div class="form-group">
                         <label for="description"><?php echo e(__('Description')); ?></label>
-                        <input type="text" id="description" name="description" class="form-control" value="<?php echo e(old('description')); ?>"></input>
+                        <input type="text" id="description" name="description" class="form-control" value="<?php echo e(old('description', $store->description)); ?>"></input>
                         <div class="moco-error-small danger-darker-hover" id="descriptionError"></div>
                     </div>
                     <!-- Sur une ligne-->
@@ -25,7 +27,7 @@
                         <div class="col-3">
                             <div class="form-group">
                                 <label for="qty"><?php echo e(__('Quantity')); ?></label>
-                                <input type="number" id="qty" name="qty" class="form-control" value="<?php echo e(old('qty')); ?>"></input>
+                                <input type="number" id="qty" name="qty" class="form-control" <?php if($store->id != null): ?> readonly <?php endif; ?> value="<?php echo e(old('qty', $store->qty)); ?>"></input>
                                 <div class="moco-error-small danger-darker-hover" id="qtyError"></div>
                             </div>
                         </div>
@@ -33,7 +35,7 @@
                         <div class="col-3">
                             <div class="form-group">
                                 <label for="location"><?php echo e(__('Location')); ?></label>
-                                <input type="text" id="location" name="location" class="form-control" value="<?php echo e(old('location')); ?>"></input>
+                                <input type="text" id="location" name="location" class="form-control" value="<?php echo e(old('location', $store->location)); ?>"></input>
                                 <div class="moco-error-small danger-darker-hover" id="locationError"></div>
                             </div>
                         </div>
@@ -41,7 +43,7 @@
                         <div class="col-3">
                             <div class="form-group">
                                 <label for="price"><?php echo e(__('Price')); ?></label>
-                                <input type="text" id="price" name="price" class="form-control" value="<?php echo e(old('price')); ?>"></input>
+                                <input type="text" id="price" name="price" class="form-control" value="<?php echo e(old('price', $catalog->price)); ?>"></input>
                                 <div class="moco-error-small danger-darker-hover" id="priceError"></div>
                             </div>
                         </div>
@@ -49,7 +51,7 @@
                         <div class="col-3">
                             <div class="form-group">
                                 <label for="year"><?php echo e(__('Year')); ?></label>
-                                <input type="number" id="year" name="year" class="form-control" value="<?php echo e(\Carbon\Carbon::now()->year); ?>" readonly="readonly"></input>
+                                <input type="number" id="year" name="year" class="form-control" value="<?php echo e(old('year', $catalog->year)); ?>" readonly="readonly"></input>
                                 <div class="moco-error-small danger-darker-hover" id="yearError"></div>
                             </div>
                         </div>
@@ -59,25 +61,29 @@
                             <!-- Provider -->
                             <div class="form-group">
                                 <label for="provider"><?php echo e(__('Provider')); ?></label>
-                                <select id="provider" name="provider" class="selectpicker form-control" data-live-search="true" title="<?php echo e(__('Select a provider')); ?>">
-                                    <?php $__currentLoopData = $_providers; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $_provider): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                        <option value="<?php echo e($_provider->id); ?>" ><?php echo e($_provider->name); ?></option>
-                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                </select>
+                                <?php if($store->id != null): ?>
+                                    <input type="text" id="provider" name="provider" class="form-control" value="<?php echo e(\App\Models\Provider::find($catalog->provider_id)->name); ?>" readonly="readonly"></input>
+                                <?php else: ?>
+                                    <select id="provider" name="provider" class="selectpicker form-control" <?php if($store->id != null): ?> disabled <?php endif; ?> data-live-search="true" title="<?php echo e(__('Select a provider')); ?>">
+                                        <?php $__currentLoopData = $_providers; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $_provider): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                            <option value="<?php echo e($_provider->id); ?>" <?php if($_provider->id == old('provider', $catalog->provider_id)): ?> selected <?php endif; ?>><?php echo e($_provider->name); ?></option>
+                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                    </select>
+                                <?php endif; ?>
                                 <div class="moco-error-small danger-darker-hover" id="providerError"></div>
                             </div>
                         </div>
+
+
                         <div class="col-2">
                             <!-- Enabled -->
-                            <div class="col-2">
-                                <div class="form-group">
-                                    <label for="enabled"><?php echo e(__('Enabled')); ?></label>
-                                    <select <?php if(isset($_enabled)): ?> <?php if(!is_null($_enabled)): ?> readonly <?php endif; ?> <?php endif; ?> id="enabled" name="enabled" class="selectpicker form-control" data-width="fit" data-style="btn-primary">
-                                        <option value="1" <?php if(isset($_enabled)): ?> <?php if($_enabled == 1): ?> selected <?php endif; ?> <?php endif; ?>><?php echo e(__('Yes')); ?></option>
-                                        <option value="0" <?php if(isset($_enabled)): ?> <?php if($_enabled == 0): ?> selected <?php endif; ?> <?php endif; ?>><?php echo e(__('No')); ?></option>
-                                    </select>
-                                    <div class="moco-error-small danger-darker-hover" id="enabledError"></div>
-                                </div>
+                            <div class="form-group">
+                                <label for="enabled"><?php echo e(__('Enabled')); ?></label>
+                                <select id="enabled" name="enabled" class="selectpicker form-control" data-width="fit" data-style="btn-primary">
+                                    <option value="1" <?php if(old('enabled',$store->enabled) == 1): ?> selected <?php endif; ?>><?php echo e(__('Yes')); ?></option>
+                                    <option value="0" <?php if(old('enabled',$store->enabled) == 0): ?> selected <?php endif; ?>><?php echo e(__('No')); ?></option>
+                                </select>
+                                <div class="moco-error-small danger-darker-hover" id="enabledError"></div>
                             </div>
                         </div>
                     </div>
@@ -96,13 +102,15 @@
     <script type="text/javascript">
         $(function () {
             $('#part_number').on('focusout', function () {
-                storeValidation('#part_number');
+                if ($('#part_number').attr('readonly') == null )
+                    storeValidation('#part_number');
             });
             $('#description').on('focusout', function (){
                 storeValidation('#description');
             });
             $('#qty').on('focusout', function (){
-                storeValidation('#qty');
+                if ($('#qty').attr('readonly') == null )
+                    storeValidation('#qty');
             });
             $('#location').on('focusout', function (){
                 storeValidation('#location');
@@ -111,13 +119,16 @@
                 storeValidation('#price');
             });
             $('#year').on('focusout', function (){
-                storeValidation('#year');
+                if ($('#year').attr('readonly') == null )
+                    storeValidation('#year');
             });
             $('#provider').on('focusout', function (){
-                storeValidation('#provider');
+                if ($('#provider').attr('readonly') == null )
+                    storeValidation('#provider');
             });
             $('#enabled').on('focusout', function (){
-                storeValidation('#enabled');
+                if ($('#enabled').attr('readonly') == null )
+                    storeValidation('#enabled');
             });
 
             function storeValidation(selector) {

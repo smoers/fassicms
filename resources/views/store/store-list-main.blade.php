@@ -6,8 +6,8 @@
         <div class="container-fluid text-center mb-3">
             <div class="moco-title brown-lighter-hover">{{ __('Parts List') }}</div>
         </div>
-        <livewire:store-list-head/>
-        <livewire:store-list/>
+        <livewire:store.store-list-head/>
+        <livewire:store.store-list/>
     </div>
 
 @endsection

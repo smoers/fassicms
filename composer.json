@@ -15,7 +15,6 @@
         "laravel/framework": "^8.0",
         "laravel/tinker": "^2.0",
         "livewire/livewire": "^2.3",
-        "proengsoft/laravel-jsvalidation": "^4.4",
         "rappasoft/laravel-livewire-tables": "^0.3.2",
         "spatie/laravel-permission": "^3.17",
         "tecnickcom/tcpdf": "^6.3"

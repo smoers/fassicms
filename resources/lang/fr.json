@@ -55,5 +55,6 @@
     "The format of the price is not correct": "Le format du prix n'est pas correct",
     "The year is required": "L'année est requise",
     "The activition is required": "L'activation est requise",
-    "The provider is required": "Le fournisseur est requis"
+    "The provider is required": "Le fournisseur est requis",
+    "The part number has been saved": "La pièce a été sauvée"
 }

@@ -23,45 +23,72 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StorePartRequest;
-use App\Moco\Common\OptionsView;
 use App\Models\Catalog;
 use App\Models\Provider;
+use App\Models\Reassortement;
 use App\Models\Store;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 
+/**
+ * Class StoreController
+ * @package App\Http\Controllers
+ */
 class StoreController extends Controller
 {
+    protected $_providers;
 
     public function __construct()
     {
+        $this->_providers = Provider::all()->sortBy('name');
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Affiche le formulaire pour introduire une nouvelle pièce
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\View
      */
     public function create()
     {
-        //Options d'affichage
-        /*
-        $options = new OptionsView();
-        $options->setName('form01');
-        $options->setContainer('container');
-        */
-        $_providers = Provider::all()->sortBy('name');
-        $_enabled = 1;
-
+        $store = new Store();
+        $catalog = new Catalog();
+        $store->enabled = 1;
+        $catalog->year = Carbon::now()->year;
         return view('store.store-part-form',
         [
-            '_providers' => $_providers,
-            '_enabled' => $_enabled
+            '_providers' => $this->_providers,
+            '_action' => route('store.store'),
+            'store' => $store,
+            'catalog' => $catalog,
         ]);
-        //return view('layouts.store-layout')->with('options', $options);
     }
 
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Contracts\View\View
+     */
+    public function edit($id, $cat_id)
+    {
+        $store = Store::find($id);
+        $catalog = Catalog::find($cat_id);
+        return view('store.store-part-form',
+            [
+                'store' => $store,
+                'catalog' => $catalog,
+                '_providers' => $this->_providers,
+                '_action' => route('store.update')
+            ]);
+    }
 
+    /**
+     * Validation real-time du formulaire
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Illuminate\Validation\ValidationException
+     */
     public function ajaxValidation(request $request)
     {
         $formRequest = new StorePartRequest();
@@ -70,12 +97,16 @@ class StoreController extends Controller
         return response()->json();
     }
 
+    /**
+     * @return string
+     */
     public function show()
     {
         return 'test';
     }
 
     /**
+     * Sauvegarde un nouvel enregistrement d'une pièce
      * @param Request $request
      */
     public function store(StorePartRequest  $request){
@@ -84,15 +115,40 @@ class StoreController extends Controller
         $validatedData = $request->validated();
         //recherche l'obet Provider
         $provider = Provider::find($validatedData['provider']);
-        //Sauve objet Store
+        //hydrate les objets
         $store = new Store();
         $store->fill((array)$validatedData);
         $store->save();
-        //Sauve objet Catalog
         $catalog = new Catalog();
         $catalog->fill((array) $validatedData);
+        $reassort = new Reassortement(); //crée le réassortiment initial
+        $reassort->qty_add = $store->qty;
+        $reassort->qty_before = 0;
+        //relationship
         $catalog->store()->associate($store);
         $catalog->provider()->associate($provider);
+        $reassort->store()->associate($store);
+        $catalog->save();
+        $reassort->save();
+        return redirect('store')->with('success','The part number has been saved');
+    }
+
+    /**
+     * @param StorePartRequest $request
+     * @return \Illuminate\Routing\Redirector
+     */
+    public function update(StorePartRequest $request)
+    {
+        //charge les objet existants
+        $store = Store::find($request->post('id'));
+        $catalog = Catalog::find($request->post('cat_id'));
+        //les valeurs validées
+        $validatedData = $request->validated();
+        //mets à jour les objets
+        $store->fill((array) $validatedData);
+        $catalog->fill((array) $validatedData);
+        //sauvergarde
+        $store->save();
         $catalog->save();
         return redirect('store')->with('success','The part number has been saved');
     }
@@ -104,12 +160,7 @@ class StoreController extends Controller
      */
     public function index(Request $request)
     {
-        //Options d'affichage
-        $options = new OptionsView();
-        $options->setName('list01');
-        $options->setContainer('container-fluid');
-
-        return view('layouts.store-layout')->with('options',$options);
+        return view('store.store-list-main');
     }
 
     public function barcodeSticker(Request $request)

@@ -29,7 +29,12 @@ Route::group(['middleware' => ['role_or_permission:admin','auth']],function (){
 
     Route::get('/dashboard', [DashboardController::class, 'index'])->name("dashboard");
     Route::resource('crane', CraneController::class);
-    Route::resource('store',StoreController::class);
+    //Route::resource('store',StoreController::class);
+    Route::get('store',[StoreController::class,'index'])->name('store.index');
+    Route::get('/store/create',[StoreController::class,'create'])->name('store.create');
+    Route::post('/store',[StoreController::class,'store'])->name('store.store');
+    Route::post('/store/update',[StoreController::class,'update'])->name('store.update');
+    Route::get('/store/{id}/{cat_id}/edit',[StoreController::class,'edit'])->name('store.edit');
     Route::post('/store/ajaxvalidation',[StoreController::class,'ajaxValidation'])->name('store.ajaxvalidation');
     Route::get('/store/bs/{id}',[StoreController::class,'barcodeSticker'])->name('store.barcode_sticker');
 

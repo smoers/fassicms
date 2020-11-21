@@ -56,8 +56,16 @@ class Catalog extends Model
         $this->attributes['price'] = floatval(str_replace(',','.',$value));
     }
 
+    /**
+     * @param $value
+     * @return string|null
+     */
     public function getPriceAttribute($value)
     {
-        return number_format($value,',','.');
+        if($value == ''){
+            return null;
+        } else {
+            return number_format(floatval(str_replace(',', '.', $value)), 2, ',', '');
+        }
     }
 }
