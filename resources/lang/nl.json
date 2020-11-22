@@ -33,6 +33,8 @@
     "Price": "Prijs",
     "Actions": "Acties",
     "Price catalogue": "Prijscatalogus",
+    "Add a part to the catalog": "Voeg een onderdeel toe aan de catalogus",
+    "Catalog": "Catalogus",
     "Active parts": "Actieve delen",
     "Year": "Jaar",
     "Add a part": "Voeg een kamer toe",
@@ -54,5 +56,7 @@
     "The year is required": "Jaar is vereist",
     "The activition is required": "Activering is vereist",
     "The provider is required": "Leverancier is vereist",
-    "The part number has been saved": "Het onderdeel is opgeslagen"
+    "The part number has been saved": "Het onderdeel is opgeslagen",
+    "Stock restocking": "Voorraadaanvulling",
+    "Parts in stock": "Onderdelen op voorraad"
 }

@@ -46,10 +46,10 @@
                         {{ __('Stocks') }}
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="{{route('store.index')}}">{{__('List')}}</a>
-                        <a class="dropdown-item" href="{{route('store.create')}}">{{__('Add')}}</a>
+                        <a class="dropdown-item" href="{{route('store.index')}}">{{__('Catalog')}}</a>
+                        <a class="dropdown-item" href="{{route('store.create')}}">{{__('Add a part to the catalog')}}</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="{{route('store.barcode_sticker',10)}}">Item 2</a>
+                        <a class="dropdown-item" href="{{route('reassort.index',10)}}">{{__('Stock restocking')}}</a>
                     </div>
                 </li>
 

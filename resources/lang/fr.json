@@ -35,6 +35,8 @@
     "Search...": "Chercher...",
     "Parts List": "Liste des pièces",
     "Price catalogue": "Prix catalogue",
+    "Catalog": "Catalogue",
+    "Add a part to the catalog": "Ajouter une pièce au catalogue",
     "Active parts": "Pièces actives",
     "Year": "Année",
     "Add a part": "Ajouter une pièce",
@@ -56,5 +58,11 @@
     "The year is required": "L'année est requise",
     "The activition is required": "L'activation est requise",
     "The provider is required": "Le fournisseur est requis",
-    "The part number has been saved": "La pièce a été sauvée"
+    "The part number has been saved": "La pièce a été sauvée",
+    "Stock restocking": "Réapprovisionnement des stocks",
+    "Parts in stock": "Pièces en stock",
+    "Number of parts to add": "Nombre de pièces à ajouter",
+    "Number of pieces in stock": "Nombre de pièces en stock",
+    "New stock": 
+
 }

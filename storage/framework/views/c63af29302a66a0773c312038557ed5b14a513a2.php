@@ -48,10 +48,10 @@
 
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="<?php echo e(route('store.index')); ?>"><?php echo e(__('List')); ?></a>
-                        <a class="dropdown-item" href="<?php echo e(route('store.create')); ?>"><?php echo e(__('Add')); ?></a>
+                        <a class="dropdown-item" href="<?php echo e(route('store.index')); ?>"><?php echo e(__('Catalog')); ?></a>
+                        <a class="dropdown-item" href="<?php echo e(route('store.create')); ?>"><?php echo e(__('Add a part to the catalog')); ?></a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="<?php echo e(route('store.barcode_sticker',10)); ?>">Item 2</a>
+                        <a class="dropdown-item" href="<?php echo e(route('reassort.index',10)); ?>"><?php echo e(__('Stock restocking')); ?></a>
                     </div>
                 </li>
 

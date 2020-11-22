@@ -37,4 +37,46 @@ class Reassortement extends Model
     public function store(){
         return $this->belongsTo(Store::class);
     }
+
+    /*
+    * Convertir en format MySQL
+    */
+    public function setQtyAddAttribute($value)
+    {
+        $this->attributes['qty_add'] = intval($value);
+    }
+
+    /**
+     * @param $value
+     * @return string|null
+     */
+    public function getQtyAddAttribute($value)
+    {
+        if($value == ''){
+            return null;
+        } else {
+            return number_format(intval($value), 0, ',', '');
+        }
+    }
+
+    /*
+    * Convertir en format MySQL
+    */
+    public function setQtyBeforeAttribute($value)
+    {
+        $this->attributes['qty_before'] = intval($value);
+    }
+
+    /**
+     * @param $value
+     * @return string|null
+     */
+    public function getQtyBeforeAttribute($value)
+    {
+        if($value == ''){
+            return null;
+        } else {
+            return number_format(intval($value), 0, ',', '');
+        }
+    }
 }
