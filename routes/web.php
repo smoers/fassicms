@@ -6,6 +6,7 @@ use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\StoreController;
 use App\Http\Controllers\CraneController;
 use App\Http\Controllers\ReassortController;
+use App\Http\Controllers\OutController;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,6 +45,10 @@ Route::group(['middleware' => ['role_or_permission:admin','auth']],function (){
     Route::get('/reassort/{id}/edit',[ReassortController::class,'edit'])->name('reassort.edit');
     Route::post('/reassort/update',[ReassortController::class,'update'])->name('reassort.update');
     Route::post('/reassort/ajaxvalidation',[ReassortController::class,'ajaxValidation'])->name('reassort.ajaxvalidation');
+    //Out Controller
+    Route::get('/out/{id}/edit',[OutController::class,'edit'])->name('out.edit');
+    Route::post('/out/update',[OutController::class,'update'])->name('out.update');
+    Route::post('/out/ajaxvalidation',[OutController::class,'ajaxValidation'])->name('out.ajaxvalidation');
 
     Route::get('/store/bs/{id}',[StoreController::class,'barcodeSticker'])->name('store.barcode_sticker');
 

@@ -63,6 +63,14 @@
     "Parts in stock": "Pièces en stock",
     "Number of parts to add": "Nombre de pièces à ajouter",
     "Number of pieces in stock": "Nombre de pièces en stock",
-    "New stock": 
-
+    "New stock": "Nouveau Stock",
+    "The minimum of added part is 1": "Le minimum de pièce ajoutée est 1",
+    "The number of pieces added must be an integer": "Le nombre de pièces ajoutées doit être un entier",
+    "Movement of stock": "Mouvement de stock",
+    "Out of stock": "Sortie de stock",
+    "Number of pieces to take out": "Nombre de pièces sorties",
+    "Select a reason": "Sélectionner une raison",
+    "Warranty": "Garantie",
+    "Stock correction": "Correction de stock",
+    "Manual": "Manuel"
 }

@@ -25,6 +25,7 @@ namespace App\Http\Controllers;
 use App\Models\Reassortement;
 use Illuminate\Http\Request;
 use App\Models\Store;
+use Illuminate\Support\Facades\Auth;
 
 /**
  * Class ReassortController
@@ -53,7 +54,7 @@ class ReassortController extends Controller
         return [
             'qty_add.required' => trans('The number of added part is required'),
             'qty_add.min' => trans('The minimun of added part is 1'),
-            'qty-add.integer' => trans(''),
+            'qty-add.integer' => trans('The number of pieces added must be an integer '),
         ];
     }
 
@@ -93,12 +94,14 @@ class ReassortController extends Controller
         $reassort = new Reassortement();
         $reassort->qty_add = $validatedData['qty_add'];
         $reassort->qty_before = $store->qty;
-        $reassort->store_id = $store->id;
+        $reassort->store()->associate($store);
+        $reassort->user()->associate(Auth::user());
         //mise à jour de la quantité en stock
         $store->qty = $store->qty + $reassort->qty_add;
-        dd([$store, $reassort]);
-        //$reassort->save();
-        //$store->save();
+        //Sauvegarde des objets
+        $reassort->save();
+        $store->save();
+        return redirect('reassort')->with('success', 'The new value of the stock has been saved');
     }
 
     /**

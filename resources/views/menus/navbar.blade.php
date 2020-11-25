@@ -49,7 +49,7 @@
                         <a class="dropdown-item" href="{{route('store.index')}}">{{__('Catalog')}}</a>
                         <a class="dropdown-item" href="{{route('store.create')}}">{{__('Add a part to the catalog')}}</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="{{route('reassort.index',10)}}">{{__('Stock restocking')}}</a>
+                        <a class="dropdown-item" href="{{route('reassort.index',10)}}">{{__('Movement of stock')}}</a>
                     </div>
                 </li>
 

@@ -34,7 +34,8 @@ class Out extends Model
      * Retourne l'objet Store lié à l'objet Out
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function store(){
+    public function store()
+    {
         return $this->belongsTo(Store::class);
     }
 
@@ -42,7 +43,59 @@ class Out extends Model
      * Retourne l'objet Reason lié à l'objet Out
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function reason(){
+    public function reason()
+    {
         return $this->belongsTo(Reason::class);
+    }
+
+    /**
+     * Retourne l'objet User lié à l'objet Out
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    /*
+* Convertir en format MySQL
+*/
+    public function setQtyPullAttribute($value)
+    {
+        $this->attributes['qty_pull'] = intval($value);
+    }
+
+    /**
+     * @param $value
+     * @return string|null
+     */
+    public function getQtyPullAttribute($value)
+    {
+        if($value == ''){
+            return null;
+        } else {
+            return number_format(intval($value), 0, ',', '');
+        }
+    }
+
+    /*
+    * Convertir en format MySQL
+    */
+    public function setQtyBeforeAttribute($value)
+    {
+        $this->attributes['qty_before'] = intval($value);
+    }
+
+    /**
+     * @param $value
+     * @return string|null
+     */
+    public function getQtyBeforeAttribute($value)
+    {
+        if($value == ''){
+            return null;
+        } else {
+            return number_format(intval($value), 0, ',', '');
+        }
     }
 }

@@ -58,5 +58,10 @@
     "The provider is required": "Leverancier is vereist",
     "The part number has been saved": "Het onderdeel is opgeslagen",
     "Stock restocking": "Voorraadaanvulling",
-    "Parts in stock": "Onderdelen op voorraad"
+    "Parts in stock": "Onderdelen op voorraad",
+    "Number of parts to add": "Aantal toe te voegen kamers",
+    "Number of pieces in stock": "Aantal stuks op voorraad",
+    "New stock": "Nieuwe voorraad",
+    "The minimum of added part is 1": "Het minimum van het toegevoegde onderdeel is 1",
+    "The number of pieces added must be an integer": "Het aantal toegevoegde stukjes moet een geheel getal zijn"
 }

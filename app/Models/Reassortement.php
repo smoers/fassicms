@@ -34,9 +34,20 @@ class Reassortement extends Model
      * Retourne l'objet Store lié à l'objet Reassortement
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function store(){
+    public function store()
+    {
         return $this->belongsTo(Store::class);
     }
+
+    /**
+     * Retourne l'objet User lié à l'objet Reassortement
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
 
     /*
     * Convertir en format MySQL
