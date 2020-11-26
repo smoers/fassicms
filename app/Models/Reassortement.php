@@ -48,6 +48,15 @@ class Reassortement extends Model
         return $this->belongsTo(User::class);
     }
 
+    /**
+     * Retourne l'objet Reason lié à l'objet Reassortement
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function reason()
+    {
+        return $this->belongsTo(Reason::class);
+    }
+
 
     /*
     * Convertir en format MySQL

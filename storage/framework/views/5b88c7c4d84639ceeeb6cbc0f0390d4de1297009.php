@@ -7,16 +7,16 @@
             <div class="card-body">
                 <form name="part-form" id="part-form" method="post" action="<?php echo e(route('reassort.update')); ?>">
                     <?php echo csrf_field(); ?>
-                    <input type="hidden" id="id" name="id" value="<?php echo e($store->id); ?>">
+                    <input type="hidden" id="id" name="id" value="<?php echo e($_store->id); ?>">
                     <!-- Part Number-->
                     <div class="form-group">
                         <label for="part_number"><?php echo e(__('Part Number')); ?></label>
-                        <input type="text" id="part_number" name="part_number" class="form-control" readonly value="<?php echo e(old('part_number', $store->part_number)); ?>">
+                        <input type="text" id="part_number" name="part_number" class="form-control" readonly value="<?php echo e(old('part_number', $_store->part_number)); ?>">
                     </div>
                     <!-- Description -->
                     <div class="form-group">
                         <label for="description"><?php echo e(__('Description')); ?></label>
-                        <input type="text" id="description" name="description" class="form-control" readonly value="<?php echo e(old('description', $store->description)); ?>"></input>
+                        <input type="text" id="description" name="description" class="form-control" readonly value="<?php echo e(old('description', $_store->description)); ?>"></input>
                     </div>
 
                     <!-- Sur une ligne-->
@@ -25,7 +25,7 @@
                         <div class="col-4">
                             <div class="form-group">
                                 <label for="qty_before"><?php echo e(__('Number of pieces in stock')); ?></label>
-                                <input type="number" id="qty_before" name="qty_before" class="form-control" readonly value="<?php echo e(old('qty_before', $store->qty)); ?>"></input>
+                                <input type="number" id="qty_before" name="qty_before" class="form-control" readonly value="<?php echo e(old('qty_before', $_store->qty)); ?>"></input>
                             </div>
                         </div>
                         <!-- qty-add -->
@@ -45,6 +45,28 @@
                         </div>
                     </div>
                     <div class="row">
+                        <div class="col-6">
+                            <!-- Reason -->
+                            <div class="form-group">
+                                <label for="reason"><?php echo e(__('Reason')); ?></label>
+                                <select id="reason" name="reason" class="selectpicker form-control" data-live-search="true" title="<?php echo e(__('Select a reason')); ?>">
+                                    <?php $__currentLoopData = $_reasons; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $_reason): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                        <option value="<?php echo e($_reason->id); ?>" <?php if($_reason->id == old('reason')): ?> selected <?php endif; ?>><?php echo e(__($_reason->reason)); ?></option>
+                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                </select>
+                                <div class="moco-error-small danger-darker-hover" id="reasonError"></div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <!-- Note -->
+                            <div class="form-group">
+                                <label for="note"><?php echo e(__('Note')); ?></label>
+                                <input type="text" id="note" name="note" class="form-control mt-2" value="<?php echo e(old('note')); ?>"></input>
+                                <div class="moco-error-small danger-darker-hover" id="noteError"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
                         <div class="col-2">
                             <button type="submit" class="btn btn-primary"><?php echo e(__('Save')); ?></button>
                         </div>
@@ -59,27 +81,45 @@
     <script type="text/javascript">
 
         $(function () {
-            var validation = 0;
+            var addValidation = 0;
+            var reasonValidation = 0;
+            var noteValidation = 0;
+
             /** calcule la nouvelle valeur du stock **/
             $('#qty_add').on('keyup', function (event) {
-                clearTimeout(validation);
+                clearTimeout(addValidation);
                 add =  $('#qty_add').val();
                 before = $('#qty_before').val();
                 if(!isNaN(add) && !isNaN(before)) {
                     $('#qty_new').val(parseInt(before) + parseInt(add));
                 }
-                validation = setTimeout(reassortValidation,1000,'#qty_add');
+                addValidation = setTimeout(reassortValidation,1000,'#qty_add');
+            })
+
+            /** validation du champ Reason **/
+            $('#reason').on('change',function (event){
+                clearTimeout(reasonValidation)
+                pullValidation = setTimeout(reassortValidation,1000,'#reason');
+            })
+            /** Validation du champ Note **/
+            $('#note').on('keyup', function (event) {
+                clearTimeout(noteValidation);
+                noteValidation = setTimeout(reassortValidation,1000,'#note');
             })
 
             var reassortValidation = function (selector) {
                 console.log("Start AJAX");
                 qty_add = $('#qty_add').val();
+                reason = $('#reason').val();
+                note = $('#note').val();
                 $.ajax({
                     url: "<?php echo e(route('reassort.ajaxvalidation')); ?>",
                     type:"POST",
                     data:{
                         "_token": "<?php echo e(csrf_token()); ?>",
                         qty_add: qty_add,
+                        reason: reason,
+                        note: note,
                     },
                     success:function (response) {
                         console.log(response);

@@ -22,6 +22,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Reason;
 use App\Models\Reassortement;
 use Illuminate\Http\Request;
 use App\Models\Store;
@@ -42,6 +43,8 @@ class ReassortController extends Controller
     {
         return [
             'qty_add' => 'required|numeric|min:1|integer',
+            'reason' => 'required',
+            'note' => 'max:255',
         ];
     }
 
@@ -55,6 +58,8 @@ class ReassortController extends Controller
             'qty_add.required' => trans('The number of added part is required'),
             'qty_add.min' => trans('The minimun of added part is 1'),
             'qty-add.integer' => trans('The number of pieces added must be an integer '),
+            'reason.required' => trans('The reason is required'),
+            'note.size' => trans('The maximum size for a note is 255 characters'),
         ];
     }
 
@@ -75,8 +80,10 @@ class ReassortController extends Controller
     public function edit($id)
     {
         $store = Store::find($id);
+        $reasons = Reason::where('option','=','R')->orderBy('reason')->get();
         return view('reassort.reassort-part-form',[
-           'store' => $store,
+            '_store' => $store,
+            '_reasons' => $reasons
         ]);
     }
 
@@ -90,11 +97,14 @@ class ReassortController extends Controller
         $validatedData = $request->validate($this->rules(),$this->messages());
         //Récupérer l'objet Store
         $store = Store::find($request->post('id'));
+        //Récupérer L'objet
+        $reason = Reason::find($validatedData['reason']);
         //Nouvel objet Reassortement
         $reassort = new Reassortement();
         $reassort->qty_add = $validatedData['qty_add'];
         $reassort->qty_before = $store->qty;
         $reassort->store()->associate($store);
+        $reassort->reason()->associate($reason);
         $reassort->user()->associate(Auth::user());
         //mise à jour de la quantité en stock
         $store->qty = $store->qty + $reassort->qty_add;

@@ -34,7 +34,17 @@ class Reason extends Model
      * Retourne les objets Out pour cet objet Reason
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function outs(){
+    public function outs()
+    {
         return $this->hasMany(Out::class);
+    }
+
+    /**
+     * Retourne les objets Reassortement pour cet objet Reason
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function reassortements()
+    {
+        return $this->hasMany(Reassortement::class);
     }
 }

@@ -12,7 +12,7 @@ Date : 27-10-20
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <title>Fassi Belgium CMS</title>
-        <link href="/images/favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.icon" />
+        <link href="{{ asset('/images/favicon.ico') }}" rel="shortcut icon" type="image/vnd.microsoft.icon" />
 
         <!-- Font Awesome -->
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">

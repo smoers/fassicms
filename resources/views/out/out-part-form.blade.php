@@ -84,8 +84,8 @@
 
         $(function () {
             var pullValidation = 0;
-            var reasonValidation = 0
-            var noteValidation = 0
+            var reasonValidation = 0;
+            var noteValidation = 0;
             /** calcule la nouvelle valeur du stock **/
             $('#qty_pull').on('keyup', function (event) {
                 clearTimeout(pullValidation);
@@ -112,6 +112,7 @@
                 console.log("Start AJAX");
                 qty_pull = $('#qty_pull').val();
                 reason = $('#reason').val();
+                note = $('#note').val();
                 $.ajax({
                     url: "{{ route('out.ajaxvalidation') }}",
                     type:"POST",
@@ -119,6 +120,7 @@
                         "_token": "{{ csrf_token() }}",
                         qty_pull: qty_pull,
                         reason: reason,
+                        note: note,
                     },
                     success:function (response) {
                         console.log(response);

@@ -9,16 +9,16 @@
             <div class="card-body">
                 <form name="part-form" id="part-form" method="post" action="{{route('reassort.update')}}">
                     @csrf
-                    <input type="hidden" id="id" name="id" value="{{ $store->id }}">
+                    <input type="hidden" id="id" name="id" value="{{ $_store->id }}">
                     <!-- Part Number-->
                     <div class="form-group">
                         <label for="part_number">{{ __('Part Number') }}</label>
-                        <input type="text" id="part_number" name="part_number" class="form-control" readonly value="{{ old('part_number', $store->part_number) }}">
+                        <input type="text" id="part_number" name="part_number" class="form-control" readonly value="{{ old('part_number', $_store->part_number) }}">
                     </div>
                     <!-- Description -->
                     <div class="form-group">
                         <label for="description">{{ __('Description')  }}</label>
-                        <input type="text" id="description" name="description" class="form-control" readonly value="{{old('description', $store->description)}}"></input>
+                        <input type="text" id="description" name="description" class="form-control" readonly value="{{old('description', $_store->description)}}"></input>
                     </div>
 
                     <!-- Sur une ligne-->
@@ -27,7 +27,7 @@
                         <div class="col-4">
                             <div class="form-group">
                                 <label for="qty_before">{{ __('Number of pieces in stock')  }}</label>
-                                <input type="number" id="qty_before" name="qty_before" class="form-control" readonly value="{{old('qty_before', $store->qty)}}"></input>
+                                <input type="number" id="qty_before" name="qty_before" class="form-control" readonly value="{{old('qty_before', $_store->qty)}}"></input>
                             </div>
                         </div>
                         <!-- qty-add -->
@@ -47,6 +47,28 @@
                         </div>
                     </div>
                     <div class="row">
+                        <div class="col-6">
+                            <!-- Reason -->
+                            <div class="form-group">
+                                <label for="reason">{{__('Reason')}}</label>
+                                <select id="reason" name="reason" class="selectpicker form-control" data-live-search="true" title="{{__('Select a reason')}}">
+                                    @foreach($_reasons as $_reason)
+                                        <option value="{{$_reason->id}}" @if($_reason->id == old('reason')) selected @endif>{{__($_reason->reason)}}</option>
+                                    @endforeach
+                                </select>
+                                <div class="moco-error-small danger-darker-hover" id="reasonError"></div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <!-- Note -->
+                            <div class="form-group">
+                                <label for="note">{{ __('Note')  }}</label>
+                                <input type="text" id="note" name="note" class="form-control mt-2" value="{{old('note')}}"></input>
+                                <div class="moco-error-small danger-darker-hover" id="noteError"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
                         <div class="col-2">
                             <button type="submit" class="btn btn-primary">{{__('Save')}}</button>
                         </div>
@@ -61,27 +83,45 @@
     <script type="text/javascript">
 
         $(function () {
-            var validation = 0;
+            var addValidation = 0;
+            var reasonValidation = 0;
+            var noteValidation = 0;
+
             /** calcule la nouvelle valeur du stock **/
             $('#qty_add').on('keyup', function (event) {
-                clearTimeout(validation);
+                clearTimeout(addValidation);
                 add =  $('#qty_add').val();
                 before = $('#qty_before').val();
                 if(!isNaN(add) && !isNaN(before)) {
                     $('#qty_new').val(parseInt(before) + parseInt(add));
                 }
-                validation = setTimeout(reassortValidation,1000,'#qty_add');
+                addValidation = setTimeout(reassortValidation,1000,'#qty_add');
+            })
+
+            /** validation du champ Reason **/
+            $('#reason').on('change',function (event){
+                clearTimeout(reasonValidation)
+                pullValidation = setTimeout(reassortValidation,1000,'#reason');
+            })
+            /** Validation du champ Note **/
+            $('#note').on('keyup', function (event) {
+                clearTimeout(noteValidation);
+                noteValidation = setTimeout(reassortValidation,1000,'#note');
             })
 
             var reassortValidation = function (selector) {
                 console.log("Start AJAX");
                 qty_add = $('#qty_add').val();
+                reason = $('#reason').val();
+                note = $('#note').val();
                 $.ajax({
                     url: "{{ route('reassort.ajaxvalidation') }}",
                     type:"POST",
                     data:{
                         "_token": "{{ csrf_token() }}",
                         qty_add: qty_add,
+                        reason: reason,
+                        note: note,
                     },
                     success:function (response) {
                         console.log(response);

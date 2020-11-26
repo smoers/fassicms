@@ -1,4 +1,24 @@
 <?php
+/*
+ * Copyright (c) 2020. MO Consult
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ *
+ *  Company : Fassi Belgium
+ *  Developer : MO Consult
+ *  Author : Moers Serge
+ *  Date : 26/11/20 19:15
+ */
 
 namespace App\Http\Controllers;
 
@@ -19,6 +39,7 @@ class OutController extends Controller
         return [
             'qty_pull' => 'required|numeric|min:1|integer',
             'reason' => 'required',
+            'note' => 'max:255',
         ];
     }
 
@@ -33,6 +54,7 @@ class OutController extends Controller
             'qty_pull.min' => trans('The minimun of parts taken out is 1'),
             'qty_pull.integer' => trans('The number of pieces taken out must be an integer '),
             'reason.required' => trans('The reason is required'),
+            'note.size' => trans('The maximum size for a note is 255 characters'),
         ];
     }
 
@@ -43,7 +65,7 @@ class OutController extends Controller
     public function edit($id)
     {
         $store = Store::find($id);
-        $reasons = Reason::all()->sortBy('reason');
+        $reasons = Reason::where('option','=','O')->orderBy('reason')->get();
         return view('out.out-part-form',
             [
                 '_store' => $store,
@@ -52,27 +74,39 @@ class OutController extends Controller
         );
     }
 
+    /**
+     * Sauvegarde la sortie de stock
+     * @param Request $request
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
     public function update(Request $request)
     {
         //Validation des données
         $validatedData = $request->validate($this->rules(),$this->messages());
         //Récupérer l'objet Store
         $store = Store::find($request->post('id'));
-        //Récu^érer L'objet
+        //Récupérer L'objet
         $reason = Reason::find($validatedData['reason']);
         //Nouvel objet Out
         $out = new Out();
         $out->qty_pull = $validatedData['qty_pull'];
+        $out->note = $validatedData['note'];
         $out->qty_before = $store->qty;
         $out->store()->associate($store);
         $out->reason()->associate($reason);
         $out->user()->associate(Auth::user());
         //mise à jour de la quantité en stock
         $store->qty = $store->qty - $out->qty_pull;
-        dd([$store, $out]);
+        $out->save();
+        $store->save();
         return redirect('reassort')->with('success', 'The new value of the stock has been saved');
     }
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Illuminate\Validation\ValidationException
+     */
     public function ajaxValidation(Request $request)
     {
         $this->validate($request, $this->rules(), $this->messages());
