@@ -32,6 +32,8 @@
     "Part Number": "Artikel nummer",
     "Price": "Prijs",
     "Actions": "Acties",
+    "Search...": "Zoeken...",
+    "Parts List": "Lijst met stukken",
     "Price catalogue": "Prijscatalogus",
     "Add a part to the catalog": "Voeg een onderdeel toe aan de catalogus",
     "Catalog": "Catalogus",
@@ -63,5 +65,15 @@
     "Number of pieces in stock": "Aantal stuks op voorraad",
     "New stock": "Nieuwe voorraad",
     "The minimum of added part is 1": "Het minimum van het toegevoegde onderdeel is 1",
-    "The number of pieces added must be an integer": "Het aantal toegevoegde stukjes moet een geheel getal zijn"
+    "The number of pieces added must be an integer": "Het aantal toegevoegde stukjes moet een geheel getal zijn",
+    "The number of parts issued must be less than or equal to the number of parts in stock": "Het aantal afgegeven onderdelen moet kleiner of gelijk zijn aan het aantal op voorraad zijnde onderdelen",
+    "Movement of stock": "Beweging van voorraad",
+    "Out of stock": "Uitverkocht",
+    "Number of pieces to take out": "Aantal uitgenomen onderdelen",
+    "Select a reason": "Selecteer een reden",
+    "Warranty": "Garantie",
+    "Stock correction": "Voorraadcorrectie",
+    "Manual": "Handleiding",
+    "Reassortment": "Herbevoorrading",
+    "Back in stock": "Terug in voorraad"
 }

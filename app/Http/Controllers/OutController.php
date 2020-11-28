@@ -37,7 +37,7 @@ class OutController extends Controller
     protected function rules()
     {
         return [
-            'qty_pull' => 'required|numeric|min:1|integer',
+            'qty_pull' => 'required|numeric|min:1|integer|lte:qty_before',
             'reason' => 'required',
             'note' => 'max:255',
         ];
@@ -53,6 +53,7 @@ class OutController extends Controller
             'qty_pull.required' => trans('The number of parts taken out is required'),
             'qty_pull.min' => trans('The minimun of parts taken out is 1'),
             'qty_pull.integer' => trans('The number of pieces taken out must be an integer '),
+            'qty_pull.lte' => trans('The number of parts issued must be less than or equal to the number of parts in stock'),
             'reason.required' => trans('The reason is required'),
             'note.size' => trans('The maximum size for a note is 255 characters'),
         ];

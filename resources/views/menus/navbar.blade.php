@@ -13,7 +13,7 @@
                         <li><a class="dropdown-item" href="#"> {{ __('Customer') }}   <i class="fa fa-caret-right"></i></a>
                             <ul class="submenu dropdown-menu">
                                 <li><a class="dropdown-item" href="">{{ __('List') }}</a></li>
-                                <li><a class="dropdown-item" href="">{{ __('Add') }}</a></li>
+                                <li><a class="dropdown-item" href="{{route('customer.create')}}">{{ __('Add') }}</a></li>
                                 <li><a class="dropdown-item" href="">{{ __('Modify') }}</a></li>
                                 <li><a class="dropdown-item" href="">{{ __('Remove') }}</a></li>
                             </ul>

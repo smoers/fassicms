@@ -13,7 +13,7 @@
                         <li><a class="dropdown-item" href="#"> <?php echo e(__('Customer')); ?>   <i class="fa fa-caret-right"></i></a>
                             <ul class="submenu dropdown-menu">
                                 <li><a class="dropdown-item" href=""><?php echo e(__('List')); ?></a></li>
-                                <li><a class="dropdown-item" href=""><?php echo e(__('Add')); ?></a></li>
+                                <li><a class="dropdown-item" href="<?php echo e(route('customer.create')); ?>"><?php echo e(__('Add')); ?></a></li>
                                 <li><a class="dropdown-item" href=""><?php echo e(__('Modify')); ?></a></li>
                                 <li><a class="dropdown-item" href=""><?php echo e(__('Remove')); ?></a></li>
                             </ul>

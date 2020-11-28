@@ -2,18 +2,23 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9ec171e7-05c7-490b-8f14-40ae5b7978c4" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/app/Moco/Common/MocoAjaxValidation.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/moco.ajax.validation.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/customer/customer-form.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/fassicms.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/fassicms.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/OutController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/OutController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ReassortController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ReassortController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Reason.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Reason.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Reassortement.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Reassortement.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/lang/fr.json" beforeDir="false" afterPath="$PROJECT_DIR$/resources/lang/fr.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/lang/nl.json" beforeDir="false" afterPath="$PROJECT_DIR$/resources/lang/nl.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/layouts/layout.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/layout.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/menus/navbar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/menus/navbar.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/out/out-part-form.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/out/out-part-form.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/reassort/reassort-part-form.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/reassort/reassort-part-form.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/1PyMV6Gvhlae1vuDwo6l26yCG9KKMRtxPKtEqvSh" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/KhWyMBCxzpdEc1sk77yJ91cmk1oqosAG3egj54j3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/views/5b88c7c4d84639ceeeb6cbc0f0390d4de1297009.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/5b88c7c4d84639ceeeb6cbc0f0390d4de1297009.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/BoW3ArSB2dEhsVoGN5hyrajZ9DOCzb0iCCoV3U2i" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/4d5bc0f4f6f704f78f096f8dd2e2b9b62547e2a0.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/4d5bc0f4f6f704f78f096f8dd2e2b9b62547e2a0.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/storage/framework/views/90c48dcb194d2bb220a0b74a2b7047854d23d0fb.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/90c48dcb194d2bb220a0b74a2b7047854d23d0fb.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/c63af29302a66a0773c312038557ed5b14a513a2.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/c63af29302a66a0773c312038557ed5b14a513a2.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -162,27 +167,28 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="DatabaseDriversLRU" value="mysql" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views/out" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views/customer" />
     <property name="php.override.implement.member.chooser.php.doc" value="NONE" />
     <property name="settings.editor.selected.configurable" value="preferences.keymap" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\fassicms\resources\views\customer" />
+      <recent name="D:\fassicms\resources\views\out" />
+      <recent name="D:\fassicms\resources\views\reassort" />
+      <recent name="D:\fassicms\resources\views\store" />
+      <recent name="D:\fassicms\vendor\rappasoft\laravel-livewire-tables\resources\lang\nl" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\fassicms\resources\views\livewire\reassort" />
       <recent name="D:\fassicms\app\Http\Livewire\Reassort" />
       <recent name="D:\fassicms\resources\views\livewire\store" />
       <recent name="D:\fassicms\app\Http\Livewire\Store" />
       <recent name="D:\fassicms\resources\views\livewire" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\fassicms\resources\views\out" />
-      <recent name="D:\fassicms\resources\views\reassort" />
-      <recent name="D:\fassicms\resources\views\store" />
-      <recent name="D:\fassicms\vendor\rappasoft\laravel-livewire-tables\resources\lang\nl" />
-      <recent name="D:\fassicms\vendor\rappasoft\laravel-livewire-tables\resources\lang\fr" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -376,6 +382,25 @@
       <workItem from="1606410958968" duration="2438000" />
       <workItem from="1606413715695" duration="1782000" />
       <workItem from="1606415523074" duration="635000" />
+      <workItem from="1606418562940" duration="627000" />
+      <workItem from="1606491848171" duration="1820000" />
+      <workItem from="1606493731972" duration="1535000" />
+      <workItem from="1606495543016" duration="597000" />
+      <workItem from="1606497776768" duration="2633000" />
+      <workItem from="1606500428488" duration="1201000" />
+      <workItem from="1606550360390" duration="943000" />
+      <workItem from="1606552271095" duration="1015000" />
+      <workItem from="1606554080636" duration="1986000" />
+      <workItem from="1606556082971" duration="1793000" />
+      <workItem from="1606557891933" duration="1796000" />
+      <workItem from="1606559705037" duration="1793000" />
+      <workItem from="1606561513566" duration="2050000" />
+      <workItem from="1606563581358" duration="2103000" />
+      <workItem from="1606565705006" duration="1792000" />
+      <workItem from="1606567511612" duration="2250000" />
+      <workItem from="1606569800926" duration="1792000" />
+      <workItem from="1606571612178" duration="1798000" />
+      <workItem from="1606573426869" duration="705000" />
     </task>
     <task id="LOCAL-00001" summary="20201031 - Init">
       <created>1604168127520</created>
@@ -468,7 +493,14 @@
       <option name="project" value="LOCAL" />
       <updated>1606333103197</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="20201126 - v1.0">
+      <created>1606418593013</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1606418593013</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -489,13 +521,18 @@
     <MESSAGE value="20201121 - v1.0" />
     <MESSAGE value="20201122 - v1.0" />
     <MESSAGE value="20201125 - v1.0" />
-    <option name="LAST_COMMIT_MESSAGE" value="20201125 - v1.0" />
+    <MESSAGE value="20201126 - v1.0" />
+    <option name="LAST_COMMIT_MESSAGE" value="20201126 - v1.0" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="1725" y="416" key="#com.intellij.ide.util.MemberChooser" timestamp="1605979794365">
+    <state x="873" y="359" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1606564463028">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="1725" y="416" key="#com.intellij.ide.util.MemberChooser/0.0.2560.1400@0.0.2560.1400" timestamp="1605979794365" />
+    <state x="873" y="359" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1606564463028" />
+    <state x="1725" y="416" key="#com.intellij.ide.util.MemberChooser" timestamp="1606565202568">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="1725" y="416" key="#com.intellij.ide.util.MemberChooser/0.0.2560.1400@0.0.2560.1400" timestamp="1606565202568" />
     <state x="929" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1606046396097">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
@@ -505,16 +542,20 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="1011" y="455" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1606415389867" />
-    <state x="768" y="118" key="CommitChangelistDialog2" timestamp="1606333102507">
+    <state x="768" y="118" key="CommitChangelistDialog2" timestamp="1606418592356">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="576" y="88" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1604168125233" />
-    <state x="768" y="118" key="CommitChangelistDialog2/0.0.2560.1400@0.0.2560.1400" timestamp="1606333102507" />
-    <state x="987" y="351" key="FileChooserDialogImpl" timestamp="1605279149596">
+    <state x="768" y="118" key="CommitChangelistDialog2/0.0.2560.1400@0.0.2560.1400" timestamp="1606418592356" />
+    <state x="93" y="93" width="2375" height="1215" key="DiffContextDialog" timestamp="1606493598198">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="93" y="93" width="2375" height="1215" key="DiffContextDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1606493598198" />
+    <state x="987" y="351" key="FileChooserDialogImpl" timestamp="1606553717046">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="740" y="261" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1604167441008" />
-    <state x="987" y="351" key="FileChooserDialogImpl/0.0.2560.1400@0.0.2560.1400" timestamp="1605279149596" />
+    <state x="987" y="351" key="FileChooserDialogImpl/0.0.2560.1400@0.0.2560.1400" timestamp="1606553717046" />
     <state x="784" y="439" key="Github.CreateGistDialog" timestamp="1604167271237">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -527,10 +568,26 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="722" y="224" key="Github.UntrackedFilesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1604167553616" />
-    <state x="1750" y="423" key="NewPhpClassDialog" timestamp="1605464619174">
+    <state width="1741" height="401" key="GridCell.Tab.0.bottom" timestamp="1606564380650">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="1750" y="423" key="NewPhpClassDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1605464619174" />
+    <state width="1741" height="401" key="GridCell.Tab.0.bottom/0.0.2560.1400@0.0.2560.1400" timestamp="1606564380650" />
+    <state width="1741" height="401" key="GridCell.Tab.0.center" timestamp="1606564380650">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="1741" height="401" key="GridCell.Tab.0.center/0.0.2560.1400@0.0.2560.1400" timestamp="1606564380650" />
+    <state width="1741" height="401" key="GridCell.Tab.0.left" timestamp="1606564380650">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="1741" height="401" key="GridCell.Tab.0.left/0.0.2560.1400@0.0.2560.1400" timestamp="1606564380650" />
+    <state width="1741" height="401" key="GridCell.Tab.0.right" timestamp="1606564380650">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="1741" height="401" key="GridCell.Tab.0.right/0.0.2560.1400@0.0.2560.1400" timestamp="1606564380650" />
+    <state x="1750" y="423" key="NewPhpClassDialog" timestamp="1606564656811">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="1750" y="423" key="NewPhpClassDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1606564656811" />
     <state x="1059" y="596" key="NewPhpFileDialog" timestamp="1606050557824">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
@@ -540,11 +597,11 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="1421" y="345" key="SettingsEditor/0.0.2560.1400@0.0.2560.1400" timestamp="1605259439523" />
-    <state x="736" y="339" key="Vcs.Push.Dialog.v2" timestamp="1606333106420">
+    <state x="736" y="339" key="Vcs.Push.Dialog.v2" timestamp="1606418594757">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="552" y="252" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1604168130806" />
-    <state x="736" y="339" key="Vcs.Push.Dialog.v2/0.0.2560.1400@0.0.2560.1400" timestamp="1606333106420" />
+    <state x="736" y="339" key="Vcs.Push.Dialog.v2/0.0.2560.1400@0.0.2560.1400" timestamp="1606418594757" />
     <state x="1669" y="444" key="com.jetbrains.php.test.PhpNewTestDialog" timestamp="1604843589275">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
@@ -553,6 +610,10 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="999" y="472" key="refactoring.ChangeSignatureDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1605174333407" />
+    <state x="1577" y="334" key="run.anything.popup" timestamp="1606494846371">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="1577" y="334" key="run.anything.popup/0.0.2560.1400@0.0.2560.1400" timestamp="1606494846371" />
     <state x="943" y="315" width="672" height="678" key="search.everywhere.popup" timestamp="1604840961096">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>

@@ -10,6 +10,7 @@ Date : 27-10-20
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="csrf-token" content="<?php echo e(csrf_token()); ?>">
 
         <title>Fassi Belgium CMS</title>
         <link href="<?php echo e(asset('/images/favicon.ico')); ?>" rel="shortcut icon" type="image/vnd.microsoft.icon" />
@@ -24,7 +25,8 @@ Date : 27-10-20
         <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">
         <!-- Bootstrap-Select -->
         <link href="<?php echo e(asset('3rd/bootstrap-select-1.13.18/css/bootstrap-select.min.css')); ?>" rel="stylesheet">
-
+        <!-- Ajax Bootstrap Select-->
+        <link href="<?php echo e(asset('3rd/Ajax-Bootstrap-Select-1.4.5/dist/css/ajax-bootstrap-select.min.css')); ?>" rel="stylesheet">
         <!-- CSS MOCO -->
         <link href="<?php echo e(asset('css/all.css')); ?>" rel="stylesheet">
 
@@ -38,6 +40,8 @@ Date : 27-10-20
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js"></script>
         <!-- Bootstrap-Select -->
         <script type="text/javascript" src="<?php echo e(asset('3rd/bootstrap-select-1.13.18/js/bootstrap-select.min.js')); ?>"></script>
+        <!-- Ajax Bootstrap Select -->
+        <script type="text/javascript" src="<?php echo e(asset('3rd/Ajax-Bootstrap-Select-1.4.5/dist/js/ajax-bootstrap-select.min.js')); ?>"></script>
         <!-- Livewire -->
         <?php echo \Livewire\Livewire::styles(); ?>
 

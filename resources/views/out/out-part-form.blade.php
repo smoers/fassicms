@@ -92,9 +92,13 @@
                 pull =  $('#qty_pull').val();
                 before = $('#qty_before').val();
                 if(!isNaN(pull) && !isNaN(before)) {
-                    $('#qty_new').val(parseInt(before) - parseInt(pull));
+                    if (parseInt(before) >= parseInt(pull)) {
+                        $('#qty_new').val(parseInt(before) - parseInt(pull));
+                    } else {
+                        $('#qty_new').val('');
+                    }
                 }
-                validation = setTimeout(outValidation,1000,'#qty_pull');
+                pullvalidation = setTimeout(outValidation,1000,'#qty_pull');
             })
 
             /** validation du champ Reason **/

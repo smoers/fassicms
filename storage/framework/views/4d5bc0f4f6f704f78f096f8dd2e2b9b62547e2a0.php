@@ -10,7 +10,7 @@
                     <input type="hidden" id="id" name="id" value="<?php echo e($_store->id); ?>">
                     <!-- Part Number-->
                     <div class="form-group">
-                        <label for="part_number"><?php echo e(__('Part Number')); ?></label>
+                        <label for="part_number" moco-validation><?php echo e(__('Part Number')); ?></label>
                         <input type="text" id="part_number" name="part_number" class="form-control" readonly value="<?php echo e(old('part_number', $_store->part_number)); ?>">
                     </div>
                     <!-- Description -->
@@ -82,15 +82,19 @@
 
         $(function () {
             var pullValidation = 0;
-            var reasonValidation = 0
-            var noteValidation = 0
+            var reasonValidation = 0;
+            var noteValidation = 0;
             /** calcule la nouvelle valeur du stock **/
             $('#qty_pull').on('keyup', function (event) {
                 clearTimeout(pullValidation);
                 pull =  $('#qty_pull').val();
                 before = $('#qty_before').val();
                 if(!isNaN(pull) && !isNaN(before)) {
-                    $('#qty_new').val(parseInt(before) - parseInt(pull));
+                    if (parseInt(before) >= parseInt(pull)) {
+                        $('#qty_new').val(parseInt(before) - parseInt(pull));
+                    } else {
+                        $('#qty_new').val('');
+                    }
                 }
                 validation = setTimeout(outValidation,1000,'#qty_pull');
             })
@@ -110,6 +114,7 @@
                 console.log("Start AJAX");
                 qty_pull = $('#qty_pull').val();
                 reason = $('#reason').val();
+                note = $('#note').val();
                 $.ajax({
                     url: "<?php echo e(route('out.ajaxvalidation')); ?>",
                     type:"POST",
@@ -117,6 +122,7 @@
                         "_token": "<?php echo e(csrf_token()); ?>",
                         qty_pull: qty_pull,
                         reason: reason,
+                        note: note,
                     },
                     success:function (response) {
                         console.log(response);

@@ -7,6 +7,7 @@ use App\Http\Controllers\StoreController;
 use App\Http\Controllers\CraneController;
 use App\Http\Controllers\ReassortController;
 use App\Http\Controllers\OutController;
+use App\Http\Controllers\CustomerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,16 +20,14 @@ use App\Http\Controllers\OutController;
 |
 */
 
-Route::get('/', function () {
-    return redirect()->route('dashboard');
-})->name('main');
-
 Auth::routes();
 
 Route::get('/permissions',[PermissionController::class,'add'])->name('permissions.add');
 
 Route::group(['middleware' => ['role_or_permission:admin','auth']],function (){
-
+    Route::get('/', function () {
+        return redirect()->route('dashboard');
+    })->name('main');
     //Dashboard Controller
     Route::get('/dashboard', [DashboardController::class, 'index'])->name("dashboard");
     //Crane Controller
@@ -49,6 +48,12 @@ Route::group(['middleware' => ['role_or_permission:admin','auth']],function (){
     Route::get('/out/{id}/edit',[OutController::class,'edit'])->name('out.edit');
     Route::post('/out/update',[OutController::class,'update'])->name('out.update');
     Route::post('/out/ajaxvalidation',[OutController::class,'ajaxValidation'])->name('out.ajaxvalidation');
+    //Customer Controller
+    Route::get('/customer/create',[CustomerController::class,'create'])->name('customer.create');
+    Route::post('/customer/store',[CustomerController::class,'store'])->name('customer.store');
+    Route::post('/customer/ajaxvalidation',[CustomerController::class,'ajaxValidation'])->name('customer.ajaxvalidation');
+    Route::post('/customer/ajaxselect',[CustomerController::class,'ajaxSelect'])->name('customer.ajaxselect');
+
 
     Route::get('/store/bs/{id}',[StoreController::class,'barcodeSticker'])->name('store.barcode_sticker');
 
