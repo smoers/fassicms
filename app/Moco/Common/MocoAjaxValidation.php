@@ -36,11 +36,16 @@ trait MocoAjaxValidation
 {
     protected $formRequest = null;
 
+    /**
+     * Validation du formulaire sur base d'un objet FormRequest
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function ajaxValidation(Request $request)
     {
         if(!is_null($this->formRequest)){
-            $this->validate($request, $this->formRequest->rules(), $this->formRequest->messages(), $this->formRequest->attributes());
-            return response()->json;
+            $data = $this->validate($request, $this->formRequest->rules(), $this->formRequest->messages(), $this->formRequest->attributes());
+            return response()->json($data);
         }
     }
 }

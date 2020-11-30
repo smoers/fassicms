@@ -75,5 +75,25 @@
     "Stock correction": "Correction de stock",
     "Manual": "Manuel",
     "Reassortment": "Réassortiment",
-    "Back in stock": "Retour en stock"
+    "Back in stock": "Retour en stock",
+    "Add customer": "Ajouter un client",
+    "Company name": "Nom de la compagnie",
+    "Address": "Adresse",
+    "Address (optional)": "Adresse (optionelle)",
+    "Zipcode": "Code postal",
+    "City": "Localité",
+    "Country": "Pays",
+    "Email address": "Adresse email",
+    "Phone": "Téléphone",
+    "Mobile": "Mobile",
+    "VAT": "TVA",
+    "Currently selected": "Actuellement sélectionné",
+    "Select and Begin Typing": "Sélectionnez et commencez à taper",
+    "Unable to retrieve results": "Impossible de récupérer les résultats",
+    "Search...": "Chercher...",
+    "Start typing a search query": "Commencez à taper une requête de recherche",
+    "No Results": "Aucun résultat",
+    "Searching...": "Recherche...",
+    "Please enter more characters": "Veuillez saisir plus de caractères"
+
 }

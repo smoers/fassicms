@@ -10,7 +10,7 @@
                 <li class="nav-item dropdown  @if( Route::is('crane.*')) active @endif">
                     <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">{{ __('Company data') }}</a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#"> {{ __('Customer') }}   <i class="fa fa-caret-right"></i></a>
+                        <li><a class="dropdown-item" href="#"> {{ __('Customers') }}   <i class="fa fa-caret-right"></i></a>
                             <ul class="submenu dropdown-menu">
                                 <li><a class="dropdown-item" href="">{{ __('List') }}</a></li>
                                 <li><a class="dropdown-item" href="{{route('customer.create')}}">{{ __('Add') }}</a></li>
@@ -19,7 +19,7 @@
                             </ul>
                         </li>
                         <div class="dropdown-divider"></div>
-                        <li><a class="dropdown-item" href="#"> {{ __('Crane') }}   <i class="fa fa-caret-right"></i></a>
+                        <li><a class="dropdown-item" href="#"> {{ __('Cranes') }}   <i class="fa fa-caret-right"></i></a>
                             <ul class="submenu dropdown-menu">
                                 <li><a class="dropdown-item" href="">{{ __('List') }}</a></li>
                                 <li><a class="dropdown-item" href="{{ route('crane.create') }}">{{ __('Add') }}</a></li>

@@ -30,6 +30,19 @@ class Customer extends Model
 {
     use HasFactory;
 
+    protected $fillable =[
+        'name',
+        'address',
+        'address_optional',
+        'city',
+        'zipcode',
+        'country',
+        'mail',
+        'phone',
+        'mobile',
+        'vat'
+    ];
+
     /**
      * Retourne les objets Worksheet pour cet objet Customer
      * @return \Illuminate\Database\Eloquent\Relations\HasMany

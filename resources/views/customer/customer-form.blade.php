@@ -26,7 +26,7 @@
 
                     <!-- address optional-->
                     <div class="form-group">
-                        <label for="address_optional">{{ __('Address') }}</label>
+                        <label for="address_optional">{{ __('Address (optional)') }}</label>
                         <input type="text" id="address_optional" name="address_optional" class="form-control" value="{{ old('address_optional') }}" moco-validation>
                         <div class="moco-error-small danger-darker-hover" id="address_optionalError"></div>
                     </div>
@@ -35,8 +35,9 @@
                         <!--Zipcode -->
                         <div class="col-4">
                             <div class="form-group">
-                                <label for="zipcode">{{__('Zipcode')}}</label>
-                                <select id="zipcode" class="selectpicker with-ajax form-control" data-live-search="true"></select>
+                                <label for="zipcode">{{__('Zipcode')}} <a href="#" id="flipflap"><i class="fas fa-ellipsis-h" style="color: #00aa00 !important;"></i></a> </label>
+                                <select id="_zipcode" class="selectpicker with-ajax form-control" data-live-search="true" data-abs-lang-code="fr"></select>
+                                <input type="text" id="zipcode" name="zipcode" class="form-control mt-2" value="{{ old('zipcode') }}" moco-validation>
                                 <div class="moco-error-small danger-darker-hover" id="zipcodeError"></div>
                             </div>
                         </div>
@@ -60,8 +61,8 @@
 
                     <!-- email -->
                     <div class="form-group">
-                        <label for="email">{{ __('Email') }}</label>
-                        <input type="text" id="email" name="email" class="form-control" value="{{ old('email') }}" moco-validation>
+                        <label for="mail">{{ __('Email address') }}</label>
+                        <input type="text" id="mail" name="mail" class="form-control" value="{{ old('mail') }}" moco-validation>
                         <div class="moco-error-small danger-darker-hover" id="emailError"></div>
                     </div>
                     <div class="row">
@@ -106,42 +107,79 @@
     </div>
     <script type="text/javascript" src="{{ asset('js/moco.ajax.validation.js') }}"></script>
     <script type="text/javascript">
+        $(function (){
+            $('#zipcode').hide();
+        })
+        var zipcode = [];
         var options = {
+
             ajax          : {
                 url     : '{{ route('customer.ajaxselect') }}',
                 type    : 'POST',
                 dataType: 'json',
                 data    :  function () {
                     var params = {
-                        zipcode:  $('#zipcode').data().selectpicker.$searchbox.val()
+                        zipcode:  $('#_zipcode').data().selectpicker.$searchbox.val()
                     };
                     return params;
                 }
             },
             locale        : {
-                emptyTitle: 'Select and Begin Typing'
+                currentlySelected: "{{__('Currently selected')}}",
+                emptyTitle: "{{__('Select and Begin Typing')}}",
+                errorText: "{{__('Unable to retrieve results')}}",
+                searchPlaceholder: "{{__('Search...')}}",
+                statusInitialized: "{{__('Start typing a search query')}}",
+                statusNoResults: "{{__('No Results')}}",
+                statusSearching:"{{__('Searching...')}}",
+                statusTooShort: "{{__('Please enter more characters')}}",
             },
             log           : 3,
             preprocessData: function (data) {
-                var i, l = data.length, array = [];
-                if (l) {
-                    for (i = 0; i < l; i++) {
-                        array.push($.extend(true, data[i], {
-                            text : data[i].Name,
-                            value: data[i].Email,
-                            data : {
-                                subtext: data[i].Email
-                            }
-                        }));
-                    }
-                }
-                // You must always return a valid array when processing data. The
-                // data argument passed is a clone and cannot be modified directly.
-                return array;
+                zipcode = [];
+                $.each(data, function (key, obj){
+                   zipcode.push(
+                       {
+                           'value': obj.id,
+                           'text': obj.zipcode,
+                           'data': {
+                               'subtext': obj.locality,
+                           },
+                           'disabled': false,
+                       }
+                   );
+                });
+                console.log(zipcode);
+                return zipcode;
             }
         };
-        $('.selectpicker').selectpicker().filter('.with-ajax').ajaxSelectPicker(options);
-        $('select.after-init').append('<option value="neque.venenatis.lacus@neque.com" data-subtext="neque.venenatis.lacus@neque.com" selected="selected">Chancellor</option>').selectpicker('refresh');
+        $('#_zipcode').selectpicker().ajaxSelectPicker(options);
         $('select').trigger('change');
+        //mise à jour du champ City
+        $('#_zipcode').on('change',function(event){
+            let selected = $('#_zipcode').val();
+            let obj = null;
+            if(selected != "") {
+                obj = zipcode.find(function (o, index) {
+                    if (o.value == selected)
+                        return true;
+                });
+            }
+            if(obj != null) {
+                $('#city').val(obj.data.subtext);
+                $('#zipcode').val(obj.text);
+            }
+        })
+
+        //flipflap
+        $('#flipflap').on('click', function (){
+            if($('#_zipcode').parent().is(":visible")){
+                $('#_zipcode').parent().hide();
+                $('#zipcode').show();
+            } else {
+                $('#_zipcode').parent().show();
+                $('#zipcode').hide();
+            }
+        })
     </script>
 @endsection

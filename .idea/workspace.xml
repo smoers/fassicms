@@ -2,22 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9ec171e7-05c7-490b-8f14-40ae5b7978c4" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Moco/Common/MocoAjaxValidation.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/js/moco.ajax.validation.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/customer/customer-form.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/fassicms.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/fassicms.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/OutController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/OutController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CustomerController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CustomerController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Requests/CustomerRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/CustomerRequest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Moco/Common/MocoAjaxValidation.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Moco/Common/MocoAjaxValidation.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Customer.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Customer.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/lang/fr.json" beforeDir="false" afterPath="$PROJECT_DIR$/resources/lang/fr.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/lang/nl.json" beforeDir="false" afterPath="$PROJECT_DIR$/resources/lang/nl.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/layout.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/layout.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/customer/customer-form.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/customer/customer-form.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/menus/navbar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/menus/navbar.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/out/out-part-form.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/out/out-part-form.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/BoW3ArSB2dEhsVoGN5hyrajZ9DOCzb0iCCoV3U2i" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/views/4d5bc0f4f6f704f78f096f8dd2e2b9b62547e2a0.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/4d5bc0f4f6f704f78f096f8dd2e2b9b62547e2a0.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/views/90c48dcb194d2bb220a0b74a2b7047854d23d0fb.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/90c48dcb194d2bb220a0b74a2b7047854d23d0fb.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/nhrMW9j8upWb2fU6FS8fDatbmPRlGTTkZdH4jHoi" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/25260852830396136ad7a3932c4427c3795c142f.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/25260852830396136ad7a3932c4427c3795c142f.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/storage/framework/views/c63af29302a66a0773c312038557ed5b14a513a2.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/c63af29302a66a0773c312038557ed5b14a513a2.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -176,19 +171,19 @@
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\fassicms\resources\views\customer" />
-      <recent name="D:\fassicms\resources\views\out" />
-      <recent name="D:\fassicms\resources\views\reassort" />
-      <recent name="D:\fassicms\resources\views\store" />
-      <recent name="D:\fassicms\vendor\rappasoft\laravel-livewire-tables\resources\lang\nl" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\fassicms\resources\views\livewire\reassort" />
       <recent name="D:\fassicms\app\Http\Livewire\Reassort" />
       <recent name="D:\fassicms\resources\views\livewire\store" />
       <recent name="D:\fassicms\app\Http\Livewire\Store" />
       <recent name="D:\fassicms\resources\views\livewire" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\fassicms\resources\views\customer" />
+      <recent name="D:\fassicms\resources\views\out" />
+      <recent name="D:\fassicms\resources\views\reassort" />
+      <recent name="D:\fassicms\resources\views\store" />
+      <recent name="D:\fassicms\vendor\rappasoft\laravel-livewire-tables\resources\lang\nl" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -400,7 +395,21 @@
       <workItem from="1606567511612" duration="2250000" />
       <workItem from="1606569800926" duration="1792000" />
       <workItem from="1606571612178" duration="1798000" />
-      <workItem from="1606573426869" duration="705000" />
+      <workItem from="1606573426869" duration="1154000" />
+      <workItem from="1606653303644" duration="597000" />
+      <workItem from="1606655790280" duration="1901000" />
+      <workItem from="1606657710947" duration="1790000" />
+      <workItem from="1606659520289" duration="1795000" />
+      <workItem from="1606661330624" duration="1792000" />
+      <workItem from="1606663138547" duration="1790000" />
+      <workItem from="1606664945611" duration="1615000" />
+      <workItem from="1606676568755" duration="594000" />
+      <workItem from="1606753330830" duration="1822000" />
+      <workItem from="1606755292849" duration="1866000" />
+      <workItem from="1606757184990" duration="1231000" />
+      <workItem from="1606759050803" duration="1784000" />
+      <workItem from="1606760860344" duration="1782000" />
+      <workItem from="1606762669509" duration="1541000" />
     </task>
     <task id="LOCAL-00001" summary="20201031 - Init">
       <created>1604168127520</created>
@@ -500,7 +509,14 @@
       <option name="project" value="LOCAL" />
       <updated>1606418593013</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="20201128 - v1.0">
+      <created>1606574328679</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1606574328679</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -522,7 +538,8 @@
     <MESSAGE value="20201122 - v1.0" />
     <MESSAGE value="20201125 - v1.0" />
     <MESSAGE value="20201126 - v1.0" />
-    <option name="LAST_COMMIT_MESSAGE" value="20201126 - v1.0" />
+    <MESSAGE value="20201128 - v1.0" />
+    <option name="LAST_COMMIT_MESSAGE" value="20201128 - v1.0" />
   </component>
   <component name="WindowStateProjectService">
     <state x="873" y="359" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1606564463028">
@@ -542,11 +559,11 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="1011" y="455" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1606415389867" />
-    <state x="768" y="118" key="CommitChangelistDialog2" timestamp="1606418592356">
+    <state x="768" y="118" key="CommitChangelistDialog2" timestamp="1606574327062">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="576" y="88" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1604168125233" />
-    <state x="768" y="118" key="CommitChangelistDialog2/0.0.2560.1400@0.0.2560.1400" timestamp="1606418592356" />
+    <state x="768" y="118" key="CommitChangelistDialog2/0.0.2560.1400@0.0.2560.1400" timestamp="1606574327062" />
     <state x="93" y="93" width="2375" height="1215" key="DiffContextDialog" timestamp="1606493598198">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
@@ -597,15 +614,19 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="1421" y="345" key="SettingsEditor/0.0.2560.1400@0.0.2560.1400" timestamp="1605259439523" />
-    <state x="736" y="339" key="Vcs.Push.Dialog.v2" timestamp="1606418594757">
+    <state x="736" y="339" key="Vcs.Push.Dialog.v2" timestamp="1606574330597">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="552" y="252" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1604168130806" />
-    <state x="736" y="339" key="Vcs.Push.Dialog.v2/0.0.2560.1400@0.0.2560.1400" timestamp="1606418594757" />
+    <state x="736" y="339" key="Vcs.Push.Dialog.v2/0.0.2560.1400@0.0.2560.1400" timestamp="1606574330597" />
     <state x="1669" y="444" key="com.jetbrains.php.test.PhpNewTestDialog" timestamp="1604843589275">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="1669" y="444" key="com.jetbrains.php.test.PhpNewTestDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1604843589275" />
+    <state x="986" y="300" width="589" height="801" key="find.popup" timestamp="1606657079339">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="986" y="300" width="589" height="801" key="find.popup/0.0.2560.1400@0.0.2560.1400" timestamp="1606657079339" />
     <state x="999" y="472" key="refactoring.ChangeSignatureDialog" timestamp="1605174333407">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
