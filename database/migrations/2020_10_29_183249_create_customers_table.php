@@ -22,8 +22,8 @@ class CreateCustomersTable extends Migration
             $table->string('zipcode',10);
             $table->string('country',100)->default('BELGIQUE');
             $table->string('mail',100)->nullable();
-            $table->string('phone',15)->nullable();
-            $table->string('mobile',15)->nullable();
+            $table->string('phone',100)->nullable();
+            $table->string('mobile',100)->nullable();
             $table->string('vat',15)->nullable();
             $table->timestamps();
         });

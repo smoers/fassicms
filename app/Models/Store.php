@@ -82,4 +82,16 @@ class Store extends Model
             return number_format(intval($value),0,',','');
         }
     }
+
+    /**
+     * Détermine si un part number exist
+     * @param string $part_number
+     * @param bool $enabled
+     * @return bool
+     */
+    public static function exist(string $part_number, bool $enabled = true): bool
+    {
+        return self::where('part_number','=', $part_number)->where('enabled','=',$enabled)->get()->count()== 1 ;
+    }
+
 }

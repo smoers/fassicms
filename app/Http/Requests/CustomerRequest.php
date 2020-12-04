@@ -31,8 +31,8 @@ class CustomerRequest extends FormRequest
             'zipcode' => 'required|max:10',
             'country' => 'required|max:100',
             'mail' => 'email|max:100',
-            'phone' => 'max:15',
-            'mobile' => 'max:15',
+            'phone' => 'max:100',
+            'mobile' => 'max:100',
             'vat' => 'max:15',
         ];
     }

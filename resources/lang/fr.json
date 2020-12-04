@@ -94,6 +94,10 @@
     "Start typing a search query": "Commencez à taper une requête de recherche",
     "No Results": "Aucun résultat",
     "Searching...": "Recherche...",
-    "Please enter more characters": "Veuillez saisir plus de caractères"
+    "Please enter more characters": "Veuillez saisir plus de caractères",
+    "Out on worksheet": "Sortie sur une fiche de travail",
+    "Please scan the barcode available on your worksheet !": "Veuillez scanner le code-barres disponible sur votre fiche de travail !",
+    "Collecting spare parts": "Collecte des pièces de rechange",
+    "Now, you can collect the parts in the bins and scan the barcode available on this bins.": "Maintenant, vous pouvez collecter les pièces dans les bacs et scanner le code-barres disponible sur ces bacs."
 
 }

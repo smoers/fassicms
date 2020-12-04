@@ -13,54 +13,42 @@
  *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
+ *
+ *  Company : Fassi Belgium
+ *  Developer : MO Consult
+ *  Author : Moers Serge
+ *  Date : 4/12/20 14:31
  */
 
-/**
- * Company : Fassi Belgium
- * Developer : MO Consult
- * Authority : Moers Serge
- * Date : 08-11-20
- */
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Worksheet extends Model
+class Part extends Model
 {
     use HasFactory;
 
-    /**
-     * Retourne l'objet Customer lié à l'objet Worksheet
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function customer(){
-        return $this->belongsTo(Customer::class);
-    }
+    protected $fillable = [
+        'part_number',
+        'qty',
+    ];
 
     /**
-     * Retourne l'objet Crane lié à l'objet Worksheet
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function crane(){
-        return $this->belongsTo(Crane::class);
-    }
-
-    /**
-     * Retourne les objets Part lié à l'objet Worksheet
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function parts()
-    {
-        return $this->hasMany(Part::class);
-    }
-
-    /**
-     * Retourne l'objet User lié à l'objet Worksheet
+     * Retourne le User lié à cette object
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    /**
+     * Retourne le Worksheet lié à cette object
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function worksheet()
+    {
+        return $this->belongsTo(Worksheet::class);
     }
 }

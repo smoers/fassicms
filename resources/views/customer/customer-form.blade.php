@@ -108,78 +108,81 @@
     <script type="text/javascript" src="{{ asset('js/moco.ajax.validation.js') }}"></script>
     <script type="text/javascript">
         $(function (){
+            //init le champ zipcode
             $('#zipcode').hide();
-        })
-        var zipcode = [];
-        var options = {
-
-            ajax          : {
-                url     : '{{ route('customer.ajaxselect') }}',
-                type    : 'POST',
-                dataType: 'json',
-                data    :  function () {
-                    var params = {
-                        zipcode:  $('#_zipcode').data().selectpicker.$searchbox.val()
-                    };
-                    return params;
+            //Tableau avec les résultats de la recherche Ajax
+            var zipcode = [];
+            //Option pour le select
+            var options = {
+                ajax          : {
+                    url     : '{{ route('customer.ajaxselect') }}',
+                    type    : 'POST',
+                    dataType: 'json',
+                    data    :  function () {
+                        var params = {
+                            zipcode:  $('#_zipcode').data().selectpicker.$searchbox.val()
+                        };
+                        return params;
+                    }
+                },
+                locale        : {
+                    currentlySelected: "{{__('Currently selected')}}",
+                    emptyTitle: "{{__('Select and Begin Typing')}}",
+                    errorText: "{{__('Unable to retrieve results')}}",
+                    searchPlaceholder: "{{__('Search...')}}",
+                    statusInitialized: "{{__('Start typing a search query')}}",
+                    statusNoResults: "{{__('No Results')}}",
+                    statusSearching:"{{__('Searching...')}}",
+                    statusTooShort: "{{__('Please enter more characters')}}",
+                },
+                log           : 3,
+                preprocessData: function (data) {
+                    zipcode = [];
+                    $.each(data, function (key, obj){
+                       zipcode.push(
+                           {
+                               'value': obj.id,
+                               'text': obj.zipcode,
+                               'data': {
+                                   'subtext': obj.locality,
+                               },
+                               'disabled': false,
+                           }
+                       );
+                    });
+                    console.log(zipcode);
+                    return zipcode;
                 }
-            },
-            locale        : {
-                currentlySelected: "{{__('Currently selected')}}",
-                emptyTitle: "{{__('Select and Begin Typing')}}",
-                errorText: "{{__('Unable to retrieve results')}}",
-                searchPlaceholder: "{{__('Search...')}}",
-                statusInitialized: "{{__('Start typing a search query')}}",
-                statusNoResults: "{{__('No Results')}}",
-                statusSearching:"{{__('Searching...')}}",
-                statusTooShort: "{{__('Please enter more characters')}}",
-            },
-            log           : 3,
-            preprocessData: function (data) {
-                zipcode = [];
-                $.each(data, function (key, obj){
-                   zipcode.push(
-                       {
-                           'value': obj.id,
-                           'text': obj.zipcode,
-                           'data': {
-                               'subtext': obj.locality,
-                           },
-                           'disabled': false,
-                       }
-                   );
-                });
-                console.log(zipcode);
-                return zipcode;
-            }
-        };
-        $('#_zipcode').selectpicker().ajaxSelectPicker(options);
-        $('select').trigger('change');
-        //mise à jour du champ City
-        $('#_zipcode').on('change',function(event){
-            let selected = $('#_zipcode').val();
-            let obj = null;
-            if(selected != "") {
-                obj = zipcode.find(function (o, index) {
-                    if (o.value == selected)
-                        return true;
-                });
-            }
-            if(obj != null) {
-                $('#city').val(obj.data.subtext);
-                $('#zipcode').val(obj.text);
-            }
-        })
+            };
+            //Configuration du selectpicker
+            $('#_zipcode').selectpicker().ajaxSelectPicker(options);
+            $('select').trigger('change');
+            //mise à jour du champ City
+            $('#_zipcode').on('change',function(event){
+                let selected = $('#_zipcode').val();
+                let obj = null;
+                if(selected != "") {
+                    obj = zipcode.find(function (o, index) {
+                        if (o.value == selected)
+                            return true;
+                    });
+                }
+                if(obj != null) {
+                    $('#city').val(obj.data.subtext);
+                    $('#zipcode').val(obj.text);
+                }
+            })
 
-        //flipflap
-        $('#flipflap').on('click', function (){
-            if($('#_zipcode').parent().is(":visible")){
-                $('#_zipcode').parent().hide();
-                $('#zipcode').show();
-            } else {
-                $('#_zipcode').parent().show();
-                $('#zipcode').hide();
-            }
+            //flipflap
+            $('#flipflap').on('click', function (){
+                if($('#_zipcode').parent().is(":visible")){
+                    $('#_zipcode').parent().hide();
+                    $('#zipcode').show();
+                } else {
+                    $('#_zipcode').parent().show();
+                    $('#zipcode').hide();
+                }
+            })
         })
     </script>
 @endsection

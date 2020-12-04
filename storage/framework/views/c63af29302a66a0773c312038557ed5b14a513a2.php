@@ -51,7 +51,9 @@
                         <a class="dropdown-item" href="<?php echo e(route('store.index')); ?>"><?php echo e(__('Catalog')); ?></a>
                         <a class="dropdown-item" href="<?php echo e(route('store.create')); ?>"><?php echo e(__('Add a part to the catalog')); ?></a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="<?php echo e(route('reassort.index',10)); ?>"><?php echo e(__('Movement of stock')); ?></a>
+                        <a class="dropdown-item" href="<?php echo e(route('reassort.index')); ?>"><?php echo e(__('Movement of stock')); ?></a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="<?php echo e(route('outworksheet.index')); ?>"><?php echo e(__('Out on worksheet')); ?></a>
                     </div>
                 </li>
 

@@ -94,5 +94,9 @@
     "Start typing a search query": "Begin met het typen van een zoekopdracht",
     "No Results": "Geen resultaat",
     "Searching...": "Zoeken...",
-    "Please enter more characters": "Voer alstublieft meer karakters in"
+    "Please enter more characters": "Voer alstublieft meer karakters in",
+    "Out on worksheet": "Uitvoer op een werkblad",
+    "Please scan the barcode available on your worksheet !": "Scan de streepjescode die op uw werkblad staat!",
+    "Collecting spare parts": "Reserveonderdelen verzamelen",
+    "Now, you can collect the parts in the bins and scan the barcode available on this bins.": "Nu kunt u de munten in de bakken verzamelen en de streepjescode op die bakken scannen."
 }

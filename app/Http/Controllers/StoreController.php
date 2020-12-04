@@ -27,6 +27,7 @@ use App\Models\Catalog;
 use App\Models\Provider;
 use App\Models\Reassortement;
 use App\Models\Store;
+use App\Models\Worksheet;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -165,9 +166,17 @@ class StoreController extends Controller
 
     public function barcodeSticker(Request $request)
     {
+        //$worksheets = Worksheet::all()->sortBy('number');
+        $worksheets = Store::all()->sortBy('part_number');
         $pdf = new \TCPDF();
-        $pdf->SetAutoPageBreak(FALSE, PDF_MARGIN_BOTTOM); // Whether to enable automatic paging
-        $pdf->setPrintHeader(false);
+        $pdf->setCreator(PDF_CREATOR);
+        $pdf->SetAuthor('MO Consult');
+        $pdf->setTitle('Fiche de travail');
+        $pdf->setHeaderData("barcode-scanner.jpg",PDF_HEADER_LOGO_WIDTH,"Worksheet");
+        $pdf->SetAutoPageBreak(true, PDF_MARGIN_BOTTOM); // Whether to enable automatic paging
+        $pdf->setPrintHeader(true);
+        $pdf->setPageUnit('mm');
+        $pdf->setMargins(15,10);
         $pdf->addPage();
         $pdf->setFont('helvetica','',6);
         $style = array(
@@ -186,9 +195,12 @@ class StoreController extends Controller
             'fontsize' => 6, //font size
             'stretchtext' => 6
         );
-        $pdf->Text(50,20,"MOERS Serge");
-        $pdf->ln();
-        $pdf->write1DBarcode("M-14876%()",'C39E','','','',18,0.4,$style,'N');
+        $pdf->write(0,"Worksheets");
+        foreach ($worksheets as $worksheet) {
+            $pdf->ln();
+            $pdf->write1DBarcode($worksheet->part_number, 'C39E', '', '', '', 18, 0.2, $style, 'N');
+            $pdf->write(0,$worksheet->part_number);
+        }
         $pdf->Output('test.pdf');
     }
 }

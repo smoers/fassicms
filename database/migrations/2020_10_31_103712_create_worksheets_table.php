@@ -24,13 +24,13 @@ class CreateWorksheetsTable extends Migration
             $table->boolean('oil_filtered')->default(false);
             $table->boolean('validated')->default(false);
             $table->dateTime('validated_date')->nullable();
-            $table->unsignedBigInteger('id_customer');
+            $table->unsignedBigInteger('id_customer')->nullable();
             $table->foreign('id_customer')
                 ->references('id')
                 ->on('customers')
                 ->onDelete('restrict')
                 ->onUpdate('restrict');
-            $table->unsignedBigInteger('id_crane');
+            $table->unsignedBigInteger('id_crane')->nullable();
             $table->foreign('id_crane')
                 ->references('id')
                 ->on('cranes')

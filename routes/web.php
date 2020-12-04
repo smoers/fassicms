@@ -8,6 +8,7 @@ use App\Http\Controllers\CraneController;
 use App\Http\Controllers\ReassortController;
 use App\Http\Controllers\OutController;
 use App\Http\Controllers\CustomerController;
+use \App\Http\Controllers\OutWorksheetController;
 
 /*
 |--------------------------------------------------------------------------
@@ -53,9 +54,14 @@ Route::group(['middleware' => ['role_or_permission:admin','auth']],function (){
     Route::post('/customer/store',[CustomerController::class,'store'])->name('customer.store');
     Route::post('/customer/ajaxvalidation',[CustomerController::class,'ajaxValidation'])->name('customer.ajaxvalidation');
     Route::post('/customer/ajaxselect',[CustomerController::class,'ajaxSelect'])->name('customer.ajaxselect');
+    //OutWorksheet Controller
+    Route::get('/outworksheet',[OutWorksheetController::class,'index'])->name('outworksheet.index');
+    Route::post('/outworksheet/out',[OutWorksheetController::class,'out'])->name('outworksheet.out');
+    Route::post('/outworksheet/treatment',[OutWorksheetController::class,'treatment'])->name('outworksheet.treatment');
 
 
-    Route::get('/store/bs/{id}',[StoreController::class,'barcodeSticker'])->name('store.barcode_sticker');
+
+    Route::get('/store/bs',[StoreController::class,'barcodeSticker'])->name('store.barcode_sticker');
 
 });
 
