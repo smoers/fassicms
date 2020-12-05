@@ -24,9 +24,11 @@
  * @param objectFields
  * @returns {*}
  */
-var loadValue = function(objectFields){
+var loadValue = function(objectFields, index){
+    if (index == null)
+        index = "";
     $.each(objectFields, function (name,value){
-        objectFields[name] = $('#'+name).val();
+        objectFields[name] = $('#'+name+index).val();
     });
     return objectFields;
 }
@@ -50,7 +52,7 @@ var mocoAjaxValidation = function (selector,value,url) {
         },
         error:function (response) {
             id = $(selector).attr('id');
-            message = response.responseJSON.errors[id];
+            message = response.responseJSON.errors[id.match(/[^\d]+/g)];
             if(message == null)
             {
                 $(selector).removeClass('is-invalid').addClass('is-valid');
@@ -58,7 +60,7 @@ var mocoAjaxValidation = function (selector,value,url) {
             }
             else
             {
-                console.log([id, 'not null']);
+                //console.log([id, 'not null']);
                 $(selector).removeClass('is-valid').addClass('is-invalid');
                 $(selector+'Error').text(response.responseJSON.errors[id]);
             }
@@ -80,19 +82,25 @@ $(function () {
     var validationArray = [];
     var validationFields = {};
     var url = 'ajaxvalidation';
+    var table = false;
 
     //Constructeur
     var element = $('input, select, form');
     element.each(function (key, value) {
-        if(element.eq(key).attr('moco-validation') != null){
+        if(element.eq(key).attr('moco-validation') != null || element.eq(key).attr('moco-validation-table') != null ){
             elementId = element.eq(key).attr('id');
             if(element.eq(key).prop('tagName') == 'FORM'){
                 action = element.eq(key).attr('action');
                 url = action.match(/.*(\/)+/g)+url;
             } else {
                 validationArray[elementId] = 0;
-                validationFields[elementId] = ""; //object pour l'ajax request
+                if (element.eq(key).attr('moco-validation') != null) {
+                    validationFields[elementId] = ""; //object pour l'ajax request
+                } else if (element.eq(key).attr('moco-validation-table') != null) {
+                    validationFields[elementId.match(/[^\d]+/g)] = "";
+                }
             }
+
         }
     });
 
@@ -100,8 +108,9 @@ $(function () {
     $('input').on('keyup', function(event){
         targetId = (this.id);
         if(targetId != "") {
+            index = targetId.match(/\d+$/g);
             clearTimeout(validationArray[targetId]);
-            validationArray[targetId] = setTimeout(mocoAjaxValidation, 1000, '#' + targetId, loadValue(validationFields), url);
+            validationArray[targetId] = setTimeout(mocoAjaxValidation, 1000, '#' + targetId, loadValue(validationFields, index), url);
         }
     });
 });

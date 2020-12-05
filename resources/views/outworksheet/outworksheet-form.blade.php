@@ -31,11 +31,13 @@
                 <div class="card" style="width: 30rem;">
                     <img class="card-img-top" src="{{asset('images/barcode-scanner.jpg')}}" alt="Card image cap">
                     <div class="card-body">
-                        <h2 class="blue-grey-darker-hover">{{__('Collecting spare parts')}}</h2>
-                        <p class="card-text">{{__('Now, you can collect the parts in the bins and scan the barcode available on this bins.')}}</p>
+                        <h4 class="blue-grey-darker-hover">{{__('Collecting spare parts')}}</h4>
+                        <p class="info-lighter-hover" style="font-size: small">{{__('Now, you can collect the parts in the bins and scan the barcode available on this bins.')}}</p>
+                        <p class="red-darker-hover">{{__('Worksheet').' : '.$number}}</p>
                         <form name="outworksheet-form" id="outworksheet-form" method="post" action="{{route('outworksheet.treatment')}}">
                         @csrf
                             <div class="form-group">
+                                <input name="number" value="{{$number}}" hidden>
                                 <textarea id="parts" name="parts" class="form-control" value="{{ old('parts') }}" rows="5"></textarea>
                                 <div class="moco-error-small danger-darker-hover" id="numberError"></div>
                             </div>
@@ -62,26 +64,46 @@
                     <h2 class="blue-grey-darker-hover">{{ __('Out of stock validation') }}</h2>
                 </div>
                 <div class="card-body">
-                    <table class="table table-bordered">
-                        <thead>
-                            <tr>
-                                <th>{{__('Part number')}}</th>
-                                <th>{{__('Qty')}}</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach($parts as $part)
+                    <form name="part-form" id="part-form" method="post" action="{{route('outworksheet.validation')}}" moco-validation-table>
+                        @csrf
+                        <div class="moco-table-wrapper-scroll-y moco-scrollbar">
+                            <table class="table table-bordered table-striped">
+                                <thead>
                                 <tr>
-                                    <td>
-                                        <input type="text" name="part[]">
-                                    </td>
+                                    <th>{{__('Part number')}}</th>
+                                    <th>{{__('Qty')}}</th>
                                 </tr>
-                            @endforeach
-                        </tbody>
-
-                    </table>
+                                </thead>
+                                <tbody>
+                                @var $index = 0
+                                @foreach($parts as $part)
+                                    <tr>
+                                        <td>
+                                            <input type="text" id="part_number{{$index}}"  name="part_number[]" class="form-control" value="{{old('part_number',$part->part_number)}}" moco-validation-table>
+                                            <div class="moco-error-small danger-darker-hover" id="part_number{{$index}}Error"></div>
+                                        </td>
+                                        <td>
+                                            <input type="number" id="qty{{$index}}" name="qty[]" class="form-control" value="{{old('qty',$part->qty)}}" moco-validation-table>
+                                            <div class="moco-error-small danger-darker-hover" id="qty{{$index}}Error"></div>
+                                        </td>
+                                    </tr>
+                                    @var $index++
+                                @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <div>
+                                <button type="submit" class="btn btn-primary">{{__('Validate')}}</button>
+                            </div>
+                            <div>
+                                <a href="{{ route('dashboard') }}" class="btn btn-primary">{{__('Cancel')}}</a>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
+            <script type="text/javascript" src="{{ asset('js/moco.ajax.validation.js') }}"></script>
         @endif
     </div>
 

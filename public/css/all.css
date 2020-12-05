@@ -34,6 +34,15 @@ Date : 09-10-20
     font-size: 12px;
 }
 
+.moco-scrollbar {
+    position: relative;
+    height: 700px;
+    overflow: auto;
+}
+.moco-table-wrapper-scroll-y {
+    display: block;
+}
+
 @media (min-width: 992px){
     .dropdown-menu .dropdown-toggle:after{
         border-top: .3em solid transparent;

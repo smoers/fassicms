@@ -17,37 +17,35 @@
  *  Company : Fassi Belgium
  *  Developer : MO Consult
  *  Author : Moers Serge
- *  Date : 28/11/20 12:57
+ *  Date : 5/12/20 17:32
  */
 
 /**
  * Company : Fassi Belgium
  * Developer : MO Consult
  * Authority : Moers Serge
- * Date : 28-11-20
+ * Date : 05-12-20
  */
 
 namespace App\Moco\Common;
 
-
-use Illuminate\Http\Request;
-
-trait MocoAjaxValidation
+trait MocoFormRequestAjaxValidation
 {
-    protected $formRequest = null;
+    public $requestArray;
 
     /**
-     * Validation du formulaire sur base d'un objet FormRequest
-     * @param Request $request
-     * @return \Illuminate\Http\JsonResponse
+     * @param array $request
      */
-    public function ajaxValidation(Request $request)
+    public function setRequestArray(array $requestArray): void
     {
-        if(!is_null($this->formRequest)){
-            if (method_exists($this->formRequest, 'setRequestArray'))
-                $this->formRequest->setRequestArray($request->all());
-            $data = $this->validate($request, $this->formRequest->rules(), $this->formRequest->messages(), $this->formRequest->attributes());
-            return response()->json($data);
-        }
+        $this->requestArray = $requestArray;
+    }
+
+    /**
+     * @return array
+     */
+    public function getRequestArray()
+    {
+        return $this->requestArray;
     }
 }

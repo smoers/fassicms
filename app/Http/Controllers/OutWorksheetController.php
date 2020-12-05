@@ -22,6 +22,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\OutWorksheetStepRequest;
+use App\Http\Requests\OutWorksheetValidationStepRequest;
+use App\Moco\Common\MocoAjaxValidation;
 use App\Models\Part;
 use App\Models\Store;
 use Illuminate\Http\Request;
@@ -29,41 +32,43 @@ use ArrayObject;
 
 class OutWorksheetController extends Controller
 {
-    protected function rules()
+    use MocoAjaxValidation;
+
+    /**
+     * OutWorksheetController constructor.
+     */
+    public function __construct()
     {
-        return [
-        'number' => 'required|numeric|integer|between:20200000000000,20600000000000|exists:worksheets,number'
-        ];
+        $this->formRequest = new OutWorksheetValidationStepRequest();
     }
 
-    protected function messages()
-    {
-        return [
-            'required' => trans('The :attribute is required'),
-            'numeric' => trans('The :attribute must be numeric'),
-            'size' => trans('The :attribute must have a size of :size'),
-            'exists' => trans('The :attribute does not exist')
-        ];
-    }
 
-    protected function attributes()
-    {
-        return [
-            'number' => trans('number of the worksheet'),
-        ];
-    }
-
+    /**
+     * @return \Illuminate\Contracts\View\View
+     */
     public function index()
     {
         return view('outworksheet.outworksheet-form')->with('step',10);
     }
 
-    public function out(Request $request)
+    /**
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\View
+     */
+    public function out(OutWorksheetStepRequest $request)
     {
-        $validatedData = $request->validate($this->rules(), $this->messages(), $this->attributes());
-        return view('outworksheet.outworksheet-form')->with('step',20);
+        $validatedData = $request->validated();
+        return view('outworksheet.outworksheet-form',[
+            'step' => 20,
+            'number' => $validatedData['number'],
+        ]);
     }
 
+    /**
+     * Cette méthode va traiter les données des pièces sorties par un scan
+     * @param Request $request
+     * @return \Illuminate\Routing\Redirector|\Illuminate\Contracts\View\View
+     */
     public function treatment(Request $request)
     {
         //list des parts
@@ -116,10 +121,22 @@ class OutWorksheetController extends Controller
                     }
                 }
             }
-
+            //on charge le formulaire de validation
+            return view('outworksheet.outworksheet-form',[
+                'step' => 30,
+                'parts' => $parts_object->getArrayCopy(),
+            ]);
         } else {
+            //la zone texte étant vide on génère une erreur
             return redirect('dashboard')->with('error','Your pickup list was empty, your out of stock has been canceled.');
         }
 
+    }
+
+    public function validation(Request $request)
+    {
+        $parts = $request->post('part_number');
+        $qtys = $request->post('qty');
+        dd([$parts, $qtys]);
     }
 }
