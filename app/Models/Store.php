@@ -23,6 +23,7 @@
  */
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -81,6 +82,53 @@ class Store extends Model
         } else {
             return number_format(intval($value),0,',','');
         }
+    }
+
+    /**
+     * Retourne l'objet Catalog pour une année précisée
+     *
+     * @param int|null $year
+     * @return Catalog
+     */
+    public function getCatalog(int $year = null): Catalog
+    {
+        if (is_null($year))
+            $year = Carbon::now()->year;
+        //recherche l'object Catalog pour une année précise
+        return Catalog::where('store_id','=',$this->attributes['id'])->where('year','=',$year)->first();
+    }
+
+    /**
+     * Retourne la quantité pour une année précisée
+     *
+     * @param int|null $year
+     * @return int|null
+     */
+    public function getPrice(int $year = null)
+    {
+        $catalog = $this->getCatalog($year);
+        return is_null($catalog) ? null : $catalog->price;
+    }
+
+    /**
+     * Cette méthode va retourner le prix et l'année
+     * L'année utilisée pour retrouver le prix l'année actuelle
+     * ou actuelle -1
+     *
+     * @return array
+     */
+    public function getPriceForWorksheet(): array
+    {
+        $year = Carbon::now()->year;
+        if (is_null($price = $this->getPrice($year))){
+            --$year;
+            $price = $this->getPrice($year);
+        }
+
+        return [
+            'year' => $year,
+            'price' => $price,
+        ];
     }
 
     /**

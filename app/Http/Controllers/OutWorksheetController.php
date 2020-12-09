@@ -27,6 +27,7 @@ use App\Http\Requests\OutWorksheetValidationStepRequest;
 use App\Moco\Common\MocoAjaxValidation;
 use App\Models\Part;
 use App\Models\Store;
+use App\Models\Worksheet;
 use Illuminate\Http\Request;
 use ArrayObject;
 
@@ -58,6 +59,7 @@ class OutWorksheetController extends Controller
     public function out(OutWorksheetStepRequest $request)
     {
         $validatedData = $request->validated();
+        $request->session()->put('worksheet_number', $validatedData['number']);
         return view('outworksheet.outworksheet-form',[
             'step' => 20,
             'number' => $validatedData['number'],
@@ -135,8 +137,45 @@ class OutWorksheetController extends Controller
 
     public function validation(Request $request)
     {
+        //validation
+        $this->formRequest->setRequestArray($request->all());
+        $validatedData = $request->validate(
+            $this->formRequest->rules(),
+            $this->formRequest->messages(),
+            $this->formRequest->attributes()
+        );
+        //Obtenir les données (le worksheet number existe car validé)
         $parts = $request->post('part_number');
         $qtys = $request->post('qty');
-        dd([$parts, $qtys]);
+        $number = $request->session()->get('worksheet_number');
+        DB::transaction(function () use ($parts,$qtys,$number){
+            foreach ($parts as $key => $part){
+                //Récupère le l'objet Stock et le lock
+                $store = Stock::where('part_number','=',$part)->where('enabled','=',true)->lockForUpdate()->first();
+                //Récupère l'objet Worksheet
+                $worksheet = Worksheet::where('number','=',$number)->first();
+                //Si la quantité n'est pas suffisante une exception est levée
+                if(intval($qtys[$key]) > $store->qty){
+                    throw new \ErrorException(trans('The quantity in stock is not enough for the quantity requested for part number ').$part);
+                }
+                //Recherche le prix de la pièce
+                $price_worksheet = $store->getPriceForWorksheet();
+                //Si on ne trouve pas de prix dans l'année encours ou encours - 1 on lève une exception
+                if (is_null($price_worksheet['price'])){
+                    throw new \ErrorException(trans('No price is available for this part number ').$part);
+                }
+                //hydrate l'objet Part
+                $part_obj = new Part();
+                $part_obj->part_number = $store->part_number;
+                $part_obj->description = $store->description;
+                $part_obj->qty = intval($qtys[$key]);
+                $part_obj->price = $price_worksheet['price'];
+                $part_obj->year = $price_worksheet['year'];
+                $part_obj->user()->associate(Auth::user());
+                $part_obj->worksheet()->associate($worksheet);
+
+            }
+        });
+        dd([$parts, $qtys, $number]);
     }
 }

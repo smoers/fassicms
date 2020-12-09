@@ -49,7 +49,7 @@ class StoreQty implements Rule
     public function passes($attribute, $value)
     {
         if (Store::exist($this->data)){
-            $store = Store::find($this->data)->get();
+            $store = Store::where('part_number','=',$this->data)->get();
             return intval($value) <= intval($store[0]->qty);
         }
         return false;
