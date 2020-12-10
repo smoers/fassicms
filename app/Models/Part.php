@@ -51,4 +51,25 @@ class Part extends Model
     {
         return $this->belongsTo(Worksheet::class);
     }
+
+    /*
+    * Convertir en format MySQL
+    */
+    public function setQtyAttribute($value)
+    {
+        $this->attributes['qty'] = intval($value);
+    }
+
+    /**
+     * @param $value
+     * @return string|null
+     */
+    public function getQtyAttribute($value)
+    {
+        if($value == ''){
+            return null;
+        } else {
+            return number_format(intval($value),0,',','');
+        }
+    }
 }

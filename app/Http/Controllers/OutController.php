@@ -30,6 +30,17 @@ use Illuminate\Support\Facades\Auth;
 
 class OutController extends Controller
 {
+
+    protected $reason_filtering;
+
+    /**
+     * OutController constructor.
+     */
+    public function __construct()
+    {
+        $this->reason_filtering = config('moco.reason.filtering');
+    }
+
     /**
      * Régles pour la validation
      * @return string[]
@@ -37,7 +48,7 @@ class OutController extends Controller
     protected function rules()
     {
         return [
-            'qty_pull' => 'required|numeric|min:1|integer|lte:qty_before',
+            'qty_pull' => 'required|numeric|min:1|integer',
             'reason' => 'required',
             'note' => 'max:255',
         ];
@@ -66,7 +77,7 @@ class OutController extends Controller
     public function edit($id)
     {
         $store = Store::find($id);
-        $reasons = Reason::where('option','=','O')->orderBy('reason')->get();
+        $reasons = Reason::where('option','=',$this->reason_filtering['out'])->orWhere('option','=',$this->reason_filtering['all'])->orderBy('reason')->get();
         return view('out.out-part-form',
             [
                 '_store' => $store,
@@ -89,7 +100,7 @@ class OutController extends Controller
         //Récupérer L'objet
         $reason = Reason::find($validatedData['reason']);
         //Nouvel objet Out
-        $out = new Out();
+        /*$out = new Out();
         $out->qty_pull = $validatedData['qty_pull'];
         $out->note = $validatedData['note'];
         $out->qty_before = $store->qty;
@@ -98,6 +109,10 @@ class OutController extends Controller
         $out->user()->associate(Auth::user());
         //mise à jour de la quantité en stock
         $store->qty = $store->qty - $out->qty_pull;
+        */
+        $out = $store->getOutHydrated($validatedData['qty_pull']);
+        $out->note = $validatedData['note'];
+        $out->reason()->associate($reason);
         $out->save();
         $store->save();
         return redirect('reassort')->with('success', 'The new value of the stock has been saved');
@@ -110,7 +125,8 @@ class OutController extends Controller
      */
     public function ajaxValidation(Request $request)
     {
-        $this->validate($request, $this->rules(), $this->messages());
-        return response()->json();
+        //die(var_dump($request->post('qty_pull')));
+        $data = $this->validate($request, $this->rules(), $this->messages());
+        return response()->json($data);
     }
 }

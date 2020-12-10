@@ -26,6 +26,7 @@ namespace App\Models;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class Store extends Model
 {
@@ -140,6 +141,55 @@ class Store extends Model
     public static function exist(string $part_number, bool $enabled = true): bool
     {
         return self::where('part_number','=', $part_number)->where('enabled','=',$enabled)->get()->count()== 1 ;
+    }
+
+    /**
+     * @param int $inc_qty
+     */
+    public function increaseQuantity(int $inc_qty)
+    {
+        $this->attributes['qty'] += $inc_qty;
+    }
+
+    /**
+     * @param int $dec_qty
+     */
+    public function decreaseQuantity(int $dec_qty)
+    {
+        if ($this->validateAvailableQuantity($dec_qty)){
+            $this->attributes['qty'] -= $dec_qty;
+        }
+    }
+
+    /**
+     * @param int $qty_pull
+     * @return bool
+     */
+    public function validateAvailableQuantity(int $qty_pull)
+    {
+        return $qty_pull <= $this->attributes['qty'];
+    }
+
+    /**
+     * @param int $qty_pull
+     * @param Reason|null $reason
+     * @param string|null $note
+     * @return Out|null
+     */
+    public function getOutHydrated(int $qty_pull, Reason $reason = null, string $note = null)
+    {
+        $out = null;
+        if ($this->validateAvailableQuantity($qty_pull)){
+            $out = new Out();
+            $out->qty_pull = $qty_pull;
+            $out->qty_before = $this->attributes['qty'];
+            $out->reason()->associate($reason);
+            $out->store()->associate($this);
+            $out->user()->associate(Auth::user());
+            $out->note = $note;
+            $this->decreaseQuantity($qty_pull);
+        }
+        return $out;
     }
 
 }

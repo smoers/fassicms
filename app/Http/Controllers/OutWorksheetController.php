@@ -26,6 +26,7 @@ use App\Http\Requests\OutWorksheetStepRequest;
 use App\Http\Requests\OutWorksheetValidationStepRequest;
 use App\Moco\Common\MocoAjaxValidation;
 use App\Models\Part;
+use App\Models\Reason;
 use App\Models\Store;
 use App\Models\Worksheet;
 use Illuminate\Http\Request;
@@ -35,12 +36,18 @@ class OutWorksheetController extends Controller
 {
     use MocoAjaxValidation;
 
+    protected $worksheetId;
+
     /**
      * OutWorksheetController constructor.
      */
     public function __construct()
     {
+        //Le form request à utiliser
         $this->formRequest = new OutWorksheetValidationStepRequest();
+        //L'id de la raison
+        $this->worksheetId = config('moco.reason.worksheetId');
+
     }
 
 
@@ -145,15 +152,17 @@ class OutWorksheetController extends Controller
             $this->formRequest->attributes()
         );
         //Obtenir les données (le worksheet number existe car validé)
-        $parts = $request->post('part_number');
-        $qtys = $request->post('qty');
+        $parts = $request->$validatedData['part_number'];
+        $qtys = $request->$validatedData['qty'];
         $number = $request->session()->get('worksheet_number');
         DB::transaction(function () use ($parts,$qtys,$number){
             foreach ($parts as $key => $part){
                 //Récupère le l'objet Stock et le lock
-                $store = Stock::where('part_number','=',$part)->where('enabled','=',true)->lockForUpdate()->first();
+                $store = Store::where('part_number','=',$part)->where('enabled','=',true)->lockForUpdate()->first();
                 //Récupère l'objet Worksheet
                 $worksheet = Worksheet::where('number','=',$number)->first();
+                //Récupère l'objet Reason
+                $reason = Reason::find($this->worksheetId);
                 //Si la quantité n'est pas suffisante une exception est levée
                 if(intval($qtys[$key]) > $store->qty){
                     throw new \ErrorException(trans('The quantity in stock is not enough for the quantity requested for part number ').$part);

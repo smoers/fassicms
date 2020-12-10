@@ -2,16 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9ec171e7-05c7-490b-8f14-40ae5b7978c4" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/database/migrations/2020_12_07_171431_add_id_worksheet_parts_table.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/migrations/2020_12_07_171838_remove_id_part_worksheets_table.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dump_db_2020.12.07.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/sessions/BAyQrIvGsIeHeIJVKLSZEg5czKyES8sCjdJ1J9Pv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/moco.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/OutController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/OutController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/OutWorksheetController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/OutWorksheetController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Part.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Part.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Models/Store.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Store.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Rules/StoreQty.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Rules/StoreQty.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/Wv7sIcH5k52rnZRDPpJH8Vp2DfNzGf0o0QIXkodZ" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/azJZZx54CHhiprbX1vOKuepuvdiRtwOfRgry9UMN" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/sessions/65dC6v34XfRjInh6Fvqz7f55UeAcagj4XAMhnTKU" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/lang/fr.json" beforeDir="false" afterPath="$PROJECT_DIR$/resources/lang/fr.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/lang/nl.json" beforeDir="false" afterPath="$PROJECT_DIR$/resources/lang/nl.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/65dC6v34XfRjInh6Fvqz7f55UeAcagj4XAMhnTKU" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/BAyQrIvGsIeHeIJVKLSZEg5czKyES8sCjdJ1J9Pv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/4d5bc0f4f6f704f78f096f8dd2e2b9b62547e2a0.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/4d5bc0f4f6f704f78f096f8dd2e2b9b62547e2a0.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -460,7 +461,13 @@
       <workItem from="1607536829576" duration="1023000" />
       <workItem from="1607538761302" duration="980000" />
       <workItem from="1607541625954" duration="1787000" />
-      <workItem from="1607543435798" duration="943000" />
+      <workItem from="1607543435798" duration="1555000" />
+      <workItem from="1607617677532" duration="1742000" />
+      <workItem from="1607619487624" duration="1782000" />
+      <workItem from="1607621297980" duration="1783000" />
+      <workItem from="1607623105960" duration="1115000" />
+      <workItem from="1607625266918" duration="918000" />
+      <workItem from="1607627076061" duration="10711000" />
     </task>
     <task id="LOCAL-00001" summary="20201031 - Init">
       <created>1604168127520</created>
@@ -588,7 +595,14 @@
       <option name="project" value="LOCAL" />
       <updated>1607194172055</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="20201209 - v1.0">
+      <created>1607544400206</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1607544400206</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -614,7 +628,8 @@
     <MESSAGE value="20201130 - v1.0" />
     <MESSAGE value="20201204 - v1.0" />
     <MESSAGE value="20201205 - v1.0" />
-    <option name="LAST_COMMIT_MESSAGE" value="20201205 - v1.0" />
+    <MESSAGE value="20201209 - v1.0" />
+    <option name="LAST_COMMIT_MESSAGE" value="20201209 - v1.0" />
   </component>
   <component name="WindowStateProjectService">
     <state x="873" y="359" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1606564463028">
@@ -638,11 +653,11 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="1011" y="455" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1607171326591" />
-    <state x="768" y="118" key="CommitChangelistDialog2" timestamp="1607194171485">
+    <state x="768" y="118" key="CommitChangelistDialog2" timestamp="1607544399563">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="576" y="88" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1604168125233" />
-    <state x="768" y="118" key="CommitChangelistDialog2/0.0.2560.1400@0.0.2560.1400" timestamp="1607194171485" />
+    <state x="768" y="118" key="CommitChangelistDialog2/0.0.2560.1400@0.0.2560.1400" timestamp="1607544399563" />
     <state x="93" y="93" width="2375" height="1215" key="DiffContextDialog" timestamp="1606493598198">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
@@ -684,20 +699,20 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="1750" y="423" width="362" height="554" key="NewPhpClassDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1607185959448" />
-    <state x="1059" y="596" key="NewPhpFileDialog" timestamp="1607094626443">
+    <state x="1059" y="596" key="NewPhpFileDialog" timestamp="1607619509001">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="794" y="443" key="NewPhpFileDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1604689434020" />
-    <state x="1059" y="596" key="NewPhpFileDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1607094626443" />
+    <state x="1059" y="596" key="NewPhpFileDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1607619509001" />
     <state x="1421" y="345" key="SettingsEditor" timestamp="1605259439523">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="1421" y="345" key="SettingsEditor/0.0.2560.1400@0.0.2560.1400" timestamp="1605259439523" />
-    <state x="736" y="339" key="Vcs.Push.Dialog.v2" timestamp="1607194173889">
+    <state x="736" y="339" key="Vcs.Push.Dialog.v2" timestamp="1607544401722">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="552" y="252" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1604168130806" />
-    <state x="736" y="339" key="Vcs.Push.Dialog.v2/0.0.2560.1400@0.0.2560.1400" timestamp="1607194173889" />
+    <state x="736" y="339" key="Vcs.Push.Dialog.v2/0.0.2560.1400@0.0.2560.1400" timestamp="1607544401722" />
     <state x="1669" y="444" key="com.jetbrains.php.test.PhpNewTestDialog" timestamp="1604843589275">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>

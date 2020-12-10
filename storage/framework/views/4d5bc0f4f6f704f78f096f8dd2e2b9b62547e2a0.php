@@ -10,7 +10,7 @@
                     <input type="hidden" id="id" name="id" value="<?php echo e($_store->id); ?>">
                     <!-- Part Number-->
                     <div class="form-group">
-                        <label for="part_number" moco-validation><?php echo e(__('Part Number')); ?></label>
+                        <label for="part_number"><?php echo e(__('Part Number')); ?></label>
                         <input type="text" id="part_number" name="part_number" class="form-control" readonly value="<?php echo e(old('part_number', $_store->part_number)); ?>">
                     </div>
                     <!-- Description -->
@@ -96,7 +96,7 @@
                         $('#qty_new').val('');
                     }
                 }
-                validation = setTimeout(outValidation,1000,'#qty_pull');
+                pullvalidation = setTimeout(outValidation,1000,'#qty_pull');
             })
 
             /** validation du champ Reason **/
