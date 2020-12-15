@@ -19,6 +19,22 @@ Date : 09-10-20
     -ms-filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/background', sizingMethod=scale);
 }
 
+.moco-color-error{
+    color: #CC0000;
+}
+
+.moco-color-success{
+    color: #007e33 !important;
+}
+
+.moco-color-warning{
+    color: #ff8800 !important;
+}
+
+.moco-color-info{
+    color: #0099cc !important;
+}
+
 .moco-title{
     font-family: monospace;
     font-weight: bold;

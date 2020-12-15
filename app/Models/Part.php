@@ -72,4 +72,25 @@ class Part extends Model
             return number_format(intval($value),0,',','');
         }
     }
+
+    /*
+ * Convertir en format MySQL
+ */
+    public function setPriceAttribute($value)
+    {
+        $this->attributes['price'] = floatval(str_replace(',','.',$value));
+    }
+
+    /**
+     * @param $value
+     * @return string|null
+     */
+    public function getPriceAttribute($value)
+    {
+        if($value == ''){
+            return null;
+        } else {
+            return number_format(floatval(str_replace(',', '.', $value)), 2, ',', '');
+        }
+    }
 }

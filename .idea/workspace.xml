@@ -2,17 +2,24 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9ec171e7-05c7-490b-8f14-40ae5b7978c4" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/config/moco.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Requests/OutWorksheetValidationStepAjaxRequest.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/OutController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/OutController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/OutWorksheetController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/OutWorksheetController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/StoreController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/StoreController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Requests/OutWorksheetValidationStepRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/OutWorksheetValidationStepRequest.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Models/Part.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Part.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Models/Store.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Store.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/lang/fr.json" beforeDir="false" afterPath="$PROJECT_DIR$/resources/lang/fr.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/lang/nl.json" beforeDir="false" afterPath="$PROJECT_DIR$/resources/lang/nl.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/65dC6v34XfRjInh6Fvqz7f55UeAcagj4XAMhnTKU" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/BAyQrIvGsIeHeIJVKLSZEg5czKyES8sCjdJ1J9Pv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/views/4d5bc0f4f6f704f78f096f8dd2e2b9b62547e2a0.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/4d5bc0f4f6f704f78f096f8dd2e2b9b62547e2a0.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Rules/StoreQty.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Rules/StoreQty.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/moco.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/moco.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/all.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/all.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/moco.ajax.validation.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/moco.ajax.validation.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/outworksheet/outworksheet-form.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/outworksheet/outworksheet-form.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/root/message.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/root/message.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/OGHiyPaQV4gvi04yBK1y0hmp8CAfegm6O7VBUllX" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/53fd60962b50afb3459b3cd9201f6ea36bc3470a.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/53fd60962b50afb3459b3cd9201f6ea36bc3470a.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/6622be8e1b69193c2ba4000eea9104186c4f3fbc.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/6622be8e1b69193c2ba4000eea9104186c4f3fbc.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -164,25 +171,25 @@
     <property name="DatabaseDriversLRU" value="mysql" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views/customer" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views/outworksheet" />
     <property name="php.override.implement.member.chooser.php.doc" value="NONE" />
     <property name="settings.editor.selected.configurable" value="preferences.keymap" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\fassicms\resources\views\outworksheet" />
+      <recent name="D:\fassicms\app\Http\Requests" />
+      <recent name="D:\fassicms\resources\views\customer" />
+      <recent name="D:\fassicms\resources\views\out" />
+      <recent name="D:\fassicms\resources\views\reassort" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\fassicms\resources\views\livewire\reassort" />
       <recent name="D:\fassicms\app\Http\Livewire\Reassort" />
       <recent name="D:\fassicms\resources\views\livewire\store" />
       <recent name="D:\fassicms\app\Http\Livewire\Store" />
       <recent name="D:\fassicms\resources\views\livewire" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\fassicms\resources\views\customer" />
-      <recent name="D:\fassicms\resources\views\out" />
-      <recent name="D:\fassicms\resources\views\reassort" />
-      <recent name="D:\fassicms\resources\views\store" />
-      <recent name="D:\fassicms\vendor\rappasoft\laravel-livewire-tables\resources\lang\nl" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -468,6 +475,18 @@
       <workItem from="1607623105960" duration="1115000" />
       <workItem from="1607625266918" duration="918000" />
       <workItem from="1607627076061" duration="10711000" />
+      <workItem from="1607638418720" duration="53000" />
+      <workItem from="1607717759524" duration="727000" />
+      <workItem from="1607786080563" duration="1790000" />
+      <workItem from="1607787887571" duration="1794000" />
+      <workItem from="1607789699108" duration="1799000" />
+      <workItem from="1607791516674" duration="1887000" />
+      <workItem from="1607793481883" duration="1116000" />
+      <workItem from="1607851124652" duration="356000" />
+      <workItem from="1607851513628" duration="394000" />
+      <workItem from="1607851951516" duration="25319000" />
+      <workItem from="1607961626926" duration="10013000" />
+      <workItem from="1608019922884" duration="429000" />
     </task>
     <task id="LOCAL-00001" summary="20201031 - Init">
       <created>1604168127520</created>
@@ -602,7 +621,14 @@
       <option name="project" value="LOCAL" />
       <updated>1607544400206</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="20201210 - v1.0">
+      <created>1607638453718</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1607638453718</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -629,7 +655,8 @@
     <MESSAGE value="20201204 - v1.0" />
     <MESSAGE value="20201205 - v1.0" />
     <MESSAGE value="20201209 - v1.0" />
-    <option name="LAST_COMMIT_MESSAGE" value="20201209 - v1.0" />
+    <MESSAGE value="20201210 - v1.0" />
+    <option name="LAST_COMMIT_MESSAGE" value="20201210 - v1.0" />
   </component>
   <component name="WindowStateProjectService">
     <state x="873" y="359" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1606564463028">
@@ -644,20 +671,20 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="1650" y="490" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1607094669132" />
-    <state x="929" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1607186596281">
+    <state x="929" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1607792129713">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="697" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1604766909431" />
-    <state x="929" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1607186596281" />
+    <state x="929" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1607792129713" />
     <state x="1011" y="455" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1607171326591">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="1011" y="455" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1607171326591" />
-    <state x="768" y="118" key="CommitChangelistDialog2" timestamp="1607544399563">
+    <state x="768" y="118" key="CommitChangelistDialog2" timestamp="1607638453079">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="576" y="88" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1604168125233" />
-    <state x="768" y="118" key="CommitChangelistDialog2/0.0.2560.1400@0.0.2560.1400" timestamp="1607544399563" />
+    <state x="768" y="118" key="CommitChangelistDialog2/0.0.2560.1400@0.0.2560.1400" timestamp="1607638453079" />
     <state x="93" y="93" width="2375" height="1215" key="DiffContextDialog" timestamp="1606493598198">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
@@ -708,11 +735,11 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="1421" y="345" key="SettingsEditor/0.0.2560.1400@0.0.2560.1400" timestamp="1605259439523" />
-    <state x="736" y="339" key="Vcs.Push.Dialog.v2" timestamp="1607544401722">
+    <state x="736" y="339" key="Vcs.Push.Dialog.v2" timestamp="1607638456742">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="552" y="252" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1604168130806" />
-    <state x="736" y="339" key="Vcs.Push.Dialog.v2/0.0.2560.1400@0.0.2560.1400" timestamp="1607544401722" />
+    <state x="736" y="339" key="Vcs.Push.Dialog.v2/0.0.2560.1400@0.0.2560.1400" timestamp="1607638456742" />
     <state x="1669" y="444" key="com.jetbrains.php.test.PhpNewTestDialog" timestamp="1604843589275">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>

@@ -71,20 +71,28 @@
                                 <thead>
                                 <tr>
                                     <th>{{__('Part number')}}</th>
-                                    <th>{{__('Qty')}}</th>
+                                    <th>{{__('Quantity')}}</th>
+                                    <th>{{__('Qty available')}}</th>
+                                    <th class="text-center"><i class="fa fa-trash-alt" style="color: red !important;"></i></th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 @var $index = 0
                                 @foreach($parts as $part)
-                                    <tr>
+                                    <tr id="row{{$index}}">
                                         <td>
-                                            <input type="text" id="part_number{{$index}}"  name="part_number[]" class="form-control" value="{{old('part_number',$part->part_number)}}" moco-validation-table>
+                                            <input type="text" id="part_number{{$index}}"  name="part_number[]" class="form-control" value="{{old('part_number.'.$index,$part['part']->part_number)}}" moco-validation-table>
                                             <div class="moco-error-small danger-darker-hover" id="part_number{{$index}}Error"></div>
                                         </td>
                                         <td>
-                                            <input type="number" id="qty{{$index}}" name="qty[]" class="form-control" value="{{old('qty',$part->qty)}}" moco-validation-table>
+                                            <input type="number" id="qty{{$index}}" name="qty[]" class="form-control @if(!$part['enough']) is-invalid @endif " value="{{old('qty.'.$index,$part['part']->qty)}}" moco-validation-table>
                                             <div class="moco-error-small danger-darker-hover" id="qty{{$index}}Error"></div>
+                                        </td>
+                                        <td>
+                                            <div class="warning-darker-hover text-center" style="font-weight: bold">{{$part['qty_before']}}</div>
+                                        </td>
+                                        <td>
+                                            <div class="text-center"><a href="#" onclick="_delete({{$index}})"><i class="fa fa-trash-alt" style="color: red !important;"></i></a></div>
                                         </td>
                                     </tr>
                                     @var $index++
@@ -103,6 +111,19 @@
                     </form>
                 </div>
             </div>
+            <script type="text/javascript">
+                /**
+                 * Supprime une ligne du formulaire
+                 * place les éléments 'input' en disabled pour ne pas les avoir dans le POST du formulaire
+                 * @param index
+                 * @private
+                 */
+                function _delete(index) {
+                    $('#row' + index).hide();
+                    $('#part_number' + index).attr('disabled', 'disabled')
+                    $('#qty' + index).attr('disabled', 'disabled');
+                }
+            </script>
             <script type="text/javascript" src="{{ asset('js/moco.ajax.validation.js') }}"></script>
         @endif
     </div>

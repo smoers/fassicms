@@ -25,11 +25,13 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StorePartRequest;
 use App\Models\Catalog;
 use App\Models\Provider;
+use App\Models\Reason;
 use App\Models\Reassortement;
 use App\Models\Store;
 use App\Models\Worksheet;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 
 /**
@@ -39,10 +41,12 @@ use Illuminate\Http\Request;
 class StoreController extends Controller
 {
     protected $_providers;
+    protected $newId;
 
     public function __construct()
     {
         $this->_providers = Provider::all()->sortBy('name');
+        $this->newId = config('moco.reason.newId');
     }
 
     /**
@@ -114,8 +118,10 @@ class StoreController extends Controller
 
         //Validation
         $validatedData = $request->validated();
-        //recherche l'obet Provider
+        //recherche l'objet Provider
         $provider = Provider::find($validatedData['provider']);
+        //recherche l'objet reason
+        $reason = Reason::find($this->newId);
         //hydrate les objets
         $store = new Store();
         $store->fill((array)$validatedData);
@@ -129,6 +135,8 @@ class StoreController extends Controller
         $catalog->store()->associate($store);
         $catalog->provider()->associate($provider);
         $reassort->store()->associate($store);
+        $reassort->user()->associate(Auth::user());
+        $reassort->reason()->associate($reason);
         $catalog->save();
         $reassort->save();
         return redirect('store')->with('success','The part number has been saved');

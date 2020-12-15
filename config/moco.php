@@ -53,8 +53,11 @@ return [
          * L'id de la raison lorsque l'on fait une sortie sur
          * une fiche de travail
          */
-        'worksheetId' => 6
-
+        'worksheetId' => 6,
+        /**
+         * L'id de la raison lorsque l'on crée une nouvelle piècé
+         */
+        'newId' => 8,
     ],
 
 ];

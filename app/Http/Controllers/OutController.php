@@ -100,19 +100,10 @@ class OutController extends Controller
         //Récupérer L'objet
         $reason = Reason::find($validatedData['reason']);
         //Nouvel objet Out
-        /*$out = new Out();
-        $out->qty_pull = $validatedData['qty_pull'];
-        $out->note = $validatedData['note'];
-        $out->qty_before = $store->qty;
-        $out->store()->associate($store);
-        $out->reason()->associate($reason);
-        $out->user()->associate(Auth::user());
-        //mise à jour de la quantité en stock
-        $store->qty = $store->qty - $out->qty_pull;
-        */
         $out = $store->getOutHydrated($validatedData['qty_pull']);
         $out->note = $validatedData['note'];
         $out->reason()->associate($reason);
+        //Sauvegarde les objets
         $out->save();
         $store->save();
         return redirect('reassort')->with('success', 'The new value of the stock has been saved');

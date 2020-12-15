@@ -23,14 +23,20 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\OutWorksheetStepRequest;
+use App\Http\Requests\OutWorksheetValidationStepAjaxRequest;
 use App\Http\Requests\OutWorksheetValidationStepRequest;
 use App\Moco\Common\MocoAjaxValidation;
 use App\Models\Part;
 use App\Models\Reason;
 use App\Models\Store;
 use App\Models\Worksheet;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use ArrayObject;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Session;
 
 class OutWorksheetController extends Controller
 {
@@ -44,7 +50,7 @@ class OutWorksheetController extends Controller
     public function __construct()
     {
         //Le form request à utiliser
-        $this->formRequest = new OutWorksheetValidationStepRequest();
+        $this->formRequest = new OutWorksheetValidationStepAjaxRequest();
         //L'id de la raison
         $this->worksheetId = config('moco.reason.worksheetId');
 
@@ -87,6 +93,7 @@ class OutWorksheetController extends Controller
         $flag = null; //P ou Q
         $previous_part = null;
         $previous_qty = null;
+        $partsNoExists = null;
 
         $parts = $request->post('parts');
         if($parts != ''){
@@ -125,16 +132,45 @@ class OutWorksheetController extends Controller
                                 $parts_object[$part] = new Part(['part_number' => $part, 'qty' => 1]);
                             }
                         } else {
+                            $partsNoExists .= ','.$part;
                             $flag = null;
                         }
                     }
                 }
             }
+            /**
+             * Validation manuelle des valeurs
+             * Cela va permettre d'afficher les erreurs de qty lors du chargement
+             * du formulaire de validation
+             */
+            $partsToForm = array();
+            foreach ($parts_object->getArrayCopy() as  $key => $value){
+                $array = [
+                    'part' => $value,
+                    'enough' => true,
+                    'qty_before' => null
+                ];
+                //A ce niveau toutes les pièces de la liste existe
+                $store = Store::where('part_number', '=', $value->part_number)->where('enabled', '=', true)->first();
+                $array['enough'] = $store->validateAvailableQuantity($value->qty);
+                $array['qty_before'] = $store->qty;
+                $partsToForm[$key] = $array;
+            }
+            /**
+             * Charge les valeurs dans une variable de session
+             */
+            $request->session()->put('partsToForm',$partsToForm);
+            /**
+             * Message pour l'utilisateur
+             */
+            if (is_null($partsNoExists)){
+                $info = trans('The treatment was completed without remarks');
+            }
             //on charge le formulaire de validation
             return view('outworksheet.outworksheet-form',[
                 'step' => 30,
-                'parts' => $parts_object->getArrayCopy(),
-            ]);
+                'parts' => $partsToForm,
+            ])->with('info', $info);
         } else {
             //la zone texte étant vide on génère une erreur
             return redirect('dashboard')->with('error','Your pickup list was empty, your out of stock has been canceled.');
@@ -142,49 +178,87 @@ class OutWorksheetController extends Controller
 
     }
 
-    public function validation(Request $request)
+    /**
+     * Cette méthode est uniquement appelée si la validation du formulaire
+     * de traitement est incorrect.
+     *
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\View
+     */
+    public function treatmentForm(Request $request)
     {
-        //validation
-        $this->formRequest->setRequestArray($request->all());
-        $validatedData = $request->validate(
-            $this->formRequest->rules(),
-            $this->formRequest->messages(),
-            $this->formRequest->attributes()
+        return view('outworksheet.outworksheet-form',[
+                'step' => 30,
+                'parts' => $request->session()->get('partsToForm'),
+            ]
         );
+    }
+
+    /**
+     * Cette méthode va se charger de sauvegarder et de créer les enregistrements
+     * liés à une sortie de stock sur une fiche de travail
+     *
+     * @param OutWorksheetValidationStepRequest $request
+     * @return \Illuminate\Routing\Redirector
+     * @throws \ErrorException
+     */
+    public function validation(OutWorksheetValidationStepRequest $request)
+    {
+
         //Obtenir les données (le worksheet number existe car validé)
-        $parts = $request->$validatedData['part_number'];
-        $qtys = $request->$validatedData['qty'];
+        $parts = $request->validated()['part_number'];
+        $qtys = $request->validated()['qty'];
         $number = $request->session()->get('worksheet_number');
-        DB::transaction(function () use ($parts,$qtys,$number){
-            foreach ($parts as $key => $part){
-                //Récupère le l'objet Stock et le lock
-                $store = Store::where('part_number','=',$part)->where('enabled','=',true)->lockForUpdate()->first();
-                //Récupère l'objet Worksheet
-                $worksheet = Worksheet::where('number','=',$number)->first();
-                //Récupère l'objet Reason
+
+        return DB::transaction(function () use ($parts, $qtys, $number, $request) {
+            foreach ($parts as $key => $part) {
+                //Recherche les objet nécessaire dans les relations
+                $store = Store::where('part_number', '=', $part)->where('enabled', '=', true)->lockForUpdate()->first();
+                $worksheet = Worksheet::where('number', '=', $number)->first();
                 $reason = Reason::find($this->worksheetId);
-                //Si la quantité n'est pas suffisante une exception est levée
-                if(intval($qtys[$key]) > $store->qty){
-                    throw new \ErrorException(trans('The quantity in stock is not enough for the quantity requested for part number ').$part);
+                $out = $store->getOutHydrated($qtys[$key], $reason, $number);
+
+                /**
+                 * Si Out est null alors cela signifie que la qty est insuffisante
+                 * on lève une exception
+                 */
+                if (is_null($out)) {
+                    DB::rollBack();
+                    return redirect()->route('outworksheet.treatmentform')->with('error',trans('The quantity in stock is not enough for the quantity requested for part number ') . $part);
                 }
-                //Recherche le prix de la pièce
-                $price_worksheet = $store->getPriceForWorksheet();
-                //Si on ne trouve pas de prix dans l'année encours ou encours - 1 on lève une exception
-                if (is_null($price_worksheet['price'])){
-                    throw new \ErrorException(trans('No price is available for this part number ').$part);
+
+                /**
+                 * Recherche le prix de la pièce dans le catalogue
+                 * uniquement pour l'année encours.
+                 * Si le retour est null on lève une exception
+                 */
+                $price = $store->getPrice();
+                if (is_null($price)) {
+                    DB::rollBack();
+                    return redirect()->route('outworksheet.treatmentform')->with('error',trans('No price is available for this part number ') . $part);
                 }
-                //hydrate l'objet Part
+
+                /**
+                 * hydrate l'objet Part
+                 */
                 $part_obj = new Part();
                 $part_obj->part_number = $store->part_number;
                 $part_obj->description = $store->description;
                 $part_obj->qty = intval($qtys[$key]);
-                $part_obj->price = $price_worksheet['price'];
-                $part_obj->year = $price_worksheet['year'];
+                $part_obj->price = $price;
+                $part_obj->year = Carbon::now()->year;
                 $part_obj->user()->associate(Auth::user());
                 $part_obj->worksheet()->associate($worksheet);
 
+                /*
+                 * Sauvegarde
+                 */
+                $out->save();
+                $store->save();
+                $part_obj->save();
             }
+            return redirect()->route('outworksheet.index')->with('success', 'The parts have been output on the worksheet');
         });
-        dd([$parts, $qtys, $number]);
+
     }
 }

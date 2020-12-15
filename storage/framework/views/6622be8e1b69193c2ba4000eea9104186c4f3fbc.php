@@ -69,20 +69,28 @@
                                 <thead>
                                 <tr>
                                     <th><?php echo e(__('Part number')); ?></th>
-                                    <th><?php echo e(__('Qty')); ?></th>
+                                    <th><?php echo e(__('Quantity')); ?></th>
+                                    <th><?php echo e(__('Qty available')); ?></th>
+                                    <th class="text-center"><i class="fa fa-trash-alt" style="color: red !important;"></i></th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 <?php  $index = 0; ?>
                                 <?php $__currentLoopData = $parts; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $part): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                    <tr>
+                                    <tr id="row<?php echo e($index); ?>">
                                         <td>
-                                            <input type="text" id="part_number<?php echo e($index); ?>"  name="part_number[]" class="form-control" value="<?php echo e(old('part_number',$part->part_number)); ?>" moco-validation-table>
+                                            <input type="text" id="part_number<?php echo e($index); ?>"  name="part_number[]" class="form-control" value="<?php echo e(old('part_number.'.$index,$part['part']->part_number)); ?>" moco-validation-table>
                                             <div class="moco-error-small danger-darker-hover" id="part_number<?php echo e($index); ?>Error"></div>
                                         </td>
                                         <td>
-                                            <input type="number" id="qty<?php echo e($index); ?>" name="qty[]" class="form-control" value="<?php echo e(old('qty',$part->qty)); ?>" moco-validation-table>
+                                            <input type="number" id="qty<?php echo e($index); ?>" name="qty[]" class="form-control <?php if(!$part['enough']): ?> is-invalid <?php endif; ?> " value="<?php echo e(old('qty.'.$index,$part['part']->qty)); ?>" moco-validation-table>
                                             <div class="moco-error-small danger-darker-hover" id="qty<?php echo e($index); ?>Error"></div>
+                                        </td>
+                                        <td>
+                                            <div class="warning-darker-hover text-center" style="font-weight: bold"><?php echo e($part['qty_before']); ?></div>
+                                        </td>
+                                        <td>
+                                            <div class="text-center"><a href="#" onclick="_delete(<?php echo e($index); ?>)"><i class="fa fa-trash-alt" style="color: red !important;"></i></a></div>
                                         </td>
                                     </tr>
                                     <?php  $index++; ?>
@@ -101,6 +109,19 @@
                     </form>
                 </div>
             </div>
+            <script type="text/javascript">
+                /**
+                 * Supprime une ligne du formulaire
+                 * place les éléments 'input' en disabled pour ne pas les avoir dans le POST du formulaire
+                 * @param  index
+                 * @private
+                 */
+                function _delete(index) {
+                    $('#row' + index).hide();
+                    $('#part_number' + index).attr('disabled', 'disabled')
+                    $('#qty' + index).attr('disabled', 'disabled');
+                }
+            </script>
             <script type="text/javascript" src="<?php echo e(asset('js/moco.ajax.validation.js')); ?>"></script>
         <?php endif; ?>
     </div>

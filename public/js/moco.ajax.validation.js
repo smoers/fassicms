@@ -40,13 +40,12 @@ var loadValue = function(objectFields, index){
  * @param url
  */
 var mocoAjaxValidation = function (selector,value,url) {
-    console.log("Start AJAX");
+    console.log(value);
     $.ajax({
         url: url,
         type:"POST",
         data: value,
         success:function (response) {
-            console.log(response);
             $(selector).removeClass('is-invalid').addClass('is-valid');
             $(selector+'Error').text("");
         },
@@ -60,9 +59,8 @@ var mocoAjaxValidation = function (selector,value,url) {
             }
             else
             {
-                //console.log([id, 'not null']);
                 $(selector).removeClass('is-valid').addClass('is-invalid');
-                $(selector+'Error').text(response.responseJSON.errors[id]);
+                $(selector + 'Error').text(message);
             }
         }
     })
@@ -82,7 +80,6 @@ $(function () {
     var validationArray = [];
     var validationFields = {};
     var url = 'ajaxvalidation';
-    var table = false;
 
     //Constructeur
     var element = $('input, select, form');

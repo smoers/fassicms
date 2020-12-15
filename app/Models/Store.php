@@ -79,7 +79,7 @@ class Store extends Model
     public function getQtyAttribute($value)
     {
         if($value == ''){
-            return null;
+            return '0';
         } else {
             return number_format(intval($value),0,',','');
         }
@@ -109,27 +109,6 @@ class Store extends Model
     {
         $catalog = $this->getCatalog($year);
         return is_null($catalog) ? null : $catalog->price;
-    }
-
-    /**
-     * Cette méthode va retourner le prix et l'année
-     * L'année utilisée pour retrouver le prix l'année actuelle
-     * ou actuelle -1
-     *
-     * @return array
-     */
-    public function getPriceForWorksheet(): array
-    {
-        $year = Carbon::now()->year;
-        if (is_null($price = $this->getPrice($year))){
-            --$year;
-            $price = $this->getPrice($year);
-        }
-
-        return [
-            'year' => $year,
-            'price' => $price,
-        ];
     }
 
     /**
@@ -171,6 +150,9 @@ class Store extends Model
     }
 
     /**
+     * Va retourner un objet Out hydraté et
+     * mets à jour l'objet Store au niveau de la quantité
+     *
      * @param int $qty_pull
      * @param Reason|null $reason
      * @param string|null $note
