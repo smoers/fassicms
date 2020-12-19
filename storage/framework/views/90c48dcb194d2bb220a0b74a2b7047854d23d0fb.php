@@ -24,7 +24,7 @@ Date : 27-10-20
         <!-- Material Design Bootstrap -->
         <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">
         <!-- Datepicker -->
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.standalone.min.css" rel="stylesheet">
+        <link href="<?php echo e(asset('3rd/bootstrap-datepicker-1.9.0-dist/css/bootstrap-datepicker3.standalone.css')); ?>" rel="stylesheet">
         <!-- Bootstrap-Select -->
         <link href="<?php echo e(asset('3rd/bootstrap-select-1.13.18/css/bootstrap-select.min.css')); ?>" rel="stylesheet">
         <!-- Ajax Bootstrap Select-->
@@ -41,7 +41,7 @@ Date : 27-10-20
         <!-- MDB core JavaScript -->
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js"></script>
         <!-- Datepicker-->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.min.js"></script>
+        <script src="<?php echo e(asset('3rd/bootstrap-datepicker-1.9.0-dist/js/bootstrap-datepicker.min.js')); ?>"></script>
         <!-- Bootstrap-Select -->
         <script type="text/javascript" src="<?php echo e(asset('3rd/bootstrap-select-1.13.18/js/bootstrap-select.min.js')); ?>"></script>
         <!-- Ajax Bootstrap Select -->

@@ -2,46 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9ec171e7-05c7-490b-8f14-40ae5b7978c4" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Moco/Printer/MocoCustomPageFormat.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Moco/Printer/MocoSticker.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Moco/Printer/MocoStickerModel.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/config/sticker.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/worksheet/worksheet-form.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Moco/Common/Moco.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/moco.selectpicker.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/OutController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/OutController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/OutWorksheetController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/OutWorksheetController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ReassortController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ReassortController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/StoreController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/StoreController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Requests/StorePartRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/StorePartRequest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Moco/Common/OldBag.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Moco/Common/OptionsView.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Moco/Criteria/Criteria.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Moco/Criteria/Criterias.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Part.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Part.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Store.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Store.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/app.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/moco.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/moco.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_12_15_082017_add_bar_code_stores_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_12_15_082017_add_bar_code_stores_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/lang/fr.json" beforeDir="false" afterPath="$PROJECT_DIR$/resources/lang/fr.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/lang/nl.json" beforeDir="false" afterPath="$PROJECT_DIR$/resources/lang/nl.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/WorksheetController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/WorksheetController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/3rd/bootstrap-datepicker-1.9.0-dist/locales/bootstrap-datepicker.fr.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/3rd/bootstrap-datepicker-1.9.0-dist/locales/bootstrap-datepicker.fr.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/customer/customer-form.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/customer/customer-form.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/layouts/layout.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/layout.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/menus/navbar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/menus/navbar.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/menus/store-list-sub.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/menus/store-list-sub.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/out/out-part-form.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/out/out-part-form.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/outworksheet/outworksheet-form.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/outworksheet/outworksheet-form.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/reassort/reassort-part-form.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/reassort/reassort-part-form.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/root/message.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/root/message.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/store/store-part-form.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/store/store-part-form.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/worksheet/worksheet-form.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/worksheet/worksheet-form.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/Ep7QZYTrVW1YQMGHpX6PBzxNNtLhX3DnmTFfl78A" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/views/357f0130539d550c00ec9e0977bbe4e857371e51.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/357f0130539d550c00ec9e0977bbe4e857371e51.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/views/4d5bc0f4f6f704f78f096f8dd2e2b9b62547e2a0.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/4d5bc0f4f6f704f78f096f8dd2e2b9b62547e2a0.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/views/53fd60962b50afb3459b3cd9201f6ea36bc3470a.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/53fd60962b50afb3459b3cd9201f6ea36bc3470a.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/views/5b88c7c4d84639ceeeb6cbc0f0390d4de1297009.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/5b88c7c4d84639ceeeb6cbc0f0390d4de1297009.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/views/6622be8e1b69193c2ba4000eea9104186c4f3fbc.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/6622be8e1b69193c2ba4000eea9104186c4f3fbc.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/views/66e5c1a2733047657c380e29e0bc92c6411801b4.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/66e5c1a2733047657c380e29e0bc92c6411801b4.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/Rqa5YK013HJ42bOypqtNt9acZJ9GYfaiiCxaYAgn" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/sessions/Rqa5YK013HJ42bOypqtNt9acZJ9GYfaiiCxaYAgn" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/0caa5c185fe116a4e486f7cae2a4ccdc5196eb71.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/0caa5c185fe116a4e486f7cae2a4ccdc5196eb71.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/25260852830396136ad7a3932c4427c3795c142f.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/25260852830396136ad7a3932c4427c3795c142f.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/storage/framework/views/90c48dcb194d2bb220a0b74a2b7047854d23d0fb.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/90c48dcb194d2bb220a0b74a2b7047854d23d0fb.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/views/c63af29302a66a0773c312038557ed5b14a513a2.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/c63af29302a66a0773c312038557ed5b14a513a2.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -511,7 +484,7 @@
       <workItem from="1608019922884" duration="21373000" />
       <workItem from="1608102534996" duration="25525000" />
       <workItem from="1608134637332" duration="2605000" />
-      <workItem from="1608368042664" duration="4464000" />
+      <workItem from="1608368042664" duration="27261000" />
     </task>
     <task id="LOCAL-00001" summary="20201031 - Init">
       <created>1604168127520</created>
@@ -660,7 +633,14 @@
       <option name="project" value="LOCAL" />
       <updated>1608020490969</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="202012191134 - v1.0">
+      <created>1608374089815</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1608374089815</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -689,6 +669,7 @@
     <MESSAGE value="20201209 - v1.0" />
     <MESSAGE value="20201210 - v1.0" />
     <MESSAGE value="20201214 - v1.0" />
-    <option name="LAST_COMMIT_MESSAGE" value="20201214 - v1.0" />
+    <MESSAGE value="202012191134 - v1.0" />
+    <option name="LAST_COMMIT_MESSAGE" value="202012191134 - v1.0" />
   </component>
 </project>

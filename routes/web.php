@@ -77,7 +77,7 @@ Route::group(['middleware' => ['role_or_permission:admin','auth']],function (){
      * Worksheet Controller
      */
     Route::get('/worksheet/create',[WorksheetController::class,'create'])->name('worksheet.create');
-    Route::post('/customer/store',[worksheetController::class,'store'])->name('worksheet.store');
+    Route::post('/worksheet/store',[worksheetController::class,'store'])->name('worksheet.store');
 
 });
 
