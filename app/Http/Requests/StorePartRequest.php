@@ -29,6 +29,7 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\StorePrice;
 use \Illuminate\Foundation\Http\FormRequest;
 
 class StorePartRequest extends FormRequest
@@ -58,28 +59,40 @@ class StorePartRequest extends FormRequest
             'description' => 'required|max:255',
             'qty' => 'required|numeric|min:1',
             'location' => 'max:10',
-            'price' => array('required','regex:'.$this->regex,"min:0.01"),
+            'price' => array('required','regex:'.$this->regex,new StorePrice()),
             'year' => 'required|numeric|between:2000,2050',
             'provider' => 'required',
             'enabled' => 'required',
+            'bar_code' => 'required|max:255|unique:stores,bar_code',
         ];
     }
 
     public function messages()
     {
         return [
-            'part_number.required' => trans('The part number is required'),
-            'part_number.size' => trans('The maximum size for a part number is 100 characters'),
-            'part_number.unique' => trans('This part number is already exist.'),
-            'description.required' => trans('The part number description is required'),
-            'description.size' => trans('The maximum size for a description is 255 characters'),
-            'qty.required' => trans('The quantity is required'),
-            'location.size' => trans('The maximum size for a location is 10 characters'),
-            'price.required' => trans('The price is required'),
-            'price.regex' => trans('The format of the price is not correct'),
-            'year.required' => trans('The year is required'),
-            'enabled.required' => trans('The activition is required'),
-            'provider' => trans('The provider is required'),
+            'required' => trans('The :attribute is required'),
+            'size.max' => trans('The maximum size for :attribute is :max chraracters'),
+            'size.min' => trans('The minimum size for :attribute is :min'),
+            'numeric' => trans('The :attribute must be numeric'),
+            'unique' => trans('The :attribute is already exist'),
+            'regex' => trans('The format of :attribute is not correct'),
+            'between' => trans('The value of :attribute must be between 2000 and 2050'),
+            'exists' => trans('This :attribute is already exist'),
+        ];
+    }
+
+    public function attributes()
+    {
+        return [
+            'part_number' => trans('Part Number'),
+            'description' => trans('Description'),
+            'qty' => trans('Quantity'),
+            'location' => trans('Location'),
+            'price' => trans('Price'),
+            'year' => trans('Year'),
+            'provider' => trans('Provider'),
+            'enabled' => trans('Enabled'),
+            'bar_code' => trans('Bar Code'),
         ];
     }
 

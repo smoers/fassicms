@@ -22,6 +22,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ReassortRequest;
+use App\Moco\Common\MocoAjaxValidation;
 use App\Models\Reason;
 use App\Models\Reassortement;
 use Illuminate\Http\Request;
@@ -35,33 +37,17 @@ use Illuminate\Support\Facades\Auth;
 class ReassortController extends Controller
 {
 
-    /**
-     * Régles pour la validation
-     * @return string[]
-     */
-    protected function rules()
-    {
-        return [
-            'qty_add' => 'required|numeric|min:1|integer',
-            'reason' => 'required',
-            'note' => 'max:255',
-        ];
-    }
+    use MocoAjaxValidation;
 
     /**
-     * Message pour la validation
-     * @return array
+     * ReassortController constructor.
      */
-    protected function messages()
+    public function __construct()
     {
-        return [
-            'qty_add.required' => trans('The number of added part is required'),
-            'qty_add.min' => trans('The minimun of added part is 1'),
-            'qty-add.integer' => trans('The number of pieces added must be an integer '),
-            'reason.required' => trans('The reason is required'),
-            'note.size' => trans('The maximum size for a note is 255 characters'),
-        ];
+        $this->formRequest = new ReassortRequest();
+        $this->reason_filtering = config('moco.reason.filtering');
     }
+
 
     /**
      * Retourne la liste des piéces en stock et actives
@@ -80,7 +66,7 @@ class ReassortController extends Controller
     public function edit($id)
     {
         $store = Store::find($id);
-        $reasons = Reason::where('option','=','R')->orderBy('reason')->get();
+        $reasons = Reason::where('option','=',$this->reason_filtering['reassort'])->orWhere('option','=',$this->reason_filtering['all'])->orderBy('reason')->get();
         return view('reassort.reassort-part-form',[
             '_store' => $store,
             '_reasons' => $reasons
@@ -89,12 +75,13 @@ class ReassortController extends Controller
 
     /**
      * Enregistrment d'un réassortiment
+     *
      * @param Request $request
      */
-    public function update(request $request)
+    public function update(ReassortRequest $request)
     {
         //Validation des données
-        $validatedData = $request->validate($this->rules(),$this->messages());
+        $validatedData = $request->validated();
         //Récupérer l'objet Store
         $store = Store::find($request->post('id'));
         //Récupérer L'objet
@@ -102,28 +89,17 @@ class ReassortController extends Controller
         //Nouvel objet Reassortement
         $reassort = new Reassortement();
         $reassort->qty_add = $validatedData['qty_add'];
+        $reassort->note = $request->post('note');
         $reassort->qty_before = $store->qty;
         $reassort->store()->associate($store);
         $reassort->reason()->associate($reason);
         $reassort->user()->associate(Auth::user());
         //mise à jour de la quantité en stock
-        $store->qty = $store->qty + $reassort->qty_add;
+        $store->increaseQuantity($reassort->qty_add);
         //Sauvegarde des objets
         $reassort->save();
         $store->save();
         return redirect('reassort')->with('success', 'The new value of the stock has been saved');
-    }
-
-    /**
-     * Validation real-time du formulaire
-     * @param Request $request
-     * @return \Illuminate\Http\JsonResponse
-     * @throws \Illuminate\Validation\ValidationException
-     */
-    public function ajaxValidation(request $request)
-    {
-        $this->validate($request, $this->rules(), $this->messages());
-        return response()->json();
     }
 
 }

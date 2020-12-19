@@ -1,4 +1,4 @@
-    <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark position-sticky fixed-top " style="z-index:999">
+    <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark position-sticky fixed-top " style="z-index:9999">
         <a class="navbar-brand" href="<?php echo e(route('dashboard')); ?>"><img src="<?php echo e(asset('./images/logo.png')); ?>"></a>
         <!-- Navbar-->
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -37,7 +37,8 @@
 
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">Item 1</a>
+                        <a class="dropdown-item" href="#"><?php echo e(__('List')); ?></a>
+                        <a class="dropdown-item" href="<?php echo e(route('worksheet.create')); ?>"><?php echo e(__('Add')); ?></a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="#">Item 2</a>
                     </div>

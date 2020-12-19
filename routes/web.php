@@ -8,7 +8,8 @@ use App\Http\Controllers\CraneController;
 use App\Http\Controllers\ReassortController;
 use App\Http\Controllers\OutController;
 use App\Http\Controllers\CustomerController;
-use \App\Http\Controllers\OutWorksheetController;
+use App\Http\Controllers\OutWorksheetController;
+use App\Http\Controllers\WorksheetController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,18 +30,28 @@ Route::group(['middleware' => ['role_or_permission:admin','auth']],function (){
     Route::get('/', function () {
         return redirect()->route('dashboard');
     })->name('main');
-    //Dashboard Controller
+
+    /**
+     * Dashboard Controller
+     */
     Route::get('/dashboard', [DashboardController::class, 'index'])->name("dashboard");
     //Crane Controller
     Route::resource('crane', CraneController::class);
-    //Store Controller
+
+    /**
+     * Store Controller
+     */
     Route::get('store',[StoreController::class,'index'])->name('store.index');
     Route::get('/store/create',[StoreController::class,'create'])->name('store.create');
-    Route::post('/store',[StoreController::class,'store'])->name('store.store');
+    Route::post('/store/store',[StoreController::class,'store'])->name('store.store');
     Route::post('/store/update',[StoreController::class,'update'])->name('store.update');
     Route::get('/store/{id}/{cat_id}/edit',[StoreController::class,'edit'])->name('store.edit');
     Route::post('/store/ajaxvalidation',[StoreController::class,'ajaxValidation'])->name('store.ajaxvalidation');
-    //Reassort Controller
+    Route::get('/store/{id}/bs',[StoreController::class,'barcodeSticker'])->name('store.barcode_sticker');
+
+    /**
+     * Reassort Controller
+     */
     Route::get('/reassort',[ReassortController::class,'index'])->name('reassort.index');
     Route::get('/reassort/{id}/edit',[ReassortController::class,'edit'])->name('reassort.edit');
     Route::post('/reassort/update',[ReassortController::class,'update'])->name('reassort.update');
@@ -62,7 +73,11 @@ Route::group(['middleware' => ['role_or_permission:admin','auth']],function (){
     Route::post('/outworksheet/validation',[OutWorksheetController::class,'validation'])->name('outworksheet.validation');
     Route::post('/outworksheet/ajaxvalidation',[OutWorksheetController::class,'ajaxValidation'])->name('outworksheet.ajaxvalidation');
 
-    Route::get('/store/bs',[StoreController::class,'barcodeSticker'])->name('store.barcode_sticker');
+    /**
+     * Worksheet Controller
+     */
+    Route::get('/worksheet/create',[WorksheetController::class,'create'])->name('worksheet.create');
+    Route::post('/customer/store',[worksheetController::class,'store'])->name('worksheet.store');
 
 });
 

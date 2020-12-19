@@ -23,6 +23,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StorePartRequest;
+use App\Moco\Common\MocoAjaxValidation;
+use App\Moco\Printer\MocoSticker;
+use App\Moco\Printer\MocoStickerModel;
 use App\Models\Catalog;
 use App\Models\Provider;
 use App\Models\Reason;
@@ -40,11 +43,13 @@ use Illuminate\Support\Facades\Auth;
  */
 class StoreController extends Controller
 {
+    use MocoAjaxValidation;
     protected $_providers;
     protected $newId;
 
     public function __construct()
     {
+        $this->formRequest = new StorePartRequest();
         $this->_providers = Provider::all()->sortBy('name');
         $this->newId = config('moco.reason.newId');
     }
@@ -63,9 +68,9 @@ class StoreController extends Controller
         return view('store.store-part-form',
         [
             '_providers' => $this->_providers,
-            '_action' => route('store.store'),
             'store' => $store,
             'catalog' => $catalog,
+            '_action' => route('store.store'),
         ]);
     }
 
@@ -84,22 +89,8 @@ class StoreController extends Controller
                 'store' => $store,
                 'catalog' => $catalog,
                 '_providers' => $this->_providers,
-                '_action' => route('store.update')
+                '_action' => route('store.update'),
             ]);
-    }
-
-    /**
-     * Validation real-time du formulaire
-     * @param Request $request
-     * @return \Illuminate\Http\JsonResponse
-     * @throws \Illuminate\Validation\ValidationException
-     */
-    public function ajaxValidation(request $request)
-    {
-        $formRequest = new StorePartRequest();
-        $this->validate($request, $formRequest->rules(), $formRequest->messages());
-
-        return response()->json();
     }
 
     /**
@@ -172,7 +163,20 @@ class StoreController extends Controller
         return view('store.store-list-main');
     }
 
-    public function barcodeSticker(Request $request)
+    public function barcodeSticker($id)
+    {
+        $store = Store::find($id);
+        $mocoStickerModel = new MocoStickerModel(config('sticker.brother'));
+        $mocoSticker = new MocoSticker($mocoStickerModel);
+        $mocoSticker->setStickerHeader('Fassi Belgium');
+        $mocoSticker->setStickerPartNumber($store->part_number);
+        $mocoSticker->setStickerBarCode($store->bar_code);
+        $mocoSticker->generate();
+        $mocoSticker->Output('test.pdf');
+
+    }
+
+    public function TestbarcodeSticker(Request $request)
     {
         //$worksheets = Worksheet::all()->sortBy('number');
         $worksheets = Store::all()->sortBy('part_number');

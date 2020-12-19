@@ -68,7 +68,8 @@
                             <table class="table table-bordered table-striped">
                                 <thead>
                                 <tr>
-                                    <th><?php echo e(__('Part number')); ?></th>
+                                    <th><?php echo e(__('Part Number')); ?></th>
+                                    <th><?php echo e(__('Bar Code')); ?></th>
                                     <th><?php echo e(__('Quantity')); ?></th>
                                     <th><?php echo e(__('Qty available')); ?></th>
                                     <th class="text-center"><i class="fa fa-trash-alt" style="color: red !important;"></i></th>
@@ -79,8 +80,12 @@
                                 <?php $__currentLoopData = $parts; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $part): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                     <tr id="row<?php echo e($index); ?>">
                                         <td>
-                                            <input type="text" id="part_number<?php echo e($index); ?>"  name="part_number[]" class="form-control" value="<?php echo e(old('part_number.'.$index,$part['part']->part_number)); ?>" moco-validation-table>
+                                            <input type="text" id="part_number<?php echo e($index); ?>"  name="part_number[]" readonly class="form-control" value="<?php echo e(old('part_number.'.$index,$part['part']->part_number)); ?>" moco-validation-table>
                                             <div class="moco-error-small danger-darker-hover" id="part_number<?php echo e($index); ?>Error"></div>
+                                        </td>
+                                        <td>
+                                            <input type="text" id="bar_code<?php echo e($index); ?>"  name="bar_code[]" readonly class="form-control" value="<?php echo e(old('bar_code.'.$index,$part['part']->bar_code)); ?>" moco-validation-table>
+                                            <div class="moco-error-small danger-darker-hover" id="bar_code<?php echo e($index); ?>Error"></div>
                                         </td>
                                         <td>
                                             <input type="number" id="qty<?php echo e($index); ?>" name="qty[]" class="form-control <?php if(!$part['enough']): ?> is-invalid <?php endif; ?> " value="<?php echo e(old('qty.'.$index,$part['part']->qty)); ?>" moco-validation-table>

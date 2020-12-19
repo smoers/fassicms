@@ -17,48 +17,27 @@
  *  Company : Fassi Belgium
  *  Developer : MO Consult
  *  Author : Moers Serge
- *  Date : 11/11/20 17:41
+ *  Date : 16/12/20 13:28
  */
 
 /**
  * Company : Fassi Belgium
  * Developer : MO Consult
  * Authority : Moers Serge
- * Date : 11-11-20
+ * Date : 16-12-20
  */
 
-namespace App\Moco\Criteria;
+namespace App\Moco\Printer;
 
 
-use Illuminate\Support\Collection;
-
-class Criteria
+class MocoStickerModel extends \ArrayObject
 {
-    private $attributes = null;
 
     /**
-     * Criteria constructor.
+     * MocoStickerModel constructor.
      */
-    public function __construct()
+    public function __construct(array $type )
     {
-        $this->attributes = new Collection();
-    }
-
-    /**
-     * @param String $key
-     * @param $value
-     */
-    public function put(String $key, $value) :void
-    {
-        $this->attributes->put($key, $value);
-    }
-
-    /**
-     * @param String $key
-     * @return mixed
-     */
-    public function get(String $key)
-    {
-        return $this->attributes->get($key);
+        parent::__construct($type,self::STD_PROP_LIST|self::ARRAY_AS_PROPS);
     }
 }

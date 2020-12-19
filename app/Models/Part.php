@@ -31,6 +31,7 @@ class Part extends Model
 
     protected $fillable = [
         'part_number',
+        'bar_code',
         'qty',
     ];
 

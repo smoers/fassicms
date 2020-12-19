@@ -37,7 +37,8 @@ class Store extends Model
         'description',
         'qty',
         'location',
-        'enabled'
+        'enabled',
+        'bar_code',
     ];
 
     /**
@@ -112,17 +113,6 @@ class Store extends Model
     }
 
     /**
-     * Détermine si un part number exist
-     * @param string $part_number
-     * @param bool $enabled
-     * @return bool
-     */
-    public static function exist(string $part_number, bool $enabled = true): bool
-    {
-        return self::where('part_number','=', $part_number)->where('enabled','=',$enabled)->get()->count()== 1 ;
-    }
-
-    /**
      * @param int $inc_qty
      */
     public function increaseQuantity(int $inc_qty)
@@ -173,5 +163,55 @@ class Store extends Model
         }
         return $out;
     }
+
+
+    /**
+     * Détermine si un part number exist
+     *
+     * @param string $part_number
+     * @param bool $enabled
+     * @return bool
+     */
+    public static function exist(string $part_number, bool $enabled = true): bool
+    {
+        return self::where('part_number','=', $part_number)->where('enabled','=',$enabled)->get()->count()== 1 ;
+    }
+
+    /**
+     * Détermine si le code barre existe dans la table
+     *
+     * @param string $bar_code
+     * @param bool $enabled
+     * @return bool
+     */
+    public static function existBarCode(string $bar_code, bool $enabled = true): bool
+    {
+        return self::where('bar_code','=', $bar_code)->where('enabled','=',$enabled)->get()->count()== 1 ;
+    }
+
+    /**
+     * Retourne l'objet Store sur base du part number
+     *
+     * @param string $part_number
+     * @param bool $enabled
+     * @return mixed
+     */
+    public static function getStoreByPartNumber(string $part_number, bool $enabled = true)
+    {
+        return self::where('part_number','=', $part_number)->where('enabled','=',$enabled)->first();
+    }
+
+    /**
+     * Retourne l'objet Store sur base du code barre
+     *
+     * @param string $bar_code
+     * @param bool $enabled
+     * @return mixed
+     */
+    public static function getStoreByBarCode(string $bar_code, bool $enabled = true)
+    {
+        return self::where('bar_code','=', $bar_code)->where('enabled','=',$enabled)->first() ;
+    }
+
 
 }

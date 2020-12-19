@@ -70,7 +70,8 @@
                             <table class="table table-bordered table-striped">
                                 <thead>
                                 <tr>
-                                    <th>{{__('Part number')}}</th>
+                                    <th>{{__('Part Number')}}</th>
+                                    <th>{{__('Bar Code')}}</th>
                                     <th>{{__('Quantity')}}</th>
                                     <th>{{__('Qty available')}}</th>
                                     <th class="text-center"><i class="fa fa-trash-alt" style="color: red !important;"></i></th>
@@ -81,8 +82,12 @@
                                 @foreach($parts as $part)
                                     <tr id="row{{$index}}">
                                         <td>
-                                            <input type="text" id="part_number{{$index}}"  name="part_number[]" class="form-control" value="{{old('part_number.'.$index,$part['part']->part_number)}}" moco-validation-table>
+                                            <input type="text" id="part_number{{$index}}"  name="part_number[]" readonly class="form-control" value="{{old('part_number.'.$index,$part['part']->part_number)}}" moco-validation-table>
                                             <div class="moco-error-small danger-darker-hover" id="part_number{{$index}}Error"></div>
+                                        </td>
+                                        <td>
+                                            <input type="text" id="bar_code{{$index}}"  name="bar_code[]" readonly class="form-control" value="{{old('bar_code.'.$index,$part['part']->bar_code)}}" moco-validation-table>
+                                            <div class="moco-error-small danger-darker-hover" id="bar_code{{$index}}Error"></div>
                                         </td>
                                         <td>
                                             <input type="number" id="qty{{$index}}" name="qty[]" class="form-control @if(!$part['enough']) is-invalid @endif " value="{{old('qty.'.$index,$part['part']->qty)}}" moco-validation-table>

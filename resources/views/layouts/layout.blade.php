@@ -23,6 +23,8 @@ Date : 27-10-20
         <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
         <!-- Material Design Bootstrap -->
         <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">
+        <!-- Datepicker -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.standalone.min.css" rel="stylesheet">
         <!-- Bootstrap-Select -->
         <link href="{{ asset('3rd/bootstrap-select-1.13.18/css/bootstrap-select.min.css')}}" rel="stylesheet">
         <!-- Ajax Bootstrap Select-->
@@ -38,6 +40,8 @@ Date : 27-10-20
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
         <!-- MDB core JavaScript -->
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js"></script>
+        <!-- Datepicker-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.min.js"></script>
         <!-- Bootstrap-Select -->
         <script type="text/javascript" src="{{asset('3rd/bootstrap-select-1.13.18/js/bootstrap-select.min.js')}}"></script>
         <!-- Ajax Bootstrap Select -->

@@ -2,24 +2,46 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9ec171e7-05c7-490b-8f14-40ae5b7978c4" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Http/Requests/OutWorksheetValidationStepAjaxRequest.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Moco/Printer/MocoCustomPageFormat.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Moco/Printer/MocoSticker.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Moco/Printer/MocoStickerModel.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/sticker.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/worksheet/worksheet-form.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/OutController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/OutController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/OutWorksheetController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/OutWorksheetController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ReassortController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ReassortController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/StoreController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/StoreController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Requests/OutWorksheetValidationStepRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/OutWorksheetValidationStepRequest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Requests/StorePartRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/StorePartRequest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Moco/Common/OldBag.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Moco/Common/OptionsView.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Moco/Criteria/Criteria.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Moco/Criteria/Criterias.php" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Models/Part.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Part.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Models/Store.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Store.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Rules/StoreQty.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Rules/StoreQty.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/app.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config/moco.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/moco.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/all.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/all.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/moco.ajax.validation.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/moco.ajax.validation.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2020_12_15_082017_add_bar_code_stores_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_12_15_082017_add_bar_code_stores_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/lang/fr.json" beforeDir="false" afterPath="$PROJECT_DIR$/resources/lang/fr.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/lang/nl.json" beforeDir="false" afterPath="$PROJECT_DIR$/resources/lang/nl.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/layout.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/layout.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/menus/navbar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/menus/navbar.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/menus/store-list-sub.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/menus/store-list-sub.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/out/out-part-form.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/out/out-part-form.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/outworksheet/outworksheet-form.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/outworksheet/outworksheet-form.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/reassort/reassort-part-form.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/reassort/reassort-part-form.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/root/message.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/root/message.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/store/store-part-form.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/store/store-part-form.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/OGHiyPaQV4gvi04yBK1y0hmp8CAfegm6O7VBUllX" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/Ep7QZYTrVW1YQMGHpX6PBzxNNtLhX3DnmTFfl78A" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/357f0130539d550c00ec9e0977bbe4e857371e51.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/357f0130539d550c00ec9e0977bbe4e857371e51.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/4d5bc0f4f6f704f78f096f8dd2e2b9b62547e2a0.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/4d5bc0f4f6f704f78f096f8dd2e2b9b62547e2a0.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/storage/framework/views/53fd60962b50afb3459b3cd9201f6ea36bc3470a.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/53fd60962b50afb3459b3cd9201f6ea36bc3470a.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/5b88c7c4d84639ceeeb6cbc0f0390d4de1297009.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/5b88c7c4d84639ceeeb6cbc0f0390d4de1297009.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/storage/framework/views/6622be8e1b69193c2ba4000eea9104186c4f3fbc.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/6622be8e1b69193c2ba4000eea9104186c4f3fbc.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/66e5c1a2733047657c380e29e0bc92c6411801b4.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/66e5c1a2733047657c380e29e0bc92c6411801b4.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/90c48dcb194d2bb220a0b74a2b7047854d23d0fb.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/90c48dcb194d2bb220a0b74a2b7047854d23d0fb.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/c63af29302a66a0773c312038557ed5b14a513a2.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/c63af29302a66a0773c312038557ed5b14a513a2.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -171,18 +193,18 @@
     <property name="DatabaseDriversLRU" value="mysql" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views/outworksheet" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/config" />
     <property name="php.override.implement.member.chooser.php.doc" value="NONE" />
     <property name="settings.editor.selected.configurable" value="preferences.keymap" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\fassicms\config" />
       <recent name="D:\fassicms\resources\views\outworksheet" />
       <recent name="D:\fassicms\app\Http\Requests" />
       <recent name="D:\fassicms\resources\views\customer" />
       <recent name="D:\fassicms\resources\views\out" />
-      <recent name="D:\fassicms\resources\views\reassort" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\fassicms\resources\views\livewire\reassort" />
@@ -486,7 +508,10 @@
       <workItem from="1607851513628" duration="394000" />
       <workItem from="1607851951516" duration="25319000" />
       <workItem from="1607961626926" duration="10013000" />
-      <workItem from="1608019922884" duration="429000" />
+      <workItem from="1608019922884" duration="21373000" />
+      <workItem from="1608102534996" duration="25525000" />
+      <workItem from="1608134637332" duration="2605000" />
+      <workItem from="1608368042664" duration="4464000" />
     </task>
     <task id="LOCAL-00001" summary="20201031 - Init">
       <created>1604168127520</created>
@@ -628,7 +653,14 @@
       <option name="project" value="LOCAL" />
       <updated>1607638453718</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="20201214 - v1.0">
+      <created>1608020490969</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1608020490969</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -656,109 +688,7 @@
     <MESSAGE value="20201205 - v1.0" />
     <MESSAGE value="20201209 - v1.0" />
     <MESSAGE value="20201210 - v1.0" />
-    <option name="LAST_COMMIT_MESSAGE" value="20201210 - v1.0" />
-  </component>
-  <component name="WindowStateProjectService">
-    <state x="873" y="359" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1606564463028">
-      <screen x="0" y="0" width="2560" height="1400" />
-    </state>
-    <state x="873" y="359" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1606564463028" />
-    <state x="1725" y="416" key="#com.intellij.ide.util.MemberChooser" timestamp="1607181827055">
-      <screen x="0" y="0" width="2560" height="1400" />
-    </state>
-    <state x="1725" y="416" key="#com.intellij.ide.util.MemberChooser/0.0.2560.1400@0.0.2560.1400" timestamp="1607181827055" />
-    <state x="1650" y="490" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1607094669132">
-      <screen x="0" y="0" width="2560" height="1400" />
-    </state>
-    <state x="1650" y="490" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1607094669132" />
-    <state x="929" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1607792129713">
-      <screen x="0" y="0" width="2560" height="1400" />
-    </state>
-    <state x="697" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1604766909431" />
-    <state x="929" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1607792129713" />
-    <state x="1011" y="455" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1607171326591">
-      <screen x="0" y="0" width="2560" height="1400" />
-    </state>
-    <state x="1011" y="455" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1607171326591" />
-    <state x="768" y="118" key="CommitChangelistDialog2" timestamp="1607638453079">
-      <screen x="0" y="0" width="2560" height="1400" />
-    </state>
-    <state x="576" y="88" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1604168125233" />
-    <state x="768" y="118" key="CommitChangelistDialog2/0.0.2560.1400@0.0.2560.1400" timestamp="1607638453079" />
-    <state x="93" y="93" width="2375" height="1215" key="DiffContextDialog" timestamp="1606493598198">
-      <screen x="0" y="0" width="2560" height="1400" />
-    </state>
-    <state x="93" y="93" width="2375" height="1215" key="DiffContextDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1606493598198" />
-    <state x="987" y="351" key="FileChooserDialogImpl" timestamp="1606553717046">
-      <screen x="0" y="0" width="2560" height="1400" />
-    </state>
-    <state x="740" y="261" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1604167441008" />
-    <state x="987" y="351" key="FileChooserDialogImpl/0.0.2560.1400@0.0.2560.1400" timestamp="1606553717046" />
-    <state x="784" y="439" key="Github.CreateGistDialog" timestamp="1604167271237">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="784" y="439" key="Github.CreateGistDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1604167271237" />
-    <state x="838" y="417" key="Github.ShareDialog" timestamp="1604167534076">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="838" y="417" key="Github.ShareDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1604167534076" />
-    <state x="722" y="224" key="Github.UntrackedFilesDialog" timestamp="1604167553616">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="722" y="224" key="Github.UntrackedFilesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1604167553616" />
-    <state width="1741" height="401" key="GridCell.Tab.0.bottom" timestamp="1606564380650">
-      <screen x="0" y="0" width="2560" height="1400" />
-    </state>
-    <state width="1741" height="401" key="GridCell.Tab.0.bottom/0.0.2560.1400@0.0.2560.1400" timestamp="1606564380650" />
-    <state width="1741" height="401" key="GridCell.Tab.0.center" timestamp="1606564380650">
-      <screen x="0" y="0" width="2560" height="1400" />
-    </state>
-    <state width="1741" height="401" key="GridCell.Tab.0.center/0.0.2560.1400@0.0.2560.1400" timestamp="1606564380650" />
-    <state width="1741" height="401" key="GridCell.Tab.0.left" timestamp="1606564380650">
-      <screen x="0" y="0" width="2560" height="1400" />
-    </state>
-    <state width="1741" height="401" key="GridCell.Tab.0.left/0.0.2560.1400@0.0.2560.1400" timestamp="1606564380650" />
-    <state width="1741" height="401" key="GridCell.Tab.0.right" timestamp="1606564380650">
-      <screen x="0" y="0" width="2560" height="1400" />
-    </state>
-    <state width="1741" height="401" key="GridCell.Tab.0.right/0.0.2560.1400@0.0.2560.1400" timestamp="1606564380650" />
-    <state x="1750" y="423" width="362" height="554" key="NewPhpClassDialog" timestamp="1607185959448">
-      <screen x="0" y="0" width="2560" height="1400" />
-    </state>
-    <state x="1750" y="423" width="362" height="554" key="NewPhpClassDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1607185959448" />
-    <state x="1059" y="596" key="NewPhpFileDialog" timestamp="1607619509001">
-      <screen x="0" y="0" width="2560" height="1400" />
-    </state>
-    <state x="794" y="443" key="NewPhpFileDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1604689434020" />
-    <state x="1059" y="596" key="NewPhpFileDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1607619509001" />
-    <state x="1421" y="345" key="SettingsEditor" timestamp="1605259439523">
-      <screen x="0" y="0" width="2560" height="1400" />
-    </state>
-    <state x="1421" y="345" key="SettingsEditor/0.0.2560.1400@0.0.2560.1400" timestamp="1605259439523" />
-    <state x="736" y="339" key="Vcs.Push.Dialog.v2" timestamp="1607638456742">
-      <screen x="0" y="0" width="2560" height="1400" />
-    </state>
-    <state x="552" y="252" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1604168130806" />
-    <state x="736" y="339" key="Vcs.Push.Dialog.v2/0.0.2560.1400@0.0.2560.1400" timestamp="1607638456742" />
-    <state x="1669" y="444" key="com.jetbrains.php.test.PhpNewTestDialog" timestamp="1604843589275">
-      <screen x="0" y="0" width="2560" height="1400" />
-    </state>
-    <state x="1669" y="444" key="com.jetbrains.php.test.PhpNewTestDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1604843589275" />
-    <state x="986" y="300" width="589" height="801" key="find.popup" timestamp="1606657079339">
-      <screen x="0" y="0" width="2560" height="1400" />
-    </state>
-    <state x="986" y="300" width="589" height="801" key="find.popup/0.0.2560.1400@0.0.2560.1400" timestamp="1606657079339" />
-    <state x="999" y="472" key="refactoring.ChangeSignatureDialog" timestamp="1605174333407">
-      <screen x="0" y="0" width="2560" height="1400" />
-    </state>
-    <state x="999" y="472" key="refactoring.ChangeSignatureDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1605174333407" />
-    <state x="1577" y="334" key="run.anything.popup" timestamp="1607022300597">
-      <screen x="0" y="0" width="2560" height="1400" />
-    </state>
-    <state x="1577" y="334" key="run.anything.popup/0.0.2560.1400@0.0.2560.1400" timestamp="1607022300597" />
-    <state x="943" y="315" width="672" height="678" key="search.everywhere.popup" timestamp="1604840961096">
-      <screen x="0" y="0" width="2560" height="1400" />
-    </state>
-    <state x="943" y="315" width="672" height="678" key="search.everywhere.popup/0.0.2560.1400@0.0.2560.1400" timestamp="1604840961096" />
+    <MESSAGE value="20201214 - v1.0" />
+    <option name="LAST_COMMIT_MESSAGE" value="20201214 - v1.0" />
   </component>
 </project>

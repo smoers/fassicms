@@ -60,4 +60,14 @@ return [
         'newId' => 8,
     ],
 
+    /**
+     * Store
+     */
+    'store' => [
+        /**
+         * Valeur minimum du prix d'une pièce
+         */
+        'minPrice' => 0.01,
+    ]
+
 ];

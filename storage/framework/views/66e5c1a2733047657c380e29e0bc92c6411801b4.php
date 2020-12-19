@@ -6,7 +6,7 @@
             <div class="col-2"><a href="<?php echo e(route('reassort.edit',$store->id)); ?>"><i class="fas fa-sign-in-alt" style="color: dodgerblue !important;"></i></a></div>
             <div class="col-2"><a href="<?php echo e(route('out.edit',$store->id)); ?>"><i class="fas fa-sign-out-alt" style="color:red !important;"></i></a></div>
         <?php endif; ?>
-        <div class="col-4"><a href=""><i class="fas fa-qrcode" style="color: dodgerblue !important;"></i></a> </div>
+        <div class="col-4"><a href="<?php echo e(route('store.barcode_sticker',[$store->id])); ?>"><i class="fas fa-qrcode" style="color: dodgerblue !important;"></i></a> </div>
         <div class="col-4"><a href=""><i class="fas fa-trash-alt" style="color: red !important;"></i></a></div>
     </div>
 </div>

@@ -35,8 +35,6 @@ use Illuminate\Http\Request;
 use ArrayObject;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Session;
 
 class OutWorksheetController extends Controller
 {
@@ -94,6 +92,7 @@ class OutWorksheetController extends Controller
         $previous_part = null;
         $previous_qty = null;
         $partsNoExists = null;
+        $store = null;
 
         $parts = $request->post('parts');
         if($parts != ''){
@@ -124,12 +123,12 @@ class OutWorksheetController extends Controller
                             } else {
                                 $parts_object[$part]->qty = $parts_object[$part]->qty + 1;
                             }
-                        } elseif (Store::exist($part)) { // s'assure que le part number existe dans la table Stores
+                        } elseif (!is_null($store = Store::getStoreByBarCode($part))) { // s'assure que le part number existe dans la table Stores
                             //comme la pièce n'existe pas dans la liste des objet, on crée un nouvel objet avec la qty = 1 ou avec la previous qty
                             if ($flag == 'Q' && !is_null($previous_qty) && $previous_qty != 0){
-                                $parts_object[$part] = new Part(['part_number' => $part, 'qty' => $previous_qty]);
+                                $parts_object[$part] = new Part(['part_number' => $store->part_number, 'bar_code' => $part, 'qty' => $previous_qty]);
                             } else {
-                                $parts_object[$part] = new Part(['part_number' => $part, 'qty' => 1]);
+                                $parts_object[$part] = new Part(['part_number' =>  $store->part_number, 'bar_code' => $part, 'qty' => 1]);
                             }
                         } else {
                             $partsNoExists .= ','.$part;
@@ -151,7 +150,7 @@ class OutWorksheetController extends Controller
                     'qty_before' => null
                 ];
                 //A ce niveau toutes les pièces de la liste existe
-                $store = Store::where('part_number', '=', $value->part_number)->where('enabled', '=', true)->first();
+                $store = Store::getStoreByPartNumber($value->part_number);
                 $array['enough'] = $store->validateAvailableQuantity($value->qty);
                 $array['qty_before'] = $store->qty;
                 $partsToForm[$key] = $array;
@@ -165,12 +164,16 @@ class OutWorksheetController extends Controller
              */
             if (is_null($partsNoExists)){
                 $info = trans('The treatment was completed without remarks');
+            } else {
+                $info = trans('The treatment was completed with remarks.
+                The following bar code are not existing in the stock ').$partsNoExists;
             }
+            $request->session()->flash('info',$info);
             //on charge le formulaire de validation
             return view('outworksheet.outworksheet-form',[
                 'step' => 30,
                 'parts' => $partsToForm,
-            ])->with('info', $info);
+                ]);
         } else {
             //la zone texte étant vide on génère une erreur
             return redirect('dashboard')->with('error','Your pickup list was empty, your out of stock has been canceled.');
@@ -243,6 +246,7 @@ class OutWorksheetController extends Controller
                  */
                 $part_obj = new Part();
                 $part_obj->part_number = $store->part_number;
+                $part_obj->bar_code = $store->bar_code;
                 $part_obj->description = $store->description;
                 $part_obj->qty = intval($qtys[$key]);
                 $part_obj->price = $price;
