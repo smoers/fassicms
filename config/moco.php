@@ -68,6 +68,17 @@ return [
          * Valeur minimum du prix d'une pièce
          */
         'minPrice' => 0.01,
-    ]
+    ],
+
+    /**
+     * Worksheet
+     */
+    'worksheet' => [
+        /**
+         * Format du champ oil_replace
+         */
+        'formatOilReplace' => '/^(?=.+)(?:[1-9]\d*|0)?(?:\,\d+)?$/',
+
+    ],
 
 ];

@@ -23,6 +23,7 @@
  */
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -62,5 +63,44 @@ class Worksheet extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    /**
+     * place la valeur au bon type
+     *
+     * @param $value
+     */
+    public function setOilReplaceAttribute($value)
+    {
+        $this->attributes['oil_replace'] = floatval(str_replace(',','.',$value));
+    }
+
+    /**
+     * retroune la valeur au bon format
+     *
+     * @param $value
+     * @return string|null
+     */
+    public function getOilReplaceAttribute($value)
+    {
+        if($value == ''){
+            return '0';
+        } else {
+            return number_format(floatval(str_replace(',', '.', $value)), 2, ',', '');
+        }
+    }
+
+    public function setDateAttribute($value)
+    {
+        $this->attributes['date'] = Carbon::parse(str_replace('/','-',$value));
+    }
+
+    public function getDateAttribute($value)
+    {
+        $return = null;
+        if ($value != ''){
+            $return = Carbon::parse($value)->format('d/m/Y');
+        }
+        return $return;
     }
 }

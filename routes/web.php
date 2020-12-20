@@ -78,6 +78,7 @@ Route::group(['middleware' => ['role_or_permission:admin','auth']],function (){
      */
     Route::get('/worksheet/create',[WorksheetController::class,'create'])->name('worksheet.create');
     Route::post('/worksheet/store',[worksheetController::class,'store'])->name('worksheet.store');
-
+    Route::post('/worksheet/ajaxselect',[WorksheetController::class,'ajaxSelect'])->name('worksheet.ajaxselect');
+    Route::post('/worksheet/ajaxvalidation',[WorksheetController::class,'ajaxValidation'])->name('worksheet.ajaxvalidation');
 });
 

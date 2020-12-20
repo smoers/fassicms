@@ -42,7 +42,7 @@
                                 <a href="#data" class="nav-link" data-toggle="tab"><?php echo e(__('Data')); ?></a>
                             </li>
                         </ul>
-                        <div class="tab-content">
+                        <div class="tab-content mt-3">
                             <div class="tab-pane fade show active" id="general">
 
                                 <div class="row">
@@ -51,8 +51,7 @@
                                     <div class="col-4">
                                         <div class="form-group">
                                             <label for="crane_id"><?php echo e(__('Crane')); ?> <a href="#" id="add_crane"><i class="fas fa-truck-moving" style="color: red !important;"></i></a> </label>
-                                            <select id="_crane" class="selectpicker with-ajax form-control" data-live-search="true" data-abs-lang-code="fr"></select>
-                                            <input type="hidden" id="crane_id" name="crane_id"  value="<?php echo e(old('crane_id',$worksheet->crane()->get('id'))); ?>" moco-validation>
+                                            <select id="_crane" class="selectpicker with-ajax form-control" name="crane_id" data-live-search="true" data-abs-lang-code="fr"></select>
                                             <div class="moco-error-small danger-darker-hover" id="zipcodeError"></div>
                                         </div>
                                     </div>
@@ -61,8 +60,7 @@
                                     <div class="col-8">
                                         <div class="form-group">
                                             <label for="customer_id"><?php echo e(__('Customer')); ?> <a href="#" id="add_customer"><i class="fas fa-address-card" style="color: red !important;"></i></a> </label>
-                                            <select id="_customer" class="selectpicker with-ajax form-control" data-live-search="true" data-abs-lang-code="fr"></select>
-                                            <input type="hidden" id="customer_id" name="customer_id"  value="<?php echo e(old('customer_id',$worksheet->customer()->get('id'))); ?>" moco-validation>
+                                            <select id="_customer" class="selectpicker with-ajax form-control" name="customer_id" data-live-search="true" data-abs-lang-code="fr"></select>
                                             <div class="moco-error-small danger-darker-hover" id="zipcodeError"></div>
                                         </div>
 
@@ -205,12 +203,25 @@
                             </div>
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="col-2">
+                            <button type="submit" class="btn btn-primary"><?php echo e(__('Save')); ?></button>
+                        </div>
+                        <div class="col-10">
+                            <a href="<?php echo e(route('dashboard')); ?>" class="btn btn-primary"><?php echo e(__('Cancel')); ?></a>
+                        </div>
+                    </div>
+
                 </form>
             </div>
         </div>
     </div>
+
     <script src="<?php echo e(asset('3rd/bootstrap-datepicker-1.9.0-dist/locales/bootstrap-datepicker.fr.min.js')); ?>"></script>
     <script src="<?php echo e(asset('3rd/bootstrap-datepicker-1.9.0-dist/locales/bootstrap-datepicker.nl-BE.min.js')); ?>"></script>
+    <script type="text/javascript" src="<?php echo e(asset('js/moco.ajax.validation.js')); ?>"></script>
+    <script type="text/javascript" src="<?php echo e(asset('js/moco.selectpicker.js')); ?>"></script>
+
     <script type="text/javascript">
         $(function () {
             $('#date').datepicker({
@@ -220,6 +231,87 @@
                 todayBtn: "linked",
                 autoclose: true,
             });
+
+            /*
+            * definition de l'objet selectPickerOptions pour les cranes
+             */
+            var optionsCrane = jQuery.extend(true,{},selectPickerOtions);
+            optionsCrane.whatIs = 'crane';
+            optionsCrane.ajax.url = '<?php echo e(route('worksheet.ajaxselect')); ?>';
+            optionsCrane.ajax.data = function () {
+                var params = {
+                    whatIs: 'crane',
+                    serial:  $('#_crane').data().selectpicker.$searchbox.val()
+                };
+                return params;
+            };
+            optionsCrane.language('fr');
+            optionsCrane.select = function(obj){
+                return {
+                    'value': obj.id,
+                    'text': obj.serial,
+                    'data': {
+                        'subtext': obj.model+', '+obj.plate,
+                    },
+                    'disabled': false,
+                }
+            }
+
+            /*
+            * definition de l'objet selectPickerOptions pour les customers
+             */
+            var optionsCustomer = jQuery.extend(true,{},selectPickerOtions);
+            optionsCustomer.whatIs = 'customer';
+            optionsCustomer.ajax.url = '<?php echo e(route('worksheet.ajaxselect')); ?>';
+            optionsCustomer.ajax.data = function () {
+                var params = {
+                    whatIs: 'customer',
+                    name:  $('#_customer').data().selectpicker.$searchbox.val()
+                };
+                return params;
+            };
+            optionsCustomer.language('fr');
+            optionsCustomer.select = function(obj){
+                return {
+                    'value': obj.id,
+                    'text': obj.name,
+                    'data': {
+                        'subtext': obj.city,
+                    },
+                    'disabled': false,
+                }
+            }
+
+            /**
+             * configuration du selectpicker customers
+             */
+            $('#_customer').selectpicker().ajaxSelectPicker(optionsCustomer);
+            /**
+             * configuration du selectpicker cranes
+             */
+            $('#_crane').selectpicker().ajaxSelectPicker(optionsCrane);
+            $('select').trigger('change');
+
+            /**
+             * Charge les champs du formulaire avec les valeurs
+             */
+            $('#_customer').on('changed.bs.select', function (e, clickedIndex, isSelected, previousValue) {
+                _array = $('#_customer').selectpicker().data('AjaxBootstrapSelect').options._data;
+                $('#name').val(_array[clickedIndex-1].name);
+                $('#address').val(_array[clickedIndex-1].address+', '+_array[clickedIndex-1].zipcode+' '+_array[clickedIndex-1].city);
+                $('#email').val(_array[clickedIndex-1].mail);
+                $('#phone').val(_array[clickedIndex-1].phone);
+                $('#vat').val(_array[clickedIndex-1].vat);
+            });
+
+            $('#_crane').on('changed.bs.select', function (e, clickedIndex, isSelected, previousValue) {
+                _array = $('#_crane').selectpicker().data('AjaxBootstrapSelect').options._data;
+                $('#serial').val(_array[clickedIndex-1].serial);
+                $('#model').val(_array[clickedIndex-1].model);
+                $('#plate').val(_array[clickedIndex-1].plate);
+            });
+
+
         })
     </script>
 <?php $__env->stopSection(); ?>

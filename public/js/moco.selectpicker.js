@@ -68,7 +68,7 @@ var selectPickerOtions = {
     /**
      * Retour de la requète Ajax
      */
-    data          : [],
+    _data          : [],
     /**
      * Object avec les informations à afficher dans le select
      * @param obj
@@ -87,19 +87,19 @@ var selectPickerOtions = {
     /**
      *
      */
-    value: [],
+    _value: [],
     /**
      * Traitement des données avant l'utilisation dans le select
      * @param data
      * @returns {[]}
      */
     preprocessData: function (data) {
-        selectPickerOtions.value = [];
-        console.log(this.locale);
-        $.each(data, function (key, obj){
-            selectPickerOtions.value.push(selectPickerOtions.select(obj));
-        });
-        return selectPickerOtions.value;
+        this.plugin.options._value = [];
+        this.plugin.options._data = data;
+        for(var i=0;i<data.length;i++){
+            this.plugin.options._value.push(this.plugin.options.select(data[i]));
+        };
+        return this.plugin.options._value;
     }
 };
 
