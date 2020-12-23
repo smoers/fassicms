@@ -80,5 +80,6 @@ Route::group(['middleware' => ['role_or_permission:admin','auth']],function (){
     Route::post('/worksheet/store',[worksheetController::class,'store'])->name('worksheet.store');
     Route::post('/worksheet/ajaxselect',[WorksheetController::class,'ajaxSelect'])->name('worksheet.ajaxselect');
     Route::post('/worksheet/ajaxvalidation',[WorksheetController::class,'ajaxValidation'])->name('worksheet.ajaxvalidation');
+    Route::post('/worksheet/addoption',[WorksheetController::class,'addOption'])->name('worksheet.add.option');
 });
 

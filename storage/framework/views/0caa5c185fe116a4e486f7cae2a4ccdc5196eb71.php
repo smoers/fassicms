@@ -221,6 +221,7 @@
     <script src="<?php echo e(asset('3rd/bootstrap-datepicker-1.9.0-dist/locales/bootstrap-datepicker.nl-BE.min.js')); ?>"></script>
     <script type="text/javascript" src="<?php echo e(asset('js/moco.ajax.validation.js')); ?>"></script>
     <script type="text/javascript" src="<?php echo e(asset('js/moco.selectpicker.js')); ?>"></script>
+    <script type="text/javascript" src="<?php echo e(asset('js/moco.redirect.js')); ?>"></script>
 
     <script type="text/javascript">
         $(function () {
@@ -311,6 +312,31 @@
                 $('#plate').val(_array[clickedIndex-1].plate);
             });
 
+            $('#add_crane').on('click', function (event) {
+                $.redirect({
+                    url : '<?php echo e(route('worksheet.add.option')); ?>',
+                    method : 'post',
+                    data : {
+                        _token : $('meta[name="csrf-token"]').attr('content'),
+                        number : $('#number').val(),
+                        date : $('#date').val(),
+                        id_crane : $('#_crane').val(),
+                        id_customer : $('#_customer').val(),
+                        serial : $('#serial').val(),
+                        model : $('#model').val(),
+                        plate : $('#plate').val(),
+                        name : $('#name').val(),
+                        address : $('#address').val(),
+                        phone : $('#phone').val(),
+                        email : $('#email').val(),
+                        vat: $('#vat').val(),
+                        remarks : $('#remarks').val(),
+                        work : $('#work').val(),
+                        oil_replace : $('#oil_replace').val(),
+                        oil_filtered : $('#oil_filtered').val(),
+                    }
+                });
+            })
 
         })
     </script>

@@ -90,11 +90,22 @@ class Worksheet extends Model
         }
     }
 
+    /**
+     * Place la date avec le format correct dans l'attribut
+     *
+     * @param $value
+     */
     public function setDateAttribute($value)
     {
         $this->attributes['date'] = Carbon::parse(str_replace('/','-',$value));
     }
 
+    /**
+     * Retourne la date au format correct
+     *
+     * @param $value
+     * @return string|null
+     */
     public function getDateAttribute($value)
     {
         $return = null;

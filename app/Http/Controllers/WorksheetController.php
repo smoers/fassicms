@@ -87,4 +87,9 @@ class WorksheetController extends Controller
         }
         return response()->json($return);
     }
+
+    public function addOption(Request $request)
+    {
+        dd($request->all());
+    }
 }
