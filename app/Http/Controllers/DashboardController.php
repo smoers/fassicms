@@ -3,8 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Spatie\Permission\Traits\HasRoles;
 
 class DashboardController extends Controller
 {
@@ -13,12 +11,16 @@ class DashboardController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
 
-        /*$user = Auth()->user();
-        $user->assignRole('admin');
-        dd($user);*/
+        /**
+         * On détruit la variable de session worksheet_form si elle existe.
+         * Cas où l'ajout d'une fiche de travail a été canceled
+         */
+        if ($request->session()->exists('worksheet_form'))
+            $request->session()->remove('worksheet_form');
+
         return view('root/dashboard');
     }
 

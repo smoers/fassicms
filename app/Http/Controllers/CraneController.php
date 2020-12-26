@@ -2,12 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\CraneStoreRequest;
+use App\Http\Requests\CraneRequest;
+use App\Moco\Common\MocoAjaxValidation;
 use App\Models\Crane;
 use Illuminate\Http\Request;
 
 class CraneController extends Controller
 {
+    use MocoAjaxValidation;
+
+    public function __construct()
+    {
+        $this->formRequest = new CraneRequest();
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +23,7 @@ class CraneController extends Controller
      */
     public function index()
     {
-        //
+        return view('crane.crane-list');
     }
 
     /**
@@ -25,7 +33,7 @@ class CraneController extends Controller
      */
     public function create()
     {
-        return view('forms/crane');
+        return view('crane/crane');
     }
 
     /**
@@ -34,16 +42,31 @@ class CraneController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CraneStoreRequest $request)
+    public function store(Request $request)
     {
-        $validate = $request->validated();
+        $this->formRequest->setRequestArray($request->all());
+        $validatedData = $this->validate($request,$this->formRequest->rules(),$this->formRequest->messages(),$this->formRequest->attributes());
         $crane = new Crane();
-        $crane->serial = $validate['serial'];
-        $crane->model = $validate['model'];
-        $crane->plate = $validate['plate'];
+        $crane->fill($validatedData);
         $crane->save();
+        /**
+         * récupère la route par défaut
+         */
+        $route = route('dashboard');
+        /**
+         * On controle si la demande d'ajout a été faite depuis le formulaire d'ajout d'une fiche de travail
+         */
+        if ($request->session()->exists('worksheet_form')){
+            $worksheet_form = $request->session()->get('worksheet_form');
+            $worksheet_form['crane_id'] = $crane->id;
+            $worksheet_form['serial'] = $crane->serial;
+            $worksheet_form['model'] = $crane->model;
+            $worksheet_form['plate'] = $crane->plate;
+            $request->session()->put('worksheet_form',$worksheet_form);
+            $route = route('worksheet.create');
+        }
 
-        return redirect('/dashboard')->with('success','The crane has been saved');
+        return redirect($route)->with('success','The crane has been saved');
     }
 
     /**

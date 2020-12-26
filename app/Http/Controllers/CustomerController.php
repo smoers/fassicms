@@ -21,6 +21,10 @@ class CustomerController extends Controller
         $this->formRequest = new CustomerRequest();
     }
 
+    public function index(){
+        return view('customer.customer-list');
+    }
+
     /**
      * @return \Illuminate\Contracts\View\View
      */
@@ -36,7 +40,25 @@ class CustomerController extends Controller
         $customer = new Customer();
         $customer->fill($validateData);
         $customer->save();
-        return redirect('dashboard')->with('success', 'The new customer has been saved');
+        /**
+         * récupère la route par défaut
+         */
+        $route = route('dashboard');
+        /**
+         * On controle si la demande d'ajout a été faite depuis le formulaire d'ajout d'une fiche de travail
+         */
+        if ($request->session()->exists('worksheet_form')){
+            $worksheet_form = $request->session()->get('worksheet_form');
+            $worksheet_form['customer_id'] = $customer->id;
+            $worksheet_form['name'] = $customer->name;
+            $worksheet_form['address'] = $customer->address.', '.$customer->zipcode.', '.$customer->city;
+            $worksheet_form['email'] = $customer->mail;
+            $worksheet_form['phone'] = $customer->phone;
+            $worksheet_form['vat'] = $customer->vat;
+            $request->session()->put('worksheet_form',$worksheet_form);
+            $route = route('worksheet.create');
+        }
+        return redirect($route)->with('success', 'The new customer has been saved');
     }
 
     /**

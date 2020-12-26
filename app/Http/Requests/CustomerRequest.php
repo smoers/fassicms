@@ -24,7 +24,7 @@ class CustomerRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|max:100|exists:customers,name',
+            'name' => 'required|max:100|unique:customers,name',
             'address' => 'required|max:100',
             'address_optional' => 'max:100',
             'city' => 'required|max:50',
@@ -54,7 +54,7 @@ class CustomerRequest extends FormRequest
             'city' => trans('City'),
             'zipcode' => trans('Zipcode'),
             'country' => trans('Country'),
-            'email' => ('Email address'),
+            'mail' => ('Email address'),
             'phone' => ('Phone number'),
             'mobile' => ('Mobile number'),
             'vat' => trans('VAT'),

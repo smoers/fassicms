@@ -51,8 +51,10 @@
                                     <div class="col-4">
                                         <div class="form-group">
                                             <label for="crane_id"><?php echo e(__('Crane')); ?> <a href="#" id="add_crane"><i class="fas fa-truck-moving" style="color: red !important;"></i></a> </label>
-                                            <select id="_crane" class="selectpicker with-ajax form-control" name="crane_id" data-live-search="true" data-abs-lang-code="fr"></select>
-                                            <div class="moco-error-small danger-darker-hover" id="zipcodeError"></div>
+                                            <select id="crane_id" class="selectpicker with-ajax form-control" name="crane_id" data-live-search="true" data-abs-lang-code="fr">
+                                                <?php if($info_fields['crane_id'] != null): ?><option selected value="<?php echo e($info_fields['crane_id']); ?>"><?php echo e($info_fields['serial']); ?></option><?php endif; ?>
+                                            </select>
+                                            <div class="moco-error-small danger-darker-hover" id="crane_idError"></div>
                                         </div>
                                     </div>
 
@@ -60,8 +62,10 @@
                                     <div class="col-8">
                                         <div class="form-group">
                                             <label for="customer_id"><?php echo e(__('Customer')); ?> <a href="#" id="add_customer"><i class="fas fa-address-card" style="color: red !important;"></i></a> </label>
-                                            <select id="_customer" class="selectpicker with-ajax form-control" name="customer_id" data-live-search="true" data-abs-lang-code="fr"></select>
-                                            <div class="moco-error-small danger-darker-hover" id="zipcodeError"></div>
+                                            <select id="customer_id" class="selectpicker with-ajax form-control" name="customer_id" data-live-search="true" data-abs-lang-code="fr">
+                                                <?php if($info_fields['customer_id'] != null): ?><option selected value="<?php echo e($info_fields['customer_id']); ?>"><?php echo e($info_fields['name']); ?></option><?php endif; ?>
+                                            </select>
+                                            <div class="moco-error-small danger-darker-hover" id="customer_idError"></div>
                                         </div>
 
                                     </div>
@@ -73,7 +77,7 @@
                                     <div class="col-4">
                                         <div class="form-group">
                                             <label for="serial"><?php echo e(__('Serial number')); ?></label>
-                                            <input type="text" id="serial" name="serial" class="form-control" readonly value="<?php echo e(old('serial')); ?>">
+                                            <input type="text" id="serial" name="serial" class="form-control" readonly value="<?php echo e(old('serial', $info_fields['serial'])); ?>">
                                         </div>
                                     </div>
 
@@ -81,7 +85,7 @@
                                     <div class="col-8">
                                         <div class="form-group">
                                             <label for="name"><?php echo e(__('Company name')); ?></label>
-                                            <input type="text" id="name" name="name" class="form-control" readonly value="<?php echo e(old('name')); ?>">
+                                            <input type="text" id="name" name="name" class="form-control" readonly value="<?php echo e(old('name', $info_fields['name'])); ?>">
                                         </div>
                                     </div>
 
@@ -92,7 +96,7 @@
                                     <div class="col-4">
                                         <div class="form-group">
                                             <label for="model"><?php echo e(__('Model')); ?></label>
-                                            <input type="text" id="model" name="model" class="form-control" readonly value="<?php echo e(old('model')); ?>">
+                                            <input type="text" id="model" name="model" class="form-control" readonly value="<?php echo e(old('model', $info_fields['model'])); ?>">
                                         </div>
                                     </div>
 
@@ -100,7 +104,7 @@
                                     <div class="col-8">
                                         <div class="form-group">
                                             <label for="address"><?php echo e(__('Address')); ?></label>
-                                            <input type="text" id="address" name="address" class="form-control" readonly value="<?php echo e(old('address')); ?>">
+                                            <input type="text" id="address" name="address" class="form-control" readonly value="<?php echo e(old('address', $info_fields['address'])); ?>">
                                         </div>
                                     </div>
 
@@ -111,7 +115,7 @@
                                     <div class="col-4">
                                         <div class="form-group">
                                             <label for="plate"><?php echo e(__('Numberplate')); ?></label>
-                                            <input type="text" id="plate" name="plate" class="form-control" readonly value="<?php echo e(old('plate')); ?>">
+                                            <input type="text" id="plate" name="plate" class="form-control" readonly value="<?php echo e(old('plate', $info_fields['plate'])); ?>">
                                         </div>
                                     </div>
 
@@ -119,7 +123,7 @@
                                     <div class="col-8">
                                         <div class="form-group">
                                             <label for="phone"><?php echo e(__('Phone')); ?></label>
-                                            <input type="text" id="phone" name="phone" class="form-control" readonly value="<?php echo e(old('phone')); ?>">
+                                            <input type="text" id="phone" name="phone" class="form-control" readonly value="<?php echo e(old('phone', $info_fields['phone'])); ?>">
                                         </div>
                                     </div>
 
@@ -136,7 +140,7 @@
                                     <div class="col-8">
                                         <div class="form-group">
                                             <label for="email"><?php echo e(__('Email address')); ?></label>
-                                            <input type="text" id="email" name="email" class="form-control" readonly value="<?php echo e(old('email')); ?>">
+                                            <input type="text" id="email" name="email" class="form-control" readonly value="<?php echo e(old('email', $info_fields['email'])); ?>">
                                         </div>
                                     </div>
 
@@ -153,7 +157,7 @@
                                     <div class="col-8">
                                         <div class="form-group">
                                             <label for="vat"><?php echo e(__('VAT')); ?></label>
-                                            <input type="text" id="vat" name="vat" class="form-control" readonly value="<?php echo e(old('vat')); ?>">
+                                            <input type="text" id="vat" name="vat" class="form-control" readonly value="<?php echo e(old('vat', $info_fields['vat'])); ?>">
                                         </div>
                                     </div>
 
@@ -225,6 +229,25 @@
 
     <script type="text/javascript">
         $(function () {
+            var fields = [
+                'number',
+                'date',
+                'crane_id',
+                'customer_id',
+                'serial',
+                'model',
+                'plate',
+                'name',
+                'address',
+                'phone',
+                'email',
+                'vat',
+                'remarks',
+                'work',
+                'oil_replace',
+                'oil_filtered'
+            ];
+
             $('#date').datepicker({
                 format: 'dd/mm/yyyy',
                 orientation: 'bottom auto',
@@ -242,7 +265,7 @@
             optionsCrane.ajax.data = function () {
                 var params = {
                     whatIs: 'crane',
-                    serial:  $('#_crane').data().selectpicker.$searchbox.val()
+                    serial:  $('#crane_id').data().selectpicker.$searchbox.val()
                 };
                 return params;
             };
@@ -267,7 +290,7 @@
             optionsCustomer.ajax.data = function () {
                 var params = {
                     whatIs: 'customer',
-                    name:  $('#_customer').data().selectpicker.$searchbox.val()
+                    name:  $('#customer_id').data().selectpicker.$searchbox.val()
                 };
                 return params;
             };
@@ -286,57 +309,58 @@
             /**
              * configuration du selectpicker customers
              */
-            $('#_customer').selectpicker().ajaxSelectPicker(optionsCustomer);
+            $('#customer_id').selectpicker().ajaxSelectPicker(optionsCustomer);
             /**
              * configuration du selectpicker cranes
              */
-            $('#_crane').selectpicker().ajaxSelectPicker(optionsCrane);
+            $('#crane_id').selectpicker().ajaxSelectPicker(optionsCrane);
             $('select').trigger('change');
 
             /**
-             * Charge les champs du formulaire avec les valeurs
+             * Charge les champs du formulaire avec les valeurs du client
              */
-            $('#_customer').on('changed.bs.select', function (e, clickedIndex, isSelected, previousValue) {
-                _array = $('#_customer').selectpicker().data('AjaxBootstrapSelect').options._data;
-                $('#name').val(_array[clickedIndex-1].name);
-                $('#address').val(_array[clickedIndex-1].address+', '+_array[clickedIndex-1].zipcode+' '+_array[clickedIndex-1].city);
-                $('#email').val(_array[clickedIndex-1].mail);
-                $('#phone').val(_array[clickedIndex-1].phone);
-                $('#vat').val(_array[clickedIndex-1].vat);
+            $('#customer_id').on('changed.bs.select', function (e, clickedIndex, isSelected, previousValue) {
+                _id = $(this).selectpicker().val()
+                _array = $(this).selectpicker().data('AjaxBootstrapSelect').options._data;
+                if (_array.length > 0 && _id != null) {
+                    _obj = _array.find(_obj => _obj.id === parseInt(_id));
+                    $('#name').val(_obj.name);
+                    $('#address').val(_obj.address + ', ' + _obj.zipcode + ' ' + _obj.city);
+                    $('#email').val(_obj.mail);
+                    $('#phone').val(_obj.phone);
+                    $('#vat').val(_obj.vat);
+                }
             });
 
-            $('#_crane').on('changed.bs.select', function (e, clickedIndex, isSelected, previousValue) {
-                _array = $('#_crane').selectpicker().data('AjaxBootstrapSelect').options._data;
-                $('#serial').val(_array[clickedIndex-1].serial);
-                $('#model').val(_array[clickedIndex-1].model);
-                $('#plate').val(_array[clickedIndex-1].plate);
+            /**
+             * Charge le formulaire avec les valeurs de la grue
+             */
+            $('#crane_id').on('changed.bs.select', function (e, clickedIndex, isSelected, previousValue) {
+                _id = $(this).selectpicker().val()
+                _array = $(this).selectpicker().data('AjaxBootstrapSelect').options._data;
+                if (_array.length > 0 && _id != null) {
+                    _obj = _array.find(_obj => _obj.id === parseInt(_id));
+                    $('#serial').val(_obj.serial);
+                    $('#model').val(_obj.model);
+                    $('#plate').val(_obj.plate);
+                }
             });
 
-            $('#add_crane').on('click', function (event) {
+            /**
+             * Ouvre le formulaire permettant d'ajouter une grue/ un client
+             * et permet de sauvegarder les valeurs du formulaire
+             */
+            $('#add_crane,#add_customer').on('click', function (event) {
+                var data = $.redirect.data(fields);
+                data['_token'] = $('meta[name="csrf-token"]').attr('content');
+                data['whatIs'] = (this.id);
                 $.redirect({
                     url : '<?php echo e(route('worksheet.add.option')); ?>',
                     method : 'post',
-                    data : {
-                        _token : $('meta[name="csrf-token"]').attr('content'),
-                        number : $('#number').val(),
-                        date : $('#date').val(),
-                        id_crane : $('#_crane').val(),
-                        id_customer : $('#_customer').val(),
-                        serial : $('#serial').val(),
-                        model : $('#model').val(),
-                        plate : $('#plate').val(),
-                        name : $('#name').val(),
-                        address : $('#address').val(),
-                        phone : $('#phone').val(),
-                        email : $('#email').val(),
-                        vat: $('#vat').val(),
-                        remarks : $('#remarks').val(),
-                        work : $('#work').val(),
-                        oil_replace : $('#oil_replace').val(),
-                        oil_filtered : $('#oil_filtered').val(),
-                    }
+                    data : data,
                 });
             })
+
 
         })
     </script>

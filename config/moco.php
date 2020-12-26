@@ -81,4 +81,19 @@ return [
 
     ],
 
+    /**
+     * Tableau avec les listes
+     */
+    'table' => [
+        /**
+         * Nombre par défaut d'item par page
+         */
+        'perPage' => 10,
+        /**
+         * Nombre d'item possible par page
+         */
+        'perPageOptions' => [10,15,20,25,30,35,40,45,50],
+
+    ]
+
 ];

@@ -31,15 +31,30 @@ use Rappasoft\LaravelLivewireTables\Views\Column;
 class ReassortListParts extends TableComponent
 {
     use HtmlComponents;
-    public $perPage = 15;
-    public $perPageOptions = [10,15,20,25,30,35,40,45,50];
-    public $loadingIndicator = true;
 
+    /**
+     * ReassortListParts constructor.
+     * @param null $id
+     */
+    public function __construct($id = null)
+    {
+        $this->perPage = config('moco.table.perPage');
+        $this->perPageOptions = config('moco.table.perPageOptions');
+        $this->loadingIndicator =true;
+        parent::__construct($id);
+    }
+
+    /**
+     * @return Builder
+     */
     public function query(): Builder
     {
         return Store::where('enabled','=',true);
     }
 
+    /**
+     * @return array
+     */
     public function columns(): array
     {
         return [

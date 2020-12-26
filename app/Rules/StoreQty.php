@@ -62,6 +62,6 @@ class StoreQty implements Rule
      */
     public function message()
     {
-        return 'The validation error message.';
+        return trans('The validation error message.');
     }
 }

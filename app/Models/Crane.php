@@ -29,6 +29,11 @@ use Illuminate\Database\Eloquent\Model;
 class Crane extends Model
 {
     use HasFactory;
+    protected $fillable =[
+        'serial',
+        'model',
+        'plate',
+    ];
 
     /**
      * Retourne les objets Worksheet pour cet objet Crane
@@ -36,5 +41,15 @@ class Crane extends Model
      */
     public function worksheets(){
         return $this->hasMany(Worksheet::class);
+    }
+
+    /**
+     * détermine si la grue existe
+     * @param string $serial
+     * @param string $plate
+     * @return bool
+     */
+    public static function exist(string $serial, string $plate){
+        return self::where('serial','=',$serial)->where('plate','=',$plate)->get()->count() == 1;
     }
 }

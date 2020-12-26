@@ -35,8 +35,14 @@ Route::group(['middleware' => ['role_or_permission:admin','auth']],function (){
      * Dashboard Controller
      */
     Route::get('/dashboard', [DashboardController::class, 'index'])->name("dashboard");
-    //Crane Controller
-    Route::resource('crane', CraneController::class);
+
+    /**
+     * Crane Controller
+     */
+    Route::get('/crane',[CraneController::class,'index'])->name(('crane.index'));
+    Route::get('/crane/create',[CraneController::class,'create'])->name(('crane.create'));
+    Route::post('/crane/store',[CraneController::class,'store'])->name(('crane.store'));
+    Route::post('/crane/ajaxvalidation',[CraneController::class,'ajaxValidation'])->name(('crane.ajaxvalidation'));
 
     /**
      * Store Controller
@@ -60,7 +66,11 @@ Route::group(['middleware' => ['role_or_permission:admin','auth']],function (){
     Route::get('/out/{id}/edit',[OutController::class,'edit'])->name('out.edit');
     Route::post('/out/update',[OutController::class,'update'])->name('out.update');
     Route::post('/out/ajaxvalidation',[OutController::class,'ajaxValidation'])->name('out.ajaxvalidation');
-    //Customer Controller
+
+    /**
+     * Customer Controller
+     */
+    Route::get('/customer',[CustomerController::class,'index'])->name('customer.index');
     Route::get('/customer/create',[CustomerController::class,'create'])->name('customer.create');
     Route::post('/customer/store',[CustomerController::class,'store'])->name('customer.store');
     Route::post('/customer/ajaxvalidation',[CustomerController::class,'ajaxValidation'])->name('customer.ajaxvalidation');

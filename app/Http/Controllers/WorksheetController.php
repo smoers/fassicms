@@ -14,23 +14,71 @@ use Illuminate\Http\Request;
 class WorksheetController extends Controller
 {
     use MocoAjaxValidation;
+    protected $info_fields = [
+        'crane_id' => null,
+        'customer_id' => null,
+        'serial' => '',
+        'model' => '',
+        'plate' => '',
+        'name' => '',
+        'address' => '',
+        'phone' => '',
+        'email' => '',
+        'vat' => '',
+    ];
 
     public function __construct()
     {
         $this->formRequest = new WorksheetRequest();
     }
 
-    public function create()
+    public function create(Request $request)
     {
+        /**
+         * Nouvelle objet
+         */
         $worksheet = new Worksheet();
-        $worksheet->number = Moco::worksheetNumber();
-        $worksheet->date = Carbon::now('Europe/Brussels')->format('d/m/Y');
-        $worksheet->oil_filtered = false;
+        /**
+         * Test l'existence d'une session avec la clé worksheet_form
+         */
+        if ($request->session()->exists('worksheet_form')){
+            /**
+             * On récupère la valeur des champs info pour le formulaire
+             * depuis la variable de session.
+             * La variable de session est détruite lors de la récupération
+             */
+            $worksheet_form = $request->session()->pull('worksheet_form');
+            foreach ($this->info_fields as $key => $field){
+                if (array_key_exists($key,$worksheet_form))
+                    $this->info_fields[$key] = $worksheet_form[$key];
+            }
+
+            /**
+             * on hydrate l'objet Worksheet avec les valeurs
+             * de la variable de session
+             */
+            $worksheet->number = $worksheet_form['number'];
+            $worksheet->date = $worksheet_form['date'];
+            $worksheet->remarks = $worksheet_form['remarks'];
+            $worksheet->work = $worksheet_form['work'];
+            $worksheet->oil_replace = $worksheet_form['oil_replace'];
+            $worksheet->oil_filtered = $worksheet_form['oil_filtered'];
+
+        } else {
+            /**
+             * Pas de variable de session définie
+             * Place les valeur par défaut
+             */
+            $worksheet->number = Moco::worksheetNumber();
+            $worksheet->date = Carbon::now('Europe/Brussels')->format('d/m/Y');
+            $worksheet->oil_filtered = false;
+        }
         $worksheet->crane()->associate(new Crane());
         $worksheet->customer()->associate(new Customer());
         return view('worksheet.worksheet-form',[
                 '_action' => route('worksheet.store'),
                 'worksheet' => $worksheet,
+                'info_fields' => $this->info_fields,
             ]);
     }
 
@@ -81,15 +129,22 @@ class WorksheetController extends Controller
     {
         $return = null;
         if ($request->post('whatIs') == 'customer'){
-            $return = Customer::where('name','like','%'.$request->post('name').'%' )->get();
+            $return = Customer::where('name','like','%'.$request->post('name').'%' )->orderBy('name')->get();
         } elseif ($request->post('whatIs') == 'crane'){
-            $return = Crane::where('serial','like','%'.$request->post('serial').'%')->get();
+            $return = Crane::where('serial','like','%'.$request->post('serial').'%')->orderBy('serial')->get();
         }
         return response()->json($return);
     }
 
     public function addOption(Request $request)
     {
-        dd($request->all());
+        $request->session()->put('worksheet_form',$request->all());
+        $route = route('dashboard');
+        if ($request->post('whatIs') == 'add_customer'){
+            $route = route('customer.create');
+        } elseif ($request->post('whatIs') == 'add_crane'){
+            $route = route('crane.create');
+        }
+        return redirect($route);
     }
 }

@@ -41,9 +41,18 @@
             console.log('Le paramêtres doit être un objet')
         }
     }
-    
-    $.redirect.data = function (input) {
-        
+
+    /**
+     * Retourne l'objet avec les valeurs
+     *
+     * @param inputs
+     * @returns {{}}
+     */
+    $.redirect.data = function (inputs) {
+        var obj = {}
+        for(var input in inputs)
+            obj[inputs[input]] = $('#' + inputs[input]).val();
+        return obj;
     }
 
 }(window.jQuery))

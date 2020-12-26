@@ -1,21 +1,17 @@
 <?php
 
-namespace App\Http\Livewire\Customer;
+namespace App\Http\Livewire\Crane;
 
-use App\Models\Customer;
+use App\Models\Crane;
 use Illuminate\Database\Eloquent\Builder;
 use Rappasoft\LaravelLivewireTables\TableComponent;
 use Rappasoft\LaravelLivewireTables\Traits\HtmlComponents;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 
-class CustomerList extends TableComponent
+class CraneList extends TableComponent
 {
     use HtmlComponents;
 
-    /**
-     * CustomerList constructor.
-     * @param null $id
-     */
     public function __construct($id = null)
     {
         $this->perPage = config('moco.table.perPage');
@@ -26,29 +22,21 @@ class CustomerList extends TableComponent
 
     public function query(): Builder
     {
-        return Customer::select()->orderBy('name');
+        return Crane::select()->orderBy('serial');
     }
 
     public function columns(): array
     {
         return [
-            Column::make(trans('Company name'),'name')
+            Column::make(trans('Serial number'), 'serial')
                 ->searchable()
                 ->sortable(),
-            Column::make(trans('City'),'city')
+            Column::make(trans('Model'), 'model')
                 ->searchable()
                 ->sortable(),
-            Column::make(trans('Email address'),'mail')
+            Column::make(trans('Numberplate'), 'plate')
                 ->searchable()
                 ->sortable(),
-            Column::make(trans('Phone'),'phone')
-                ->searchable()
-                ->sortable(),
-            Column::make(trans('Mobile'),'mobile')
-                ->searchable()
-                ->sortable(),
-
         ];
     }
-
 }
