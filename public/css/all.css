@@ -20,7 +20,7 @@ Date : 09-10-20
 }
 
 .moco-color-error{
-    color: #CC0000;
+    color: #CC0000 !important;
 }
 
 .moco-color-success{
@@ -42,7 +42,12 @@ Date : 09-10-20
 }
 
 .moco-title-table{
+    color: #0099cc !important;
     font-weight: bold;
+}
+
+.moco-size-table {
+    width: 400px;
 }
 
 .moco-error-small{
@@ -58,6 +63,7 @@ Date : 09-10-20
 .moco-table-wrapper-scroll-y {
     display: block;
 }
+
 
 @media (min-width: 992px){
     .dropdown-menu .dropdown-toggle:after{

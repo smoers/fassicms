@@ -17,6 +17,8 @@
     "Remove": "Supprimer",
     "Save": "Sauvegarder",
     "Cancel": "Annuler",
+    "Print": "Imprimer",
+
     "The serial number of the crane is required": "Le numéro de série de la grue est requis",
     "The maximum size for a serial is 20 characters": "La taille maximum pour un sérial est de 20 caractères",
     "The model of the crane is required": "Le modèle de la grue est requis",

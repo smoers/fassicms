@@ -88,7 +88,7 @@ class StoreList extends TableComponent
                 }),
             Column::make(trans('Actions'))
                 ->format(function (Store $model){
-                    return view('menus.store-list-sub',['store' => $model]);
+                    return $this->view('menus.store-list-sub',['store' => $model]);
                 }),
 
         ];

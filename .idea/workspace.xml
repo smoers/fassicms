@@ -2,30 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9ec171e7-05c7-490b-8f14-40ae5b7978c4" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/resources/views/crane/crane-list.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/customer/customer-list.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/menus/list-submenu.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/4f76c30c8b3ba116b0690249696fe3413efbfc66.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CraneController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CraneController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CustomerController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CustomerController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/DashboardController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/DashboardController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/WorksheetController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/WorksheetController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Livewire/Customer/CustomerList.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Livewire/Customer/CustomerList.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Livewire/Reassort/ReassortListParts.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Livewire/Reassort/ReassortListParts.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Requests/CraneStoreRequest.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Requests/CustomerRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/CustomerRequest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Crane.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Crane.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Rules/StoreQty.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Rules/StoreQty.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/moco.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/moco.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/moco.redirect.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/moco.redirect.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Livewire/Crane/CraneList.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Livewire/Crane/CraneList.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Livewire/Store/StoreList.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Livewire/Store/StoreList.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/all.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/all.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/lang/fr.json" beforeDir="false" afterPath="$PROJECT_DIR$/resources/lang/fr.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/forms/crane.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/crane/crane.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/menus/navbar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/menus/navbar.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/worksheet/worksheet-form.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/worksheet/worksheet-form.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/lang/nl.json" beforeDir="false" afterPath="$PROJECT_DIR$/resources/lang/nl.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/layout.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/layout.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/5K4sQIjuB98L3vftZqenka6FGBUHnAsh9U8YsZGp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/views/0caa5c185fe116a4e486f7cae2a4ccdc5196eb71.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/0caa5c185fe116a4e486f7cae2a4ccdc5196eb71.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/views/29e7b62de4b8a44fe992a98bbcf96ba531686162.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/29e7b62de4b8a44fe992a98bbcf96ba531686162.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/views/c63af29302a66a0773c312038557ed5b14a513a2.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/c63af29302a66a0773c312038557ed5b14a513a2.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/rAtr7ngseccfjjPG1hrCgNuuEuGIPChzWDtRBvfU" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/sessions/Nn4QSqYitUD9ABUGsFAND77GxIVgdo8kTLPo1aDM" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/90c48dcb194d2bb220a0b74a2b7047854d23d0fb.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/90c48dcb194d2bb220a0b74a2b7047854d23d0fb.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -177,18 +165,18 @@
     <property name="DatabaseDriversLRU" value="mysql" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views/customer" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views/menus" />
     <property name="php.override.implement.member.chooser.php.doc" value="NONE" />
-    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
+    <property name="settings.editor.selected.configurable" value="watcher.settings" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\fassicms\resources\views\menus" />
       <recent name="D:\fassicms\resources\views\customer" />
       <recent name="D:\fassicms\resources\views\crane" />
       <recent name="D:\fassicms\resources\views\forms" />
       <recent name="D:\fassicms\config" />
-      <recent name="D:\fassicms\resources\views\outworksheet" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\fassicms\resources\views\livewire\reassort" />
@@ -499,7 +487,8 @@
       <workItem from="1608454063551" duration="22329000" />
       <workItem from="1608736820311" duration="8333000" />
       <workItem from="1608817115987" duration="10023000" />
-      <workItem from="1608974280180" duration="25195000" />
+      <workItem from="1608974280180" duration="26050000" />
+      <workItem from="1609166279232" duration="12139000" />
     </task>
     <task id="LOCAL-00001" summary="20201031 - Init">
       <created>1604168127520</created>
@@ -676,7 +665,14 @@
       <option name="project" value="LOCAL" />
       <updated>1608759271230</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="20201226 - v1.0">
+      <created>1609002750956</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1609002750956</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -709,6 +705,7 @@
     <MESSAGE value="202012191825 - v1.0" />
     <MESSAGE value="20201220 - v1.0" />
     <MESSAGE value="20201223 - v1.0" />
-    <option name="LAST_COMMIT_MESSAGE" value="20201223 - v1.0" />
+    <MESSAGE value="20201226 - v1.0" />
+    <option name="LAST_COMMIT_MESSAGE" value="20201226 - v1.0" />
   </component>
 </project>

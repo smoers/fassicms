@@ -30,7 +30,7 @@ Date : 27-10-20
         <!-- Ajax Bootstrap Select-->
         <link href="<?php echo e(asset('3rd/Ajax-Bootstrap-Select-1.4.5/dist/css/ajax-bootstrap-select.min.css')); ?>" rel="stylesheet">
         <!-- CSS MOCO -->
-        <link href="<?php echo e(asset('css/all.css')); ?>" rel="stylesheet">
+        <link href="<?php echo e(asset('css/all.css')); ?>" rel="stylesheet" type="text/css">
 
         <!-- JQuery -->
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

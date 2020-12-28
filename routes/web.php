@@ -39,10 +39,11 @@ Route::group(['middleware' => ['role_or_permission:admin','auth']],function (){
     /**
      * Crane Controller
      */
-    Route::get('/crane',[CraneController::class,'index'])->name(('crane.index'));
-    Route::get('/crane/create',[CraneController::class,'create'])->name(('crane.create'));
-    Route::post('/crane/store',[CraneController::class,'store'])->name(('crane.store'));
-    Route::post('/crane/ajaxvalidation',[CraneController::class,'ajaxValidation'])->name(('crane.ajaxvalidation'));
+    Route::get('/crane',[CraneController::class,'index'])->name('crane.index');
+    Route::get('/crane/create',[CraneController::class,'create'])->name('crane.create');
+    Route::get('/crane/{id}/edit',[CraneController::class,'edit'])->name('crane.edit');
+    Route::post('/crane/store',[CraneController::class,'store'])->name('crane.store');
+    Route::post('/crane/ajaxvalidation',[CraneController::class,'ajaxValidation'])->name('crane.ajaxvalidation');
 
     /**
      * Store Controller

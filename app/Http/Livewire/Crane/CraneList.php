@@ -37,6 +37,21 @@ class CraneList extends TableComponent
             Column::make(trans('Numberplate'), 'plate')
                 ->searchable()
                 ->sortable(),
+            Column::make(trans('Actions'),'actions')
+                ->format(function (Crane $model){
+                   return view('menus.list-submenu',['whatIs' => 'crane', 'crane' => $model]);
+                }),
         ];
     }
+
+    public function setTableHeadClass($attribute): ?string
+    {
+        $extend = ' ';
+        if($attribute == 'actions'){
+            $extend .=  'text-right moco-size-table';
+        }
+        return 'moco-title-table'.$extend;
+    }
+
+
 }
