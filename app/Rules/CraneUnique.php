@@ -27,17 +27,41 @@ class CraneUnique implements Rule
      */
     public function passes($attribute, $value)
     {
+        /**
+         * Par défaut
+         */
         $return = true;
-        if (array_key_exists('serial',$this->data) && array_key_exists('plate',$this->data)) {
+        /**
+         * Si les deux key existe
+         */
+        if (array_key_exists('serial', $this->data) && array_key_exists('plate', $this->data)) {
+            /**
+             * Si on contrôle le serial
+             */
             if ($attribute == 'serial') {
                 $serial = $value;
                 $plate = $this->data['plate'];
+                /**
+                 * Si on contrôle le plate
+                 */
             } elseif ($attribute == 'plate') {
                 $serial = $this->data['serial'];
                 $plate = $value;
             }
-            if ($serial != '' && $plate != '')
-                $return = !Crane::exist($serial, $plate);
+            /**
+             * Check l'existence
+             */
+            if ($serial != '' && $plate != '') {
+
+                $crane = new Crane();
+                /**
+                 * Dans le cas d'un update on récupère l'objet
+                 */
+                if (array_key_exists('id', $this->data) && $this->data['id'] != null) {
+                    $crane = Crane::find($this->data['id']);
+                }
+                $return = !Crane::exist($serial, $plate) || ($crane->serial == $serial && $crane->plate == $plate && Crane::exist($serial, $plate));
+            }
         }
         return $return;
     }

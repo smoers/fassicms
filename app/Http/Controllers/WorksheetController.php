@@ -32,6 +32,11 @@ class WorksheetController extends Controller
         $this->formRequest = new WorksheetRequest();
     }
 
+    public function index()
+    {
+        return view('worksheet.worksheet-list');
+    }
+
     public function create(Request $request)
     {
         /**
@@ -117,6 +122,15 @@ class WorksheetController extends Controller
          * redirection
          */
         return redirect()->route('dashboard')->with('success','The worksheet has been saved ');
+    }
+
+    public function edit($id)
+    {
+        return view('worksheet.worksheet-form',[
+            'action' => route('worksheet.update',$id),
+            'title' => trans('Modify worksheet'),
+            'worksheet' => Worksheet::find($id),
+        ]);
     }
 
     /**

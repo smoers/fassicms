@@ -24,13 +24,13 @@ class CustomerRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|max:100|unique:customers,name',
+            'name' => 'required|max:100|unique:customers,name,'.$this->post('id'),
             'address' => 'required|max:100',
             'address_optional' => 'max:100',
             'city' => 'required|max:50',
             'zipcode' => 'required|max:10',
             'country' => 'required|max:100',
-            'mail' => 'email|max:100',
+            'mail' => 'nullable|email|max:100',
             'phone' => 'max:100',
             'mobile' => 'max:100',
             'vat' => 'max:15',

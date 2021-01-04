@@ -50,6 +50,18 @@ Date : 09-10-20
     width: 400px;
 }
 
+.moco-row-table-font-small {
+    font-size: small;
+}
+
+.moco-row-table-font-medium {
+    font-size: medium;
+}
+
+.moco-row-table-font-large {
+    font-size: large;
+}
+
 .moco-error-small{
     font-weight: bold;
     font-size: 12px;
@@ -64,6 +76,12 @@ Date : 09-10-20
     display: block;
 }
 
+.moco-btn-sm {
+    padding: 0.25rem 0.5rem;
+    font-size: 10px;
+    line-height: 1.5;
+    border-radius: 0.2rem;
+}
 
 @media (min-width: 992px){
     .dropdown-menu .dropdown-toggle:after{

@@ -32,7 +32,7 @@
                         {{ __('Worksheet') }}
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">{{__('List')}}</a>
+                        <a class="dropdown-item" href="{{route('worksheet.index')}}">{{__('List')}}</a>
                         <a class="dropdown-item" href="{{route('worksheet.create')}}">{{__('Add')}}</a>
                     </div>
                 </li>

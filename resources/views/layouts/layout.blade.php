@@ -29,6 +29,7 @@ Date : 27-10-20
         <link href="{{ asset('3rd/bootstrap-select-1.13.18/css/bootstrap-select.min.css')}}" rel="stylesheet">
         <!-- Ajax Bootstrap Select-->
         <link href="{{ asset('3rd/Ajax-Bootstrap-Select-1.4.5/dist/css/ajax-bootstrap-select.min.css') }}" rel="stylesheet">
+        <link href="{{ asset('3rd/bttn.css-v0.2.4/bttn.css') }}" rel="stylesheet">
         <!-- CSS MOCO -->
         <link href="{{ asset('css/all.css') }}" rel="stylesheet" type="text/css">
 
@@ -65,7 +66,7 @@ Date : 27-10-20
     <!-- affichez uniquement si l'utilisateur est authentifié -->
     @if (\Illuminate\Support\Facades\Auth::check())
     <div class="d-flex justify-content-center">
-        <div>Developed by MO Consult <i class="fas fa-copyright"></i> {{ date('yy') }}</div>
+        <div>Developed by MO Consult <i class="fas fa-copyright"></i> {{ \Carbon\Carbon::now()->year }}</div>
     </div>
     @endif
     @livewireScripts

@@ -17,9 +17,9 @@ class CraneController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
+     * Liste les grues
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function index()
     {
@@ -27,13 +27,18 @@ class CraneController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Affiche le formulaire permettant d'ajouter une grues
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function create()
     {
-        return view('crane/crane');
+        return view('crane.crane',
+        [
+            'action' => route('crane.store'),
+            'crane' => new Crane(),
+            'title' => trans('Add a crane'),
+        ]);
     }
 
     /**
@@ -81,14 +86,20 @@ class CraneController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Permet de modifier une grue
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param $id
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function edit($id)
     {
-        //
+        $crane = Crane::find($id);
+        return view('crane.crane',
+            [
+                'crane' => $crane,
+                'action' => route('crane.update',$id),
+                'title' => trans('Modify a crane'),
+            ]);
     }
 
     /**
@@ -100,7 +111,12 @@ class CraneController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->formRequest->setRequestArray($request->all());
+        $validatedData = $this->validate($request,$this->formRequest->rules(),$this->formRequest->messages(),$this->formRequest->attributes());
+        $crane = Crane::find($id);
+        $crane->fill($validatedData);
+        $crane->save();
+        return redirect()->route('crane.index')->with('success', trans('The crane has been modified with success'));
     }
 
     /**

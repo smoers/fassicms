@@ -67,6 +67,16 @@ var mocoAjaxValidation = function (selector,value,url) {
 }
 
 /**
+ * Construit l'URL
+ *
+ * @param action
+ * @returns {string}
+ */
+var mocoURL = function (action) {
+    return action.match(/[^\/]+/g)[0]+'//'+action.match(/[^\/]+/g)[1]+'/'+action.match(/[^\/]+/g)[2]+'/';
+}
+
+/**
  * Exécuter au charge de la page
  */
 $(function () {
@@ -88,7 +98,7 @@ $(function () {
             elementId = element.eq(key).attr('id');
             if(element.eq(key).prop('tagName') == 'FORM'){
                 action = element.eq(key).attr('action');
-                url = action.match(/.*(\/)+/g)+url;
+                url = mocoURL(action)+url;
             } else {
                 validationArray[elementId] = 0;
                 if (element.eq(key).attr('moco-validation') != null) {
@@ -110,5 +120,7 @@ $(function () {
             validationArray[targetId] = setTimeout(mocoAjaxValidation, 1000, '#' + targetId, loadValue(validationFields, index), url);
         }
     });
+
+
 });
 

@@ -93,6 +93,10 @@ return [
          * Nombre d'item possible par page
          */
         'perPageOptions' => [10,15,20,25,30,35,40,45,50],
+        /**
+         * Les classes pour le format de la ligne 'class1 class2 ...'
+         */
+        'rowClass' => 'moco-row-table-font-small',
 
     ]
 

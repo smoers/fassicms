@@ -4,30 +4,30 @@
     <div class="container p-5 h-100 moco-layout-height">
         <div class="card">
             <div class="card-header text-center font-weight-bold">
-                <h2 class="blue-grey-darker-hover">{{ __('Add customer') }}</h2>
+                <h2 class="blue-grey-darker-hover">{{ $title }}</h2>
             </div>
             <div class="card-body">
-                <form name="customer-form" id="customer-form" method="post" action="{{route('customer.store')}}" moco-validation>
+                <form name="customer-form" id="customer-form" method="post" action="{{$action}}" moco-validation>
                     @csrf
-
+                    <input type="hidden" id="id" name="id" value="{{$customer->id}}">
                     <!-- Name -->
                     <div class="form-group">
                         <label for="name">{{ __('Company name') }}</label>
-                        <input type="text" id="name" name="name" class="form-control" value="{{ old('name') }}" autocomplete="off" moco-validation>
+                        <input type="text" id="name" name="name" class="form-control" value="{{ old('name',$customer->name) }}" autocomplete="off" moco-validation>
                         <div class="moco-error-small danger-darker-hover" id="nameError"></div>
                     </div>
 
                     <!-- address -->
                     <div class="form-group">
                         <label for="address">{{ __('Address') }}</label>
-                        <input type="text" id="address" name="address" class="form-control" value="{{ old('address') }}" autocomplete="off" moco-validation>
+                        <input type="text" id="address" name="address" class="form-control" value="{{ old('address',$customer->address) }}" autocomplete="off" moco-validation>
                         <div class="moco-error-small danger-darker-hover" id="addressError"></div>
                     </div>
 
                     <!-- address optional-->
                     <div class="form-group">
                         <label for="address_optional">{{ __('Address (optional)') }}</label>
-                        <input type="text" id="address_optional" name="address_optional" class="form-control" value="{{ old('address_optional') }}" autocomplete="off" moco-validation>
+                        <input type="text" id="address_optional" name="address_optional" class="form-control" value="{{ old('address_optional',$customer->address_optional) }}" autocomplete="off" moco-validation>
                         <div class="moco-error-small danger-darker-hover" id="address_optionalError"></div>
                     </div>
 
@@ -36,8 +36,10 @@
                         <div class="col-4">
                             <div class="form-group">
                                 <label for="zipcode">{{__('Zipcode')}} <a href="#" id="flipflap"><i class="fas fa-ellipsis-h" style="color: #00aa00 !important;"></i></a> </label>
-                                <select id="_zipcode" class="selectpicker with-ajax form-control" data-live-search="true" data-abs-lang-code="fr" autocomplete="off"></select>
-                                <input type="text" id="zipcode" name="zipcode" class="form-control mt-2" value="{{ old('zipcode') }}" autocomplete="off" moco-validation>
+                                <select id="_zipcode" class="selectpicker with-ajax form-control" data-live-search="true" data-abs-lang-code="fr" autocomplete="off">
+                                    @if(isset($_zipcode))<option selected value="{{$_zipcode->id}}">{{$_zipcode->zipcode}}</option>@endif
+                                </select>
+                                <input type="text" id="zipcode" name="zipcode" class="form-control mt-2" value="{{ old('zipcode',$customer->zipcode) }}" autocomplete="off" moco-validation>
                                 <div class="moco-error-small danger-darker-hover" id="zipcodeError"></div>
                             </div>
                         </div>
@@ -45,7 +47,7 @@
                             <!-- City-->
                             <div class="form-group">
                                 <label for="city">{{ __('City') }}</label>
-                                <input type="text" id="city" name="city" class="form-control mt-2" value="{{ old('city') }}" autocomplete="off" moco-validation>
+                                <input type="text" id="city" name="city" class="form-control mt-2" value="{{ old('city',$customer->city) }}" autocomplete="off" moco-validation>
                                 <div class="moco-error-small danger-darker-hover" id="cityError"></div>
                             </div>
                         </div>
@@ -53,7 +55,7 @@
                             <!-- address Country-->
                             <div class="form-group">
                                 <label for="country">{{ __('Country') }}</label>
-                                <input type="text" id="country" name="country" class="form-control mt-2" value="{{ old('country') }}" autocomplete="off" moco-validation>
+                                <input type="text" id="country" name="country" class="form-control mt-2" value="{{ old('country',$customer->country) }}" autocomplete="off" moco-validation>
                                 <div class="moco-error-small danger-darker-hover" id="countryError"></div>
                             </div>
                         </div>
@@ -62,15 +64,15 @@
                     <!-- email -->
                     <div class="form-group">
                         <label for="mail">{{ __('Email address') }}</label>
-                        <input type="text" id="mail" name="mail" class="form-control" value="{{ old('mail') }}" autocomplete="off" moco-validation>
-                        <div class="moco-error-small danger-darker-hover" id="emailError"></div>
+                        <input type="text" id="mail" name="mail" class="form-control" value="{{ old('mail',$customer->mail) }}" autocomplete="off" moco-validation>
+                        <div class="moco-error-small danger-darker-hover" id="mailError"></div>
                     </div>
                     <div class="row">
                         <div class="col-4">
                             <!-- phone -->
                             <div class="form-group">
                                 <label for="phone">{{ __('Phone') }}</label>
-                                <input type="text" id="phone" name="phone" class="form-control" value="{{ old('phone') }}" autocomplete="off" moco-validation>
+                                <input type="text" id="phone" name="phone" class="form-control" value="{{ old('phone',$customer->phone) }}" autocomplete="off" moco-validation>
                                 <div class="moco-error-small danger-darker-hover" id="phoneError"></div>
                             </div>
                         </div>
@@ -78,7 +80,7 @@
                             <!-- mobile -->
                             <div class="form-group">
                                 <label for="mobile">{{ __('Mobile') }}</label>
-                                <input type="text" id="mobile" name="mobile" class="form-control" value="{{ old('mobile') }}" autocomplete="off" moco-validation>
+                                <input type="text" id="mobile" name="mobile" class="form-control" value="{{ old('mobile',$customer->mobile) }}" autocomplete="off" moco-validation>
                                 <div class="moco-error-small danger-darker-hover" id="mobileError"></div>
                             </div>
                         </div>
@@ -86,18 +88,18 @@
                             <!-- vat -->
                             <div class="form-group">
                                 <label for="vat">{{ __('VAT') }}</label>
-                                <input type="text" id="vat" name="vat" class="form-control" value="{{ old('vat') }}" autocomplete="off" moco-validation>
+                                <input type="text" id="vat" name="vat" class="form-control" value="{{ old('vat',$customer->vat) }}" autocomplete="off" moco-validation>
                                 <div class="moco-error-small danger-darker-hover" id="vatError"></div>
                             </div>
                         </div>
                     </div>
 
 
-                    <div class="row">
-                        <div class="col-2">
+                    <div class="d-flex justify-content-between">
+                        <div>
                             <button type="submit" class="btn btn-primary">{{__('Save')}}</button>
                         </div>
-                        <div class="col-10">
+                        <div>
                             <a href="{{ route('dashboard') }}" class="btn btn-primary">{{__('Cancel')}}</a>
                         </div>
                     </div>
@@ -142,9 +144,13 @@
             $('select').trigger('change');
             //mise à jour du champ City
             $('#_zipcode').on('changed.bs.select', function (e, clickedIndex, isSelected, previousValue) {
-                _array = $('#_zipcode').selectpicker().data('AjaxBootstrapSelect').options._data;
-                $('#city').val(_array[clickedIndex-1].locality);
-                $('#zipcode').val(_array[clickedIndex-1].zipcode);
+                _id = $(this).selectpicker().val();
+                _array = $(this).selectpicker().data('AjaxBootstrapSelect').options._data;
+                if (_array.length > 0 && _id != null) {
+                    _obj = _array.find(_obj => _obj.id === parseInt(_id));
+                    $('#city').val(_obj.locality);
+                    $('#zipcode').val(_obj.zipcode);
+                }
             });
             //flipflap
             $('#flipflap').on('click', function (){

@@ -18,17 +18,25 @@
     "Save": "Besparen",
     "Cancel": "Annuleren",
     "Print": "Printen",
+    "Show": "Consulteren",
 
     "The serial number of the crane is required": "Het serienummer van de kraan is vereist",
     "The maximum size for a serial is 20 characters": "De maximale grootte voor een serie is 20 tekens",
     "The model of the crane is required": "Kraanmodel is vereist",
     "The maximum size for a model is 255 characters": "De maximale grootte voor een sjabloon is 255 tekens",
     "The maximum size for a numberplate is 20 characters": "De maximale grootte voor een plaatnummer is 20 tekens",
+
+
     "Add a crane": "Voeg een kraan toe",
+    "Modify a crane": "Pas een kraan aan",
     "Serial number": "Serienummer",
     "Model": "Model",
     "Numberplate": "Kentekenplaatnummer",
+    "Expert mode": "Expert modus",
     "The crane has been saved": "De kraan is gered",
+    "The crane has been modified with success": "De kraan is succesvol aangepast",
+    "The combination between the serial and the plate already exist": "De combinatie tussen het serienummer en het plaatje bestaat al",
+
 
     "#####": "!! STORE !!",
     "Quantity": "Kwantiteit",

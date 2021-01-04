@@ -43,6 +43,7 @@ Route::group(['middleware' => ['role_or_permission:admin','auth']],function (){
     Route::get('/crane/create',[CraneController::class,'create'])->name('crane.create');
     Route::get('/crane/{id}/edit',[CraneController::class,'edit'])->name('crane.edit');
     Route::post('/crane/store',[CraneController::class,'store'])->name('crane.store');
+    Route::post('/crane/{id}/update',[CraneController::class,'update'])->name('crane.update');
     Route::post('/crane/ajaxvalidation',[CraneController::class,'ajaxValidation'])->name('crane.ajaxvalidation');
 
     /**
@@ -63,7 +64,10 @@ Route::group(['middleware' => ['role_or_permission:admin','auth']],function (){
     Route::get('/reassort/{id}/edit',[ReassortController::class,'edit'])->name('reassort.edit');
     Route::post('/reassort/update',[ReassortController::class,'update'])->name('reassort.update');
     Route::post('/reassort/ajaxvalidation',[ReassortController::class,'ajaxValidation'])->name('reassort.ajaxvalidation');
-    //Out Controller
+
+    /**
+     * Out Controller
+     */
     Route::get('/out/{id}/edit',[OutController::class,'edit'])->name('out.edit');
     Route::post('/out/update',[OutController::class,'update'])->name('out.update');
     Route::post('/out/ajaxvalidation',[OutController::class,'ajaxValidation'])->name('out.ajaxvalidation');
@@ -73,10 +77,15 @@ Route::group(['middleware' => ['role_or_permission:admin','auth']],function (){
      */
     Route::get('/customer',[CustomerController::class,'index'])->name('customer.index');
     Route::get('/customer/create',[CustomerController::class,'create'])->name('customer.create');
+    Route::get('/customer/{id}/edit',[CustomerController::class,'edit'])->name('customer.edit');
     Route::post('/customer/store',[CustomerController::class,'store'])->name('customer.store');
+    Route::post('/customer/{id}/update',[CustomerController::class,'update'])->name('customer.update');
     Route::post('/customer/ajaxvalidation',[CustomerController::class,'ajaxValidation'])->name('customer.ajaxvalidation');
     Route::post('/customer/ajaxselect',[CustomerController::class,'ajaxSelect'])->name('customer.ajaxselect');
-    //OutWorksheet Controller
+
+    /**
+     * OutWorksheet Controller
+     */
     Route::get('/outworksheet',[OutWorksheetController::class,'index'])->name('outworksheet.index');
     Route::post('/outworksheet/out',[OutWorksheetController::class,'out'])->name('outworksheet.out');
     Route::post('/outworksheet/treatment',[OutWorksheetController::class,'treatment'])->name('outworksheet.treatment');
@@ -87,8 +96,11 @@ Route::group(['middleware' => ['role_or_permission:admin','auth']],function (){
     /**
      * Worksheet Controller
      */
+    Route::get('/worksheet/index',[WorksheetController::class,'index'])->name('worksheet.index');
     Route::get('/worksheet/create',[WorksheetController::class,'create'])->name('worksheet.create');
+    Route::get('/worksheet/{id}/edit',[WorksheetController::class,'edit'])->name('worksheet.edit');
     Route::post('/worksheet/store',[worksheetController::class,'store'])->name('worksheet.store');
+    Route::post('/worksheet/{id}/update',[worksheetController::class,'update'])->name('worksheet.update');
     Route::post('/worksheet/ajaxselect',[WorksheetController::class,'ajaxSelect'])->name('worksheet.ajaxselect');
     Route::post('/worksheet/ajaxvalidation',[WorksheetController::class,'ajaxValidation'])->name('worksheet.ajaxvalidation');
     Route::post('/worksheet/addoption',[WorksheetController::class,'addOption'])->name('worksheet.add.option');

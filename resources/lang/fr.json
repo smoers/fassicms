@@ -18,6 +18,7 @@
     "Save": "Sauvegarder",
     "Cancel": "Annuler",
     "Print": "Imprimer",
+    "Show": "Consulter",
 
     "The serial number of the crane is required": "Le numéro de série de la grue est requis",
     "The maximum size for a serial is 20 characters": "La taille maximum pour un sérial est de 20 caractères",
@@ -27,10 +28,14 @@
 
 
     "Add a crane": "Ajouter une grue",
+    "Modify a crane": "Modifier une grue",
     "Serial number": "Numéro de série",
     "Model": "Modèle",
     "Numberplate": "Numéro de plaque",
+    "Expert mode": "Mode expert",
     "The crane has been saved": "La grue a été sauvée",
+    "The crane has been modified with success": "La grue a été modifiée avec succès",
+    "The combination between the serial and the plate already exist": "La combinaison entre le numéro de série et la plaque existe déjà",
 
     "#####": "!! STORE !!",
     "Quantity": "Quantité",

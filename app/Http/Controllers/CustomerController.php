@@ -30,10 +30,45 @@ class CustomerController extends Controller
      */
     public function create()
     {
-        return view('customer.customer-form');
+        return view('customer.customer-form',
+            [
+                'action' => route('customer.store'),
+                'customer' => new Customer(),
+                'title' => 'Add customer'
+            ]);
     }
 
+    /**
+     * @param $id
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
+    public function edit($id)
+    {
+        return view('customer.customer-form',
+            [
+                'action' => route('customer.update', $id),
+                'customer' => $customer = Customer::find($id),
+                'title' => 'Modify customer',
+                '_zipcode' => Zipcode::where('zipcode','=',$customer->zipcode)->first(),
+            ]
+        );
+    }
 
+    public function update(CustomerRequest $request, $id)
+    {
+        $customer = Customer::find($id);
+        $customer->fill($request->validated());
+        $customer->save();
+        return redirect()->route('customer.index')->with('success','The customer has been modified with success');
+
+    }
+
+    /**
+     * Sauvegarde un nouveau client
+     *
+     * @param CustomerRequest $request
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
     public function store(CustomerRequest $request)
     {
         $validateData = $request->validated();

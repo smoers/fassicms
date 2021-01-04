@@ -33,7 +33,7 @@
 
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#"><?php echo e(__('List')); ?></a>
+                        <a class="dropdown-item" href="<?php echo e(route('worksheet.index')); ?>"><?php echo e(__('List')); ?></a>
                         <a class="dropdown-item" href="<?php echo e(route('worksheet.create')); ?>"><?php echo e(__('Add')); ?></a>
                     </div>
                 </li>

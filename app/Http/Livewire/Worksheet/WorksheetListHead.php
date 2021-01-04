@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright (c) 2020. MO Consult
+ * Copyright (c) 2021. MO Consult
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,37 +17,35 @@
  *  Company : Fassi Belgium
  *  Developer : MO Consult
  *  Author : Moers Serge
- *  Date : 21/11/20 16:14
+ *  Date : 3/01/21 17:35
  */
 
-namespace App\Http\Livewire\Store;
+namespace App\Http\Livewire\Worksheet;
 
 use Carbon\Carbon;
 use Livewire\Component;
 
-class StoreListHead extends Component
+class WorksheetListHead extends Component
 {
     public $year = null;
-    public $enabled = null;
+    public $template = false;
 
-    /**
-     *
-     */
     public function mount()
     {
         $this->year = Carbon::now()->year;
-        $this->enabled = true;
     }
 
     /**
+     *
+     *
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function render()
     {
-        if ($this->year >= 2000 and $this->year <= 2100)
-        {
-            $this->emit('headerChange',$this->year, $this->enabled);
+        if ($this->year < 2000 and $this->year > 2100){
+            $this->year = Carbon::now()->year;
         }
-        return view('livewire.store.store-list-head');
+        $this->emit('headerChange',$this->year, $this->template);
+        return view('livewire.worksheet.worksheet-list-head');
     }
 }

@@ -11,20 +11,36 @@ use Rappasoft\LaravelLivewireTables\Views\Column;
 class CraneList extends TableComponent
 {
     use HtmlComponents;
+    protected $rowClass ='';
 
+    /**
+     * CraneList constructor.
+     * @param null $id
+     */
     public function __construct($id = null)
     {
         $this->perPage = config('moco.table.perPage');
         $this->perPageOptions = config('moco.table.perPageOptions');
+        $this->rowClass =  config('moco.table.rowClass');
         $this->loadingIndicator =true;
+        $this->sortField = 'serial';
+        $this->sortDefaultIcon = '<i class="fas fa-sort-alpha-down"></i>';
+        $this->ascSortIcon = '<i class="fas fa-sort-alpha-up"></i>';
+        $this->descSortIcon = '<i class="fas fa-sort-alpha-down"></i>';
         parent::__construct($id);
     }
 
+    /**
+     * @return Builder
+     */
     public function query(): Builder
     {
-        return Crane::select()->orderBy('serial');
+        return Crane::select();
     }
 
+    /**
+     * @return array
+     */
     public function columns(): array
     {
         return [
@@ -44,13 +60,27 @@ class CraneList extends TableComponent
         ];
     }
 
+    /**
+     * @param $attribute
+     * @return string|null
+     */
     public function setTableHeadClass($attribute): ?string
     {
         $extend = ' ';
         if($attribute == 'actions'){
-            $extend .=  'text-right moco-size-table';
+            $extend .=  'moco-size-table';
         }
         return 'moco-title-table'.$extend;
+    }
+
+    /**
+     * @param $attribute
+     * @param $value
+     * @return string|null
+     */
+    public function setTableDataClass($attribute, $value): ?string
+    {
+        return $this->rowClass;
     }
 
 
