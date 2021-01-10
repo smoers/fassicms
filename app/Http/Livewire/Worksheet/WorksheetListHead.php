@@ -29,6 +29,7 @@ class WorksheetListHead extends Component
 {
     public $year = null;
     public $template = false;
+    public $validate = false;
 
     public function mount()
     {
@@ -45,7 +46,7 @@ class WorksheetListHead extends Component
         if ($this->year < 2000 and $this->year > 2100){
             $this->year = Carbon::now()->year;
         }
-        $this->emit('headerChange',$this->year, $this->template);
+        $this->emit('headerChange',$this->year, $this->template,$this->validate);
         return view('livewire.worksheet.worksheet-list-head');
     }
 }

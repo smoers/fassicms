@@ -35,6 +35,7 @@ class WorksheetList extends TableComponent
     protected $rowClass ='';
     public $year = null;
     public $template = false;
+    public $validate = false;
     protected $listeners = ['headerChange'];
 
     /**
@@ -69,7 +70,10 @@ class WorksheetList extends TableComponent
     public function query(): Builder
     {
         $year = $this->template ? null : $this->year;
-        return ViewWorksheetCustomerCrane::select()->where('year','=',$year);
+        $builder = ViewWorksheetCustomerCrane::select()->where('year','=',$year);
+        if ($this->validate)
+            $builder = $builder->where('validated','=',true);
+        return $builder;
     }
 
     /**
@@ -124,15 +128,27 @@ class WorksheetList extends TableComponent
     }
 
     /**
+     * Highlight la ligne si la fiche de travail est validée
+     *
+     * @param $model
+     * @return string|null
+     */
+    public function setTableRowClass($model): ?string
+    {
+        return $model->validated ? 'moco-row-highlight-table':'';
+    }
+
+    /**
      * Event déclenché par une modification dans le header
      *
      * @param $year
      * @param $template
      */
-    public function headerChange($year,$template)
+    public function headerChange($year,$template,$validate)
     {
         $this->year = $year;
         $this->template = $template;
+        $this->validate = $validate;
     }
 
 }

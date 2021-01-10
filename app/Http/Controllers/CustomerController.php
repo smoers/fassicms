@@ -7,6 +7,7 @@ use App\Moco\Common\MocoAjaxValidation;
 use App\Models\Customer;
 use App\Models\Zipcode;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CustomerController extends Controller
 {
@@ -26,6 +27,8 @@ class CustomerController extends Controller
     }
 
     /**
+     * Chargement du formulaire permettant la création d'un nouveau client
+     *
      * @return \Illuminate\Contracts\View\View
      */
     public function create()
@@ -39,6 +42,8 @@ class CustomerController extends Controller
     }
 
     /**
+     * Charhgement du formulaire permettant la modification d'un client existant
+     *
      * @param $id
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
@@ -54,10 +59,18 @@ class CustomerController extends Controller
         );
     }
 
+    /**
+     * Mise à jour de l'enregistrement
+     *
+     * @param CustomerRequest $request
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function update(CustomerRequest $request, $id)
     {
         $customer = Customer::find($id);
         $customer->fill($request->validated());
+        $customer->user()->associate(Auth::user());
         $customer->save();
         return redirect()->route('customer.index')->with('success','The customer has been modified with success');
 
@@ -74,6 +87,7 @@ class CustomerController extends Controller
         $validateData = $request->validated();
         $customer = new Customer();
         $customer->fill($validateData);
+        $customer->user()->associate(Auth::user());
         $customer->save();
         /**
          * récupère la route par défaut
@@ -91,7 +105,7 @@ class CustomerController extends Controller
             $worksheet_form['phone'] = $customer->phone;
             $worksheet_form['vat'] = $customer->vat;
             $request->session()->put('worksheet_form',$worksheet_form);
-            $route = route('worksheet.create');
+            $route = $request->session()->get('worksheet_source');
         }
         return redirect($route)->with('success', 'The new customer has been saved');
     }

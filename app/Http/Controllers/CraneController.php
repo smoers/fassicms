@@ -6,6 +6,7 @@ use App\Http\Requests\CraneRequest;
 use App\Moco\Common\MocoAjaxValidation;
 use App\Models\Crane;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CraneController extends Controller
 {
@@ -53,6 +54,7 @@ class CraneController extends Controller
         $validatedData = $this->validate($request,$this->formRequest->rules(),$this->formRequest->messages(),$this->formRequest->attributes());
         $crane = new Crane();
         $crane->fill($validatedData);
+        $crane->user()->associate(Auth::user());
         $crane->save();
         /**
          * récupère la route par défaut
@@ -68,7 +70,7 @@ class CraneController extends Controller
             $worksheet_form['model'] = $crane->model;
             $worksheet_form['plate'] = $crane->plate;
             $request->session()->put('worksheet_form',$worksheet_form);
-            $route = route('worksheet.create');
+            $route = $request->session()->get('worksheet_source');
         }
 
         return redirect($route)->with('success','The crane has been saved');
@@ -115,6 +117,7 @@ class CraneController extends Controller
         $validatedData = $this->validate($request,$this->formRequest->rules(),$this->formRequest->messages(),$this->formRequest->attributes());
         $crane = Crane::find($id);
         $crane->fill($validatedData);
+        $crane->user()->associate(Auth::user());
         $crane->save();
         return redirect()->route('crane.index')->with('success', trans('The crane has been modified with success'));
     }

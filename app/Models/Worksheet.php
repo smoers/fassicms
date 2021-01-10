@@ -30,6 +30,14 @@ use Illuminate\Database\Eloquent\Model;
 class Worksheet extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'number',
+        'date',
+        'remarks',
+        'work',
+        'oil_replace',
+        'oil_filtered',
+    ];
 
     /**
      * Retourne l'objet Customer lié à l'objet Worksheet
@@ -114,4 +122,6 @@ class Worksheet extends Model
         }
         return $return;
     }
+
+
 }

@@ -92,7 +92,7 @@ class Store extends Model
      * @param int|null $year
      * @return Catalog
      */
-    public function getCatalog(int $year = null): Catalog
+    public function getCatalog(int $year = null): ?Catalog
     {
         if (is_null($year))
             $year = Carbon::now()->year;

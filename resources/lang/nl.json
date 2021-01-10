@@ -26,7 +26,8 @@
     "The maximum size for a model is 255 characters": "De maximale grootte voor een sjabloon is 255 tekens",
     "The maximum size for a numberplate is 20 characters": "De maximale grootte voor een plaatnummer is 20 tekens",
 
-
+    "#####": "!! CRANE !!",
+    "Crane": "Kraan",
     "Add a crane": "Voeg een kraan toe",
     "Modify a crane": "Pas een kraan aan",
     "Serial number": "Serienummer",
@@ -37,6 +38,21 @@
     "The crane has been modified with success": "De kraan is succesvol aangepast",
     "The combination between the serial and the plate already exist": "De combinatie tussen het serienummer en het plaatje bestaat al",
 
+    "#####": "!! WORKSHEET !!",
+    "Add a worksheet": "Voeg een opdrachtkaart toe",
+    "Modify a worksheet": "Bewerk een opdrachtkaart",
+    "Number": "Aantal",
+    "General data": "Algemene data",
+    "Data": "Gegevens",
+    "Customer remarks": "Opmerkingen van de klant",
+    "Work done": "Werk gemaakt",
+    "Oil replaced (liter)": "Olie vervangen (liter)",
+    "Oil filtered": "Gefilterde olie",
+    "Worksheets for": "Werkblad voor",
+    "Worksheets template": "Sjabloon werkblad",
+    "Worksheets validated": "Gevalideerd werkblad",
+    "Customer name": "Klantnaam",
+    "Crane serial": "Serienummer van de kraan",
 
     "#####": "!! STORE !!",
     "Quantity": "Kwantiteit",
@@ -94,6 +110,7 @@
 
 
     "#####": "!! Customer !!",
+    "Customer": "Klant",
     "Add customer": "Voeg een klant toe",
     "Company name": "Bedrijfsnaam",
     "Address": "Adres",

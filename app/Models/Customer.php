@@ -44,6 +44,15 @@ class Customer extends Model
     ];
 
     /**
+     * Retourne l'objet User lié à l'objet Worksheet
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    /**
      * Retourne les objets Worksheet pour cet objet Customer
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */

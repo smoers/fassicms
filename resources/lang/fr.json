@@ -26,7 +26,8 @@
     "The maximum size for a model is 255 characters": "La taille maximum pour un modèle est 255 caractères",
     "The maximum size for a numberplate is 20 characters": "La taile maximum pour un numéro de plaque est de 20 caractères",
 
-
+    "#####": "!! CRANE !!",
+    "Crane": "Grue",
     "Add a crane": "Ajouter une grue",
     "Modify a crane": "Modifier une grue",
     "Serial number": "Numéro de série",
@@ -36,6 +37,22 @@
     "The crane has been saved": "La grue a été sauvée",
     "The crane has been modified with success": "La grue a été modifiée avec succès",
     "The combination between the serial and the plate already exist": "La combinaison entre le numéro de série et la plaque existe déjà",
+
+    "#####": "!! WORKSHEET !!",
+    "Add a worksheet": "Ajouter une fiche de travail",
+    "Modify a worksheet": "Modifier une fiche de travail",
+    "Number": "Numéro",
+    "General data": "Données générales",
+    "Data": "Données",
+    "Customer remarks": "Remarques client",
+    "Work done": "Travail effectué",
+    "Oil replaced (liter)": "Huile remplacée (litre)",
+    "Oil filtered": "Huile filtrée",
+    "Worksheets for": "Fiche de travail pour",
+    "Worksheets template": "Fiche de travail modèle",
+    "Worksheets validated": "Fiche de travail validée",
+    "Customer name": "Nom du client",
+    "Crane serial": "Numéro de série de la grue",
 
     "#####": "!! STORE !!",
     "Quantity": "Quantité",
@@ -93,6 +110,7 @@
 
 
     "#####": "!! Customer !!",
+    "Customer": "Client",
     "Add customer": "Ajouter un client",
     "Company name": "Nom de la compagnie",
     "Address": "Adresse",

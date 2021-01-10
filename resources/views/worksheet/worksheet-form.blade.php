@@ -4,10 +4,10 @@
     <div class="container p-5 h-100 moco-layout-height">
         <div class="card">
             <div class="card-header text-center font-weight-bold">
-                <h2 class="blue-grey-darker-hover">{{ __('Add a worksheet') }}</h2>
+                <h2 class="blue-grey-darker-hover">{{ $title }}</h2>
             </div>
             <div class="card-body">
-                <form name="worksheet-form" id="worksheet-form" method="post" action="{{$_action}}" moco-validation>
+                <form name="worksheet-form" id="worksheet-form" method="post" action="{{$action}}" moco-validation>
                     @csrf
                     <div class="row">
                         <div class="col-4">
@@ -141,8 +141,8 @@
                                     <!-- Email -->
                                     <div class="col-8">
                                         <div class="form-group">
-                                            <label for="email">{{__('Email address')}}</label>
-                                            <input type="text" id="email" name="email" class="form-control" readonly value="{{old('email', $info_fields['email'])}}">
+                                            <label for="mail">{{__('Email address')}}</label>
+                                            <input type="text" id="mail" name="mail" class="form-control" readonly value="{{old('mail', $info_fields['mail'])}}">
                                         </div>
                                     </div>
 
@@ -242,7 +242,7 @@
                 'name',
                 'address',
                 'phone',
-                'email',
+                'mail',
                 'vat',
                 'remarks',
                 'work',
@@ -328,7 +328,7 @@
                     _obj = _array.find(_obj => _obj.id === parseInt(_id));
                     $('#name').val(_obj.name);
                     $('#address').val(_obj.address + ', ' + _obj.zipcode + ' ' + _obj.city);
-                    $('#email').val(_obj.mail);
+                    $('#mail').val(_obj.mail);
                     $('#phone').val(_obj.phone);
                     $('#vat').val(_obj.vat);
                 }

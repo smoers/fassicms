@@ -4,19 +4,22 @@
         <?php  $_show = ''; ?>
         <?php  $_remove = ''; ?>
         <?php  $_print = ''; ?>
+        <?php  $_r_modify = true; ?>
     <?php elseif($whatIs == 'customer'): ?>
         <?php  $_modify = route('customer.edit',$customer->id); ?>
         <?php  $_show = ''; ?>
         <?php  $_remove = ''; ?>
         <?php  $_print = ''; ?>
+        <?php  $_r_modify = true; ?>
     <?php elseif($whatIs == 'worksheet'): ?>
         <?php  $_modify = route('worksheet.edit',$worksheet->id); ?>
         <?php  $_show = ''; ?>
         <?php  $_remove = ''; ?>
         <?php  $_print = ''; ?>
+        <?php  $_r_modify = !$worksheet->validated; ?>
     <?php endif; ?>
     <div class="d-flex justify-content-md-end justify-content-sm-end justify-content-lg-end" style="height: auto">
-        <div class="ml-2"><a href="<?php echo e($_modify); ?>" class="btn btn-primary moco-btn-sm"><i class="fas fa-edit" style="color: white !important;"></i> <?php echo e(trans('Modify')); ?></a></div>
+        <?php if($_r_modify): ?><div class="ml-2"><a href="<?php echo e($_modify); ?>" class="btn btn-primary moco-btn-sm"><i class="fas fa-edit" style="color: white !important;"></i> <?php echo e(trans('Modify')); ?></a></div><?php endif; ?>
         <div class="ml-2"><a href="<?php echo e($_show); ?>" class="btn btn-info moco-btn-sm"><i class="fas fa-eye" style="color: white !important;"></i> <?php echo e(trans('Show')); ?></a></div>
         <div class="ml-2">
             <a class="nav-link dropdown-toggle btn btn-secondary moco-btn-sm" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Plus</a>

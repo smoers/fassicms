@@ -44,6 +44,15 @@ class Crane extends Model
     }
 
     /**
+     * Retourne l'objet User lié à l'objet Worksheet
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    /**
      * détermine si la grue existe
      * @param string $serial
      * @param string $plate
