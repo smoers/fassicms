@@ -15,7 +15,7 @@
         <?php  $_modify = route('worksheet.edit',$worksheet->id); ?>
         <?php  $_show = ''; ?>
         <?php  $_remove = ''; ?>
-        <?php  $_print = ''; ?>
+        <?php  $_print = route('worksheet.print',$worksheet->id); ?>
         <?php  $_r_modify = !$worksheet->validated; ?>
     <?php endif; ?>
     <div class="d-flex justify-content-md-end justify-content-sm-end justify-content-lg-end" style="height: auto">

@@ -99,6 +99,7 @@ Route::group(['middleware' => ['role_or_permission:admin','auth']],function (){
     Route::get('/worksheet/index',[WorksheetController::class,'index'])->name('worksheet.index');
     Route::get('/worksheet/create',[WorksheetController::class,'create'])->name('worksheet.create');
     Route::get('/worksheet/{id}/edit',[WorksheetController::class,'edit'])->name('worksheet.edit');
+    Route::get('/worksheet/{id}/print',[WorksheetController::class,'print'])->name('worksheet.print');
     Route::post('/worksheet/store',[worksheetController::class,'store'])->name('worksheet.store');
     Route::post('/worksheet/{id}/update',[worksheetController::class,'update'])->name('worksheet.update');
     Route::post('/worksheet/ajaxselect',[WorksheetController::class,'ajaxSelect'])->name('worksheet.ajaxselect');

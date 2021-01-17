@@ -26,6 +26,8 @@ use App\Http\Requests\WorksheetRequest;
 use App\Moco\Common\Moco;
 use App\Moco\Common\MocoAjaxValidation;
 use App\Moco\Common\MocoArrayFieldsValues;
+use App\Moco\Printer\MocoPrintTemplate;
+use App\Moco\Printer\MocoWorksheet;
 use App\Models\Crane;
 use App\Models\Customer;
 use App\Models\Worksheet;
@@ -288,6 +290,14 @@ class WorksheetController extends Controller
             $route = route('crane.create');
         }
         return redirect($route);
+    }
+
+    public function print($id)
+    {
+        $worksheet = Worksheet::find($id);
+        $pdf = new MocoWorksheet($worksheet);
+        $pdf->build();
+        $pdf->Output('test.pdf');
     }
 
     /**

@@ -15,7 +15,7 @@
         @var $_modify = route('worksheet.edit',$worksheet->id)
         @var $_show = ''
         @var $_remove = ''
-        @var $_print = ''
+        @var $_print = route('worksheet.print',$worksheet->id)
         @var $_r_modify = !$worksheet->validated
     @endif
     <div class="d-flex justify-content-md-end justify-content-sm-end justify-content-lg-end" style="height: auto">

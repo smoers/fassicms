@@ -98,6 +98,53 @@ return [
          */
         'rowClass' => 'moco-row-table-font-small',
 
-    ]
+    ],
+
+    /**
+     * Print parametres
+     */
+    'print' => [
+        /**
+         * Adresse pour les documents à imprimer
+         */
+        'address' => "FASSI BE sa/nv\n\rAvenue de l'espèrence, 68\n\rB-6220 Fleurus\n\rTél : +32 (0)71 43 43 35",
+        /**
+         * email
+         */
+        'email' => 'administration@fassibelgium.be',
+        /**
+         * tva
+         */
+        'tva' => 'BE 0885 856 557',
+        /**
+         * compte bancaire
+         */
+        'bank_account_1' => 'BNP Paribas Fortis BE24 0015 0849 9338',
+        /**
+         * paramêtres pour les codes barre
+         */
+        'barcode' => [
+            /**
+             * Style à utiliser
+             */
+            'style' => [
+                'position' => '',
+                'align' => 'C',
+                'stretch' => true,
+                'fitwidth' => false,
+                'cellfitalign' => '',
+                'border' => false, // border
+                'hpadding' => 'auto',
+                'vpadding' => 'auto',
+                'fgcolor' => array(0, 0, 0),
+                'bgcolor' => false, //array(255,255,255),
+                'text' => true, // whether to display the text below the barcode
+                'font' => 'helvetica', //font
+                'fontsize' => 6, //font size
+                'stretchtext' => 6,
+                'label' => '',
+            ]
+        ]
+    ],
 
 ];
