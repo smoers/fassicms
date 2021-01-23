@@ -136,14 +136,20 @@ class MocoPrintTemplate extends \TCPDF
      */
     public $Y_header = 0;
     /**
+     * Hauteur maximum d'une MultiCell
+     * @var int
+     */
+    public $maxH = 0;
+    /**
      * Les hauteurs de Cell
      * @var array
      */
-    protected $table_height = array();
+    public $table_height = array();
     /**
      * @var float
      */
     protected $line_coef = 1.25;
+
 
 
     /**
@@ -158,22 +164,22 @@ class MocoPrintTemplate extends \TCPDF
             $this->Image(Storage::path($this->logo), $this->getMargins()['left'], 10,'', $this->image_height, 'PNG', '', 'T');
             $this->Ln($this->image_height);
         }
-        $split = $this->split(3);
+        $split = $this->splitByPercent([20,60,20]);
         /**
          * Entête gauche
          */
         $this->setFont($this->text_font_name,$this->text_font_type,$this->text_font_size);
-        array_push($this->table_height,$this->standardMultiCell($this->header_left_text,$split,0,'L'));
+        array_push($this->table_height,$this->MultiCellLimited($this->header_left_text,$split[0],0,'L'));
         /**
          * Titre
          */
         $this->setFont($this->title_font_name,$this->title_font_type,$this->title_font_size);
-        array_push($this->table_height,$this->standardMultiCell($this->header_title,$split,0,'C'));
+        array_push($this->table_height,$this->MultiCellLimited($this->header_title,$split[1],0,'C'));
         /**
          * Entête droite
          */
         $this->setFont($this->text_font_name,$this->text_font_type,$this->text_font_size);
-        array_push($this->table_height,$this->standardMultiCell($this->header_right_text,$split,0,'R'));
+        array_push($this->table_height,$this->MultiCellLimited($this->header_right_text,$split[2],0,'R'));
         /**
          * Ligne de fin d'entête
          */
@@ -217,20 +223,20 @@ class MocoPrintTemplate extends \TCPDF
          * Affiche la cellule de gauche si elle n'est pas vide
          */
         if ($this->footer_left_text != '')
-            $this->standardMultiCell($this->footer_left_text,$split,0,'L',0);
+            $this->MultiCellLimited($this->footer_left_text,$split,0,'L',0);
         /**
          * Affiche la cellule du centre si elle n'est pas vide
          */
         if ($this->footer_center_text != '')
-            $this->standardMultiCell($this->footer_center_text,$split,0,'C',0);
+            $this->MultiCellLimited($this->footer_center_text,$split,0,'C',0);
         /**
          * Affiche la cellule de droite si elle n'est pas vide
          */
         if ($this->footer_right_text != '') {
             $page = $this->show_num_page ? "\n\rPage ".$this->getPage().'/'.$this->getNumPages() : '';
-            $this->standardMultiCell($this->footer_right_text.$page, $split, 0, 'R', 0);
+            $this->MultiCellLimited($this->footer_right_text.$page, $split, 0, 'R', 0);
         } elseif ($this->show_num_page){
-            $this->standardMultiCell('Page '.$this->getPage().'/'.$this->getNumPages(),$split,0,'R',0);
+            $this->MultiCellLimited('Page '.$this->getPage().'/'.$this->getNumPages(),$split,0,'R',0);
         }
         $this->SetY($this->Y_header);
     }
@@ -284,18 +290,79 @@ class MocoPrintTemplate extends \TCPDF
      * @param mixed $border
      * @return float
      */
-    public function standardMultiCell(string $text, int $w, int $h = 0, string $align = 'L', $border = 0): float
+    public function MultiCellLimited(?string $text, int $w, int $h = 0, string $align = 'L', $border = 0, $color = 'black'): float
     {
-        $nbr = $this->MultiCell($w,$h,$text,$border,$align,false,0,'','',true,0,false,true,30,'T',false);
+        /**
+         * Sauvegarde la couleur actuelle
+         */
+        $cColor = $this->fgcolor;
+        /**
+         * Place la couleur du texte
+         */
+        $this->SetTextSpotColor($color);
+        /**
+         * Alignement split
+         */
+        $_align = str_split($align);
+        if (strlen($align) == 1)
+            array_push($_align,'T');
+        /**
+         * Ecrit le texte
+         */
+        $nbr = $this->MultiCell($w,$h,$text,$border,$_align[0],false,0,'','',true,0,false,true,$this->maxH,$_align[1],false);
+        /**
+         * On sauvegarde le nombre de ligne de la cellule
+         */
+        array_push($this->table_height,$nbr);
+        /**
+         * Place la couleur de base
+         */
+        $this->SetTextColor($cColor['R'],$cColor['G'],$cColor['B']);
         return $nbr * $this->getLineHeight();
     }
 
     /**
-     * Retourne la plus haute cellule dans la valeur contenue dans le tableau
+     * @param string|null $text
+     * @param int $w
+     * @param int $h
+     * @param string $align
+     * @param int $border
+     * @return float
+     */
+    public function MultiCellLimitedItalic(?string $text, int $w, int $h = 0, string $align = 'L', $border = 0, $color ='black'): float
+    {
+        $style = $this->getFontStyle();
+        $this->setFont($this->getFontFamily(),'I',$this->getFontSizePt());
+        $return = $this->MultiCellLimited($text,$w,$h,$align,$border,$color);
+        $this->setFont($this->getFontFamily(),$style,$this->getFontSizePt());
+        return $return;
+    }
+
+    /**
+     * @param string|null $text
+     * @param int $w
+     * @param int $h
+     * @param string $align
+     * @param int $border
+     * @param string $color
+     * @return float
+     */
+    public function MultiCellLimitedBold(?string $text, int $w, int $h = 0, string $align = 'L', $border = 0, $color ='black'): float
+    {
+        $style = $this->getFontStyle();
+        $this->setFont($this->getFontFamily(),'B',$this->getFontSizePt());
+        $return = $this->MultiCellLimited($text,$w,$h,$align,$border,$color);
+        $this->setFont($this->getFontFamily(),$style,$this->getFontSizePt());
+        return $return;
+    }
+
+    /**
+     * Retourne la plus grande hauteur de cellule
+     * dans les valeurs contenues dans le tableau
      *
      * @return int|mixed
      */
-    protected function getMaxCellHeight()
+    public function getMaxCellHeight()
     {
         $max = 0;
         foreach($this->table_height as $value){
@@ -314,6 +381,12 @@ class MocoPrintTemplate extends \TCPDF
     public function getLineHeight(): float
     {
         return $this->getFontSize() + $this->line_coef;
+    }
+
+    public function Ln($h = '', $cell = false)
+    {
+        $this->table_height = array();
+        return parent::Ln($h, $cell); // TODO: Change the autogenerated stub
     }
 
 }
