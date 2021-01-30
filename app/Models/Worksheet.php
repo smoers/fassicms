@@ -41,6 +41,7 @@ class Worksheet extends Model
 
     /**
      * Retourne l'objet Customer lié à l'objet Worksheet
+     *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function customer(){
@@ -49,6 +50,7 @@ class Worksheet extends Model
 
     /**
      * Retourne l'objet Crane lié à l'objet Worksheet
+     *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function crane(){
@@ -57,6 +59,7 @@ class Worksheet extends Model
 
     /**
      * Retourne les objets Part lié à l'objet Worksheet
+     *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function parts()
@@ -65,7 +68,18 @@ class Worksheet extends Model
     }
 
     /**
+     * Retourne les objets Clocking lié à l'objet Worksheet
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function clocking()
+    {
+        return $this->hasMany(Clocking::class);
+    }
+
+    /**
      * Retourne l'objet User lié à l'objet Worksheet
+     *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function user()

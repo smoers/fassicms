@@ -30,6 +30,7 @@ use App\Moco\Printer\MocoPrintTemplate;
 use App\Moco\Printer\MocoWorksheet;
 use App\Models\Crane;
 use App\Models\Customer;
+use App\Models\Technician;
 use App\Models\Worksheet;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -119,6 +120,7 @@ class WorksheetController extends Controller
                 'action' => route('worksheet.store'),
                 'worksheet' => $worksheet,
                 'info_fields' => $this->info_fields,
+                'technicians' => Technician::all()->sortBy('lastname'),
                 'title' =>trans('Add a worksheet'),
             ]);
     }

@@ -1,7 +1,7 @@
 @extends('layouts.layout')
 
 @section('content')
-    <div class="container p-5 h-100 moco-layout-height">
+    <div class="container p-5 h-100 moco-layout-height" style="min-width: 50vw">
         <div class="card">
             <div class="card-header text-center font-weight-bold">
                 <h2 class="blue-grey-darker-hover">{{ $title }}</h2>
@@ -43,10 +43,13 @@
                             <li class="nav-item">
                                 <a href="#data" class="nav-link" data-toggle="tab">{{__('Data')}}</a>
                             </li>
+                            <li class="nav-item">
+                                <a href="#clocking" class="nav-link" data-toggle="tab">{{__('Clocking')}}</a>
+                            </li>
                         </ul>
                         <div class="tab-content mt-3">
+                            <!-- TAB GENERAL-->
                             <div class="tab-pane fade show active" id="general">
-
                                 <div class="row">
 
                                     <!-- Crane selector -->
@@ -166,6 +169,9 @@
                                 </div>
 
                             </div>
+
+                            <!-- TAB DATA -->
+
                             <div class="tab-pane fade" id="data">
 
                                 <!-- Remarks -->
@@ -207,17 +213,17 @@
 
                                 </div>
                             </div>
+                            @include('worksheet.worksheet-clocking-form')
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-2">
+                    <div class="d-flex justify-content-between">
+                        <div>
                             <button type="submit" class="btn btn-primary">{{__('Save')}}</button>
                         </div>
-                        <div class="col-10">
+                        <div>
                             <a href="{{ route('dashboard') }}" class="btn btn-primary">{{__('Cancel')}}</a>
                         </div>
                     </div>
-
                 </form>
             </div>
         </div>
@@ -251,6 +257,14 @@
             ];
 
             $('#date').datepicker({
+                format: 'dd/mm/yyyy',
+                orientation: 'bottom auto',
+                language: 'fr',
+                todayBtn: "linked",
+                autoclose: true,
+            });
+
+            $('#start_date').datepicker({
                 format: 'dd/mm/yyyy',
                 orientation: 'bottom auto',
                 language: 'fr',

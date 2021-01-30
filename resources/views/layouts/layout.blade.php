@@ -47,6 +47,10 @@ Date : 27-10-20
         <script type="text/javascript" src="{{asset('3rd/bootstrap-select-1.13.18/js/bootstrap-select.min.js')}}"></script>
         <!-- Ajax Bootstrap Select -->
         <script type="text/javascript" src="{{ asset('3rd/Ajax-Bootstrap-Select-1.4.5/dist/js/ajax-bootstrap-select.min.js') }}"></script>
+        <!-- Handlebars-->
+        <script type="text/javascript" src="{{ asset('3rd/handlebars-v4.7.6/handlebars-v4.7.6.js') }}"></script>
+        <!-- Moment-->
+        <script type="text/javascript" src="{{ asset('3rd/moment.2.91.1/moment.min.js') }}"></script>
         <!-- Livewire -->
         @livewireStyles
 
