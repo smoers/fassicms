@@ -43,9 +43,6 @@
                             <li class="nav-item">
                                 <a href="#data" class="nav-link" data-toggle="tab">{{__('Data')}}</a>
                             </li>
-                            <li class="nav-item">
-                                <a href="#clocking" class="nav-link" data-toggle="tab">{{__('Clocking')}}</a>
-                            </li>
                         </ul>
                         <div class="tab-content mt-3">
                             <!-- TAB GENERAL-->
@@ -213,7 +210,6 @@
 
                                 </div>
                             </div>
-                            @include('worksheet.worksheet-clocking-form')
                         </div>
                     </div>
                     <div class="d-flex justify-content-between">
@@ -257,14 +253,6 @@
             ];
 
             $('#date').datepicker({
-                format: 'dd/mm/yyyy',
-                orientation: 'bottom auto',
-                language: 'fr',
-                todayBtn: "linked",
-                autoclose: true,
-            });
-
-            $('#start_date').datepicker({
                 format: 'dd/mm/yyyy',
                 orientation: 'bottom auto',
                 language: 'fr',

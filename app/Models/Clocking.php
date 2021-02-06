@@ -44,6 +44,27 @@ class Clocking extends Model
      *
      * @param $value
      */
+    public function setDateAttribute($value)
+    {
+        $this->attributes['date'] = Carbon::parse(str_replace('/','-',$value));
+    }
+
+    /**
+     * Retourne la date au format correct
+     *
+     * @param $value
+     * @return string|null
+     */
+    public function getDateAttribute($value): ?string
+    {
+        return $value != '' ? Carbon::parse($value)->format('d/m/Y H:i') : null;
+    }
+
+    /**
+     * Place la date avec le format correct dans l'attribut
+     *
+     * @param $value
+     */
     public function setStartDateAttribute($value)
     {
         $this->attributes['start_date'] = Carbon::parse(str_replace('/','-',$value));
@@ -57,7 +78,7 @@ class Clocking extends Model
      */
     public function getStartDateAttribute($value): ?string
     {
-        return $value != '' ? Carbon::parse($value)->format('d/m/Y h:i') : null;
+        return $value != '' ? Carbon::parse($value)->format('d/m/Y H:i') : null;
     }
 
     /**
@@ -78,7 +99,7 @@ class Clocking extends Model
      */
     public function getStopDateAttribute($value): ?string
     {
-        return $value != '' ? Carbon::parse($value)->format('d/m/Y h:i') : null;
+        return $value != '' ? Carbon::parse($value)->format('d/m/Y H:i') : null;
     }
 
     /**
@@ -88,7 +109,7 @@ class Clocking extends Model
      */
     public function getStartTime(): ?string
     {
-        return Carbon::parse($this->attributes['start_date'])->format('h:i');
+        return Carbon::parse($this->attributes['start_date'])->format('H:i');
     }
 
     /**
@@ -107,7 +128,7 @@ class Clocking extends Model
      */
     public function getStopTime(): ?string
     {
-        return Carbon::parse($this->attributes['stop_date'])->format('h:i');
+        return Carbon::parse($this->attributes['stop_date'])->format('H:i');
     }
 
     /**

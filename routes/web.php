@@ -10,6 +10,7 @@ use App\Http\Controllers\OutController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\OutWorksheetController;
 use App\Http\Controllers\WorksheetController;
+use App\Http\Controllers\ClockingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -105,5 +106,14 @@ Route::group(['middleware' => ['role_or_permission:admin','auth']],function (){
     Route::post('/worksheet/ajaxselect',[WorksheetController::class,'ajaxSelect'])->name('worksheet.ajaxselect');
     Route::post('/worksheet/ajaxvalidation',[WorksheetController::class,'ajaxValidation'])->name('worksheet.ajaxvalidation');
     Route::post('/worksheet/addoption',[WorksheetController::class,'addOption'])->name('worksheet.add.option');
+
+    /**
+     * Clocking Controller
+     */
+    Route::get('/clocking/{id}/edit',[ClockingController::class,'edit'])->name('clocking.edit');
+    Route::get('/clocking/{id}/show',[ClockingController::class,'show'])->name('clocking.show');
+    Route::post('/clocking/{id}/update',[ClockingController::class,'update'])->name('clocking.update');
+
+
 });
 

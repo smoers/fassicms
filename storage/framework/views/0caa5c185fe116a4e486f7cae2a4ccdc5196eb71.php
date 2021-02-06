@@ -41,9 +41,6 @@
                             <li class="nav-item">
                                 <a href="#data" class="nav-link" data-toggle="tab"><?php echo e(__('Data')); ?></a>
                             </li>
-                            <li class="nav-item">
-                                <a href="#clocking" class="nav-link" data-toggle="tab"><?php echo e(__('Clocking')); ?></a>
-                            </li>
                         </ul>
                         <div class="tab-content mt-3">
                             <!-- TAB GENERAL-->
@@ -211,7 +208,6 @@
 
                                 </div>
                             </div>
-                            <?php echo $__env->make('worksheet.worksheet-clocking-form', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
                         </div>
                     </div>
                     <div class="d-flex justify-content-between">
@@ -255,14 +251,6 @@
             ];
 
             $('#date').datepicker({
-                format: 'dd/mm/yyyy',
-                orientation: 'bottom auto',
-                language: 'fr',
-                todayBtn: "linked",
-                autoclose: true,
-            });
-
-            $('#start_date').datepicker({
                 format: 'dd/mm/yyyy',
                 orientation: 'bottom auto',
                 language: 'fr',

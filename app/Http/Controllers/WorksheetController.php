@@ -120,7 +120,6 @@ class WorksheetController extends Controller
                 'action' => route('worksheet.store'),
                 'worksheet' => $worksheet,
                 'info_fields' => $this->info_fields,
-                'technicians' => Technician::all()->sortBy('lastname'),
                 'title' =>trans('Add a worksheet'),
             ]);
     }
