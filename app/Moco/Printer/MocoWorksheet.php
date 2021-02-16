@@ -30,8 +30,11 @@
 namespace App\Moco\Printer;
 
 
+use App\Moco\Common\MocoOptions;
+use App\Models\ViewClockingExtended;
+use App\Models\ViewClockingTotal;
 use App\Models\Worksheet;
-use PhpParser\Node\Scalar\LNumber;
+
 
 class MocoWorksheet
 {
@@ -40,7 +43,7 @@ class MocoWorksheet
 
     protected $worksheet;
     protected $pdf;
-    protected $hours_grid = true;
+    protected $options;
     /**
      * Marge après l'entête
      * @var int
@@ -51,8 +54,9 @@ class MocoWorksheet
      * MocoWorksheet constructor.
      * @param $worksheet
      */
-    public function __construct(Worksheet $worksheet)
+    public function __construct(Worksheet $worksheet, MocoOptions $options)
     {
+        $this->options = $options;
         /**
          * Worksheet
          */
@@ -208,32 +212,15 @@ class MocoWorksheet
         /**
          * Grille des heures
          */
-        if ($this->hours_grid){
-            $this->pdf->resetLastH();
-            $this->pdf->Ln();
-            /**
-             * Split la page en six en %
-             */
-            $split = $this->pdf->splitByPercent([20,20,15,15,15,15]);
-            $_H = 10;
-            $this->pdf->maxH = $_H;
-            $this->pdf->MultiCellLimitedItalic($this->formatLabel('Date','Datum','','/'),$split[0],$_H,'CM',1);
-            $this->pdf->MultiCellLimitedItalic($this->formatLabel('Nom','Naam','','/'),$split[1],$_H,'CM',1);
-            $this->pdf->MultiCellLimitedItalic($this->formatLabel('De','Van','','/'),$split[2],$_H,'CM',1);
-            $this->pdf->MultiCellLimitedItalic($this->formatLabel('A','Tot','','/'),$split[3],$_H,'CM',1);
-            $this->pdf->MultiCellLimitedItalic($this->formatLabel('De','Van','','/'),$split[4],$_H,'CM',1);
-            $this->pdf->MultiCellLimitedItalic($this->formatLabel('A','Tot','','/'),$split[5],$_H,'CM',1);
-            $this->pdf->Ln();
-            $this->pdf->SetFontSize(15);
-            for($i=1;$i<=4;$i++) {
-                $this->pdf->MultiCellLimitedItalic('.... / .... / ....', $split[0], $_H, 'CB', 1);
-                $this->pdf->MultiCellLimitedItalic('', $split[1], $_H, 'CM', 1);
-                $this->pdf->MultiCellLimitedItalic('.... h ....', $split[2], $_H, 'CB', 1);
-                $this->pdf->MultiCellLimitedItalic('.... h ....', $split[3], $_H, 'CB', 1);
-                $this->pdf->MultiCellLimitedItalic('.... h ....', $split[4], $_H, 'CB', 1);
-                $this->pdf->MultiCellLimitedItalic('.... h ....', $split[5], $_H, 'CB', 1);
-                $this->pdf->Ln();
-            }
+
+        if (filter_var($this->options->manualHours,FILTER_VALIDATE_BOOLEAN)){
+            $this->printManualHours();
+        }
+        /**
+         * Grille des heures
+         */
+        if (filter_var($this->options->hours,FILTER_VALIDATE_BOOLEAN)){
+            $this->printHours();
         }
 
     }
@@ -241,5 +228,99 @@ class MocoWorksheet
     public function Output()
     {
         $this->pdf->Output('test.pdf');
+    }
+
+    /**
+     * Imprime un template pour introduire les heures manuellement
+     *
+     */
+    private function printManualHours()
+    {
+        $this->pdf->resetLastH();
+        $this->pdf->Ln();
+        /**
+         * Split la page en six en %
+         */
+        $split = $this->pdf->splitByPercent([20,20,15,15,15,15]);
+        $_H = 10;
+        $this->pdf->maxH = $_H;
+        $this->pdf->MultiCellLimitedItalic($this->formatLabel('Date','Datum','','/'),$split[0],$_H,'CM',1);
+        $this->pdf->MultiCellLimitedItalic($this->formatLabel('Nom','Naam','','/'),$split[1],$_H,'CM',1);
+        $this->pdf->MultiCellLimitedItalic($this->formatLabel('De','Van','','/'),$split[2],$_H,'CM',1);
+        $this->pdf->MultiCellLimitedItalic($this->formatLabel('A','Tot','','/'),$split[3],$_H,'CM',1);
+        $this->pdf->MultiCellLimitedItalic($this->formatLabel('De','Van','','/'),$split[4],$_H,'CM',1);
+        $this->pdf->MultiCellLimitedItalic($this->formatLabel('A','Tot','','/'),$split[5],$_H,'CM',1);
+        $this->pdf->Ln();
+        $this->pdf->SetFontSize(15);
+        for($i=1;$i<=4;$i++) {
+            $this->pdf->MultiCellLimitedItalic('.... / .... / ....', $split[0], $_H, 'CB', 1);
+            $this->pdf->MultiCellLimitedItalic('', $split[1], $_H, 'CM', 1);
+            $this->pdf->MultiCellLimitedItalic('.... h ....', $split[2], $_H, 'CB', 1);
+            $this->pdf->MultiCellLimitedItalic('.... h ....', $split[3], $_H, 'CB', 1);
+            $this->pdf->MultiCellLimitedItalic('.... h ....', $split[4], $_H, 'CB', 1);
+            $this->pdf->MultiCellLimitedItalic('.... h ....', $split[5], $_H, 'CB', 1);
+            $this->pdf->Ln();
+        }
+    }
+
+    private function printHours()
+    {
+        /**
+         * Cherche les records des heures
+         */
+        $hoursCollection = ViewClockingExtended::where('worksheet_id','=',$this->worksheet->id)->orderBy('date')->get();
+        /**
+         * Cherche le record avec le total
+         */
+        $hoursTotal = ViewClockingTotal::where('worksheet_id','=',$this->worksheet->id)->first();
+        /**
+         * Ajoute une nouvelle page
+         */
+        $this->pdf->addPage();
+        /**
+         * Positionne le curseur
+         */
+        $this->pdf->SetY($this->pdf->Y_header + $this->top_margin);
+        /**
+         * Défini la police et la taille
+         */
+        $this->pdf->setFont('helvetica','',10);
+        /**
+         * Date, numéro et barcode
+         */
+        $split = $this->pdf->splitByPercent([50,50]);
+        $this->pdf->MultiCellLimitedItalic('Date / Datum',$split[0],0,'C',0);
+        $this->pdf->MultiCellLimitedItalic("Numéro / Nummer",$split[1],0,'C',0);
+        $this->pdf->Ln();
+        $this->pdf->MultiCellLimited($this->worksheet->date,$split[0],0,'C',0);
+        $this->pdf->MultiCellLimitedBold($this->worksheet->number,$split[1],0,'C',0,$this::$RED);
+        $this->pdf->Ln(10);
+        /**
+         * Split la page en 5
+         */
+        $split = $this->pdf->splitByPercent([30,18,18,18,15]);
+        $_H = 10;
+        $this->pdf->maxH = $_H;
+        $this->pdf->MultiCellLimitedItalic($this->formatLabel('Nom', 'Naam','','/'),$split[0],$_H,'CM',1);
+        $this->pdf->MultiCellLimitedItalic($this->formatLabel('Date', 'Datum','','/'),$split[1],$_H,'CM',1);
+        $this->pdf->MultiCellLimitedItalic($this->formatLabel('Heure de début', 'Starttijd','','/'),$split[2],$_H,'CM',1);
+        $this->pdf->MultiCellLimitedItalic($this->formatLabel('Heure de fin', 'Eindtijd','','/'),$split[3],$_H,'CM',1);
+        $this->pdf->MultiCellLimitedItalic($this->formatLabel('Total', 'Totaal','','/'),$split[4],$_H,'CM',1);
+        $this->pdf->Ln();
+        $_H = 10;
+        $this->pdf->maxH = $_H;
+        /**
+         * imprime la liste des heures
+         */
+        foreach ($hoursCollection as $hour){
+            $this->pdf->MultiCellLimited($hour->fullname,$split[0],$_H,'CM',1);
+            $this->pdf->MultiCellLimited($hour->start_date,$split[1],$_H,'CM',1);
+            $this->pdf->MultiCellLimited($hour->start_time,$split[2],$_H,'CM',1);
+            $this->pdf->MultiCellLimited($hour->stop_time,$split[3],$_H,'CM',1);
+            $this->pdf->MultiCellLimited($hour->diff,$split[4],$_H,'CM',1);
+            $this->pdf->Ln();
+        }
+        $split = $this->pdf->splitByPercent([100]);
+        $this->pdf->MultiCellLimitedBold($hoursTotal->total,$split[0],$_H,'R',0,$this::$RED);
     }
 }

@@ -215,7 +215,7 @@
                             <button type="submit" class="btn btn-primary"><?php echo e(__('Save')); ?></button>
                         </div>
                         <div>
-                            <a href="<?php echo e(route('dashboard')); ?>" class="btn btn-primary"><?php echo e(__('Cancel')); ?></a>
+                            <a href="<?php echo e(route('worksheet.index')); ?>" class="btn btn-primary"><?php echo e(__('Cancel')); ?></a>
                         </div>
                     </div>
                 </form>

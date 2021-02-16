@@ -24,6 +24,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Clocking;
 use App\Models\Technician;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 use App\Models\Worksheet;
 use Illuminate\Support\Facades\Auth;
@@ -56,6 +57,15 @@ class ClockingController extends Controller
      */
     public function update(Request $request, $id)
     {
+
+        /**
+         * Collection des objet Clocking avant modification
+         */
+        $currentClockings = Clocking::where('worksheet_id','=',$id)->get();
+        /**
+         * Ce tableau va contenir les objet qui ont été mis à jour
+         */
+        $updateClockings = new Collection();
         /**
          * Tableau qui va contenir les objets Clocking a sauvegarder
          */
@@ -71,10 +81,16 @@ class ClockingController extends Controller
             /**
              * Est ce un nouvelle enregistrement ou la modification d'un existant
              */
-            if (is_null($input['id'][$key]))
+            if (is_null($input['id'][$key])) {
                 $clocking = new Clocking();
-            else
+            }
+            else {
                 $clocking = Clocking::find($input['id'][$key]);
+                /**
+                 * L'objet Clocking ayant été mis à jour on le conserve
+                 */
+                $updateClockings->push($clocking);
+            }
             /**
              * Hydrate l'objet Clocking
              */
@@ -86,6 +102,17 @@ class ClockingController extends Controller
             $clocking->user()->associate(Auth::user());
             array_push($clockings,$clocking);
         }
+        /**
+         * Récupére la collection des objets qui n'ont pas été mis à jour
+         * cela signifie qu'ils doivent être supprimé
+         */
+        $deleteClockings = $currentClockings->diff($updateClockings);
+        foreach ($deleteClockings as $deleteClocking){
+            $deleteClocking->delete();
+        }
+        /**
+         * On sauvegarde les modifications et les nouveaux records
+         */
         foreach ($clockings as $clocking){
             $clocking->save();
         }
@@ -97,5 +124,7 @@ class ClockingController extends Controller
     {
         dd(Clocking::find($id)->technician);
     }
+
+
 
 }

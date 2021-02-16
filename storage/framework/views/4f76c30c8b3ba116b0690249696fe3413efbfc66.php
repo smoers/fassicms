@@ -4,19 +4,22 @@
         <?php  $_show = ''; ?>
         <?php  $_remove = ''; ?>
         <?php  $_print = ''; ?>
+        <?php  $_print_id = ''; ?>
         <?php  $_r_modify = true; ?>
     <?php elseif($whatIs == 'customer'): ?>
         <?php  $_modify = route('customer.edit',$customer->id); ?>
         <?php  $_show = ''; ?>
         <?php  $_remove = ''; ?>
         <?php  $_print = ''; ?>
+        <?php  $_print_id = ''; ?>
         <?php  $_r_modify = true; ?>
     <?php elseif($whatIs == 'worksheet'): ?>
         <?php  $_modify = route('worksheet.edit',$worksheet->id); ?>
         <?php  $_show = ''; ?>
         <?php  $_remove = ''; ?>
         <?php  $_hour = route('clocking.edit',$worksheet->id); ?>
-        <?php  $_print = route('worksheet.print',$worksheet->id); ?>
+        <?php  $_print = route('worksheet.print'); ?>
+        <?php  $_print_id = $worksheet->id; ?>
         <?php  $_r_modify = !$worksheet->validated; ?>
     <?php endif; ?>
     <div class="d-flex justify-content-md-end justify-content-sm-end justify-content-lg-end" style="height: auto">
@@ -32,12 +35,14 @@
             <a class="nav-link dropdown-toggle btn btn-secondary moco-btn-sm" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Plus</a>
             <div class="dropdown-menu">
                 <?php if($whatIs == 'worksheet'): ?>
-                    <a class="dropdown-item moco-color-error moco-error-small" href="<?php echo e($_show); ?>"><i class="fas fa-trash-alt"></i> <?php echo e(trans('Show')); ?> </a>
+                    <a class="dropdown-item moco-color-info moco-error-small" href="<?php echo e($_show); ?>"><i class="fas fa-eye"></i> <?php echo e(trans('Show')); ?> </a>
                 <?php endif; ?>
                 <a class="dropdown-item moco-color-error moco-error-small" href="<?php echo e($_remove); ?>"><i class="fas fa-trash-alt"></i> <?php echo e(trans('Remove')); ?> </a>
-                <a class="dropdown-item moco-color-info moco-error-small" href="<?php echo e($_print); ?>"><i class="fas fa-print"></i> <?php echo e(trans('Print')); ?> </a>
+                <a class="dropdown-item moco-color-info moco-error-small" href="<?php echo e($_print); ?>" id="print_<?php echo e($_print_id); ?>"><i class="fas fa-print"></i> <?php echo e(trans('Print')); ?> </a>
             </div>
         </div>
     </div>
 </div>
+
+
 <?php /**PATH /var/www/moco/fassicms/resources/views/menus/list-submenu.blade.php ENDPATH**/ ?>

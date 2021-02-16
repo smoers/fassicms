@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
 {
@@ -20,6 +22,10 @@ class DashboardController extends Controller
          */
         if ($request->session()->exists('worksheet_form'))
             $request->session()->remove('worksheet_form');
+        /**
+         * Défini le language de l'utilisateur
+         */
+        App::setLocale(Auth::user()->language);
 
         return view('root/dashboard');
     }

@@ -26,6 +26,8 @@ use App\Http\Requests\WorksheetRequest;
 use App\Moco\Common\Moco;
 use App\Moco\Common\MocoAjaxValidation;
 use App\Moco\Common\MocoArrayFieldsValues;
+use App\Moco\Common\MocoOptions;
+use App\Moco\Common\MocoOptionsListWorksheetPrint;
 use App\Moco\Printer\MocoPrintTemplate;
 use App\Moco\Printer\MocoWorksheet;
 use App\Models\Crane;
@@ -293,10 +295,19 @@ class WorksheetController extends Controller
         return redirect($route);
     }
 
-    public function print($id)
+    /**
+     * Permet l'impression d'une fiche de travail
+     *
+     * @param Request $request
+     */
+    public function print(Request $request)
     {
-        $worksheet = Worksheet::find($id);
-        $pdf = new MocoWorksheet($worksheet);
+        $worksheet = Worksheet::find($request->post('id'));
+        $options = new MocoOptions(new MocoOptionsListWorksheetPrint());
+        $options->manuelHours = $request->post('mh');
+        $options->hours = $request->post('h');
+        $options->parts = $request->post('p');
+        $pdf = new MocoWorksheet($worksheet, $options);
         $pdf->build();
         $pdf->Output('test.pdf');
     }

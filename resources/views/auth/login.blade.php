@@ -12,12 +12,21 @@ Date : 27-10-20
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <div class="modal-title">
+
+                        <div class="container-fluid w-100">
                         <div class="d-flex justify-content-between">
                             <div class="p-2"><img src="./images/logo.png"></div>
                             <div class="p-2" style="color: red; font-size: 35px; font-weight: bold">CMS</div>
+                            <div class="p-2">
+                                <select id="lang" class="form-control-sm">
+                                    <option value="en">EN</option>
+                                    <option value="fr" selected>FR</option>
+                                    <option value="nl">NL</option>
+                                </select>
+                            </div>
                         </div>
-                    </div>
+                        </div>
+
                 </div>
                 <div class="modal-body">
                     <form method="POST" action="{{ route('login') }}">

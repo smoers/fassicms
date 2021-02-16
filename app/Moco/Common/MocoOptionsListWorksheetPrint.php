@@ -17,41 +17,29 @@
  *  Company : Fassi Belgium
  *  Developer : MO Consult
  *  Author : Moers Serge
- *  Date : 10/01/21 12:42
+ *  Date : 14/02/21 17:03
  */
 
 /**
  * Company : Fassi Belgium
  * Developer : MO Consult
  * Authority : Moers Serge
- * Date : 10-01-21
+ * Date : 14-02-21
  */
 
 namespace App\Moco\Common;
 
 
-use Illuminate\Database\Eloquent\Model;
-
-trait MocoArrayFieldsValues
+class MocoOptionsListWorksheetPrint implements MocoOptionsListInterface
 {
-    /**
-     * Cette méthode permet de convertir un objet de type Model vers une Array
-     * mais avec une Key personnaliése
-     *
-     * @param array $array
-     * @param Model $model
-     * @param array|null $translate
-     */
-    protected function arrayFieldsValues(array $array, ?Model $model, array $translate = null)
-    {
-        if (!is_null($model)) {
-            foreach ($model->getAttributes() as $key => $value) {
-                if (!is_null($translate) && array_key_exists($key, $translate))
-                    $key = $translate[$key];
-                $array[$key] = $value;
-            }
-        }
+    protected $keys = [
+        'manualHours' => 0,
+        'hours' => 0,
+        'parts' => 0,
+    ];
 
-        return $array;
+    public function get(): array
+    {
+        return $this->keys;
     }
 }

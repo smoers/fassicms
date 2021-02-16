@@ -217,7 +217,7 @@
                             <button type="submit" class="btn btn-primary">{{__('Save')}}</button>
                         </div>
                         <div>
-                            <a href="{{ route('dashboard') }}" class="btn btn-primary">{{__('Cancel')}}</a>
+                            <a href="{{ route('worksheet.index') }}" class="btn btn-primary">{{__('Cancel')}}</a>
                         </div>
                     </div>
                 </form>

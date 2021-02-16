@@ -96,15 +96,20 @@
                         @endforeach
                         </tbody>
                     </table>
+                    <div class="d-flex justify-content-end mb-3">
+                        <div class="mr-3 mt-2 moco-color-error">{{__('Total')}}</div>
+                        <div class="mr-5"><input type="text" id="total" class="form-control form-control-sm bg-white moco-color-error" readonly value="" /></div>
+                    </div>
                     <div class="d-flex justify-content-between">
                         <div>
                             <button type="submit" class="btn btn-primary">{{__('Save')}}</button>
                         </div>
                         <div>
-                            <a href="{{ route('dashboard') }}" class="btn btn-primary">{{__('Cancel')}}</a>
+                            <a href="{{ route('worksheet.index') }}" class="btn btn-primary">{{__('Cancel')}}</a>
                         </div>
                     </div>
                 </form>
+
            </div>
         </div>
     </div>
@@ -129,7 +134,7 @@
                 <input type="time" class="form-control form-control-sm bg-white" readonly name="stop_time[]" value="@{{ stop_time }}"/>
             </td>
             <td>
-                <input type="time" class="form-control form-control-sm bg-white" readonly name="diff[]" value="@{{ diff }}"/>
+                <input type="time" class="form-control form-control-sm bg-white" id="diff_" readonly name="diff[]" value="@{{ diff }}"/>
             </td>
             <td>
                 <a href="#" id="_remove"><i class="fas fa-trash fa-lg mt-2" style="color: red !important;"></i></a>
@@ -169,8 +174,12 @@
             * */
             $('[id*=_time_]').on('change', function() {
                 setDiff('_'+$(this).prop('id').match(/[0-9]+/g));
+                setTotal();
             })
-
+            /*
+            * Intialise
+            * */
+            setTotal();
             /*
             * Chargement du tableau
             */
@@ -218,6 +227,10 @@
                     $('#start_time').val("");
                     $('#stop_time').val("");
                     $('#diff').val("");
+                    /*
+                    * Total
+                    * */
+                    setTotal();
                 }
             })
             /**
@@ -225,6 +238,7 @@
              */
             $(document).on('click', "#_remove", function (event) {
                 $(this).closest("#_delete").remove();
+                setTotal();
             })
 
 
@@ -241,6 +255,20 @@
             } else {
                 $("#diff"+index).val("");
             }
+        }
+
+        /*
+        * Calcul le total du temps
+        * */
+        function setTotal(){
+            let sum = moment.duration();
+            $('[id^=diff_]').each(function(){
+                let value = $(this).val();
+                sum.add(value);
+            })
+            let hours = Math.trunc(sum.asHours());
+            let minutes = Math.round((sum.asHours() - hours) * 60);
+            $('#total').val(hours+':'+minutes);
         }
     </script>
 @endsection

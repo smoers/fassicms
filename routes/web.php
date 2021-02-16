@@ -11,6 +11,7 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\OutWorksheetController;
 use App\Http\Controllers\WorksheetController;
 use App\Http\Controllers\ClockingController;
+use \App\Http\Controllers\Auth\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,11 +24,17 @@ use App\Http\Controllers\ClockingController;
 |
 */
 
-Auth::routes();
+//Auth::routes();
+
+Route::get('/login',[LoginController::class,'showLoginForm'])->name(('login'));
+Route::post('/login',[LoginController::class,'login']);
+Route::post('/logout',[LoginController::class,'logout'])->name('logout');
 
 Route::get('/permissions',[PermissionController::class,'add'])->name('permissions.add');
 
 Route::group(['middleware' => ['role_or_permission:admin','auth']],function (){
+
+
     Route::get('/', function () {
         return redirect()->route('dashboard');
     })->name('main');
@@ -36,7 +43,7 @@ Route::group(['middleware' => ['role_or_permission:admin','auth']],function (){
      * Dashboard Controller
      */
     Route::get('/dashboard', [DashboardController::class, 'index'])->name("dashboard");
-
+    Route::get('/home', [DashboardController::class, 'index'])->name("home");
     /**
      * Crane Controller
      */
@@ -100,7 +107,7 @@ Route::group(['middleware' => ['role_or_permission:admin','auth']],function (){
     Route::get('/worksheet/index',[WorksheetController::class,'index'])->name('worksheet.index');
     Route::get('/worksheet/create',[WorksheetController::class,'create'])->name('worksheet.create');
     Route::get('/worksheet/{id}/edit',[WorksheetController::class,'edit'])->name('worksheet.edit');
-    Route::get('/worksheet/{id}/print',[WorksheetController::class,'print'])->name('worksheet.print');
+    Route::post('/worksheet/print',[WorksheetController::class,'print'])->name('worksheet.print');
     Route::post('/worksheet/store',[worksheetController::class,'store'])->name('worksheet.store');
     Route::post('/worksheet/{id}/update',[worksheetController::class,'update'])->name('worksheet.update');
     Route::post('/worksheet/ajaxselect',[WorksheetController::class,'ajaxSelect'])->name('worksheet.ajaxselect');
