@@ -70,7 +70,7 @@ class Part extends Model
         if($value == ''){
             return null;
         } else {
-            return number_format(intval($value),0,',','');
+            return number_format(intval($value),0,',','.');
         }
     }
 
@@ -91,7 +91,16 @@ class Part extends Model
         if($value == ''){
             return null;
         } else {
-            return number_format(floatval(str_replace(',', '.', $value)), 2, ',', '');
+            return number_format(floatval(str_replace(',', '.', $value)), 2, ',', '.');
+        }
+    }
+
+    public function getTotal(): ?string
+    {
+        if (is_null($this->attributes['qty']) || is_null($this->attributes['price'])){
+            return null;
+        } else {
+            return number_format(intval($this->attributes['qty'])* floatval($this->attributes['price']),2,',','.');
         }
     }
 }

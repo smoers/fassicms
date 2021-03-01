@@ -2,31 +2,34 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9ec171e7-05c7-490b-8f14-40ae5b7978c4" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Moco/Common/MocoOptions.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Moco/Common/MocoOptionsListInterface.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Moco/Common/MocoOptionsListWorksheetPrint.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Middleware/Internationalization.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Moco/Printer/MocoFileName.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dump_db_2021.02.23.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/outworksheet/inworksheet-form.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/sessions/BxP38aiRROYW3s5bWAABBZaWt7Td8pE8PKwYCD6J" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/sessions/irVzubThoEUKpY9FbjxnZKezjHp1G79xeWEvHvVS" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/197db771ff09ea7a71966d31b59b863956397ef2.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ClockingController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ClockingController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/DashboardController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/DashboardController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/OutWorksheetController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/OutWorksheetController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/PermissionController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/PermissionController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/WorksheetController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/WorksheetController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Middleware/Authenticate.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Middleware/Authenticate.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Middleware/RedirectIfAuthenticated.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Middleware/RedirectIfAuthenticated.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Moco/Common/MocoArrayFieldsValues.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Moco/Common/MocoArrayFieldsValues.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Kernel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Kernel.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Moco/Common/Moco.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Moco/Common/Moco.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Moco/Printer/MocoPrintTemplate.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Moco/Printer/MocoPrintTemplate.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Moco/Printer/MocoSpotColor.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Moco/Printer/MocoSpotColor.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Moco/Printer/MocoWorksheet.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Moco/Printer/MocoWorksheet.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/app.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/auth/login.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/login.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/livewire/worksheet/worksheet-list.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/livewire/worksheet/worksheet-list.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/menus/list-submenu.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/menus/list-submenu.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/worksheet/clocking-form.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/worksheet/clocking-form.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/worksheet/worksheet-form.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/worksheet/worksheet-form.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/worksheet/worksheet-list.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/worksheet/worksheet-list.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Part.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Part.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/lang/fr.json" beforeDir="false" afterPath="$PROJECT_DIR$/resources/lang/fr.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/lang/nl.json" beforeDir="false" afterPath="$PROJECT_DIR$/resources/lang/nl.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/menus/navbar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/menus/navbar.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/outworksheet/outworksheet-form.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/outworksheet/outworksheet-form.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/Gg2aiJSatmtxzzZdejnSBQXpBXPNN58ddN3A4Xku" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/views/0caa5c185fe116a4e486f7cae2a4ccdc5196eb71.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/0caa5c185fe116a4e486f7cae2a4ccdc5196eb71.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/views/4f76c30c8b3ba116b0690249696fe3413efbfc66.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/4f76c30c8b3ba116b0690249696fe3413efbfc66.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/views/654a90afc80706a452fb1edffc0e0b6f076efb03.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/654a90afc80706a452fb1edffc0e0b6f076efb03.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/views/7bec7fc0e8ed38e0b268fded11f21d94decf6a5c.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/7bec7fc0e8ed38e0b268fded11f21d94decf6a5c.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/views/ac3c96cf1a768cced82534420a844a273578f896.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/ac3c96cf1a768cced82534420a844a273578f896.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/HWMY1M3PgPRI8sDpU0ZF979q8kLGibZw2aYAY4Pe" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/Q4CCtWbwxe5A47zCWCtVha3fbPLWxNz44LCoVnNK" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/SdC5z9M7exS7RiBmsQMgF0Sx5KceuFsYXizcAMRY" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/oVdLL3lEhRUZFE3xJnt6JKVyDefiimYQOHbwtQXJ" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/6622be8e1b69193c2ba4000eea9104186c4f3fbc.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/6622be8e1b69193c2ba4000eea9104186c4f3fbc.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/c63af29302a66a0773c312038557ed5b14a513a2.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/c63af29302a66a0773c312038557ed5b14a513a2.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -620,7 +623,51 @@
       <workItem from="1613496273322" duration="1786000" />
       <workItem from="1613498083912" duration="1878000" />
       <workItem from="1613499990547" duration="1501000" />
-      <workItem from="1613503769230" duration="1686000" />
+      <workItem from="1613503769230" duration="3692000" />
+      <workItem from="1613577832789" duration="1934000" />
+      <workItem from="1613580175541" duration="2412000" />
+      <workItem from="1613582616442" duration="1204000" />
+      <workItem from="1613585592889" duration="1696000" />
+      <workItem from="1613587414271" duration="596000" />
+      <workItem from="1613672668801" duration="1392000" />
+      <workItem from="1613675761245" duration="1780000" />
+      <workItem from="1613677568535" duration="1508000" />
+      <workItem from="1613753201929" duration="2125000" />
+      <workItem from="1613755351577" duration="16046000" />
+      <workItem from="1613923420013" duration="1781000" />
+      <workItem from="1613925228364" duration="1782000" />
+      <workItem from="1613927039509" duration="1781000" />
+      <workItem from="1613928847992" duration="594000" />
+      <workItem from="1613930920026" duration="1391000" />
+      <workItem from="1613932731069" duration="1274000" />
+      <workItem from="1614015511688" duration="1781000" />
+      <workItem from="1614018988733" duration="11337000" />
+      <workItem from="1614069905677" duration="3000" />
+      <workItem from="1614079832994" duration="26929000" />
+      <workItem from="1614277055599" duration="1849000" />
+      <workItem from="1614278926629" duration="1654000" />
+      <workItem from="1614282474465" duration="757000" />
+      <workItem from="1614290286769" duration="188000" />
+      <workItem from="1614328397024" duration="688000" />
+      <workItem from="1614414550806" duration="1790000" />
+      <workItem from="1614416360254" duration="1791000" />
+      <workItem from="1614418167552" duration="1789000" />
+      <workItem from="1614419975109" duration="1790000" />
+      <workItem from="1614421782939" duration="1796000" />
+      <workItem from="1614423598747" duration="1792000" />
+      <workItem from="1614425407791" duration="1790000" />
+      <workItem from="1614427216702" duration="1587000" />
+      <workItem from="1614429025146" duration="1346000" />
+      <workItem from="1614431189981" duration="1645000" />
+      <workItem from="1614433049969" duration="1788000" />
+      <workItem from="1614434858310" duration="1792000" />
+      <workItem from="1614436669980" duration="1827000" />
+      <workItem from="1614438525758" duration="620000" />
+      <workItem from="1614616027912" duration="1782000" />
+      <workItem from="1614617837495" duration="1975000" />
+      <workItem from="1614619848539" duration="2149000" />
+      <workItem from="1614622061964" duration="998000" />
+      <workItem from="1614624026609" duration="1632000" />
     </task>
     <task id="LOCAL-00001" summary="20201031 - Init">
       <created>1604168127520</created>
@@ -853,7 +900,14 @@
       <option name="project" value="LOCAL" />
       <updated>1612626499314</updated>
     </task>
-    <option name="localTasksCounter" value="34" />
+    <task id="LOCAL-00034" summary="20210216 - v1.0">
+      <created>1613505534635</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1613505534635</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -862,7 +916,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="20201119 - v1.0" />
     <MESSAGE value="20201120 - v1.0" />
     <MESSAGE value="20201121 - v1.0" />
     <MESSAGE value="20201122 - v1.0" />
@@ -887,7 +940,8 @@
     <MESSAGE value="20210123 - v1.0" />
     <MESSAGE value="20210130 - v1.0" />
     <MESSAGE value="20210206 - v1.0" />
-    <option name="LAST_COMMIT_MESSAGE" value="20210206 - v1.0" />
+    <MESSAGE value="20210216 - v1.0" />
+    <option name="LAST_COMMIT_MESSAGE" value="20210216 - v1.0" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

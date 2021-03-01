@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright (c) 2020. MO Consult
+ * Copyright (c) 2021. MO Consult
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,30 +17,29 @@
  *  Company : Fassi Belgium
  *  Developer : MO Consult
  *  Author : Moers Serge
- *  Date : 19/12/20 12:03
+ *  Date : 17/02/21 18:26
  */
 
 /**
  * Company : Fassi Belgium
  * Developer : MO Consult
  * Authority : Moers Serge
- * Date : 19-12-20
+ * Date : 17-02-21
  */
 
-namespace App\Moco\Common;
+namespace App\Moco\Printer;
 
 
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 
-class Moco
+trait MocoFileName
 {
-    /**
-     * génére un numéro de fiche de travaille
-     *
-     * @return int
-     */
-    public static function worksheetNumber(): int
+    public function getFormattedFileName(array $suffix)
     {
-        return intval(Carbon::now('Europe/Brussels')->format('YmdHis'));
+        $name = 'PDF_'.Auth::id();
+        foreach ($suffix as $value)
+            $name = $name.'_'.$value;
+        return $name.'_'.Carbon::now()->format('YmdHis').'.pdf';
     }
 }

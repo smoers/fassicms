@@ -12,6 +12,7 @@ class PermissionController extends Controller
     public function add(){
 
         $role = Role::create(['name' => 'admin']);
+        $role->permissions->dd();
         $permission = Permission::create(['name' => 'edit worksheet']);
         dd($permission);
         return "permissions";

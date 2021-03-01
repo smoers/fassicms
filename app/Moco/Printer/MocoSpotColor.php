@@ -37,6 +37,7 @@ trait MocoSpotColor
     public static  $GREY = 'grey';
     public static  $DARK_GREY = 'dark grey';
     public static  $RED = 'red';
+    public static  $WHITE = 'white';
 
     public function setSpotColor(\TCPDF $pdf)
     {
@@ -45,6 +46,7 @@ trait MocoSpotColor
         $pdf->AddSpotColor('grey',0,0,0,37);
         $pdf->AddSpotColor('dark grey',0,0,0,79);
         $pdf->AddSpotColor('red',0,100,100,0);
+        $pdf->AddSpotColor('white',0,0,0,0);
     }
 
 }

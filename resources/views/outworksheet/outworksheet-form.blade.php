@@ -14,7 +14,7 @@
 
                         <!-- Name -->
                             <div class="form-group">
-                                <input type="text" id="number" name="number" class="form-control" value="{{ old('number') }}">
+                                <input type="text" id="number" name="number" class="form-control form-control-sm" value="{{ old('number') }}">
                                 <div class="moco-error-small danger-darker-hover" id="numberError"></div>
                             </div>
                         </form>
@@ -38,7 +38,7 @@
                         @csrf
                             <div class="form-group">
                                 <input name="number" value="{{$number}}" hidden>
-                                <textarea id="parts" name="parts" class="form-control" value="{{ old('parts') }}" rows="5"></textarea>
+                                <textarea id="parts" name="parts" class="form-control form-control-sm" value="{{ old('parts') }}" rows="5"></textarea>
                                 <div class="moco-error-small danger-darker-hover" id="numberError"></div>
                             </div>
                             <div class="d-flex justify-content-between">
@@ -82,15 +82,15 @@
                                 @foreach($parts as $part)
                                     <tr id="row{{$index}}">
                                         <td>
-                                            <input type="text" id="part_number{{$index}}"  name="part_number[]" readonly class="form-control" value="{{old('part_number.'.$index,$part['part']->part_number)}}" moco-validation-table>
+                                            <input type="text" id="part_number{{$index}}"  name="part_number[]" readonly class="form-control form-control-sm" value="{{old('part_number.'.$index,$part['part']->part_number)}}" moco-validation-table>
                                             <div class="moco-error-small danger-darker-hover" id="part_number{{$index}}Error"></div>
                                         </td>
                                         <td>
-                                            <input type="text" id="bar_code{{$index}}"  name="bar_code[]" readonly class="form-control" value="{{old('bar_code.'.$index,$part['part']->bar_code)}}" moco-validation-table>
+                                            <input type="text" id="bar_code{{$index}}"  name="bar_code[]" readonly class="form-control form-control-sm" value="{{old('bar_code.'.$index,$part['part']->bar_code)}}" moco-validation-table>
                                             <div class="moco-error-small danger-darker-hover" id="bar_code{{$index}}Error"></div>
                                         </td>
                                         <td>
-                                            <input type="number" id="qty{{$index}}" name="qty[]" class="form-control @if(!$part['enough']) is-invalid @endif " value="{{old('qty.'.$index,$part['part']->qty)}}" moco-validation-table>
+                                            <input type="number" id="qty{{$index}}" name="qty[]" class="form-control form-control-sm @if(!$part['enough']) is-invalid @endif " value="{{old('qty.'.$index,$part['part']->qty)}}" moco-validation-table>
                                             <div class="moco-error-small danger-darker-hover" id="qty{{$index}}Error"></div>
                                         </td>
                                         <td>

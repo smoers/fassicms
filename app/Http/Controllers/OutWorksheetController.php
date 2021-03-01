@@ -63,6 +63,11 @@ class OutWorksheetController extends Controller
         return view('outworksheet.outworksheet-form')->with('step',10);
     }
 
+    public function in()
+    {
+        return view('outworksheet.inworksheet-form');
+    }
+
     /**
      * @param Request $request
      * @return \Illuminate\Contracts\View\View
@@ -263,6 +268,43 @@ class OutWorksheetController extends Controller
             }
             return redirect()->route('outworksheet.index')->with('success', 'The parts have been output on the worksheet');
         });
+
+    }
+
+    /**
+     * Répond à la requête ajax permettant de savoir si le numéro de fiche de travail
+     * existe et son status de validation
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function ajaxWorksheetCheck(Request $request)
+    {
+        $result = [];
+        $worksheet = Worksheet::where('number','=',$request->post('number'))->first();
+        if (!is_null($worksheet) && !$worksheet->validated){
+            $result = [
+                'checked' => true,
+                'id' => $worksheet->id,
+                'msg' => null,
+            ];
+        } elseif (!is_null($worksheet) && $worksheet->validated){
+            $result = [
+                'checked' => false,
+                'id' => $worksheet->id,
+                'msg' => trans('This worksheet is validated.  No changes are authorized'),
+            ];
+        } else {
+            $result = [
+                'checked' => false,
+                'id' => null,
+                'msg' => trans('This worksheet does not exist in the system'),
+            ];
+        }
+        return response()->json($result);
+    }
+
+    public function ajaxPartCheck(Request $request)
+    {
 
     }
 }

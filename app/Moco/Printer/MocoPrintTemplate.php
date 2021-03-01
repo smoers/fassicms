@@ -36,6 +36,21 @@ use Illuminate\Support\Facades\Storage;
 class MocoPrintTemplate extends \TCPDF
 {
     /**
+     * Callable
+     * @var string
+     */
+    public static $MultiCellLimited = 'MultiCellLimited';
+    public static $MultiCellLimitedItalic = 'MultiCellLimitedItalic';
+    public static $MultiCellLimitedBold = 'MultiCellLimitedBold';
+    /**
+     * Valeurs global
+     */
+    public $global_fill_color = null;
+    public $global_font_color = null;
+    public $global_border = null;
+    public $global_align = null;
+
+    /**
      * Logo
      * @var string
      */
@@ -146,6 +161,10 @@ class MocoPrintTemplate extends \TCPDF
      */
     public $table_height = array();
     /**
+     * @var string
+     */
+    public $default_fill_cell_color = 'white';
+    /**
      * @var float
      */
     protected $line_coef = 1.25;
@@ -158,6 +177,10 @@ class MocoPrintTemplate extends \TCPDF
     public function Header()
     {
         /**
+         * Couleur de remplissage par default
+         */
+        $this->SetFillSpotColor($this->default_fill_cell_color);
+        /**
          * Image
          */
         if ($this->logo != '') {
@@ -165,6 +188,7 @@ class MocoPrintTemplate extends \TCPDF
             $this->Ln($this->image_height);
         }
         $split = $this->splitByPercent([20,60,20]);
+        $this->table_height = array();
         /**
          * Entête gauche
          */
@@ -197,6 +221,10 @@ class MocoPrintTemplate extends \TCPDF
     public function Footer()
     {
         /**
+         * Couleur de remplissage par default
+         */
+        $this->SetFillSpotColor($this->default_fill_cell_color);
+        /**
          * Calcule de la largeur de la cellule
          */
         $split = 0;
@@ -213,7 +241,7 @@ class MocoPrintTemplate extends \TCPDF
         if ($this->with_line) {
             $this->setLineWidth($this->with_line_size);
             $this->Line($this->GetX(),$this->GetY(),$this->getXMax(),$this->GetY());
-            $this->ln();
+            $this->ln(0);
         }
         /**
          * Défini la police de caractère
@@ -293,6 +321,15 @@ class MocoPrintTemplate extends \TCPDF
     public function MultiCellLimited(?string $text, int $w, int $h = 0, string $align = 'L', $border = 0, $color = 'black'): float
     {
         /**
+         * check les valeurs global
+         */
+        if (!is_null($this->global_font_color))
+            $color = $this->global_font_color;
+        if (!is_null($this->global_border))
+            $border = $this->global_border;
+        if (!is_null($this->global_align))
+            $align = $this->global_align;
+        /**
          * Sauvegarde la couleur actuelle
          */
         $cColor = $this->fgcolor;
@@ -309,7 +346,7 @@ class MocoPrintTemplate extends \TCPDF
         /**
          * Ecrit le texte
          */
-        $nbr = $this->MultiCell($w,$h,$text,$border,$_align[0],false,0,'','',true,0,false,true,$this->maxH,$_align[1],false);
+        $nbr = $this->MultiCell($w,$h,$text,$border,$_align[0],true,0,'','',true,0,false,true,$this->maxH,$_align[1],false);
         /**
          * On sauvegarde le nombre de ligne de la cellule
          */
@@ -354,6 +391,29 @@ class MocoPrintTemplate extends \TCPDF
         $return = $this->MultiCellLimited($text,$w,$h,$align,$border,$color);
         $this->setFont($this->getFontFamily(),$style,$this->getFontSizePt());
         return $return;
+    }
+
+    /**
+     * Permet de remplir les cellules tout en la chargeant avec une valeur
+     *
+     * @param string|null $text
+     * @param string $callback
+     * @param int $w
+     * @param int $h
+     * @param string $align
+     * @param int $border
+     * @param string $color
+     * @param string $fillColor
+     * @return float
+     */
+    public function MultiCellLimitedFill(?string $text,string $callback, int $w, int $h = 0, string $align = 'L', $border = 0, $color ='black', $fillColor = 'white'): float
+    {
+        if (!is_null($this->global_fill_color))
+            $fillColor = $this->global_fill_color;
+        $this->SetFillSpotColor($fillColor);
+        $result = call_user_func(array($this,$callback),$text,$w,$h,$align,$border,$color);
+        $this->SetFillSpotColor($this->default_fill_cell_color);
+        return $result;
     }
 
     /**

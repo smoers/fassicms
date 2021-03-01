@@ -304,12 +304,13 @@ class WorksheetController extends Controller
     {
         $worksheet = Worksheet::find($request->post('id'));
         $options = new MocoOptions(new MocoOptionsListWorksheetPrint());
-        $options->manuelHours = $request->post('mh');
+        $options->manualHours = $request->post('mh');
         $options->hours = $request->post('h');
         $options->parts = $request->post('p');
         $pdf = new MocoWorksheet($worksheet, $options);
         $pdf->build();
-        $pdf->Output('test.pdf');
+        $pdf->Output();
+
     }
 
     /**

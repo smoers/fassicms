@@ -137,6 +137,9 @@
     "Collecting spare parts": "Collecte des pièces de rechange",
     "Now, you can collect the parts in the bins and scan the barcode available on this bins.": "Maintenant, vous pouvez collecter les pièces dans les bacs et scanner le code-barres disponible sur ces bacs.",
     "Qty available": "Qté disponible",
-    "The parts have been output on the worksheet": "Les pièces ont été sortie sur une fiche de travail"
+    "The parts have been output on the worksheet": "Les pièces ont été sortie sur une fiche de travail",
+    "In on worksheet": "Retour sur une fiche de travail",
+    "Stock restocking on worksheet": "Retour en stock sur une fiche de travail",
+    "Worksheet Number": "Numéro de fiche de travail"
 
 }

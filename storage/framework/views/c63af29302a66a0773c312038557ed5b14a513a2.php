@@ -49,6 +49,7 @@
                         <a class="dropdown-item" href="<?php echo e(route('reassort.index')); ?>"><?php echo e(__('Movement of stock')); ?></a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="<?php echo e(route('outworksheet.index')); ?>"><?php echo e(__('Out on worksheet')); ?></a>
+                        <a class="dropdown-item" href="<?php echo e(route('outworksheet.in')); ?>"><?php echo e(__('In on worksheet')); ?></a>
                     </div>
                 </li>
 

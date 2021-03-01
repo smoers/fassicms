@@ -137,5 +137,8 @@
     "Collecting spare parts": "Reserveonderdelen verzamelen",
     "Now, you can collect the parts in the bins and scan the barcode available on this bins.": "Nu kunt u de munten in de bakken verzamelen en de streepjescode op die bakken scannen.",
     "Qty available": "Aantal beschikbaar",
-    "The parts have been output on the worksheet": "De onderdelen werden op een werkblad uitgevoerd"
+    "The parts have been output on the worksheet": "De onderdelen werden op een werkblad uitgevoerd",
+    "In on worksheet": "Feedback op een werkblad",
+    "Stock restocking on worksheet": "Weer op voorraad op een werkblad",
+    "Worksheet Number": "Werkbladnummer"
 }

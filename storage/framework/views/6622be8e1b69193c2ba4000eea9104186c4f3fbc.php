@@ -12,7 +12,7 @@
 
                         <!-- Name -->
                             <div class="form-group">
-                                <input type="text" id="number" name="number" class="form-control" value="<?php echo e(old('number')); ?>">
+                                <input type="text" id="number" name="number" class="form-control form-control-sm" value="<?php echo e(old('number')); ?>">
                                 <div class="moco-error-small danger-darker-hover" id="numberError"></div>
                             </div>
                         </form>
@@ -36,7 +36,7 @@
                         <?php echo csrf_field(); ?>
                             <div class="form-group">
                                 <input name="number" value="<?php echo e($number); ?>" hidden>
-                                <textarea id="parts" name="parts" class="form-control" value="<?php echo e(old('parts')); ?>" rows="5"></textarea>
+                                <textarea id="parts" name="parts" class="form-control form-control-sm" value="<?php echo e(old('parts')); ?>" rows="5"></textarea>
                                 <div class="moco-error-small danger-darker-hover" id="numberError"></div>
                             </div>
                             <div class="d-flex justify-content-between">
@@ -80,15 +80,15 @@
                                 <?php $__currentLoopData = $parts; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $part): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                     <tr id="row<?php echo e($index); ?>">
                                         <td>
-                                            <input type="text" id="part_number<?php echo e($index); ?>"  name="part_number[]" readonly class="form-control" value="<?php echo e(old('part_number.'.$index,$part['part']->part_number)); ?>" moco-validation-table>
+                                            <input type="text" id="part_number<?php echo e($index); ?>"  name="part_number[]" readonly class="form-control form-control-sm" value="<?php echo e(old('part_number.'.$index,$part['part']->part_number)); ?>" moco-validation-table>
                                             <div class="moco-error-small danger-darker-hover" id="part_number<?php echo e($index); ?>Error"></div>
                                         </td>
                                         <td>
-                                            <input type="text" id="bar_code<?php echo e($index); ?>"  name="bar_code[]" readonly class="form-control" value="<?php echo e(old('bar_code.'.$index,$part['part']->bar_code)); ?>" moco-validation-table>
+                                            <input type="text" id="bar_code<?php echo e($index); ?>"  name="bar_code[]" readonly class="form-control form-control-sm" value="<?php echo e(old('bar_code.'.$index,$part['part']->bar_code)); ?>" moco-validation-table>
                                             <div class="moco-error-small danger-darker-hover" id="bar_code<?php echo e($index); ?>Error"></div>
                                         </td>
                                         <td>
-                                            <input type="number" id="qty<?php echo e($index); ?>" name="qty[]" class="form-control <?php if(!$part['enough']): ?> is-invalid <?php endif; ?> " value="<?php echo e(old('qty.'.$index,$part['part']->qty)); ?>" moco-validation-table>
+                                            <input type="number" id="qty<?php echo e($index); ?>" name="qty[]" class="form-control form-control-sm <?php if(!$part['enough']): ?> is-invalid <?php endif; ?> " value="<?php echo e(old('qty.'.$index,$part['part']->qty)); ?>" moco-validation-table>
                                             <div class="moco-error-small danger-darker-hover" id="qty<?php echo e($index); ?>Error"></div>
                                         </td>
                                         <td>

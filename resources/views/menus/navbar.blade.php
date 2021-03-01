@@ -47,6 +47,7 @@
                         <a class="dropdown-item" href="{{route('reassort.index')}}">{{__('Movement of stock')}}</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="{{route('outworksheet.index')}}">{{__('Out on worksheet')}}</a>
+                        <a class="dropdown-item" href="{{route('outworksheet.in')}}">{{__('In on worksheet')}}</a>
                     </div>
                 </li>
 
