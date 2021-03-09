@@ -29,6 +29,7 @@ use App\Moco\Common\MocoAjaxValidation;
 use App\Models\Part;
 use App\Models\Reason;
 use App\Models\Store;
+use App\Models\ViewPartsTotal;
 use App\Models\Worksheet;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -303,8 +304,76 @@ class OutWorksheetController extends Controller
         return response()->json($result);
     }
 
+    /**
+     * Ajax fonction permettant de contrôler si la pièce existe sur la fiche de travail
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function ajaxPartCheck(Request $request)
     {
+        $result = [];
+        /**
+         * S'assure que le part number existe et est actif
+         * car il faudra un prix pour la pièce lors de l'enregistrement de la transaction
+         */
+        $store = Store::where('bar_code','=',$request->post('part_number'))->where('enabled','=',true)->first();
+        if (!is_null($store)){
+            /**
+             * S'assure que ce part number existe sur la fiche de travail
+             */
+            $part = ViewPartsTotal::where('worksheet_id','=',$request->post('worksheet_id'))
+                ->where('bar_code','=',$request->post('part_number'))
+                ->where('qty_total','>=',1)
+                ->first();
+            if (!is_null($part)){
+                /**
+                 * La pièce existe avec une quantité >= 1
+                 */
+                $result = [
+                    'checked' => true,
+                    'msg' => null,
+                ];
+            } else {
+                /**
+                 * La pièce n'a jamais sortie sur la fiche de travail
+                 * ou la quantité restante est null
+                 */
+                $result = [
+                    'checked' => false,
+                    'msg' => trans('This part was not output on this worksheet or the quantity is null'),
+                ];
+            }
+        } else {
+            $result = [
+                'checked' => false,
+                'msg' => trans('This part does not exist or is disabled'),
+            ];
+        }
+        return response()->json($result);
+    }
 
+    public function ajaxPartQtyCheck(Request $request)
+    {
+        $result = [];
+        /**
+         * S'assure que ce part number existe sur la fiche de travail avec une qty suffisante
+         */
+        $part = ViewPartsTotal::where('worksheet_id','=',$request->post('worksheet_id'))
+            ->where('bar_code','=',$request->post('part_number'))
+            ->where('qty_total','>=',$request->post('qty'))
+            ->first();
+        if (is_null($part)){
+            $result = [
+                'checked' => false,
+                'msg' => trans('The quantity available on worksheet is not enough'),
+            ];
+        } else {
+            $result = [
+                'checked' => true,
+                'msg' => null,
+            ];
+        }
+        return response()->json($result);
     }
 }

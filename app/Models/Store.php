@@ -148,7 +148,7 @@ class Store extends Model
      * @param string|null $note
      * @return Out|null
      */
-    public function getOutHydrated(int $qty_pull, Reason $reason = null, string $note = null)
+    public function getOutHydrated(int $qty_pull, Reason $reason = null, string $note = null): ? Out
     {
         $out = null;
         if ($this->validateAvailableQuantity($qty_pull)){

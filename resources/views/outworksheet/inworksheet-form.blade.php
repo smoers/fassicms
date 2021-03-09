@@ -10,6 +10,7 @@
                 <form name="inworksheet-form" id="inworksheet-form" method="post" action="{{route('outworksheet.intreatment')}}">
                     @csrf
                     <div class="d-flex justify-content-center p-2 bg-light">
+                        <input type="hidden" id="worksheet_id" name="worksheet_id" value=""/>
                         <div class="mr-2 mt-1 moco-color-error">{{__('Worksheet Number')}} :</div>
                         <input id="number" name="number" class="form-control form-control-sm mr-2" style="width: auto" autocomplete="off" value=""/>
                         <div class="mr-2 mt-1 moco-color-error">{{__('Part Number')}} :</div>
@@ -66,7 +67,12 @@
         <tr id="_delete">
             <td><input type="text" id="part_@{{  index }}" class="form-control form-control-sm bg-white" readonly name="parts[]" value="@{{ part }}"></td>
             <td><input type="number" id="qty_@{{ index }}" class="form-control form-control-sm bg-white" readonly name="qtys[]" value="@{{ qty }}"></td>
-            <td><a href="#" id="_remove"><i class="fas fa-trash fa-lg mt-2" style="color: red !important;"></i></a></td>
+            <td>
+                <div class="d-flex flex-row">
+                    <div class="mt-2 mr-3"><a href="#" id="remove_@{{ index }}"><i class="fas fa-trash fa-lg mt-2" style="color: red !important;"></i></a></div>
+                    <div class="mt-2 mr-3" ><a href="#" id="alert_@{{ index }}" hidden><i class="fas fa-exclamation-triangle fa-lg mt-2" style="color: red !important;"></i></a></div>
+                </div>
+            </td>
         </tr>
     </script>
 
@@ -74,6 +80,7 @@
         $(function (){
             var _url_number = "{{ route('outworksheet.ajaxworksheetcheck') }}";
             var _url_part_number = "{{ route('outworksheet.ajaxpartcheck') }}";
+            var _url_part_qty = "{{ route('outworksheet.ajaxpartqtycheck') }}";
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -82,6 +89,10 @@
                 dataType: "json",
                 async: true,
             });
+            /**
+             * Tableau avec les messages d'alertes
+             */
+            var _alert = new Map();
             /**
              * Tableau avec les part numbers
              */
@@ -104,7 +115,7 @@
                  */
                 let _number = $(this).val();
                 /**
-                 * Rquête ajax rendue sync
+                 * Requête ajax rendue sync
                  */
                 request({number: _number}, _url_number).then((result) => {
                     /**
@@ -112,6 +123,10 @@
                      * permettant d'attendre la réponse
                      */
                     if (result.checked == true){
+                        /**
+                         * on memorise l'id de la fiche de travail
+                         */
+                        $('#worksheet_id').val(result.id);
                         /**
                          * place le champ fiche en read only
                          */
@@ -149,7 +164,36 @@
                          * le part number existe déjà dans la liste des éléments scanner
                          * donc on incrémente la quantité de 1
                          */
-                        $('#qty_'+index).val(parseInt($('#qty_'+index).val())+1);
+                        let _qty = parseInt($('#qty_'+index).val())+1
+                        $('#qty_'+index).val(_qty);
+                        /**
+                         * lancement d'une requête ajax afin de savoir
+                         * s'il y a assez de pièce disponible sur la fiche de travail
+                         */
+                        let _data = {
+                            worksheet_id: parseInt($('#worksheet_id').val()),
+                            part_number: part,
+                            qty: _qty
+                        };
+                        request(_data, _url_part_qty).then((result) => {
+                           if(!result.checked){
+                               /**
+                                * Si la qty n'est pas suffisante on disabled le champ
+                                */
+                               $('#part_'+index).attr('disabled','disabled').css('text-decoration','line-through');
+                               $('#qty_'+index).attr('disabled','disabled').css('text-decoration','line-through');
+                               /**
+                                * affiche l'icon alert
+                                */
+                               $('#alert_'+index).removeAttr('hidden');
+                               /**
+                                * enregistre le message
+                                */
+                               _alert.set(part,{
+                                  msg: result.msg
+                               });
+                           }
+                        });
                     } else {
                         /**
                          * le part number n'existe pas dans la liste des éléments scanner
@@ -200,8 +244,10 @@
             /**
              * Supprime une ligne du tableau
              */
-            $(document).on('click', "#_remove", function (event) {
+            $('[id^=remove_]').on('click', () => {
                 $(this).closest("#_delete").remove();
+                let index = $(this).attr('id').match(/[0-9]+/g)[0];
+                _parts.delete($('#part_'+index));
             })
             /**
              * Permet de redonner le focus au champ part number
@@ -223,6 +269,12 @@
 
         })
 
+        /**
+         * Requête ajax
+         * @param data
+         * @param url
+         * @returns {Promise<*>}
+         */
         async function request(data, url){
             const _get =  await $.ajax({
                 url: url,

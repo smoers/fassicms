@@ -24,14 +24,19 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\OutRequest;
 use App\Moco\Common\MocoAjaxValidation;
+use App\Models\Part;
 use App\Models\Reason;
 use App\Models\Store;
+use App\Models\Worksheet;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class OutController extends Controller
 {
     use MocoAjaxValidation;
     protected $reason_filtering;
+    protected $reason_worksheetId;
 
     /**
      * OutController constructor.
@@ -39,6 +44,7 @@ class OutController extends Controller
     public function __construct()
     {
         $this->reason_filtering = config('moco.reason.filtering');
+        $this->reason_worksheetId = config('moco.reason.worksheetId');
         $this->formRequest = new OutRequest();
     }
 
@@ -71,6 +77,39 @@ class OutController extends Controller
         $store = Store::find($request->post('id'));
         //Récupérer L'objet
         $reason = Reason::find($validatedData['reason']);
+        /**
+         * si la raison est une sortie sur worksheet
+         * il faut créer un objet part
+         */
+        $part = null;
+        if ($validatedData['reason'] == $this->reason_worksheetId){
+            /**
+             * Recherche le prix de la pièce dans le catalogue
+             * uniquement pour l'année encours.
+             * Si le retour est null on lève une exception
+             */
+            $price = $store->getPrice();
+            if (is_null($price)) {
+                return redirect()->route('reassort')->with('error',trans('No price is available for this part number ') . $part);
+            }
+            /**
+             * recherche l'id de la worksheet
+             */
+            $worksheet = Worksheet::where('number','=',$validatedData['note'])->first();
+            /**
+             * Hydrate l'objet Part
+             */
+            $part = new Part();
+            $part->part_number = $store->part_number;
+            $part->bar_code = $store->bar_code;
+            $part->description = $store->description;
+            $part->qty = $validatedData['qty_pull'];
+            $part->price = $price;
+            $part->year = Carbon::now()->year;
+            $part->type = 'O';
+            $part->user()->associate(Auth::user());
+            $part->worksheet()->associate($worksheet);
+        }
         //Nouvel objet Out
         $out = $store->getOutHydrated(
             $validatedData['qty_pull'],
@@ -78,8 +117,11 @@ class OutController extends Controller
             $request->post('note')
         );
         //Sauvegarde les objets
+        if (!is_null($part))
+            $part->save();
         $out->save();
         $store->save();
+
         return redirect('reassort')->with('success', 'The new value of the stock has been saved');
     }
 

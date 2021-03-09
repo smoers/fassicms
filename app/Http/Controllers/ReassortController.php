@@ -24,8 +24,11 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ReassortRequest;
 use App\Moco\Common\MocoAjaxValidation;
+use App\Models\Part;
 use App\Models\Reason;
 use App\Models\Reassortement;
+use App\Models\Worksheet;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Models\Store;
 use Illuminate\Support\Facades\Auth;
@@ -38,6 +41,8 @@ class ReassortController extends Controller
 {
 
     use MocoAjaxValidation;
+    protected $reason_filtering;
+    protected $reason_worksheetId;
 
     /**
      * ReassortController constructor.
@@ -46,6 +51,7 @@ class ReassortController extends Controller
     {
         $this->formRequest = new ReassortRequest();
         $this->reason_filtering = config('moco.reason.filtering');
+        $this->reason_worksheetId = config('moco.reason.worksheetId');
     }
 
 
@@ -86,6 +92,39 @@ class ReassortController extends Controller
         $store = Store::find($request->post('id'));
         //Récupérer L'objet
         $reason = Reason::find($validatedData['reason']);
+        /**
+         * si la raison est une sortie sur worksheet
+         * il faut créer un objet part
+         */
+        $part = null;
+        if ($validatedData['reason'] == $this->reason_worksheetId){
+            /**
+             * Recherche le prix de la pièce dans le catalogue
+             * uniquement pour l'année encours.
+             * Si le retour est null on lève une exception
+             */
+            $price = $store->getPrice();
+            if (is_null($price)) {
+                return redirect()->route('reassort')->with('error',trans('No price is available for this part number ') . $part);
+            }
+            /**
+             * recherche l'id de la worksheet
+             */
+            $worksheet = Worksheet::where('number','=',$validatedData['note'])->first();
+            /**
+             * Hydrate l'objet Part
+             */
+            $part = new Part();
+            $part->part_number = $store->part_number;
+            $part->bar_code = $store->bar_code;
+            $part->description = $store->description;
+            $part->qty = $validatedData['qty_add'];
+            $part->price = $price;
+            $part->year = Carbon::now()->year;
+            $part->type = 'R';
+            $part->user()->associate(Auth::user());
+            $part->worksheet()->associate($worksheet);
+        }
         //Nouvel objet Reassortement
         $reassort = new Reassortement();
         $reassort->qty_add = $validatedData['qty_add'];
@@ -97,6 +136,8 @@ class ReassortController extends Controller
         //mise à jour de la quantité en stock
         $store->increaseQuantity($reassort->qty_add);
         //Sauvegarde des objets
+        if (!is_null($part))
+            $part->save();
         $reassort->save();
         $store->save();
         return redirect('reassort')->with('success', 'The new value of the stock has been saved');

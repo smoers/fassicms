@@ -100,6 +100,7 @@ Route::group(['middleware' => ['role_or_permission:admin','auth']],function (){
     Route::post('/outworksheet/in',[OutWorksheetController::class,'intreatment'])->name('outworksheet.intreatment');
     Route::post('/outworksheet/ajaxworksheetcheck',[OutWorksheetController::class,'ajaxWorksheetCheck'])->name('outworksheet.ajaxworksheetcheck');
     Route::post('/outworksheet/ajaxpartcheck',[OutWorksheetController::class,'ajaxPartCheck'])->name('outworksheet.ajaxpartcheck');
+    Route::post('/outworksheet/ajaxpartqtycheck',[OutWorksheetController::class,'ajaxPartQtyCheck'])->name('outworksheet.ajaxpartqtycheck');
     Route::post('/outworksheet/treatment',[OutWorksheetController::class,'treatment'])->name('outworksheet.treatment');
     Route::get('/outworksheet/treatment',[OutWorksheetController::class,'treatmentForm'])->name('outworksheet.treatmentform');
     Route::post('/outworksheet/validation',[OutWorksheetController::class,'validation'])->name('outworksheet.validation');
