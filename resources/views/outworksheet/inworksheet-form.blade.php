@@ -44,13 +44,14 @@
                 <div class="modal-header">
                     <div class="container-fluid">
                         <div class="d-flex justify-content-sm-center">
-                            <p class="moco-color-info h4"> {{__('Message')}}</p>
+                            <p class="moco-color-info h4"> {{__('Error message')}}</p>
                         </div>
                     </div>
                 </div>
                 <div class="modal-body">
-                    <div class="d-flex flex-row justify-content-md-between">
-                        <div id="_msg" class="moco-color-error font-weight-bold"></div>
+                    <div class="d-flex flex-row justify-content-md-start">
+                        <div class="mr-3"><i class="fa fa-exclamation-triangle fa-3x" style="color: red !important;"></i></div>
+                        <div id="_msg" class="moco-color-error"></div>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -64,13 +65,13 @@
         </div>
     </div>
     <script id="document-template" type="text/x-handlebars-template">
-        <tr id="_delete">
+        <tr id="delete_@{{ index }}">
             <td><input type="text" id="part_@{{  index }}" class="form-control form-control-sm bg-white" readonly name="parts[]" value="@{{ part }}"></td>
             <td><input type="number" id="qty_@{{ index }}" class="form-control form-control-sm bg-white" readonly name="qtys[]" value="@{{ qty }}"></td>
             <td>
                 <div class="d-flex flex-row">
-                    <div class="mt-2 mr-3"><a href="#" id="remove_@{{ index }}"><i class="fas fa-trash fa-lg mt-2" style="color: red !important;"></i></a></div>
-                    <div class="mt-2 mr-3" ><a href="#" id="alert_@{{ index }}" hidden><i class="fas fa-exclamation-triangle fa-lg mt-2" style="color: red !important;"></i></a></div>
+                    <div class="mr-3"><a href="#" id="_remove"><i class="fas fa-trash fa-lg mt-2" style="color: red !important;" id="remove_@{{ index }}"></i></a></div>
+                    <div class="mr-3" id="hidden_@{{ index }}" hidden><a href="#" id="_alert"><i class="fas fa-exclamation-triangle fa-lg mt-2" style="color: red !important;" id="alert_@{{ index }}"></i></a></div>
                 </div>
             </td>
         </tr>
@@ -145,7 +146,7 @@
                         /**
                          * affiche le message modal
                          */
-                        $('#_msg').append(result.msg+" : "+_number);
+                        $('#_msg').html(result.msg+" : "+_number);
                         $('#modal_msg').modal('show');
                     }
                 })
@@ -175,24 +176,27 @@
                             part_number: part,
                             qty: _qty
                         };
+                        /**
+                         * La requète Ajax
+                         */
                         request(_data, _url_part_qty).then((result) => {
-                           if(!result.checked){
-                               /**
-                                * Si la qty n'est pas suffisante on disabled le champ
-                                */
-                               $('#part_'+index).attr('disabled','disabled').css('text-decoration','line-through');
-                               $('#qty_'+index).attr('disabled','disabled').css('text-decoration','line-through');
-                               /**
-                                * affiche l'icon alert
-                                */
-                               $('#alert_'+index).removeAttr('hidden');
-                               /**
-                                * enregistre le message
-                                */
-                               _alert.set(part,{
-                                  msg: result.msg
-                               });
-                           }
+                            if (!result.checked) {
+                                /**
+                                 * Si la qty n'est pas suffisante on disabled le champ
+                                 */
+                                $('#part_' + index).attr('disabled', 'disabled').addClass('moco-color-bg-warning').css('text-decoration', 'line-through');
+                                $('#qty_' + index).attr('disabled', 'disabled').addClass('moco-color-bg-warning').css('text-decoration', 'line-through');
+                                /**
+                                 * affiche l'icon alert
+                                 */
+                                $('#hidden_' + index).removeAttr('hidden');
+                                /**
+                                 * enregistre le message
+                                 */
+                                _alert.set(part, {
+                                    msg: result.msg
+                                });
+                            }
                         });
                     } else {
                         /**
@@ -233,6 +237,37 @@
                          * affiche la ligne
                          */
                         $('#addRow').append(html);
+                        /**
+                         * Lacement d'une requête Ajax afin de déterminer
+                         * si la pièce est existante sur la fiche de travail
+                         */
+                        let _data = {
+                            worksheet_id: parseInt($('#worksheet_id').val()),
+                            part_number: part,
+                            qty: null
+                        };
+                        /**
+                         * Requête Ajax
+                         */
+                        request(_data, _url_part_number).then((result) => {
+                            if (!result.checked){
+                                /**
+                                 * Si la pièce n'existe pas sur la fiche de travail on disabled le champ
+                                 */
+                                $('#part_' + index).attr('disabled', 'disabled').addClass('moco-color-bg-error').css('text-decoration', 'line-through');
+                                $('#qty_' + index).attr('disabled', 'disabled').addClass('moco-color-bg-error').css('text-decoration', 'line-through');
+                                /**
+                                 * affiche l'icon alert
+                                 */
+                                $('#hidden_' + index).removeAttr('hidden');
+                                /**
+                                 * enregistre le message
+                                 */
+                                _alert.set(part, {
+                                    msg: result.msg
+                                });
+                            }
+                        });
                     }
                     /**
                      * reset
@@ -242,19 +277,48 @@
             });
 
             /**
-             * Supprime une ligne du tableau
+             * Supprime une ligne du tableau et supprime l'entrée dans la Map
              */
-            $('[id^=remove_]').on('click', () => {
-                $(this).closest("#_delete").remove();
-                let index = $(this).attr('id').match(/[0-9]+/g)[0];
-                _parts.delete($('#part_'+index));
+            $(document).on('click',"#_remove", (event) => {
+                /**
+                 * Récupère l'index
+                 */
+                let index = event.target.id.match(/[0-9]+/g)[0];
+                /**
+                 * Supprime l'entrée dans la tableau Map
+                 */
+                _parts.delete($('#part_'+index).val());
+                /**
+                 * Ceci permet de garder une cohérence dans les index
+                 * car ils sont calculé sur la base de la longueur du tableau
+                 */
+                _parts.set('remove_'+index, index);
+                /**
+                 * Supprime
+                 */
+                $("#delete_"+index).remove();
+                setFocus();
             })
+
             /**
-             * Permet de redonner le focus au champ part number
+             * Permat l'affichage des messages d'alerte
              */
-            $('#_focus').on('click', function (){
-                $('#part_number').focus();
-            })
+            $(document).on('click','#_alert',(event) => {
+                /**
+                 * Récupère l'index
+                 */
+                let index = event.target.id.match(/[0-9]+/g)[0];
+                /**
+                 * Récupère l'objet dans la tableau
+                 */
+                let _alert_obj = _alert.get($('#part_'+index).val())
+                $('#_msg').html(_alert_obj.msg);
+                $('#modal_msg').modal('show');
+            });
+            /**
+             * Permet de redonner le focus au champ part number ou numéro fiche de travail
+             */
+            $('#_focus').on('click',  () => setFocus());
             /**
              * permet d'activer l'édition des quantités
              */
@@ -265,7 +329,11 @@
             /**
              * Permet de redonner le focus au champ numéro de fiche de travail après la fermeture de modal
              */
-            $('#modal_msg').on('hidden.bs.modal',() => $('#number').focus());
+            $('#modal_msg').on('hidden.bs.modal',() => setFocus());
+            /**
+             * Soumet le formulaire
+             */
+            $('#_save').on('click', () => $('#inworksheet-form').submit());
 
         })
 
@@ -281,6 +349,17 @@
                 data: data,
             })
             return _get;
+        }
+
+        /**
+         * Assigne le focus au champ actif
+         */
+        function setFocus(){
+            if ($('#number').attr("readonly") == null){
+                $('#number').focus();
+            } else {
+                $('#part_number').focus();
+            }
         }
 
 

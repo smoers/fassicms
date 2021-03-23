@@ -35,6 +35,14 @@ Date : 09-10-20
     color: #0099cc !important;
 }
 
+.moco-color-bg-error{
+    background-color: #FC7474 !important;
+}
+
+.moco-color-bg-warning{
+    background-color: #FEB058 !important;
+}
+
 .moco-title{
     font-family: monospace;
     font-weight: bold;

@@ -140,5 +140,10 @@
     "The parts have been output on the worksheet": "De onderdelen werden op een werkblad uitgevoerd",
     "In on worksheet": "Feedback op een werkblad",
     "Stock restocking on worksheet": "Weer op voorraad op een werkblad",
-    "Worksheet Number": "Werkbladnummer"
+    "Worksheet Number": "Werkbladnummer",
+    "Out of stock on worksheet": "Niet op voorraad op een werkblad",
+    "This part does not exist or is disabled ": "Dit onderdeel bestaat niet of is inactief ",
+    "No price is available for this part number ": "Voor dit onderdeel is geen prijs beschikbaar ",
+    "This part was not output on this worksheet or the quantity is enough ": "Dit onderdeel is niet uitgevoerd op dit werkblad of het aantal is onvoldoende ",
+    "The parts have been saved with success": "Onderdelen zijn succesvol teruggebracht naar de voorraad"
 }

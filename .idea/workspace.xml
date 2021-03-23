@@ -2,16 +2,23 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9ec171e7-05c7-490b-8f14-40ae5b7978c4" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/resources/views/outworksheet/outworksheet-bis-form.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/eb7646efa0612642ed57df2430e186f0c5c8dc7a.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/OutController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/OutController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/OutWorksheetController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/OutWorksheetController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ReassortController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ReassortController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Models/Store.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Store.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/all.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/all.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/lang/fr.json" beforeDir="false" afterPath="$PROJECT_DIR$/resources/lang/fr.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/lang/nl.json" beforeDir="false" afterPath="$PROJECT_DIR$/resources/lang/nl.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/menus/navbar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/menus/navbar.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/outworksheet/inworksheet-form.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/outworksheet/inworksheet-form.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/BxP38aiRROYW3s5bWAABBZaWt7Td8pE8PKwYCD6J" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/irVzubThoEUKpY9FbjxnZKezjHp1G79xeWEvHvVS" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/AqzFcWrKpVRMZma2Sh4Iiyc5IQT80cynPms0TDlO" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/JSq0EXQ5xwb0NYmJnIZiBMsVsuVrWlv2O3gWmuAP" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/TsCEtky0Oajhl30ry9mWD1x0NNj6SZDv6Wye0FFR" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/cFSo2u41wEq5PZ8xx1BhZbxJLnl77nGYJEFmdxek" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/sessions/GEJc07XNGDsH4J9Tp6cCNqBK3fwZvPWZjqmOXu9M" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/storage/framework/views/197db771ff09ea7a71966d31b59b863956397ef2.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/197db771ff09ea7a71966d31b59b863956397ef2.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/c63af29302a66a0773c312038557ed5b14a513a2.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/c63af29302a66a0773c312038557ed5b14a513a2.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -164,7 +171,7 @@
     <property name="DatabaseDriversLRU" value="mysql" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views/worksheet" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views/outworksheet" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="php.override.implement.member.chooser.php.doc" value="NONE" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
@@ -172,11 +179,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\fassicms\resources\views\outworksheet" />
       <recent name="D:\fassicms\resources\views\worksheet" />
       <recent name="D:\fassicms\storage\app" />
       <recent name="D:\fassicms\resources\views\menus" />
       <recent name="D:\fassicms\resources\views\customer" />
-      <recent name="D:\fassicms\resources\views\crane" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\fassicms\resources\views\livewire\worksheet" />
@@ -660,7 +667,33 @@
       <workItem from="1615310553070" duration="1786000" />
       <workItem from="1615312359718" duration="5372000" />
       <workItem from="1615317776089" duration="1786000" />
-      <workItem from="1615319583939" duration="359000" />
+      <workItem from="1615319583939" duration="1307000" />
+      <workItem from="1615394982595" duration="1513000" />
+      <workItem from="1615567445543" duration="1839000" />
+      <workItem from="1615569310774" duration="4143000" />
+      <workItem from="1615573504700" duration="219000" />
+      <workItem from="1615726234070" duration="1811000" />
+      <workItem from="1615728059196" duration="1792000" />
+      <workItem from="1615729867874" duration="1792000" />
+      <workItem from="1615731678651" duration="2066000" />
+      <workItem from="1615733766147" duration="682000" />
+      <workItem from="1615735651389" duration="2175000" />
+      <workItem from="1615737844114" duration="1973000" />
+      <workItem from="1615739844116" duration="1830000" />
+      <workItem from="1615741706242" duration="1591000" />
+      <workItem from="1615745642215" duration="1557000" />
+      <workItem from="1616231433234" duration="1506000" />
+      <workItem from="1616233239959" duration="1670000" />
+      <workItem from="1616235153899" duration="1780000" />
+      <workItem from="1616236966051" duration="1798000" />
+      <workItem from="1616238791902" duration="2070000" />
+      <workItem from="1616240895784" duration="811000" />
+      <workItem from="1616248011207" duration="1821000" />
+      <workItem from="1616249870839" duration="28099000" />
+      <workItem from="1616430848111" duration="1785000" />
+      <workItem from="1616432654867" duration="8557000" />
+      <workItem from="1616520000537" duration="1681000" />
+      <workItem from="1616521833560" duration="1078000" />
     </task>
     <task id="LOCAL-00001" summary="20201031 - Init">
       <created>1604168127520</created>
@@ -907,7 +940,14 @@
       <option name="project" value="LOCAL" />
       <updated>1614625685297</updated>
     </task>
-    <option name="localTasksCounter" value="36" />
+    <task id="LOCAL-00036" summary="20210309 - v1.0">
+      <created>1615320246753</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1615320246753</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -916,7 +956,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="20201121 - v1.0" />
     <MESSAGE value="20201122 - v1.0" />
     <MESSAGE value="20201125 - v1.0" />
     <MESSAGE value="20201126 - v1.0" />
@@ -941,7 +980,8 @@
     <MESSAGE value="20210206 - v1.0" />
     <MESSAGE value="20210216 - v1.0" />
     <MESSAGE value="20210301 - v1.0" />
-    <option name="LAST_COMMIT_MESSAGE" value="20210301 - v1.0" />
+    <MESSAGE value="20210309 - v1.0" />
+    <option name="LAST_COMMIT_MESSAGE" value="20210309 - v1.0" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

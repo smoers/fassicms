@@ -140,6 +140,10 @@
     "The parts have been output on the worksheet": "Les pièces ont été sortie sur une fiche de travail",
     "In on worksheet": "Retour sur une fiche de travail",
     "Stock restocking on worksheet": "Retour en stock sur une fiche de travail",
-    "Worksheet Number": "Numéro de fiche de travail"
-
+    "Worksheet Number": "Numéro de fiche de travail",
+    "Out of stock on worksheet": "Sortie de stock sur une fiche de travail",
+    "This part does not exist or is disabled ": "Cette pièce n'existe pas ou est inactive ",
+    "No price is available for this part number ": "Aucun prix n'est disponible pour cette pièce ",
+    "This part was not output on this worksheet or the quantity is enough ": "Cette pièce n'a pas été sortie sur cette fiche de travail ou la quantité est insuffisante ",
+    "The parts have been saved with success": "Les pièces ont été retournées en stock avec succès"
 }

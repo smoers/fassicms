@@ -28,6 +28,7 @@ use App\Http\Requests\OutWorksheetValidationStepRequest;
 use App\Moco\Common\MocoAjaxValidation;
 use App\Models\Part;
 use App\Models\Reason;
+use App\Models\Reassortement;
 use App\Models\Store;
 use App\Models\ViewPartsTotal;
 use App\Models\Worksheet;
@@ -64,6 +65,11 @@ class OutWorksheetController extends Controller
         return view('outworksheet.outworksheet-form')->with('step',10);
     }
 
+    /**
+     * Retour en stock par un scan
+     *
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
     public function in()
     {
         return view('outworksheet.inworksheet-form');
@@ -73,7 +79,7 @@ class OutWorksheetController extends Controller
      * @param Request $request
      * @return \Illuminate\Contracts\View\View
      */
-    public function out(OutWorksheetStepRequest $request)
+    public function outbis(OutWorksheetStepRequest $request)
     {
         $validatedData = $request->validated();
         $request->session()->put('worksheet_number', $validatedData['number']);
@@ -81,6 +87,11 @@ class OutWorksheetController extends Controller
             'step' => 20,
             'number' => $validatedData['number'],
         ]);
+    }
+
+    public function out()
+    {
+        return view('outworksheet.outworksheet-bis-form');
     }
 
     /**
@@ -317,8 +328,7 @@ class OutWorksheetController extends Controller
          * S'assure que le part number existe et est actif
          * car il faudra un prix pour la pièce lors de l'enregistrement de la transaction
          */
-        $store = Store::where('bar_code','=',$request->post('part_number'))->where('enabled','=',true)->first();
-        if (!is_null($store)){
+        if (Store::exist($request->post('part_number'))){
             /**
              * S'assure que ce part number existe sur la fiche de travail
              */
@@ -336,7 +346,7 @@ class OutWorksheetController extends Controller
                 ];
             } else {
                 /**
-                 * La pièce n'a jamais sortie sur la fiche de travail
+                 * La pièce n'a jamais été sortie sur la fiche de travail
                  * ou la quantité restante est null
                  */
                 $result = [
@@ -353,6 +363,54 @@ class OutWorksheetController extends Controller
         return response()->json($result);
     }
 
+    /**
+     * Requête Ajax permettant de savoir si la pièce est en stock
+     * et si la quantité demandée est disponible dans le stock
+     *
+     * @param Request $request
+     */
+    public function ajaxPartCheckOut(Request $request)
+    {
+        $result = [];
+        /**
+         * S'assure que le part number existe et est actif
+         * car il faudra un prix pour la pièce lors de l'enregistrement de la transaction
+         * On récupére pour lire la valeur du stock
+         */
+        $store = Store::getStoreByBarCode($request->post('part_number'));
+        if (!is_null($store)){
+            /**
+             * S'assure qu'il y a suffisament de pièce en stock
+             */
+            if ($store->validateAvailableQuantity(intval($request->post('qty')))){
+                $result = [
+                    'checked' => true,
+                    'stock_qty' => $store->qty,
+                    'msg' => null,
+                ];
+            } else {
+                $result = [
+                    'checked' => false,
+                    'stock_qty' => $store->qty,
+                    'msg' => trans('The quantity available in stock is not enough')
+                ];
+            }
+        } else {
+            $result = [
+                'checked' => false,
+                'stock_qty' => null,
+                'msg' => trans('This part does not exist or is disabled'),
+            ];
+        }
+        return response()->json($result);
+    }
+
+    /**
+     * S'assure que la qty en retour est valide
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function ajaxPartQtyCheck(Request $request)
     {
         $result = [];
@@ -375,5 +433,165 @@ class OutWorksheetController extends Controller
             ];
         }
         return response()->json($result);
+    }
+
+    /**
+     * permet un retour en stock depuis le scan des barres codes
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse|mixed
+     */
+    public function inTreatment(Request $request)
+    {
+        /**
+         * Charge la fiche de travail
+         */
+        $worksheet = Worksheet::find($request->post('worksheet_id'));
+        /**
+         * la fiche est-elle validée ?
+         */
+        if (!$worksheet->validated){
+            $parts = array_combine($request->post('parts'),$request->post('qtys'));
+            /**
+             * récupère  la raison
+             */
+            $reason = Reason::find($this->worksheetId);
+            return DB::transaction(function () use ($parts, $worksheet, $reason){
+                /**
+                 * Parcours la liste des piéces à enregistrer
+                 */
+                foreach ($parts as $_part => $_qty){
+                    /**
+                     * on s'assure qu'il y a bien une pièce avec ce part number dans le stock et
+                     * qu'elle est active
+                     */
+                    $store = Store::where('bar_code','=',$_part)->where('enabled','=',true)->lockForUpdate()->first();
+                    if (is_null($store)){
+                        DB::rollBack();
+                        return redirect()->route('outworksheet.in')->with('error', trans('This part does not exist or is disabled ').$_part);
+                    }
+                    /**
+                     * Recherche le prix de la pièce dans le catalogue
+                     * uniquement pour l'année encours.
+                     * Si le retour est null on lève une exception
+                     */
+                    $price = $store->getPrice();
+                    if (is_null($price)) {
+                        DB::rollBack();
+                        return redirect()->route('outworksheet.in')->with('error',trans('No price is available for this part number ') . $_part);
+                    }
+                    /**
+                     * On s'assure que la pièce existe sur la fiche de travail
+                     * avec une quantité suffisante
+                     */
+                    $temp_part = ViewPartsTotal::where('worksheet_id','=',$worksheet->id)
+                        ->where('bar_code','=',$_part)
+                        ->where('qty_total','>=',$_qty)
+                        ->first();
+                    if (is_null($temp_part)){
+                        DB::rollBack();
+                        return redirect()->route('outworksheet.in')->with('error', trans('This part was not output on this worksheet or the quantity is not enough ').$_part);
+                    }
+                    /**
+                     * La méthode de l'objet Store retourne l'objet Reassortement hydraté
+                     * mais augmente aussi la valeur du stock
+                     *
+                     */
+                    $reassort = $store->getReassortementHydrated($_qty,$reason,$worksheet->number);
+                    /**
+                     * Nouvel objet Part et hydratation
+                     */
+                    $part = new Part();
+                    $part->part_number = $store->part_number;
+                    $part->bar_code = $_part;
+                    $part->description = $store->description;
+                    $part->qty = intval($_qty);
+                    $part->price = $price;
+                    $part->type = 'R';
+                    $part->year = Carbon::now()->year;
+                    $part->user()->associate(Auth::user());
+                    $part->worksheet()->associate($worksheet);
+                    /**
+                     * Sauvegarde des objets
+                     */
+                    $store->save();
+                    $part->save();
+                    $reassort->save();
+                }
+                return redirect()->route('dashboard')->with('success','The parts have been saved with success');
+            });
+        }
+        return redirect()->route('outworksheet.in')->with('error', trans('This worksheet is validated.  No changes are authorized ').$worksheet->number);
+    }
+
+    public function outTreatment(Request $request)
+    {
+
+        /**
+         * Charge la fiche de travail
+         */
+        $worksheet = Worksheet::find($request->post('worksheet_id'));
+        /**
+         * la fiche est-elle validée ?
+         */
+        if (!$worksheet->validated){
+            $parts = array_combine($request->post('parts'),$request->post('qtys'));
+            /**
+             * récupère  la raison
+             */
+            $reason = Reason::find($this->worksheetId);
+            return DB::transaction(function () use ($parts, $worksheet, $reason){
+                /**
+                 * Parcours la liste des piéces à enregistrer
+                 */
+                foreach ($parts as $_part => $_qty) {
+                    /**
+                     * on s'assure qu'il y a bien une pièce avec ce part number dans le stock et
+                     * qu'elle est active
+                     */
+                    $store = Store::getStoreByBarCode($_part,true, true);
+                    if (is_null($store)) {
+                        DB::rollBack();
+                        return redirect()->route('outworksheet.in')->with('error', trans('This part does not exist or is disabled ') . $_part);
+                    }
+                    /**
+                     * Recherche le prix de la pièce dans le catalogue
+                     * uniquement pour l'année encours.
+                     * Si le retour est null on lève une exception
+                     */
+                    $price = $store->getPrice();
+                    if (is_null($price)) {
+                        DB::rollBack();
+                        return redirect()->route('outworksheet.in')->with('error', trans('No price is available for this part number ') . $_part);
+                    }
+                    /**
+                     * Validation et hydratation de l'objet Out
+                     */
+                    $out = $store->getOutHydrated($_qty, $reason, $worksheet->number);
+                    if (is_null($out)){
+                        DB::rollBack();
+                        return redirect()->route('outworksheet.in')->with('error', trans('The stock quantity is not enough') . $_part);
+                    }
+                    $part = new Part();
+                    $part->part_number = $store->part_number;
+                    $part->bar_code = $_part;
+                    $part->description = $store->description;
+                    $part->qty = intval($_qty);
+                    $part->price = $price;
+                    $part->type = 'O';
+                    $part->year = Carbon::now()->year;
+                    $part->user()->associate(Auth::user());
+                    $part->worksheet()->associate($worksheet);
+                    /**
+                     * Sauvegarde des objets
+                     */
+                    $store->save();
+                    $part->save();
+                    $out->save();
+                }
+                return redirect()->route('dashboard')->with('success','The parts have been saved with success');
+            });
+        }
+        return redirect()->route('outworksheet.out')->with('error', trans('This worksheet is validated.  No changes are authorized ').$worksheet->number);
     }
 }

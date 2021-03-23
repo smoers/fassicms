@@ -1,31 +1,34 @@
-<?php $__env->startSection('content'); ?>
+@extends('layouts.layout')
+
+@section('content')
     <div class="container p-5 h-100 moco-layout-height">
         <div class="card">
             <div class="card-header text-center font-weight-bold">
-                <h2 class="blue-grey-darker-hover"><?php echo e(__('Stock restocking on worksheet')); ?></h2>
+                <h2 class="blue-grey-darker-hover">{{__('Out of stock on worksheet')}}</h2>
             </div>
             <div class="card-body">
-                <form name="inworksheet-form" id="inworksheet-form" method="post" action="<?php echo e(route('outworksheet.intreatment')); ?>">
-                    <?php echo csrf_field(); ?>
+                <form name="inworksheet-form" id="inworksheet-form" method="post" action="{{route('outworksheet.outtreatment')}}">
+                    @csrf
                     <div class="d-flex justify-content-center p-2 bg-light">
                         <input type="hidden" id="worksheet_id" name="worksheet_id" value=""/>
-                        <div class="mr-2 mt-1 moco-color-error"><?php echo e(__('Worksheet Number')); ?> :</div>
+                        <div class="mr-2 mt-1 moco-color-error">{{__('Worksheet Number')}} :</div>
                         <input id="number" name="number" class="form-control form-control-sm mr-2" style="width: auto" autocomplete="off" value=""/>
-                        <div class="mr-2 mt-1 moco-color-error"><?php echo e(__('Part Number')); ?> :</div>
+                        <div class="mr-2 mt-1 moco-color-error">{{__('Part Number')}} :</div>
                         <input id="part_number" name="part_number" class="form-control form-control-sm" style="width: auto" autocomplete="off" value=""/>
                     </div>
                     <div class="d-flex justify-content-around p-2 bg-light">
-                        <a href="#" id="_focus" class="btn moco-btn-sm orange-darker-hover"><i class="fas fa-compress-arrows-alt"></i> <?php echo e(__('Focus')); ?></a>
-                        <a href="#" id="_edit" class="btn moco-btn-sm deep-purple-darker-hover"><i class="fas fa-edit"></i> <?php echo e(__('Modify')); ?></a>
-                        <a href="#" id="_save" class="btn moco-btn-sm blue-darker-hover"><i class="fas fa-save"></i> <?php echo e(__('Save')); ?></a>
-                        <a href="#" id="_cancel" class="btn moco-btn-sm moco-color-error"><i class="fas fa-sign-out-alt"></i> <?php echo e(__('Cancel')); ?></a>
+                        <a href="#" id="_focus" class="btn moco-btn-sm orange-darker-hover"><i class="fas fa-compress-arrows-alt"></i> {{__('Focus')}}</a>
+                        <a href="#" id="_edit" class="btn moco-btn-sm deep-purple-darker-hover"><i class="fas fa-edit"></i> {{__('Modify')}}</a>
+                        <a href="#" id="_save" class="btn moco-btn-sm blue-darker-hover"><i class="fas fa-save"></i> {{__('Save')}}</a>
+                        <a href="#" id="_cancel" class="btn moco-btn-sm moco-color-error"><i class="fas fa-sign-out-alt"></i> {{__('Cancel')}}</a>
                     </div>
                         <table class="table table-sm table-striped">
                             <thead>
                                 <tr>
-                                    <th class="moco-color-success" style="width: 60%"><?php echo e(__('Part Number')); ?></th>
-                                    <th class="moco-color-success" style="width: 20%"><?php echo e(__('Quantity')); ?></th>
-                                    <th class="moco-color-success" style="width: 20%"><?php echo e(__('Remove')); ?></th>
+                                    <th class="moco-color-success" style="width: 40%">{{__('Part Number')}}</th>
+                                    <th class="moco-color-success" style="width: 20%">{{__('Quantity')}}</th>
+                                    <th class="moco-color-success" style="width: 20%">{{__('Stock Quantity')}}</th>
+                                    <th class="moco-color-success" style="width: 20%">{{__('Remove')}}</th>
                                 </tr>
 
                             </thead>
@@ -42,7 +45,7 @@
                 <div class="modal-header">
                     <div class="container-fluid">
                         <div class="d-flex justify-content-sm-center">
-                            <p class="moco-color-info h4"> <?php echo e(__('Error message')); ?></p>
+                            <p class="moco-color-info h4"> {{__('Error message')}}</p>
                         </div>
                     </div>
                 </div>
@@ -55,7 +58,7 @@
                 <div class="modal-footer">
                     <div class="container-fluid">
                         <div class="d-flex justify-content-md-end">
-                            <button type="button" class="btn btn-danger" data-dismiss="modal"><?php echo e(__('Cancel')); ?></button>
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">{{__('Cancel')}}</button>
                         </div>
                     </div>
                 </div>
@@ -63,23 +66,31 @@
         </div>
     </div>
     <script id="document-template" type="text/x-handlebars-template">
-        <tr id="delete_{{ index }}">
-            <td><input type="text" id="part_{{  index }}" class="form-control form-control-sm bg-white" readonly name="parts[]" value="{{ part }}"></td>
-            <td><input type="number" id="qty_{{ index }}" class="form-control form-control-sm bg-white" readonly name="qtys[]" value="{{ qty }}"></td>
+        <tr id="delete_@{{ index }}">
+            <td><input type="text" id="part_@{{  index }}" class="form-control form-control-sm bg-white" readonly name="parts[]" value="@{{ part }}"></td>
+            <td id="_qty"><input type="number" id="qty_@{{ index }}" class="form-control form-control-sm bg-white" readonly name="qtys[]" value="@{{ qty }}"></td>
+            <td><input type="number" id="stock_qty_@{{ index }}" class="form-control form-control-sm bg-white" readonly name="stock_qtys[]" value="@{{ stock_qty }}"></td>
             <td>
                 <div class="d-flex flex-row">
-                    <div class="mr-3"><a href="#" id="_remove"><i class="fas fa-trash fa-lg mt-2" style="color: red !important;" id="remove_{{ index }}"></i></a></div>
-                    <div class="mr-3" id="hidden_{{ index }}" hidden><a href="#" id="_alert"><i class="fas fa-exclamation-triangle fa-lg mt-2" style="color: red !important;" id="alert_{{ index }}"></i></a></div>
+                    <div class="mr-3"><a href="#" id="_remove"><i class="fas fa-trash fa-lg mt-2" style="color: red !important;" id="remove_@{{ index }}"></i></a></div>
+                    <div class="mr-3" id="hidden_@{{ index }}" hidden><a href="#" id="_alert"><i class="fas fa-exclamation-triangle fa-lg mt-2" style="color: red !important;" id="alert_@{{ index }}"></i></a></div>
                 </div>
             </td>
         </tr>
     </script>
 
     <script type="text/javascript">
+        /**
+         * Tableau avec les messages d'alertes
+         */
+        var _alert = new Map();
+        /**
+         * Tableau avec les part numbers
+         */
+        var _parts = new Map();
         $(function (){
-            var _url_number = "<?php echo e(route('outworksheet.ajaxworksheetcheck')); ?>";
-            var _url_part_number = "<?php echo e(route('outworksheet.ajaxpartcheck')); ?>";
-            var _url_part_qty = "<?php echo e(route('outworksheet.ajaxpartqtycheck')); ?>";
+            var _url_number = "{{ route('outworksheet.ajaxworksheetcheck') }}";
+            var _url_part_number = "{{ route('outworksheet.ajaxpartcheckout') }}";
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -88,14 +99,6 @@
                 dataType: "json",
                 async: true,
             });
-            /**
-             * Tableau avec les messages d'alertes
-             */
-            var _alert = new Map();
-            /**
-             * Tableau avec les part numbers
-             */
-            var _parts = new Map();
             /**
              * Focus sur le champ avec le numéro de fiche
              */
@@ -158,61 +161,32 @@
                      * On obtiend le part number
                      */
                     var part = $(this).val();
-                    if ((index = _parts.get(part)) != null){
+                    /**
+                     *  défini la quantité par défaut
+                     */
+                    var qty = 1;
+                    var index = _parts.get(part);
+                    if ( index != null){
                         /**
                          * le part number existe déjà dans la liste des éléments scanner
                          * donc on incrémente la quantité de 1
                          */
-                        let _qty = parseInt($('#qty_'+index).val())+1
-                        $('#qty_'+index).val(_qty);
-                        /**
-                         * lancement d'une requête ajax afin de savoir
-                         * s'il y a assez de pièce disponible sur la fiche de travail
-                         */
-                        let _data = {
-                            worksheet_id: parseInt($('#worksheet_id').val()),
-                            part_number: part,
-                            qty: _qty
-                        };
-                        /**
-                         * La requète Ajax
-                         */
-                        request(_data, _url_part_qty).then((result) => {
-                            if (!result.checked) {
-                                /**
-                                 * Si la qty n'est pas suffisante on disabled le champ
-                                 */
-                                $('#part_' + index).attr('disabled', 'disabled').addClass('moco-color-bg-warning').css('text-decoration', 'line-through');
-                                $('#qty_' + index).attr('disabled', 'disabled').addClass('moco-color-bg-warning').css('text-decoration', 'line-through');
-                                /**
-                                 * affiche l'icon alert
-                                 */
-                                $('#hidden_' + index).removeAttr('hidden');
-                                /**
-                                 * enregistre le message
-                                 */
-                                _alert.set(part, {
-                                    msg: result.msg
-                                });
-                            }
-                        });
+                        qty = parseInt($('#qty_'+index).val())+1
+                        $('#qty_'+index).val(qty);
                     } else {
                         /**
                          * le part number n'existe pas dans la liste des éléments scanner
-                         * donc on l'ajoute dans la tableau _map avec une quantité de 1
-                         */
-                        var qty = 1;
-                        /**
+                         * donc on l'ajoute dans la tableau _map
                          * on construit la valeur de l'index
                          */
-                        let index = _parts.size + 1;
+                        index = _parts.size + 1;
                         /**
                          * on l'ajoute dans le tableau
                          */
                         _parts.set(part,index);
                         /**
                          * get html source
-                         * @type  {*|jQuery}
+                         * @type {*|jQuery}
                          */
                         var source = $('#document-template').html();
                         /**
@@ -225,7 +199,7 @@
                         var data = {
                             part: part,
                             qty: qty,
-                            index: index,
+                            index: index
                         }
                         /**
                          * Charge le template avec les valeurs
@@ -235,43 +209,57 @@
                          * affiche la ligne
                          */
                         $('#addRow').append(html);
-                        /**
-                         * Lacement d'une requête Ajax afin de déterminer
-                         * si la pièce est existante sur la fiche de travail
-                         */
-                        let _data = {
-                            worksheet_id: parseInt($('#worksheet_id').val()),
-                            part_number: part,
-                            qty: null
-                        };
-                        /**
-                         * Requête Ajax
-                         */
-                        request(_data, _url_part_number).then((result) => {
-                            if (!result.checked){
-                                /**
-                                 * Si la pièce n'existe pas sur la fiche de travail on disabled le champ
-                                 */
-                                $('#part_' + index).attr('disabled', 'disabled').addClass('moco-color-bg-error').css('text-decoration', 'line-through');
-                                $('#qty_' + index).attr('disabled', 'disabled').addClass('moco-color-bg-error').css('text-decoration', 'line-through');
-                                /**
-                                 * affiche l'icon alert
-                                 */
-                                $('#hidden_' + index).removeAttr('hidden');
-                                /**
-                                 * enregistre le message
-                                 */
-                                _alert.set(part, {
-                                    msg: result.msg
-                                });
-                            }
-                        });
                     }
+                    /**
+                     * lancement d'une requête ajax afin de savoir
+                     * si la pièce est disponible dans le stock et si la quantité disponible est suffisante
+                     */
+                    let _data = {
+                        part_number: part,
+                        qty: qty
+                    };
+                    /**
+                     * La requète Ajax
+                     */
+                    request(_data, _url_part_number).then((result) => {
+                        $('#stock_qty_' + index).val(result.stock_qty);
+                        setPartStatus(result, part, index);
+                    });
                     /**
                      * reset
                      */
                     $(this).val("");
                 }
+
+
+            });
+
+            /**
+             * Changement de valeur sur le champ quantité
+             */
+            $(document).on('keyup','#_qty', (event) => {
+                /**
+                 * Récupère l'index
+                 */
+                let index = event.target.id.match(/[0-9]+/g)[0];
+                if (parseInt($('#qty_' + index).val()) < 1 ){
+                    $('#qty_' + index).val(1);
+                }
+                /**
+                 * prépare le données pour la requête Ajax
+                 */
+                let _data = {
+                    part_number: $('#part_' + index).val(),
+                    qty: parseInt($('#qty_' + index).val())
+                };
+                console.log(index, _data);
+                /**
+                 * Lancement de la requête Ajax
+                 */
+                request(_data, _url_part_number).then((result) => {
+                    $('#stock_qty_' + index).val(result.stock_qty);
+                    setPartStatus(result, $('#part_' + index).val(), index);
+                });
             });
 
             /**
@@ -337,9 +325,9 @@
 
         /**
          * Requête ajax
-         * @param  data
-         * @param  url
-         * @returns  {Promise<*>}
+         * @param data
+         * @param url
+         * @returns {Promise<*>}
          */
         async function request(data, url){
             const _get =  await $.ajax({
@@ -360,8 +348,30 @@
             }
         }
 
+        /**
+         * Place le status correct au champ part_number,...
+         */
+        function setPartStatus(result, part, index){
+            if (!result.checked) {
+                /**
+                 * Si la qty n'est pas suffisante on disabled le champ
+                 */
+                $('#part_' + index).attr('disabled', 'disabled').addClass('moco-color-bg-warning').css('text-decoration', 'line-through');
+                $('#qty_' + index).attr('disabled', 'disabled').addClass('moco-color-bg-warning').css('text-decoration', 'line-through');
+                $('#stock_qty_' + index).attr('disabled', 'disabled').addClass('moco-color-bg-warning').css('text-decoration', 'line-through');
+                /**
+                 * affiche l'icon alert
+                 */
+                $('#hidden_' + index).removeAttr('hidden');
+                /**
+                 * enregistre le message
+                 */
+                _alert.set(part, {
+                    msg: result.msg
+                });
+            }
+        }
+
 
     </script>
-<?php $__env->stopSection(); ?>
-
-<?php echo $__env->make('layouts.layout', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /var/www/moco/fassicms/resources/views/outworksheet/inworksheet-form.blade.php ENDPATH**/ ?>
+@endsection

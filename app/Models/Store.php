@@ -164,6 +164,29 @@ class Store extends Model
         return $out;
     }
 
+    /**
+     * Va retourner un objet Reassortement hydraté et
+     * mets à jour l'objet Store au niveau de la quantité
+     *
+     * @param int $qty_add
+     * @param Reason|null $reason
+     * @param string|null $note
+     * @return Reassortement|null
+     */
+    public function getReassortementHydrated(int $qty_add, Reason $reason = null, string $note = null): ?Reassortement
+    {
+        $reassort = new Reassortement();
+        $reassort->qty_add = $qty_add;
+        $reassort->qty_before = $this->attributes['qty'];
+        $reassort->note = $note;
+        $reassort->store()->associate($this);
+        $reassort->user()->associate(Auth::user());
+        $reassort->reason()->associate($reason);
+        $this->increaseQuantity($qty_add);
+        return $reassort;
+
+    }
+
 
     /**
      * Détermine si un part number exist
@@ -194,11 +217,15 @@ class Store extends Model
      *
      * @param string $part_number
      * @param bool $enabled
+     * @param bool $lockForUpdate
      * @return mixed
      */
-    public static function getStoreByPartNumber(string $part_number, bool $enabled = true)
+    public static function getStoreByPartNumber(string $part_number, bool $enabled = true, bool $lockForUpdate = false): ?Store
     {
-        return self::where('part_number','=', $part_number)->where('enabled','=',$enabled)->first();
+        if ($lockForUpdate)
+            return self::where('part_number','=', $part_number)->where('enabled','=',$enabled)->lockForUpdate()->first();
+        else
+            return self::where('part_number','=', $part_number)->where('enabled','=',$enabled)->first();
     }
 
     /**
@@ -206,11 +233,15 @@ class Store extends Model
      *
      * @param string $bar_code
      * @param bool $enabled
+     * @param bool $lockForUpdate
      * @return mixed
      */
-    public static function getStoreByBarCode(string $bar_code, bool $enabled = true)
+    public static function getStoreByBarCode(string $bar_code, bool $enabled = true, bool $lockForUpdate = false): ?Store
     {
-        return self::where('bar_code','=', $bar_code)->where('enabled','=',$enabled)->first() ;
+        if ($lockForUpdate)
+            return self::where('bar_code','=', $bar_code)->where('enabled','=',$enabled)->lockForUpdate()->first();
+        else
+            return self::where('bar_code','=', $bar_code)->where('enabled','=',$enabled)->first() ;
     }
 
 
