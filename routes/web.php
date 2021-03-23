@@ -94,7 +94,6 @@ Route::group(['middleware' => ['role_or_permission:admin','auth']],function (){
     /**
      * OutWorksheet Controller
      */
-    Route::get('/outworksheet',[OutWorksheetController::class,'index'])->name('outworksheet.index');
     Route::get('/outworksheet/in',[OutWorksheetController::class,'in'])->name('outworksheet.in');
     Route::get('/outworksheet/out',[OutWorksheetController::class,'out'])->name('outworksheet.out');
     Route::post('/outworksheet/in',[OutWorksheetController::class,'inTreatment'])->name('outworksheet.intreatment');
