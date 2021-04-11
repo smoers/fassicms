@@ -1,63 +1,71 @@
 <?php
 
-namespace App\Http\Livewire\Customer;
+namespace App\Http\Livewire\Technician;
 
-use App\Models\Customer;
+use App\Models\Technician;
 use Illuminate\Database\Eloquent\Builder;
 use Rappasoft\LaravelLivewireTables\TableComponent;
 use Rappasoft\LaravelLivewireTables\Traits\HtmlComponents;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 
-class CustomerList extends TableComponent
+class TechnicianList extends TableComponent
 {
     use HtmlComponents;
     protected $rowClass ='';
 
     /**
-     * CustomerList constructor.
+     * TechnicianList constructor.
      * @param null $id
      */
     public function __construct($id = null)
     {
         $this->perPage = config('moco.table.perPage');
         $this->perPageOptions = config('moco.table.perPageOptions');
+        $this->rowClass =  config('moco.table.rowClass');
         $this->loadingIndicator =true;
-        $this->sortField = 'name';
+        $this->sortField = 'lastname';
         $this->sortDefaultIcon = '<i class="fas fa-sort-alpha-down"></i>';
         $this->ascSortIcon = '<i class="fas fa-sort-alpha-up"></i>';
         $this->descSortIcon = '<i class="fas fa-sort-alpha-down"></i>';
         parent::__construct($id);
     }
 
-    public function query(): Builder
-    {
-        return Customer::select();
-    }
-
+    /**
+     * @return array
+     */
     public function columns(): array
     {
         return [
-            Column::make(trans('Company name'),'name')
+            Column::make(trans('Number'), 'number')
                 ->searchable()
                 ->sortable(),
-            Column::make(trans('City'),'city')
+            Column::make(trans('Lastname'),'lastname')
                 ->searchable()
                 ->sortable(),
-            Column::make(trans('Email address'),'mail')
+            Column::make(trans('Firstname'),'firstname')
                 ->searchable()
                 ->sortable(),
-            Column::make(trans('Phone'),'phone')
+            Column::make(trans('Enabled'), 'enabled')
                 ->searchable()
-                ->sortable(),
-            Column::make(trans('Mobile'),'mobile')
-                ->searchable()
-                ->sortable(),
+                ->sortable()
+                ->format(function (Technician $model){
+                    return $model->enabled == 1 ? trans('Yes') : trans('No');
+                }),
             Column::make(trans('Actions'),'actions')
-                ->format(function (Customer $model){
-                    return view('menus.list-submenu',['whatIs' => 'customer', 'customer' => $model]);
+                ->format(function (Technician $model){
+                    return view('menus.list-submenu',['whatIs' => 'technician', 'technician' => $model]);
                 }),
         ];
     }
+
+    /**
+     * @return Builder
+     */
+    public function query(): Builder
+    {
+        return Technician::select();
+    }
+
 
     /**
      * @param $attribute
@@ -66,8 +74,14 @@ class CustomerList extends TableComponent
     public function setTableHeadClass($attribute): ?string
     {
         $extend = ' ';
-        if($attribute == 'actions'){
-            $extend .=  'moco-size-column-table-400';
+        switch ($attribute) {
+            case 'actions':
+                $extend .=  'moco-size-column-table-400';
+                break;
+            case 'enabled':
+            case 'number':
+                $extend .= 'moco-size-column-table-150';
+                break;
         }
         return 'moco-title-table'.$extend;
     }
@@ -81,5 +95,4 @@ class CustomerList extends TableComponent
     {
         return $this->rowClass;
     }
-
 }

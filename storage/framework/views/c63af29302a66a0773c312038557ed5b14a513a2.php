@@ -7,7 +7,7 @@
                     <a class="nav-link" href="<?php echo e(route('dashboard')); ?>"><?php echo e(__('Dashboard')); ?> <span class="sr-only">(current)</span></a>
                 </li>
 
-                <li class="nav-item dropdown  <?php if( Route::is('crane.*') || Route::is('customer.*')): ?> active <?php endif; ?>">
+                <li class="nav-item dropdown  <?php if( Route::is('crane.*') || Route::is('customer.*') || Route::is('technician.*')): ?> active <?php endif; ?>">
                     <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"><?php echo e(__('Company data')); ?></a>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="#"> <?php echo e(__('Customers')); ?>   <i class="fa fa-caret-right"></i></a>
@@ -24,6 +24,14 @@
                             </ul>
 
                         </li>
+                        <div class="dropdown-divider"></div>
+                        <li><a class="dropdown-item" href="#"> <?php echo e(__('Technicians')); ?>   <i class="fa fa-caret-right"></i></a>
+                            <ul class="submenu dropdown-menu">
+                                <li><a class="dropdown-item" href="<?php echo e(route('technician.index')); ?>"><?php echo e(__('List')); ?></a></li>
+                                <li><a class="dropdown-item" href="<?php echo e(route('technician.create')); ?>"><?php echo e(__('Add')); ?></a></li>
+                            </ul>
+
+                        </li>
                     </ul>
                 </li>
 
@@ -35,6 +43,8 @@
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="<?php echo e(route('worksheet.index')); ?>"><?php echo e(__('List')); ?></a>
                         <a class="dropdown-item" href="<?php echo e(route('worksheet.create')); ?>"><?php echo e(__('Add')); ?></a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="<?php echo e(route('clocking.technician')); ?>"><?php echo e(__('Technician clocking')); ?></a>
                     </div>
                 </li>
                 <li class="nav-item dropdown <?php if( Route::is('store.*')): ?> active <?php endif; ?>">

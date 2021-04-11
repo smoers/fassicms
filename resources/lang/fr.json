@@ -19,6 +19,8 @@
     "Cancel": "Annuler",
     "Print": "Imprimer",
     "Show": "Consulter",
+    "Hours": "Heures",
+    "Parts": "Pièces",
 
     "The serial number of the crane is required": "Le numéro de série de la grue est requis",
     "The maximum size for a serial is 20 characters": "La taille maximum pour un sérial est de 20 caractères",
@@ -38,6 +40,16 @@
     "The crane has been modified with success": "La grue a été modifiée avec succès",
     "The combination between the serial and the plate already exist": "La combinaison entre le numéro de série et la plaque existe déjà",
 
+    "#####": "!! TECHNICIAN !!",
+    "Technicians": "Techniciens",
+    "Lastname": "Nom",
+    "Firstname": "Prénom",
+    "Add technician": "Ajouter un technicien",
+    "Modify technician": "Modifier un technicien",
+    "A technician with this lastname and firstname already exist. You can continue so, the system authorize two technicians with the same name.": "Un technicien avec ce nom et prénom existe déjà. Vous pouvez malgré tout continuer, car le système autorise deux techniciens avec le même nom.",
+    "Information message": "Message d'information",
+    "The technician has been saved !": "Le technicien a été sauvé !",
+
     "#####": "!! WORKSHEET !!",
     "Add a worksheet": "Ajouter une fiche de travail",
     "Modify a worksheet": "Modifier une fiche de travail",
@@ -53,6 +65,11 @@
     "Worksheets validated": "Fiche de travail validée",
     "Customer name": "Nom du client",
     "Crane serial": "Numéro de série de la grue",
+    "Unit Price": "Prix unitaire",
+    "Total Price": "Prix total",
+    "Parts list": "Liste des pièces",
+    "Parts Out": "Pièces sorties",
+    "Parts Return": "Pièces retournées",
 
     "#####": "!! STORE !!",
     "Quantity": "Quantité",

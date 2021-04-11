@@ -11,7 +11,8 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\OutWorksheetController;
 use App\Http\Controllers\WorksheetController;
 use App\Http\Controllers\ClockingController;
-use \App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\TechnicianController;
 
 /*
 |--------------------------------------------------------------------------
@@ -102,10 +103,6 @@ Route::group(['middleware' => ['role_or_permission:admin','auth']],function (){
     Route::post('/outworksheet/ajaxpartcheck',[OutWorksheetController::class,'ajaxPartCheck'])->name('outworksheet.ajaxpartcheck');
     Route::post('/outworksheet/ajaxpartcheckout',[OutWorksheetController::class,'ajaxPartCheckOut'])->name('outworksheet.ajaxpartcheckout');
     Route::post('/outworksheet/ajaxpartqtycheck',[OutWorksheetController::class,'ajaxPartQtyCheck'])->name('outworksheet.ajaxpartqtycheck');
-    Route::post('/outworksheet/treatment',[OutWorksheetController::class,'treatment'])->name('outworksheet.treatment');
-    Route::get('/outworksheet/treatment',[OutWorksheetController::class,'treatmentForm'])->name('outworksheet.treatmentform');
-    Route::post('/outworksheet/validation',[OutWorksheetController::class,'validation'])->name('outworksheet.validation');
-    Route::post('/outworksheet/ajaxvalidation',[OutWorksheetController::class,'ajaxValidation'])->name('outworksheet.ajaxvalidation');
 
     /**
      * Worksheet Controller
@@ -113,6 +110,7 @@ Route::group(['middleware' => ['role_or_permission:admin','auth']],function (){
     Route::get('/worksheet/index',[WorksheetController::class,'index'])->name('worksheet.index');
     Route::get('/worksheet/create',[WorksheetController::class,'create'])->name('worksheet.create');
     Route::get('/worksheet/{id}/edit',[WorksheetController::class,'edit'])->name('worksheet.edit');
+    Route::get('/worksheet/{id}/part',[WorksheetController::class,'partConsult'])->name('worksheet.part');
     Route::post('/worksheet/print',[WorksheetController::class,'print'])->name('worksheet.print');
     Route::post('/worksheet/store',[worksheetController::class,'store'])->name('worksheet.store');
     Route::post('/worksheet/{id}/update',[worksheetController::class,'update'])->name('worksheet.update');
@@ -125,8 +123,21 @@ Route::group(['middleware' => ['role_or_permission:admin','auth']],function (){
      */
     Route::get('/clocking/{id}/edit',[ClockingController::class,'edit'])->name('clocking.edit');
     Route::get('/clocking/{id}/show',[ClockingController::class,'show'])->name('clocking.show');
+    Route::get('/clocking/clockingtechnician',[ClockingController::class,'ClockingTechnician'])->name('clocking.technician');
     Route::post('/clocking/{id}/update',[ClockingController::class,'update'])->name('clocking.update');
+    Route::post('/clocking/ajaxworksheetcheck',[ClockingController::class,'ajaxWorksheetCheck'])->name('clocking.ajaxworksheetcheck');
+    Route::post('/clocking/ajaxtechniciancheck',[ClockingController::class,'ajaxTechnicianCheck'])->name('clocking.ajaxtechniciancheck');
 
+    /**
+     * Technician Controller
+     */
+    Route::get('/technician',[TechnicianController::class,'index'])->name('technician.index');
+    Route::get('/technician/create',[TechnicianController::class,'create'])->name('technician.create');
+    Route::get('/technician/{id}/edit',[TechnicianController::class,'edit'])->name('technician.edit');
+    Route::post('/technician/store',[TechnicianController::class,'store'])->name('technician.store');
+    Route::post('/technician/{id}/update',[TechnicianController::class,'update'])->name('technician.update');
+    Route::post('/technician/ajaxvalidation',[TechnicianController::class,'ajaxValidation'])->name('technician.ajaxvalidation');
+    Route::post('/technician/ajaxnamecheck',[TechnicianController::class,'ajaxNameCheck'])->name('technician.ajaxnamecheck');
 
 });
 

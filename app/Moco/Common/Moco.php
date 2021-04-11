@@ -30,7 +30,9 @@
 namespace App\Moco\Common;
 
 
+use App\Models\Worksheet;
 use Carbon\Carbon;
+use Illuminate\Http\Request;
 
 class Moco
 {
@@ -42,5 +44,48 @@ class Moco
     public static function worksheetNumber(): int
     {
         return intval(Carbon::now('Europe/Brussels')->format('YmdHis'));
+    }
+
+    /**
+     * Check si la worksheet existe and son status de validation
+     *
+     * @param Request $request
+     * @return array
+     */
+    public static function worksheetCheck(Request $request): array
+    {
+        $worksheet = Worksheet::where('number','=',$request->post('number'))->first();
+        if (!is_null($worksheet) && !$worksheet->validated){
+            $result = [
+                'checked' => true,
+                'id' => $worksheet->id,
+                'msg' => null,
+            ];
+        } elseif (!is_null($worksheet) && $worksheet->validated){
+            $result = [
+                'checked' => false,
+                'id' => $worksheet->id,
+                'msg' => trans('This worksheet is validated.  No changes are authorized'),
+            ];
+        } else {
+            $result = [
+                'checked' => false,
+                'id' => null,
+                'msg' => trans('This worksheet does not exist in the system'),
+            ];
+        }
+        return $result;
+    }
+
+    /**
+     * génère un numéro de technicien unique
+     *
+     * @return string
+     * @throws \Exception
+     */
+    public static function technicianNumber(): string
+    {
+        $bytes = random_bytes(4);
+        return bin2hex($bytes);
     }
 }

@@ -5,6 +5,7 @@ namespace App\Models;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class Clocking extends Model
 {
@@ -170,5 +171,36 @@ class Clocking extends Model
         $date_1 = new Carbon($this->attributes['start_date']);
         $date_2 = new Carbon($this->attributes['stop_date']);
         return $date_1->diff($date_2)->format('%H:%I');
+    }
+
+    /**
+     * permet de créer un enregistrement clocking depuis un pointage de début et de fin
+     *
+     * @param ClockingsDetails $start
+     * @param ClockingsDetails $stop
+     * @return Clocking
+     */
+    public static function setClocking(ClockingsDetails $start, ClockingsDetails $stop): Clocking
+    {
+        $status = config('moco.clocking.status');
+        /**
+         * Nouvel enregistrement
+         */
+        $clocking = new Clocking();
+        $clocking->date = $start->date;
+        $clocking->start_date = $start->date_time;
+        $clocking->stop_date = $stop->date_time;
+        $clocking->technician()->associate($start->technician()->first());
+        $clocking->worksheet()->associate($start->worksheet()->first());
+        $clocking->user()->associate(Auth::user());
+        $clocking->save();
+        /**
+         * change de status des enregsitrements Clocking details
+         */
+        $start->status = $status['register'];
+        $stop->status = $status['register'];
+        $start->save();
+        $stop->save();
+        return $clocking;
     }
 }

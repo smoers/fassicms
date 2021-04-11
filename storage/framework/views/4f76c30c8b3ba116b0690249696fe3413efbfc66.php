@@ -13,11 +13,19 @@
         <?php  $_print = ''; ?>
         <?php  $_print_id = ''; ?>
         <?php  $_r_modify = true; ?>
+    <?php elseif($whatIs == 'technician'): ?>
+        <?php  $_modify = route('technician.edit',$technician->id); ?>
+        <?php  $_show = ''; ?>
+        <?php  $_remove = ''; ?>
+        <?php  $_print = ''; ?>
+        <?php  $_print_id = ''; ?>
+        <?php  $_r_modify = true; ?>
     <?php elseif($whatIs == 'worksheet'): ?>
         <?php  $_modify = route('worksheet.edit',$worksheet->id); ?>
         <?php  $_show = ''; ?>
         <?php  $_remove = ''; ?>
         <?php  $_hour = route('clocking.edit',$worksheet->id); ?>
+        <?php  $_part = route('worksheet.part',$worksheet->id); ?>
         <?php  $_print = route('worksheet.print'); ?>
         <?php  $_print_id = $worksheet->id; ?>
         <?php  $_r_modify = !$worksheet->validated; ?>
@@ -28,6 +36,7 @@
         <?php endif; ?>
         <?php if($whatIs == 'worksheet'): ?>
             <div class="ml-2"><a href="<?php echo e($_hour); ?>" class="btn btn-info moco-btn-sm"><i class="fas fa-clock" style="color: white !important;"></i> <?php echo e(trans('Hours')); ?></a></div>
+            <div class="ml-2"><a href="<?php echo e($_part); ?>" class="btn btn-info moco-btn-sm"><i class="fas fa-clock" style="color: white !important;"></i> <?php echo e(trans('Parts')); ?></a></div>
         <?php else: ?>
             <div class="ml-2"><a href="<?php echo e($_show); ?>" class="btn btn-info moco-btn-sm"><i class="fas fa-eye" style="color: white !important;"></i> <?php echo e(trans('Show')); ?></a></div>
         <?php endif; ?>

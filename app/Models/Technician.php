@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use phpDocumentor\Reflection\Types\Boolean;
 
 class Technician extends Model
 {
@@ -26,5 +27,17 @@ class Technician extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    /**
+     * Retourne null ou un object Technician
+     *
+     * @param string $number
+     * @param bool $enabled
+     * @return Technician|null
+     */
+    public static function getTechnician(string $number, bool $enabled = true): ?Technician
+    {
+        return self::where('number','=',$number)->where('enabled','=',$enabled)->first();
     }
 }

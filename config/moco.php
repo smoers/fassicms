@@ -146,5 +146,19 @@ return [
             ]
         ]
     ],
+    /**
+     * flag pour les enregistrement clocking details
+     */
+    'clocking' => [
+        'actions' => [
+            'start' => 'T',
+            'stop' => 'P',
+        ],
+        'status' => [
+            'activated' => 'A',
+            'deleted' => 'D',
+            'register' => 'R',
+        ]
+    ],
 
 ];

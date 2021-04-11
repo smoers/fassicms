@@ -13,11 +13,19 @@
         @var $_print = ''
         @var $_print_id = ''
         @var $_r_modify = true
+    @elseif($whatIs == 'technician')
+        @var $_modify = route('technician.edit',$technician->id)
+        @var $_show = ''
+        @var $_remove = ''
+        @var $_print = ''
+        @var $_print_id = ''
+        @var $_r_modify = true
     @elseif($whatIs == 'worksheet')
         @var $_modify = route('worksheet.edit',$worksheet->id)
         @var $_show = ''
         @var $_remove = ''
         @var $_hour = route('clocking.edit',$worksheet->id)
+        @var $_part = route('worksheet.part',$worksheet->id)
         @var $_print = route('worksheet.print')
         @var $_print_id = $worksheet->id
         @var $_r_modify = !$worksheet->validated
@@ -28,6 +36,7 @@
         @endif
         @if($whatIs == 'worksheet')
             <div class="ml-2"><a href="{{ $_hour }}" class="btn btn-info moco-btn-sm"><i class="fas fa-clock" style="color: white !important;"></i> {{trans('Hours')}}</a></div>
+            <div class="ml-2"><a href="{{ $_part }}" class="btn btn-info moco-btn-sm"><i class="fas fa-clock" style="color: white !important;"></i> {{trans('Parts')}}</a></div>
         @else
             <div class="ml-2"><a href="{{ $_show }}" class="btn btn-info moco-btn-sm"><i class="fas fa-eye" style="color: white !important;"></i> {{trans('Show')}}</a></div>
         @endif

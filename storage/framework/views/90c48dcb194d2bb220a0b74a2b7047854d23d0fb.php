@@ -51,6 +51,9 @@ Date : 27-10-20
         <script type="text/javascript" src="<?php echo e(asset('3rd/handlebars-v4.7.6/handlebars-v4.7.6.js')); ?>"></script>
         <!-- Moment-->
         <script type="text/javascript" src="<?php echo e(asset('3rd/moment.2.91.1/moment.min.js')); ?>"></script>
+        <!-- Moco -->
+        <script type="text/javascript" src="<?php echo e(asset('js/moco.request.js')); ?>"></script>
+
         <!-- Livewire -->
         <?php echo \Livewire\Livewire::styles(); ?>
 

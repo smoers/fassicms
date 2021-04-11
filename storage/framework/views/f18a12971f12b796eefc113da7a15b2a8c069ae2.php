@@ -2,20 +2,20 @@
 
     <div class="container-fluid p-2 h-100 moco-layout-height">
         <div class="container-fluid text-center mb-3">
-            <div class="moco-title brown-lighter-hover"><?php echo e(__('Cranes')); ?></div>
+            <div class="moco-title brown-lighter-hover"><?php echo e(__('Customers')); ?></div>
         </div>
         <?php
 if (! isset($_instance)) {
     $html = \Livewire\Livewire::mount('customer.customer-list', [])->html();
-} elseif ($_instance->childHasBeenRendered('33MUXuw')) {
-    $componentId = $_instance->getRenderedChildComponentId('33MUXuw');
-    $componentTag = $_instance->getRenderedChildComponentTagName('33MUXuw');
+} elseif ($_instance->childHasBeenRendered('feQnZss')) {
+    $componentId = $_instance->getRenderedChildComponentId('feQnZss');
+    $componentTag = $_instance->getRenderedChildComponentTagName('feQnZss');
     $html = \Livewire\Livewire::dummyMount($componentId, $componentTag);
-    $_instance->preserveRenderedChild('33MUXuw');
+    $_instance->preserveRenderedChild('feQnZss');
 } else {
     $response = \Livewire\Livewire::mount('customer.customer-list', []);
     $html = $response->html();
-    $_instance->logRenderedChild('33MUXuw', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
+    $_instance->logRenderedChild('feQnZss', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
 }
 echo $html;
 ?>

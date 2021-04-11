@@ -33,10 +33,12 @@ use App\Moco\Printer\MocoWorksheet;
 use App\Models\Crane;
 use App\Models\Customer;
 use App\Models\Technician;
+use App\Models\ViewPartsSignedValues;
 use App\Models\Worksheet;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class WorksheetController extends Controller
 {
@@ -346,4 +348,31 @@ class WorksheetController extends Controller
 
         return $worksheet;
     }
+
+    /**
+     * permet l'affichage des pièces pour une fiche de travaille
+     *
+     * @param $id
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
+    public function partConsult($id)
+    {
+        $worksheet = Worksheet::find($id);
+        $_outs = ViewPartsSignedValues::where('worksheet_id','=',$id)->where('type','=','O')->orderBy('part_number')->get();
+        $_reassorts = ViewPartsSignedValues::where('worksheet_id','=',$id)->where('type','=','R')->orderBy('part_number')->get();
+        $_records = ViewPartsSignedValues::groupBy('worksheet_id','type')
+            ->select('worksheet_id','type', DB::raw('sum(total_price_signed) as total'))
+            ->where('worksheet_id','=',$id)->get();
+        $_total = array();
+        foreach ($_records as $_record){
+            $_total[$_record->type] = $_record->total;
+        }
+        return view('worksheet.part-consult',[
+            'worksheet' => $worksheet,
+            '_outs' => $_outs,
+            '_reassorts' => $_reassorts,
+            '_total' => $_total,
+        ]);
+    }
+
 }

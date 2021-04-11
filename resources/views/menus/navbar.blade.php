@@ -7,7 +7,7 @@
                     <a class="nav-link" href="{{ route('dashboard') }}">{{ __('Dashboard') }} <span class="sr-only">(current)</span></a>
                 </li>
 
-                <li class="nav-item dropdown  @if( Route::is('crane.*') || Route::is('customer.*')) active @endif">
+                <li class="nav-item dropdown  @if( Route::is('crane.*') || Route::is('customer.*') || Route::is('technician.*')) active @endif">
                     <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">{{ __('Company data') }}</a>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="#"> {{ __('Customers') }}   <i class="fa fa-caret-right"></i></a>
@@ -24,6 +24,14 @@
                             </ul>
 
                         </li>
+                        <div class="dropdown-divider"></div>
+                        <li><a class="dropdown-item" href="#"> {{ __('Technicians') }}   <i class="fa fa-caret-right"></i></a>
+                            <ul class="submenu dropdown-menu">
+                                <li><a class="dropdown-item" href="{{ route('technician.index') }}">{{ __('List') }}</a></li>
+                                <li><a class="dropdown-item" href="{{ route('technician.create') }}">{{ __('Add') }}</a></li>
+                            </ul>
+
+                        </li>
                     </ul>
                 </li>
 
@@ -34,6 +42,8 @@
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="{{route('worksheet.index')}}">{{__('List')}}</a>
                         <a class="dropdown-item" href="{{route('worksheet.create')}}">{{__('Add')}}</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="{{route('clocking.technician')}}">{{__('Technician clocking')}}</a>
                     </div>
                 </li>
                 <li class="nav-item dropdown @if( Route::is('store.*')) active @endif">

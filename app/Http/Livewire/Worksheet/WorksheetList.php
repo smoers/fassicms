@@ -112,7 +112,7 @@ class WorksheetList extends TableComponent
     {
         $extend = ' ';
         if($attribute == 'actions'){
-            $extend .=  'moco-size-table';
+            $extend .=  'moco-size-column-table-400';
         }
         return 'moco-title-table'.$extend;
     }

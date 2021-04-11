@@ -58,6 +58,34 @@ Date : 09-10-20
     width: 400px;
 }
 
+.moco-size-column-table-100 {
+    width: 100px;
+}
+
+.moco-size-column-table-150 {
+    width: 150px;
+}
+
+.moco-size-column-table-200 {
+    width: 200px;
+}
+
+.moco-size-column-table-250 {
+    width: 250px;
+}
+
+.moco-size-column-table-300 {
+    width: 300px;
+}
+
+.moco-size-column-table-350 {
+    width: 50px;
+}
+
+.moco-size-column-table-400 {
+    width: 400px;
+}
+
 .moco-row-table-font-small {
     font-size: small;
 }
@@ -93,6 +121,13 @@ Date : 09-10-20
     font-size: 10px;
     line-height: 1.5;
     border-radius: 0.2rem;
+}
+
+#timedate {
+    font: small-caps lighter 43px/150% "Segoe UI", Frutiger, "Frutiger Linotype", "Dejavu Sans", "Helvetica Neue", Arial, sans-serif;
+    text-align:left;
+    width: 50%;
+    color: #FF8800;
 }
 
 
