@@ -116,6 +116,7 @@ class WorksheetController extends Controller
             $worksheet->number = Moco::worksheetNumber();
             $worksheet->date = Carbon::now('Europe/Brussels')->format('d/m/Y');
             $worksheet->oil_filtered = false;
+            $worksheet->warranty = false;
         }
         $worksheet->crane()->associate(new Crane());
         $worksheet->customer()->associate(new Customer());
@@ -164,7 +165,7 @@ class WorksheetController extends Controller
         /**
          * redirection
          */
-        return redirect()->route('dashboard')->with('success','The worksheet has been saved ');
+        return redirect()->route('dashboard')->with('success','The worksheet has been saved');
     }
 
     /**
@@ -252,7 +253,7 @@ class WorksheetController extends Controller
         /**
          * redirection
          */
-        return redirect()->route('worksheet.index')->with('success','The worksheet has been saved ');
+        return redirect()->route('worksheet.index')->with('success','The worksheet has been saved');
 
     }
 
@@ -345,6 +346,7 @@ class WorksheetController extends Controller
         $worksheet->work = $worksheet_form['work'];
         $worksheet->oil_replace = $worksheet_form['oil_replace'];
         $worksheet->oil_filtered = $worksheet_form['oil_filtered'];
+        $worksheet->warranty = $worksheet_form['warranty'];
 
         return $worksheet;
     }

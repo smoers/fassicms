@@ -7,6 +7,7 @@
                 <strong><?php echo e(__($message)); ?></strong>
             </div>
             -->
+
     <div class="position-absolute w-100 d-flex flex-column p-4" style="z-index: 9999">
         <div class="toast ml-auto" role="alert" data-delay="700" data-autohide="false">
             <div class="toast-header">

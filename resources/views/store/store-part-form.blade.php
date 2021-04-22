@@ -4,7 +4,7 @@
     <div class="container p-5 h-100 moco-layout-height">
         <div class="card">
             <div class="card-header text-center font-weight-bold">
-                <h2 class="blue-grey-darker-hover">{{ __('Add a part') }}</h2>
+                <h2 class="blue-grey-darker-hover">{{ $title }}</h2>
             </div>
             <div class="card-body">
                 <form name="part-form" id="part-form" method="post" action="{{$_action}}" moco-validation>
@@ -42,8 +42,16 @@
                     </div>
                     <!-- Sur une ligne-->
                     <div class="row">
+                        <!-- Reassort Level -->
+                        <div class="col-2">
+                            <div class="form-group">
+                                <label for="reassort_level">{{ __('Reassort Level')  }}</label>
+                                <input type="number" id="reassort_level" name="reassort_level" class="form-control" value="{{old('reassort_level', $catalog->reassort_level)}}" moco-validation />
+                                <div class="moco-error-small danger-darker-hover" id="reassort_levelError"></div>
+                            </div>
+                        </div>
                         <!-- Quantity -->
-                        <div class="col-3">
+                        <div class="col-2">
                             <div class="form-group">
                                 <label for="qty">{{ __('Quantity')  }}</label>
                                 <input type="number" id="qty" name="qty" class="form-control"
@@ -62,7 +70,7 @@
                             </div>
                         </div>
                         <!-- Price -->
-                        <div class="col-3">
+                        <div class="col-2">
                             <div class="form-group">
                                 <label for="price">{{ __('Price')  }}</label>
                                 <input type="text" id="price" name="price" class="form-control"
@@ -71,7 +79,7 @@
                             </div>
                         </div>
                         <!-- Year -->
-                        <div class="col-3">
+                        <div class="col-2">
                             <div class="form-group">
                                 <label for="year">{{ __('Year')  }}</label>
                                 <input type="number" id="year" name="year" class="form-control"

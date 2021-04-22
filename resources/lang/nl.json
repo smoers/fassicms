@@ -26,6 +26,10 @@
     "Parts list": "Lijst met stukken",
     "Parts Out": "Uitgaande delen",
     "Parts Return": "Geretourneerde onderdelen",
+    "Success": "Succes",
+    "Error": "Vergissing",
+    "Warning": "Waarschuwing",
+    "Reassort Level": "Aanvullingsniveau",
 
     "The serial number of the crane is required": "Het serienummer van de kraan is vereist",
     "The maximum size for a serial is 20 characters": "De maximale grootte voor een serie is 20 tekens",
@@ -70,6 +74,7 @@
     "Worksheets validated": "Gevalideerd werkblad",
     "Customer name": "Klantnaam",
     "Crane serial": "Serienummer van de kraan",
+    "The worksheet has been saved": "Het werkblad is opgeslagen",
 
     "#####": "!! STORE !!",
     "Quantity": "Kwantiteit",
@@ -84,7 +89,8 @@
     "Catalog": "Catalogus",
     "Active parts": "Actieve delen",
     "Year": "Jaar",
-    "Add a part": "Voeg een kamer toe",
+    "Add a part": "Voeg een stuk toe",
+    "Edit a part": "Wijzig een stuk",
     "Provider": "Aanbieder",
     "Location": "Plaats",
     "Bar Code": "Streepjescode",

@@ -37,6 +37,7 @@ class Worksheet extends Model
         'work',
         'oil_replace',
         'oil_filtered',
+        'warranty',
     ];
 
     /**

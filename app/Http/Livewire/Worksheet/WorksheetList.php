@@ -97,6 +97,10 @@ class WorksheetList extends TableComponent
             Column::make(trans('Crane serial'),'serial')
                 ->searchable()
                 ->sortable(),
+            Column::make(trans('Warranty'),'warranty')
+                ->searchable()
+                ->sortable()
+                ->format(function (ViewWorksheetCustomerCrane $model){ return $model->warranty == 1 ? trans('Yes') : trans('No');}),
             Column::make(trans('Actions'),'actions')
                 ->format(function (ViewWorksheetCustomerCrane $model){
                     return view('menus.list-submenu',['whatIs' => 'worksheet', 'worksheet' => $model]);
@@ -111,8 +115,17 @@ class WorksheetList extends TableComponent
     public function setTableHeadClass($attribute): ?string
     {
         $extend = ' ';
-        if($attribute == 'actions'){
-            $extend .=  'moco-size-column-table-400';
+        switch ($attribute) {
+            case 'actions':
+                $extend .=  'moco-size-column-table-400';
+                break;
+            case 'date':
+            case 'number':
+                $extend .= 'moco-size-column-table-150';
+                break;
+            case 'warranty':
+                $extend .= 'moco-size-column-table-100';
+                break;
         }
         return 'moco-title-table'.$extend;
     }

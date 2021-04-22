@@ -32,6 +32,7 @@ class WorksheetRequest extends FormRequest
             'work' => 'nullable',
             'oil_replace' => array('nullable','regex:'.config('moco.worksheet.formatOilReplace')),
             'oil_filtered' => 'required|boolean',
+            'warranty' => 'required|boolean',
         ];
     }
 

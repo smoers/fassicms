@@ -30,7 +30,7 @@ class Catalog extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['price','year'];
+    protected $fillable = ['price','year','reassort_level'];
 
     /**
      * Retourne l'objet Store lié à l'objet Catalog
@@ -66,6 +66,31 @@ class Catalog extends Model
             return null;
         } else {
             return number_format(floatval(str_replace(',', '.', $value)), 2, ',', '');
+        }
+    }
+
+    /**
+     * Cast la valeur reassort_level
+     *
+     * @param $value
+     */
+    public function setReassortLevelAttribute($value)
+    {
+        $this->attributes['reassort_level'] = intval($value);
+    }
+
+    /**
+     * Format la valeur reassort_level
+     *
+     * @param $value
+     * @return string|null
+     */
+    public function getReassortLevelAttribute($value): ?string
+    {
+        if($value == ''){
+            return '0';
+        } else {
+            return number_format(intval($value),0,',','');
         }
     }
 }

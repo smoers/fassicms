@@ -63,7 +63,8 @@ class StorePartRequest extends FormRequest
             'year' => 'required|numeric|between:2000,2050',
             'provider' => 'required',
             'enabled' => 'required',
-            'bar_code' => 'required|max:255|unique:stores,bar_code',
+            'bar_code' => 'required|max:255|unique:stores,bar_code,'.$this->post('id'),
+            'reassort_level' => 'numeric|nullable',
         ];
     }
 
@@ -93,6 +94,7 @@ class StorePartRequest extends FormRequest
             'provider' => trans('Provider'),
             'enabled' => trans('Enabled'),
             'bar_code' => trans('Bar Code'),
+            'reassort_level' => trans('Reassort Level'),
         ];
     }
 

@@ -9,26 +9,37 @@
                     <?php echo csrf_field(); ?>
                     <div class="row">
                         <div class="col-4">
-
-                            <!-- Date -->
-                            <div class="form-group">
-                                <label for="date"><?php echo e(__('Date')); ?></label>
-                                <div class="input-group mb-3">
-                                    <input type="text" id="date" name="date" class="form-control" placeholder="<?php echo e(__('DD/MM/YYYY')); ?>" aria-label="date" aria-describedby="basic-addon1" value="<?php echo e(old('date', $worksheet->date)); ?>" moco-validation />
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text" id="basic-addon1"><i class="fa fa-calendar-alt"></i></span>
-                                    </div>
+                        <!-- Date -->
+                        <div class="form-group">
+                            <label for="date"><?php echo e(__('Date')); ?></label>
+                            <div class="input-group mb-3">
+                                <input type="text" id="date" name="date" class="form-control mt-2" placeholder="<?php echo e(__('DD/MM/YYYY')); ?>" aria-label="date" aria-describedby="basic-addon1" value="<?php echo e(old('date', $worksheet->date)); ?>" moco-validation/>
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text mt-2" id="basic-addon1"><i class="fa fa-calendar-alt"></i></span>
                                 </div>
-                                <div class="moco-error-small danger-darker-hover" id="dateError"></div>
                             </div>
+                            <div class="moco-error-small danger-darker-hover" id="dateError"></div>
+                        </div>
                         </div>
                         <div class="col-4">
-
-                            <!-- Number -->
-                            <div class="form-group">
-                                <label for="number"><?php echo e(__('Number')); ?></label>
-                                <input type="text" id="number" name="number" class="form-control" readonly value="<?php echo e(old('number', $worksheet->number)); ?>" moco-validation />
-                            </div>
+                        <!-- Number -->
+                        <div class="form-group">
+                            <label for="number"><?php echo e(__('Number')); ?></label>
+                            <input type="text" id="number" name="number" class="form-control mt-2" readonly value="<?php echo e(old('number', $worksheet->number)); ?>" moco-validation/>
+                        </div>
+                        </div>
+                        <div class="col-2">
+                        <!-- Warranty -->
+                        <div class="form-group">
+                            <label for="warranty"><?php echo e(__('Warranty')); ?></label>
+                            <select id="warranty" name="warranty" class="selectpicker form-control" data-width="fit" moco-validation>
+                                <option value="1"
+                                        <?php if(old('enabled',$worksheet->warranty) == 1): ?> selected <?php endif; ?>><?php echo e(__('Yes')); ?></option>
+                                <option value="0"
+                                        <?php if(old('enabled',$worksheet->warranty) == 0): ?> selected <?php endif; ?>><?php echo e(__('No')); ?></option>
+                            </select>
+                            <div class="moco-error-small danger-darker-hover" id="warrantyError"></div>
+                        </div>
                         </div>
                     </div>
 

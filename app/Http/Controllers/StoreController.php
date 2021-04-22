@@ -67,6 +67,7 @@ class StoreController extends Controller
         $catalog->year = Carbon::now()->year;
         return view('store.store-part-form',
         [
+            'title' => trans('Add a part'),
             '_providers' => $this->_providers,
             'store' => $store,
             'catalog' => $catalog,
@@ -77,15 +78,17 @@ class StoreController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
+     * @param $cat_id
      * @return \Illuminate\Contracts\View\View
      */
-    public function edit($id, $cat_id)
+    public function edit(int $id, $cat_id)
     {
         $store = Store::find($id);
         $catalog = Catalog::find($cat_id);
         return view('store.store-part-form',
             [
+                'title' => trans('Edit a part'),
                 'store' => $store,
                 'catalog' => $catalog,
                 '_providers' => $this->_providers,
