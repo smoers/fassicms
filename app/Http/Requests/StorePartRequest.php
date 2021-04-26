@@ -31,6 +31,7 @@ namespace App\Http\Requests;
 
 use App\Rules\StorePrice;
 use \Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class StorePartRequest extends FormRequest
 {
@@ -55,16 +56,17 @@ class StorePartRequest extends FormRequest
     public function rules()
     {
         return [
-            'part_number' => 'required|max:100|unique:stores,part_number,'.$this->post('id'),
+            'part_number' => ['required','max:100',Rule::unique('partmetadatas')->ignore($this->id)],
             'description' => 'required|max:255',
-            'qty' => 'required|numeric|min:1',
-            'location' => 'max:10',
+            'qty' => 'sometimes|required|numeric|min:1',
             'price' => array('required','regex:'.$this->regex,new StorePrice()),
             'year' => 'required|numeric|between:2000,2050',
             'provider' => 'required',
             'enabled' => 'required',
-            'bar_code' => 'required|max:255|unique:stores,bar_code,'.$this->post('id'),
-            'reassort_level' => 'numeric|nullable',
+            'bar_code' => ['required','max:255',Rule::unique('partmetadatas')->ignore($this->id)],
+            'reassort_level' => 'numeric|min:1|nullable',
+            'location_id' => 'sometimes|required',
+            'electrical_part' => 'required',
         ];
     }
 
@@ -72,8 +74,8 @@ class StorePartRequest extends FormRequest
     {
         return [
             'required' => trans('The :attribute is required'),
-            'size.max' => trans('The maximum size for :attribute is :max chraracters'),
-            'size.min' => trans('The minimum size for :attribute is :min'),
+            'max' => trans('The maximum size for :attribute is :max chraracters'),
+            'min' => trans('The minimum size for :attribute is :min'),
             'numeric' => trans('The :attribute must be numeric'),
             'unique' => trans('The :attribute is already exist'),
             'regex' => trans('The format of :attribute is not correct'),
@@ -95,6 +97,8 @@ class StorePartRequest extends FormRequest
             'enabled' => trans('Enabled'),
             'bar_code' => trans('Bar Code'),
             'reassort_level' => trans('Reassort Level'),
+            'location_id' => trans('Location'),
+            'electrical_part' => trans('Electrical Part'),
         ];
     }
 

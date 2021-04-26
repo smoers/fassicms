@@ -106,6 +106,7 @@
     "The format of :attribute is not correct": "Het formaat van :attribute is onjuist",
     "The value of :attribute must be between 2000 and 2050": "De waarde van :attribute moet tussen 2000 en 2050 liggen",
     "The minimum value of :attribute must be :min": "De minimumwaarde van :attribute moet zijn :min",
+    "Select a Location": "Selecteer een locatie",
 
     "The part number has been saved": "Het onderdeel is opgeslagen",
     "Stock restocking": "Voorraadaanvulling",

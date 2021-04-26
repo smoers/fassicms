@@ -7,7 +7,7 @@
             <div class="card-body">
                 <form name="part-form" id="part-form" method="post" action="<?php echo e($_action); ?>" moco-validation>
                     <?php echo csrf_field(); ?>
-                    <input type="hidden" id="id" name="id" value="<?php echo e($store->id); ?>">
+                    <input type="hidden" id="id" name="id" value="<?php echo e($partmetadata->id); ?>">
                     <input type="hidden" id="cat_id" name="cat_id" value="<?php echo e($catalog->id); ?>">
 
                     <div class="row">
@@ -16,8 +16,8 @@
                             <div class="form-group">
                                 <label for="part_number"><?php echo e(__('Part Number')); ?></label>
                                 <input type="text" id="part_number" name="part_number" class="form-control"
-                                       <?php if($store->id != null): ?> readonly
-                                       <?php endif; ?> value="<?php echo e(old('part_number', $store->part_number)); ?>" moco-validation>
+                                       <?php if($partmetadata->id != null): ?> readonly
+                                       <?php endif; ?> value="<?php echo e(old('part_number', $partmetadata->part_number)); ?>" moco-validation>
                                 <div class="moco-error-small danger-darker-hover" id="part_numberError"></div>
                             </div>
                         </div>
@@ -26,47 +26,70 @@
                             <div class="form-group">
                                 <label for="part_number"><?php echo e(__('Bar Code')); ?></label>
                                 <input type="text" id="bar_code" name="bar_code" class="form-control"
-                                       value="<?php echo e(old('bar_code', $store->bar_code)); ?>" moco-validation>
+                                       value="<?php echo e(old('bar_code', $partmetadata->bar_code)); ?>" moco-validation>
                                 <div class="moco-error-small danger-darker-hover" id="bar_codeError"></div>
                             </div>
                         </div>
                     </div>
-                    <!-- Description -->
-                    <div class="form-group">
-                        <label for="description"><?php echo e(__('Description')); ?></label>
-                        <input type="text" id="description" name="description" class="form-control"
-                               value="<?php echo e(old('description', $store->description)); ?>" moco-validation />
-                        <div class="moco-error-small danger-darker-hover" id="descriptionError"></div>
+                    <div class="row">
+                        <div class="col-10">
+                            <!-- Description -->
+                            <div class="form-group">
+                                <label for="description"><?php echo e(__('Description')); ?></label>
+                                <input type="text" id="description" name="description" class="form-control"
+                                       value="<?php echo e(old('description', $partmetadata->description)); ?>" moco-validation />
+                                <div class="moco-error-small danger-darker-hover" id="descriptionError"></div>
+                            </div>
+                        </div>
+                        <div class="col-2">
+                            <!-- Electrical Part -->
+                            <div class="d-flex flex-column">
+                                <div><?php echo e(__('Electrical Part')); ?></div>
+                                <div>
+                                <select id="electrical_part" name="electrical_part" class="selectpicker form-control" data-width="fit" title="<?php echo e(__('Electrical')); ?>" moco-validation>
+                                    <option value="1" <?php if(old('electrical_part',$partmetadata->electrical_part) == 1): ?> selected <?php endif; ?>><?php echo e(__('Yes')); ?></option>
+                                    <option value="0" <?php if(old('electrical_part',$partmetadata->electrical_part) == 0): ?> selected <?php endif; ?>><?php echo e(__('No')); ?></option>
+                                </select>
+                                <div class="moco-error-small danger-darker-hover" id="electrical_partError"></div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
+
                     <!-- Sur une ligne-->
                     <div class="row">
                         <!-- Reassort Level -->
                         <div class="col-2">
                             <div class="form-group">
                                 <label for="reassort_level"><?php echo e(__('Reassort Level')); ?></label>
-                                <input type="number" id="reassort_level" name="reassort_level" class="form-control" value="<?php echo e(old('reassort_level', $catalog->reassort_level)); ?>" moco-validation />
+                                <input type="number" id="reassort_level" name="reassort_level" class="form-control" value="<?php echo e(old('reassort_level', $partmetadata->reassort_level)); ?>" moco-validation />
                                 <div class="moco-error-small danger-darker-hover" id="reassort_levelError"></div>
                             </div>
                         </div>
-                        <!-- Quantity -->
-                        <div class="col-2">
-                            <div class="form-group">
-                                <label for="qty"><?php echo e(__('Quantity')); ?></label>
-                                <input type="number" id="qty" name="qty" class="form-control"
-                                       <?php if($store->id != null): ?> readonly
-                                       <?php endif; ?> value="<?php echo e(old('qty', $store->qty)); ?>" moco-validation />
-                                <div class="moco-error-small danger-darker-hover" id="qtyError"></div>
-                            </div>
-                        </div>
-                        <!-- Location -->
-                        <div class="col-3">
-                            <div class="form-group">
-                                <label for="location"><?php echo e(__('Location')); ?></label>
-                                <input type="text" id="location" name="location" class="form-control"
-                                       value="<?php echo e(old('location', $store->location)); ?>" moco-validation/>
-                                <div class="moco-error-small danger-darker-hover" id="locationError"></div>
-                            </div>
-                        </div>
+                        <?php if($partmetadata->id == null): ?>
+                            <!-- Quantity -->
+                                <div class="col-2">
+                                    <div class="form-group">
+                                        <label for="qty"><?php echo e(__('Quantity')); ?></label>
+                                        <input type="number" id="qty" name="qty" class="form-control" value="<?php echo e(old('qty', $store->qty)); ?>" moco-validation/>
+                                        <div class="moco-error-small danger-darker-hover" id="qtyError"></div>
+                                    </div>
+                                </div>
+                                <!-- Location -->
+                                <div class="col-4">
+                                    <div class="d-flex flex-column">
+                                        <div><?php echo e(__('Location')); ?></div>
+                                        <div>
+                                            <select id="location_id" name="location_id" class="selectpicker form-control" data-width="fit" title="<?php echo e(__('Select a Location')); ?>" moco-validation>
+                                                <?php $__currentLoopData = App\Models\Location::all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $location): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                    <option value="<?php echo e($location->id); ?>" <?php if(old('location_id',$store->location_id) == $location->id): ?> selected <?php endif; ?>><?php echo e(__($location->location)." : ".__($location->description)); ?></option>
+                                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                            </select>
+                                            <div class="moco-error-small danger-darker-hover" id="location_idError"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                        <?php endif; ?>
                         <!-- Price -->
                         <div class="col-2">
                             <div class="form-group">
@@ -91,17 +114,14 @@
                             <!-- Provider -->
                             <div class="form-group">
                                 <label for="provider"><?php echo e(__('Provider')); ?></label>
-                                <?php if($store->id != null): ?>
+                                <?php if($partmetadata->id != null): ?>
                                     <input type="text" id="provider" name="provider" class="form-control mt-2"
                                            value="<?php echo e(\App\Models\Provider::find($catalog->provider_id)->name); ?>"
                                            readonly="readonly" moco-validation />
                                 <?php else: ?>
-                                    <select id="provider" name="provider" class="selectpicker form-control"
-                                            <?php if($store->id != null): ?> disabled <?php endif; ?> data-live-search="true"
-                                            title="<?php echo e(__('Select a provider')); ?>" moco-validation>
+                                    <select id="provider" name="provider" class="selectpicker form-control" <?php if($partmetadata->id != null): ?> disabled <?php endif; ?> data-live-search="true" title="<?php echo e(__('Select a provider')); ?>" moco-validation>
                                         <?php $__currentLoopData = $_providers; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $_provider): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                            <option value="<?php echo e($_provider->id); ?>"
-                                                    <?php if($_provider->id == old('provider', $catalog->provider_id)): ?> selected <?php endif; ?>><?php echo e($_provider->name); ?></option>
+                                            <option value="<?php echo e($_provider->id); ?>" <?php if($_provider->id == old('provider', $catalog->provider_id)): ?> selected <?php endif; ?>><?php echo e($_provider->name); ?></option>
                                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                     </select>
                                 <?php endif; ?>
@@ -116,20 +136,20 @@
                                 <label for="enabled"><?php echo e(__('Enabled')); ?></label>
                                 <select id="enabled" name="enabled" class="selectpicker form-control" data-width="fit" moco-validation>
                                     <option value="1"
-                                            <?php if(old('enabled',$store->enabled) == 1): ?> selected <?php endif; ?>><?php echo e(__('Yes')); ?></option>
+                                            <?php if(old('enabled',$partmetadata->enabled) == 1): ?> selected <?php endif; ?>><?php echo e(__('Yes')); ?></option>
                                     <option value="0"
-                                            <?php if(old('enabled',$store->enabled) == 0): ?> selected <?php endif; ?>><?php echo e(__('No')); ?></option>
+                                            <?php if(old('enabled',$partmetadata->enabled) == 0): ?> selected <?php endif; ?>><?php echo e(__('No')); ?></option>
                                 </select>
                                 <div class="moco-error-small danger-darker-hover" id="enabledError"></div>
                             </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-2">
+                    <div class="d-flex justify-content-between">
+                        <div>
                             <button type="submit" class="btn btn-primary"><?php echo e(__('Save')); ?></button>
                         </div>
-                        <div class="col-10">
-                            <a href="<?php echo e(route('dashboard')); ?>" class="btn btn-primary"><?php echo e(__('Cancel')); ?></a>
+                        <div>
+                            <a href="<?php echo e(route('store.index')); ?>" class="btn btn-primary"><?php echo e(__('Cancel')); ?></a>
                         </div>
                     </div>
                 </form>

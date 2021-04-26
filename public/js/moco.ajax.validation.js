@@ -40,7 +40,6 @@ var loadValue = function(objectFields, index){
  * @param url
  */
 var mocoAjaxValidation = function (selector,value,url) {
-    console.log(value);
     $.ajax({
         url: url,
         type:"POST",

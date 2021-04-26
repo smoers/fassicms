@@ -33,20 +33,33 @@ class Store extends Model
     use HasFactory;
 
     protected $fillable = [
-        'part_number',
-        'description',
         'qty',
         'location',
-        'enabled',
-        'bar_code',
     ];
 
     /**
-     * Retourne les objets Catalog pour cet objet Store
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * Retourne l'objet Partmetadata lié à l'objet Store
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function catalogs(){
-        return $this->hasMany(Catalog::class);
+    public function partmetadata()
+    {
+        return $this->belongsTo(Partmetadata::class);
+    }
+
+    public function location()
+    {
+        return $this->belongsTo(Location::class);
+    }
+
+    /**
+     * Retourne l'objet User lié à l'objet Store
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 
     /**

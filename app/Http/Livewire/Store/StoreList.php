@@ -27,6 +27,8 @@
 namespace App\Http\Livewire\Store;
 
 
+use App\Models\Catalog;
+use App\Models\Partmetadata;
 use App\Models\Store;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
@@ -75,11 +77,11 @@ class StoreList extends TableComponent
      */
     public function query(): Builder
     {
-        return Store::with('catalogs')
-            ->select('stores.*','catalogs.id as cat_id','catalogs.price','catalogs.year')
-            ->leftJoin('catalogs','stores.id','=','catalogs.store_id')
+        return Partmetadata::with('catalogs')
+            ->select('partmetadatas.*','catalogs.id as cat_id','catalogs.price','catalogs.year')
+            ->leftJoin('catalogs','partmetadatas.id','=','catalogs.partmetadata_id')
             ->where('catalogs.year','=',$this->year)
-            ->where('stores.enabled','=', $this->enabled);
+            ->where('partmetadatas.enabled','=', $this->enabled);
     }
 
     /**
@@ -95,17 +97,13 @@ class StoreList extends TableComponent
             Column::make(trans('Description'),'description')
                 ->searchable()
                 ->sortable(),
-            Column::make(trans('Quantity'), 'qty')
-                ->format(function (Store $model){
-                    return $this->html('<div class="text-right w-100 ">'.$model->qty.'</div>');
-                }),
             Column::make(trans('Price')." $this->year",'price')
-                ->format(function (Store $model){
+                ->format(function (Partmetadata $model){
                     return $this->html('<div class="text-right w-100 ">'.number_format($model->price,2,',','.').'</div>');
                 }),
             Column::make(trans('Actions'))
-                ->format(function (Store $model){
-                    return view('menus.store-list-sub',['store' => $model]);
+                ->format(function (Partmetadata $model){
+                    return view('menus.store-list-sub',['partmetadata' => $model]);
                 }),
 
         ];
@@ -128,8 +126,16 @@ class StoreList extends TableComponent
     public function setTableHeadClass($attribute): ?string
     {
         $extend = ' ';
-        if($attribute == 'actions'){
-            $extend .=  'moco-size-column-table-400';
+        switch ($attribute) {
+            case 'actions':
+                $extend .=  'moco-size-column-table-400';
+                break;
+            case 'part_number':
+                $extend .= 'moco-size-column-table-200';
+                break;
+            case 'price':
+                $extend .= 'moco-size-column-table-100';
+                break;
         }
         return 'moco-title-table'.$extend;
     }

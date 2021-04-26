@@ -22,6 +22,7 @@
 
 namespace App\Http\Livewire\Reassort;
 
+use App\Models\Partmetadata;
 use App\Models\Store;
 use Illuminate\Database\Eloquent\Builder;
 use Rappasoft\LaravelLivewireTables\TableComponent;
@@ -40,7 +41,12 @@ class ReassortListParts extends TableComponent
     {
         $this->perPage = config('moco.table.perPage');
         $this->perPageOptions = config('moco.table.perPageOptions');
+        $this->rowClass =  config('moco.table.rowClass');
         $this->loadingIndicator =true;
+        $this->sortField = 'part_number';
+        $this->sortDefaultIcon = '<i class="fas fa-sort-alpha-down"></i>';
+        $this->ascSortIcon = '<i class="fas fa-sort-alpha-up"></i>';
+        $this->descSortIcon = '<i class="fas fa-sort-alpha-down"></i>';
         parent::__construct($id);
     }
 
@@ -49,7 +55,11 @@ class ReassortListParts extends TableComponent
      */
     public function query(): Builder
     {
-        return Store::where('enabled','=',true);
+        return Partmetadata::with('stores')
+            ->select('partmetadatas.*','stores.id as store_id','stores.qty as qty','locations.id as loc_id','locations.location as location')
+            ->leftJoin('stores','partmetadatas.id','=','stores.partmetadata_id')
+            ->leftJoin('locations','locations.id','=','stores.location_id')
+            ->where('partmetadatas.enabled','=',true);
     }
 
     /**
@@ -65,15 +75,46 @@ class ReassortListParts extends TableComponent
                 ->searchable()
                 ->sortable(),
             Column::make(trans('Quantity'), 'qty')
-                ->format(function (Store $model){
+                ->format(function (Partmetadata $model){
                     return $this->html('<div class="text-right w-100 ">'.$model->qty.'</div>');
                 }),
             Column::make(trans('Location'), 'location'),
             Column::make(trans('Actions'))
-                ->format(function (Store $model){
-                    return view('menus.store-list-sub',['store' => $model]);
+                ->format(function (Partmetadata $model){
+                    return view('menus.store-list-sub',['partmetadata' => $model]);
                 }),
             ];
+    }
+
+    /**
+     * @param $attribute
+     * @return string|null
+     */
+    public function setTableHeadClass($attribute): ?string
+    {
+        $extend = ' ';
+        switch ($attribute) {
+            case 'actions':
+                $extend .=  'moco-size-column-table-400';
+                break;
+            case 'part_number':
+                $extend .= 'moco-size-column-table-150';
+                break;
+            case 'qty':
+                $extend .= 'moco-size-column-table-100';
+                break;
+        }
+        return 'moco-title-table'.$extend;
+    }
+
+    /**
+     * @param $attribute
+     * @param $value
+     * @return string|null
+     */
+    public function setTableDataClass($attribute, $value): ?string
+    {
+        return $this->rowClass;
     }
 
 }

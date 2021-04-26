@@ -106,6 +106,7 @@
     "The format of :attribute is not correct": "Le format de :attribute est incorrect",
     "The value of :attribute must be between 2000 and 2050": "La valeur de :attribute doit être entre 2000 et 2050",
     "The minimum value of Price must be ": "La valeur minimum du Prix doit être de ",
+    "Select a Location": "Sélectionner un emplacement",
 
     "The part number has been saved": "La pièce a été sauvée",
     "Stock restocking": "Réapprovisionnement des stocks",

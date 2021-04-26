@@ -22,11 +22,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PartmetadataUpdateRequest;
 use App\Http\Requests\StorePartRequest;
 use App\Moco\Common\MocoAjaxValidation;
 use App\Moco\Printer\MocoSticker;
 use App\Moco\Printer\MocoStickerModel;
 use App\Models\Catalog;
+use App\Models\Location;
+use App\Models\Partmetadata;
 use App\Models\Provider;
 use App\Models\Reason;
 use App\Models\Reassortement;
@@ -34,7 +37,9 @@ use App\Models\Store;
 use App\Models\Worksheet;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 
 /**
@@ -55,20 +60,33 @@ class StoreController extends Controller
     }
 
     /**
+     * Display a listing of the resource.
+     *
+     * @param Request $request
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
+     */
+    public function index(Request $request)
+    {
+        return view('store.store-list-main');
+    }
+
+    /**
      * Affiche le formulaire pour introduire une nouvelle pièce
      *
      * @return \Illuminate\Contracts\View\View
      */
     public function create()
     {
-        $store = new Store();
+        $partmetadata = new Partmetadata();
         $catalog = new Catalog();
-        $store->enabled = 1;
+        $store = new Store();
+        $partmetadata->enabled = 1;
         $catalog->year = Carbon::now()->year;
         return view('store.store-part-form',
         [
             'title' => trans('Add a part'),
             '_providers' => $this->_providers,
+            'partmetadata' => $partmetadata,
             'store' => $store,
             'catalog' => $catalog,
             '_action' => route('store.store'),
@@ -84,12 +102,12 @@ class StoreController extends Controller
      */
     public function edit(int $id, $cat_id)
     {
-        $store = Store::find($id);
+        $partmetadata = Partmetadata::find($id);
         $catalog = Catalog::find($cat_id);
         return view('store.store-part-form',
             [
                 'title' => trans('Edit a part'),
-                'store' => $store,
+                'partmetadata' => $partmetadata,
                 'catalog' => $catalog,
                 '_providers' => $this->_providers,
                 '_action' => route('store.update'),
@@ -106,74 +124,120 @@ class StoreController extends Controller
 
     /**
      * Sauvegarde un nouvel enregistrement d'une pièce
-     * @param Request $request
+     *
+     * @param StorePartRequest $request
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(StorePartRequest  $request){
+    public function store(StorePartRequest $request){
 
-        //Validation
+        /**
+         * Validation
+         */
         $validatedData = $request->validated();
-        //recherche l'objet Provider
+        /**
+         * recherche l'objet Provider
+         */
         $provider = Provider::find($validatedData['provider']);
-        //recherche l'objet reason
+        /**
+         * recherche l'objet reason
+         */
         $reason = Reason::find($this->newId);
-        //hydrate les objets
+        /**
+         * Recherche l'objet Location
+         */
+        $location = Location::find($validatedData['location_id']);
+        /**
+         * hydrate l'objet Partmetadata
+         */
+        $partmetadata = new Partmetadata();
+        $partmetadata->fill((array)$validatedData);
+        $partmetadata->user()->associate(Auth::user());
+        /**
+         * Hydrate l'objet Store
+         */
         $store = new Store();
         $store->fill((array)$validatedData);
-        $store->save();
+        $store->user()->associate(Auth::user());
+        $store->location()->associate($location);
+        /**
+         * Hydrate l'objet Catalog
+         */
         $catalog = new Catalog();
         $catalog->fill((array) $validatedData);
-        $reassort = new Reassortement(); //crée le réassortiment initial
+        $catalog->user()->associate(Auth::user());
+        $catalog->provider()->associate($provider);
+        /**
+         * crée le réassortiment initial
+         */
+        $reassort = new Reassortement();
         $reassort->qty_add = $store->qty;
         $reassort->qty_before = 0;
-        //relationship
-        $catalog->store()->associate($store);
-        $catalog->provider()->associate($provider);
-        $reassort->store()->associate($store);
         $reassort->user()->associate(Auth::user());
         $reassort->reason()->associate($reason);
-        $catalog->save();
-        $reassort->save();
-        return redirect('store')->with('success','The part number has been saved');
+        /**
+         * Sauvegarde des objets
+         */
+        DB::transaction(function () use ($partmetadata, $store, $catalog, $reassort){
+            $partmetadata->save();
+            $store->partmetadata()->associate($partmetadata)->save();
+            $catalog->partmetadata()->associate($partmetadata)->save();
+            $reassort->store()->associate($store)->save();
+        });
+
+        /**
+         * Redirection
+         */
+        return redirect()->route('store.index')->with('success','The part number has been saved');
     }
 
     /**
+     * Sauvegarde des données suite à une mise à jour
+     *
      * @param StorePartRequest $request
-     * @return \Illuminate\Routing\Redirector
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(StorePartRequest $request)
     {
-        //charge les objet existants
-        $store = Store::find($request->post('id'));
+        /**
+         * charge les objet existants
+         */
+        $partmetadata = Partmetadata::find($request->post('id'));
         $catalog = Catalog::find($request->post('cat_id'));
-        //les valeurs validées
+        /**
+         * les valeurs validées
+         */
         $validatedData = $request->validated();
-        //mets à jour les objets
-        $store->fill((array) $validatedData);
+        /**
+         * mets à jour les objets
+         */
+        $partmetadata->fill((array) $validatedData);
         $catalog->fill((array) $validatedData);
-        //sauvergarde
-        $store->save();
-        $catalog->save();
-        return redirect('store')->with('success','The part number has been saved');
+        /**
+         * sauvergarde
+         */
+        DB::transaction(function () use ($partmetadata, $catalog){
+            $partmetadata->save();
+            $catalog->save();
+        });
+        /**
+         * redirection
+         */
+        return redirect()->route('store.index')->with('success','The part number has been saved');
     }
 
     /**
-     * Display a listing of the resource.
+     * Imprime un sticker avec le code bar
      *
-     * @return \Illuminate\Http\Response
+     * @param $id
      */
-    public function index(Request $request)
-    {
-        return view('store.store-list-main');
-    }
-
     public function barcodeSticker($id)
     {
-        $store = Store::find($id);
+        $partmetadata = Partmetadata::find($id);
         $mocoStickerModel = new MocoStickerModel(config('sticker.brother'));
         $mocoSticker = new MocoSticker($mocoStickerModel);
         $mocoSticker->setStickerHeader('Fassi Belgium');
-        $mocoSticker->setStickerPartNumber($store->part_number);
-        $mocoSticker->setStickerBarCode($store->bar_code);
+        $mocoSticker->setStickerPartNumber($partmetadata->part_number);
+        $mocoSticker->setStickerBarCode($partmetadata->bar_code);
         $mocoSticker->generate();
         $mocoSticker->Output('test.pdf');
 

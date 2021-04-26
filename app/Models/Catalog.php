@@ -30,14 +30,26 @@ class Catalog extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['price','year','reassort_level'];
+    protected $fillable = ['price','year'];
 
     /**
-     * Retourne l'objet Store lié à l'objet Catalog
+     * Retourne l'objet Partmetadata lié à l'objet Catalog
+     *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function store(){
-        return $this->belongsTo(Store::class);
+    public function partmetadata()
+    {
+        return $this->belongsTo(Partmetadata::class);
+    }
+
+    /**
+     * Retourne l'objet User lié à l'objet Catalog
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 
     /**
