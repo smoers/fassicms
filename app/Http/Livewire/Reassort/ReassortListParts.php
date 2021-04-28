@@ -33,6 +33,9 @@ class ReassortListParts extends TableComponent
 {
     use HtmlComponents;
 
+    public $locationId = null;
+    protected $listeners = ['headerChange'];
+
     /**
      * ReassortListParts constructor.
      * @param null $id
@@ -51,6 +54,15 @@ class ReassortListParts extends TableComponent
     }
 
     /**
+     * Charger lors de la création de l'objet
+     *
+     */
+    public function mount()
+    {
+        $this->locationId = config('moco.reassort.defaultLocation');
+    }
+
+    /**
      * @return Builder
      */
     public function query(): Builder
@@ -59,7 +71,8 @@ class ReassortListParts extends TableComponent
             ->select('partmetadatas.*','stores.id as store_id','stores.qty as qty','locations.id as loc_id','locations.location as location')
             ->leftJoin('stores','partmetadatas.id','=','stores.partmetadata_id')
             ->leftJoin('locations','locations.id','=','stores.location_id')
-            ->where('partmetadatas.enabled','=',true);
+            ->where('partmetadatas.enabled','=',true)
+            ->where('locations.id','=', $this->locationId);
     }
 
     /**
@@ -115,6 +128,16 @@ class ReassortListParts extends TableComponent
     public function setTableDataClass($attribute, $value): ?string
     {
         return $this->rowClass;
+    }
+
+    /**
+     * Event déclenché par un changement dans l'entête
+     *
+     * @param $locationId
+     */
+    public function headerChange($locationId)
+    {
+        $this->locationId = $locationId;
     }
 
 }

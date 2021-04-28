@@ -25,6 +25,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ReassortRequest;
 use App\Moco\Common\MocoAjaxValidation;
 use App\Models\Part;
+use App\Models\Partmetadata;
 use App\Models\Reason;
 use App\Models\Reassortement;
 use App\Models\Worksheet;
@@ -72,10 +73,12 @@ class ReassortController extends Controller
     public function edit($id)
     {
         $store = Store::find($id);
+        $partmetadata = $store->partmetadata()->first();
         $reasons = Reason::where('option','=',$this->reason_filtering['reassort'])->orWhere('option','=',$this->reason_filtering['all'])->orderBy('reason')->get();
         return view('reassort.reassort-part-form',[
             '_store' => $store,
-            '_reasons' => $reasons
+            '_reasons' => $reasons,
+            '_partmetadata' => $partmetadata,
         ]);
     }
 
@@ -93,7 +96,7 @@ class ReassortController extends Controller
         //Récupérer L'objet
         $reason = Reason::find($validatedData['reason']);
         /**
-         * si la raison est une sortie sur worksheet
+         * si la raison est un retour sur worksheet
          * il faut créer un objet part
          */
         $part = null;
@@ -115,9 +118,9 @@ class ReassortController extends Controller
              * Hydrate l'objet Part
              */
             $part = new Part();
-            $part->part_number = $store->part_number;
-            $part->bar_code = $store->bar_code;
-            $part->description = $store->description;
+            $part->part_number = $store->partmetadata()->first()->part_number;
+            $part->bar_code = $store->partmetadata()->first()->bar_code;
+            $part->description = $store->partmetadata()->first()->description;
             $part->qty = $validatedData['qty_add'];
             $part->price = $price;
             $part->year = Carbon::now()->year;

@@ -13,13 +13,26 @@
                     <!-- Part Number-->
                     <div class="form-group">
                         <label for="part_number">{{ __('Part Number') }}</label>
-                        <input type="text" id="part_number" name="part_number" class="form-control" readonly value="{{ old('part_number', $_store->part_number) }}" moco-validation />
+                        <input type="text" id="part_number" name="part_number" class="form-control" readonly value="{{ old('part_number', $_partmetadata->part_number) }}" moco-validation />
                     </div>
-                    <!-- Description -->
-                    <div class="form-group">
-                        <label for="description">{{ __('Description')  }}</label>
-                        <input type="text" id="description" name="description" class="form-control" readonly value="{{old('description', $_store->description)}}" moco-validation />
+                    <!-- Sur une ligne-->
+                    <div class="row">
+                        <div class="col-8">
+                            <!-- Description -->
+                            <div class="form-group">
+                                <label for="description">{{ __('Description')  }}</label>
+                                <input type="text" id="description" name="description" class="form-control" readonly value="{{old('description', $_partmetadata->description)}}" moco-validation />
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <!-- Location -->
+                            <div class="form-group">
+                                <label for="description">{{ __('Location')  }}</label>
+                                <input type="text" id="location" name="location" class="form-control" readonly value="{{old('location', $_store->location()->first()->location.' : '.$_store->location()->first()->description)}}" moco-validation />
+                            </div>
+                        </div>
                     </div>
+
 
                     <!-- Sur une ligne-->
                     <div class="row">
@@ -68,12 +81,12 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-2">
+                    <div class="d-flex justify-content-between">
+                        <div>
                             <button type="submit" class="btn btn-primary">{{__('Save')}}</button>
                         </div>
-                        <div class="col-10">
-                            <a href="{{ route('dashboard') }}" class="btn btn-primary">{{__('Cancel')}}</a>
+                        <div>
+                            <a href="{{ route('reassort.index') }}" class="btn btn-primary">{{__('Cancel')}}</a>
                         </div>
                     </div>
                 </form>

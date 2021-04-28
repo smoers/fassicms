@@ -6,16 +6,31 @@
         </div>
         <?php
 if (! isset($_instance)) {
-    $html = \Livewire\Livewire::mount('reassort.reassort-list-parts', [])->html();
-} elseif ($_instance->childHasBeenRendered('Sf8Gl3R')) {
-    $componentId = $_instance->getRenderedChildComponentId('Sf8Gl3R');
-    $componentTag = $_instance->getRenderedChildComponentTagName('Sf8Gl3R');
+    $html = \Livewire\Livewire::mount('reassort.reassort-list-head', [])->html();
+} elseif ($_instance->childHasBeenRendered('T0DzZc9')) {
+    $componentId = $_instance->getRenderedChildComponentId('T0DzZc9');
+    $componentTag = $_instance->getRenderedChildComponentTagName('T0DzZc9');
     $html = \Livewire\Livewire::dummyMount($componentId, $componentTag);
-    $_instance->preserveRenderedChild('Sf8Gl3R');
+    $_instance->preserveRenderedChild('T0DzZc9');
+} else {
+    $response = \Livewire\Livewire::mount('reassort.reassort-list-head', []);
+    $html = $response->html();
+    $_instance->logRenderedChild('T0DzZc9', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
+}
+echo $html;
+?>
+        <?php
+if (! isset($_instance)) {
+    $html = \Livewire\Livewire::mount('reassort.reassort-list-parts', [])->html();
+} elseif ($_instance->childHasBeenRendered('sszhs34')) {
+    $componentId = $_instance->getRenderedChildComponentId('sszhs34');
+    $componentTag = $_instance->getRenderedChildComponentTagName('sszhs34');
+    $html = \Livewire\Livewire::dummyMount($componentId, $componentTag);
+    $_instance->preserveRenderedChild('sszhs34');
 } else {
     $response = \Livewire\Livewire::mount('reassort.reassort-list-parts', []);
     $html = $response->html();
-    $_instance->logRenderedChild('Sf8Gl3R', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
+    $_instance->logRenderedChild('sszhs34', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
 }
 echo $html;
 ?>

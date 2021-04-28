@@ -71,6 +71,16 @@ return [
     ],
 
     /**
+     * Réassortiment et sortie de stock
+     */
+    'reassort' => [
+        /**
+         * Valeur par défaut de l'emplacement dans l'entête de la liste des pièces en stock
+         */
+        'defaultLocation' => 2,
+    ],
+
+    /**
      * Worksheet
      */
     'worksheet' => [

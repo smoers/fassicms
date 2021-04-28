@@ -11,13 +11,26 @@
                     <!-- Part Number-->
                     <div class="form-group">
                         <label for="part_number"><?php echo e(__('Part Number')); ?></label>
-                        <input type="text" id="part_number" name="part_number" class="form-control" readonly value="<?php echo e(old('part_number', $_store->part_number)); ?>" moco-validation />
+                        <input type="text" id="part_number" name="part_number" class="form-control" readonly value="<?php echo e(old('part_number', $_partmetadata->part_number)); ?>" moco-validation />
                     </div>
-                    <!-- Description -->
-                    <div class="form-group">
-                        <label for="description"><?php echo e(__('Description')); ?></label>
-                        <input type="text" id="description" name="description" class="form-control" readonly value="<?php echo e(old('description', $_store->description)); ?>" moco-validation />
+                    <!-- Sur une ligne-->
+                    <div class="row">
+                        <div class="col-8">
+                            <!-- Description -->
+                            <div class="form-group">
+                                <label for="description"><?php echo e(__('Description')); ?></label>
+                                <input type="text" id="description" name="description" class="form-control" readonly value="<?php echo e(old('description', $_partmetadata->description)); ?>" moco-validation />
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <!-- Location -->
+                            <div class="form-group">
+                                <label for="description"><?php echo e(__('Location')); ?></label>
+                                <input type="text" id="location" name="location" class="form-control" readonly value="<?php echo e(old('location', $_store->location()->first()->location.' : '.$_store->location()->first()->description)); ?>" moco-validation />
+                            </div>
+                        </div>
                     </div>
+
 
                     <!-- Sur une ligne-->
                     <div class="row">
@@ -66,12 +79,12 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-2">
+                    <div class="d-flex justify-content-between">
+                        <div>
                             <button type="submit" class="btn btn-primary"><?php echo e(__('Save')); ?></button>
                         </div>
-                        <div class="col-10">
-                            <a href="<?php echo e(route('dashboard')); ?>" class="btn btn-primary"><?php echo e(__('Cancel')); ?></a>
+                        <div>
+                            <a href="<?php echo e(route('reassort.index')); ?>" class="btn btn-primary"><?php echo e(__('Cancel')); ?></a>
                         </div>
                     </div>
                 </form>
