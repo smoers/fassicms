@@ -365,7 +365,7 @@ class WorksheetController extends Controller
         $_records = ViewPartsSignedValues::groupBy('worksheet_id','type')
             ->select('worksheet_id','type', DB::raw('sum(total_price_signed) as total'))
             ->where('worksheet_id','=',$id)->get();
-        $_total = array();
+        $_total = ['O' => 0, 'R' => 0];
         foreach ($_records as $_record){
             $_total[$_record->type] = $_record->total;
         }

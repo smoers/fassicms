@@ -80,6 +80,7 @@ Route::group(['middleware' => ['role_or_permission:admin','auth']],function (){
     Route::get('/out/{id}/edit',[OutController::class,'edit'])->name('out.edit');
     Route::post('/out/update',[OutController::class,'update'])->name('out.update');
     Route::post('/out/ajaxvalidation',[OutController::class,'ajaxValidation'])->name('out.ajaxvalidation');
+    Route::post('/out/ajaxoutcheck',[OutController::class,'ajaxOutCheck'])->name('out.ajaxoutcheck');
 
     /**
      * Customer Controller

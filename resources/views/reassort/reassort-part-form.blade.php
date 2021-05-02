@@ -32,8 +32,6 @@
                             </div>
                         </div>
                     </div>
-
-
                     <!-- Sur une ligne-->
                     <div class="row">
                         <!-- qty-before -->
@@ -62,22 +60,36 @@
                     <div class="row">
                         <div class="col-6">
                             <!-- Reason -->
-                            <div class="form-group">
-                                <label for="reason">{{__('Reason')}}</label>
-                                <select id="reason" name="reason" class="selectpicker form-control" data-live-search="true" title="{{__('Select a reason')}}" moco-validation>
-                                    @foreach($_reasons as $_reason)
-                                        <option value="{{$_reason->id}}" @if($_reason->id == old('reason')) selected @endif>{{__($_reason->reason)}}</option>
-                                    @endforeach
-                                </select>
-                                <div class="moco-error-small danger-darker-hover" id="reasonError"></div>
+                            <div class="d-flex flex-column">
+                                <div>{{__('Reason')}}</div>
+                                <div>
+                                    <select id="reason" name="reason" class="selectpicker form-control" data-live-search="true" title="{{__('Select a reason')}}" moco-validation>
+                                        @foreach($_reasons as $_reason)
+                                            <option value="{{$_reason->id}}" @if($_reason->id == old('reason')) selected @endif>{{__($_reason->reason)}}</option>
+                                        @endforeach
+                                    </select>
+                                    <div class="moco-error-small danger-darker-hover" id="reasonError"></div>
+                                </div>
                             </div>
                         </div>
                         <div class="col-6">
                             <!-- Note -->
-                            <div class="form-group">
+                            <div class="form-group note_area">
                                 <label for="note">{{ __('Note')  }}</label>
-                                <input type="text" id="note" name="note" class="form-control mt-2" value="{{old('note')}}" moco-validation />
+                                <input type="text" id="note" name="note" class="form-control" value="{{old('note')}}" moco-validation />
                                 <div class="moco-error-small danger-darker-hover" id="noteError"></div>
+                            </div>
+                            <!-- Location -->
+                            <div class="d-flex flex-column location_area">
+                                <div class="location_area">{{ __('Location from')  }}</div>
+                                <div class="location_area">
+                                    <select id="location_id" name="location_id" disabled class="selectpicker form-control" data-width="fit" title="{{__('Select a Location')}}" moco-validation>
+                                        @foreach(App\Models\Location::all() as $location)
+                                            <option value="{{$location->id}}" @if(old('location_id',$_store->location_id) == $location->id) selected @endif>{{__($location->location)." : ".__($location->description)}}</option>
+                                        @endforeach
+                                    </select>
+                                    <div class="moco-error-small danger-darker-hover" id="location_idError"></div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -93,9 +105,78 @@
             </div>
         </div>
     </div>
+    <!-- Modal message-->
+    <div class="modal" id="modal_msg" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="container-fluid">
+                        <div class="d-flex justify-content-sm-center">
+                            <p class="moco-color-info h4"> {{__('Error message')}}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-body">
+                    <div class="d-flex flex-row justify-content-md-start">
+                        <div class="mr-3"><i class="fa fa-exclamation-triangle fa-3x" style="color: red !important;"></i></div>
+                        <div id="_msg" class="moco-color-error"></div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div class="container-fluid">
+                        <div class="d-flex justify-content-md-end">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">{{__('Cancel')}}</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <script type="text/javascript" src="{{ asset('js/moco.ajax.validation.js') }}"></script>
     <script type="text/javascript">
         $(function () {
+            /** Ajax set up **/
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                type: "POST",
+                dataType: "json",
+                async: true,
+            });
+            /** url pour les requêtes Ajax **/
+            var _url_ajax_reassort = '{{route('clocking.ajaxworksheetcheck')}}'
+            /** Cache le champ location **/
+            $('.location_area').hide();
+            /** on retire de la liste l'emplacement actuel **/
+            $('#location_id').find('[value={{$_store->location()->first()->id}}]').remove();
+            /** event sur le changement de raison **/
+            $('#reason').on('changed.bs.select', function (e, clickedIndex, isSelected, previousValue){
+                if($('#reason').val() == {{$_move_from}}){
+                    /** affiche le combo avec les emplacements **/
+                    $('.note_area').hide();
+                    $('.location_area').show();
+                    $('#location_id').prop('disabled', false);
+                    $('#location_id').selectpicker('refresh');
+                    /** s'assure que la pièce existe à cette emplacement **/
+                    let data = {
+                        part_number : $('#part_number').val(),
+                        location_id: parseInt($('#location_id').val())
+                    }
+                    request(data, _url_ajax_reassort).then((result) => {
+                        if (result.checked != true){
+                            /**
+                             * affiche le message modal
+                             */
+                            $('#_msg').html(result.msg);
+                            $('#modal_msg').modal('show');
+                        }
+                    });
+                } else {
+                    $('.note_area').show();
+                    $('.location_area').hide();
+                };
+            });
             /** calcule la nouvelle valeur du stock **/
             $('#qty_add').on('keyup', function (event) {
                 add =  $('#qty_add').val();

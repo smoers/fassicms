@@ -79,6 +79,7 @@ class ReassortController extends Controller
             '_store' => $store,
             '_reasons' => $reasons,
             '_partmetadata' => $partmetadata,
+            '_move_from' => config('moco.reassort.moveFrom'),
         ]);
     }
 

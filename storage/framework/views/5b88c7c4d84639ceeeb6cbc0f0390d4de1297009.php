@@ -60,22 +60,36 @@
                     <div class="row">
                         <div class="col-6">
                             <!-- Reason -->
-                            <div class="form-group">
-                                <label for="reason"><?php echo e(__('Reason')); ?></label>
-                                <select id="reason" name="reason" class="selectpicker form-control" data-live-search="true" title="<?php echo e(__('Select a reason')); ?>" moco-validation>
-                                    <?php $__currentLoopData = $_reasons; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $_reason): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                        <option value="<?php echo e($_reason->id); ?>" <?php if($_reason->id == old('reason')): ?> selected <?php endif; ?>><?php echo e(__($_reason->reason)); ?></option>
-                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                </select>
-                                <div class="moco-error-small danger-darker-hover" id="reasonError"></div>
+                            <div class="d-flex flex-column">
+                                <div><?php echo e(__('Reason')); ?></div>
+                                <div>
+                                    <select id="reason" name="reason" class="selectpicker form-control" data-live-search="true" title="<?php echo e(__('Select a reason')); ?>" moco-validation>
+                                        <?php $__currentLoopData = $_reasons; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $_reason): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                            <option value="<?php echo e($_reason->id); ?>" <?php if($_reason->id == old('reason')): ?> selected <?php endif; ?>><?php echo e(__($_reason->reason)); ?></option>
+                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                    </select>
+                                    <div class="moco-error-small danger-darker-hover" id="reasonError"></div>
+                                </div>
                             </div>
                         </div>
                         <div class="col-6">
                             <!-- Note -->
-                            <div class="form-group">
+                            <div class="form-group note_area">
                                 <label for="note"><?php echo e(__('Note')); ?></label>
-                                <input type="text" id="note" name="note" class="form-control mt-2" value="<?php echo e(old('note')); ?>" moco-validation />
+                                <input type="text" id="note" name="note" class="form-control" value="<?php echo e(old('note')); ?>" moco-validation />
                                 <div class="moco-error-small danger-darker-hover" id="noteError"></div>
+                            </div>
+                            <!-- Location -->
+                            <div class="d-flex flex-column location_area">
+                                <div class="location_area"><?php echo e(__('Location from')); ?></div>
+                                <div class="location_area">
+                                    <select id="location_id" name="location_id" disabled class="selectpicker form-control" data-width="fit" title="<?php echo e(__('Select a Location')); ?>" moco-validation>
+                                        <?php $__currentLoopData = App\Models\Location::all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $location): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                            <option value="<?php echo e($location->id); ?>" <?php if(old('location_id',$_store->location_id) == $location->id): ?> selected <?php endif; ?>><?php echo e(__($location->location)." : ".__($location->description)); ?></option>
+                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                    </select>
+                                    <div class="moco-error-small danger-darker-hover" id="location_idError"></div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -94,6 +108,21 @@
     <script type="text/javascript" src="<?php echo e(asset('js/moco.ajax.validation.js')); ?>"></script>
     <script type="text/javascript">
         $(function () {
+            /** Cache le champ location **/
+            $('.location_area').hide();
+            $('#location_id').find('[value=<?php echo e($_store->location()->first()->id); ?>]').remove();
+            /** event sur le changement de raison **/
+            $('#reason').on('changed.bs.select', function (e, clickedIndex, isSelected, previousValue){
+                if($('#reason').val() == <?php echo e($_move_from); ?>){
+                    $('.note_area').hide();
+                    $('.location_area').show();
+                    $('#location_id').prop('disabled', false);
+                    $('#location_id').selectpicker('refresh');
+                } else {
+                    $('.note_area').show();
+                    $('.location_area').hide();
+                };
+            });
             /** calcule la nouvelle valeur du stock **/
             $('#qty_add').on('keyup', function (event) {
                 add =  $('#qty_add').val();

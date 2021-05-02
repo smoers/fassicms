@@ -1,18 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9ec171e7-05c7-490b-8f14-40ae5b7978c4" name="Default Changelist" comment="20210422 - v1.1 Scan New Version">
+    <list default="true" id="9ec171e7-05c7-490b-8f14-40ae5b7978c4" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/OutController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/OutController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ReassortController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ReassortController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Livewire/Reassort/ReassortListParts.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Livewire/Reassort/ReassortListParts.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/WorksheetController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/WorksheetController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Requests/OutRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/OutRequest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Partmetadata.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Partmetadata.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Store.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Store.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config/moco.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/moco.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/menus/store-list-sub.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/menus/store-list-sub.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/reassort/reassort-list-main.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/reassort/reassort-list-main.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/out/out-part-form.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/out/out-part-form.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/reassort/reassort-part-form.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/reassort/reassort-part-form.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/avo0a8stzoxXlBEcAapTGw6zy12va2cmBw0B8BKD" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/views/4b9a316458dd62781cf0837c10f9eaac8779e568.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/4b9a316458dd62781cf0837c10f9eaac8779e568.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/kKfqT6eX4036w5QKFe2odgCaPxSOPwm3M5smM084" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/4d5bc0f4f6f704f78f096f8dd2e2b9b62547e2a0.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/4d5bc0f4f6f704f78f096f8dd2e2b9b62547e2a0.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/storage/framework/views/5b88c7c4d84639ceeeb6cbc0f0390d4de1297009.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/5b88c7c4d84639ceeeb6cbc0f0390d4de1297009.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/views/66e5c1a2733047657c380e29e0bc92c6411801b4.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/66e5c1a2733047657c380e29e0bc92c6411801b4.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -785,6 +788,20 @@
       <workItem from="1619631326577" duration="1159000" />
       <workItem from="1619637286346" duration="1789000" />
       <workItem from="1619639094187" duration="1687000" />
+      <workItem from="1619644661637" duration="150000" />
+      <workItem from="1619716873584" duration="1789000" />
+      <workItem from="1619718683894" duration="631000" />
+      <workItem from="1619952547314" duration="1357000" />
+      <workItem from="1619954635743" duration="3462000" />
+      <workItem from="1619958137448" duration="1784000" />
+      <workItem from="1619959947377" duration="1782000" />
+      <workItem from="1619961753712" duration="1784000" />
+      <workItem from="1619963566965" duration="1784000" />
+      <workItem from="1619965379804" duration="1780000" />
+      <workItem from="1619967204990" duration="1784000" />
+      <workItem from="1619969019644" duration="636000" />
+      <workItem from="1619976666461" duration="1782000" />
+      <workItem from="1619978477106" duration="1232000" />
     </task>
     <task id="LOCAL-00001" summary="20201031 - Init">
       <created>1604168127520</created>
@@ -1066,7 +1083,14 @@
       <option name="project" value="LOCAL" />
       <updated>1619126462668</updated>
     </task>
-    <option name="localTasksCounter" value="41" />
+    <task id="LOCAL-00041" summary="20210428 - v2.0 Stores by location">
+      <created>1619644750785</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1619644750785</updated>
+    </task>
+    <option name="localTasksCounter" value="42" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -1075,7 +1099,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="20201128 - v1.0" />
     <MESSAGE value="20201130 - v1.0" />
     <MESSAGE value="20201204 - v1.0" />
     <MESSAGE value="20201205 - v1.0" />
@@ -1100,7 +1123,8 @@
     <MESSAGE value="20210323 - v1.1 Scan New Version" />
     <MESSAGE value="20210411 - v1.1 Scan New Version" />
     <MESSAGE value="20210422 - v1.1 Scan New Version" />
-    <option name="LAST_COMMIT_MESSAGE" value="20210422 - v1.1 Scan New Version" />
+    <MESSAGE value="20210428 - v2.0 Stores by location" />
+    <option name="LAST_COMMIT_MESSAGE" value="20210428 - v2.0 Stores by location" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

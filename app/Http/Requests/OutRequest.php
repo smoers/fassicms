@@ -29,6 +29,7 @@ class OutRequest extends FormRequest
             'qty_pull' => 'required|numeric|integer|min:1|lte:qty_before',
             'reason' => 'required',
             'note' => 'max:255|exclude_unless:reason,'.$worksheetId.'|required|exists:worksheets,number',
+            'location_id' => 'sometimes|required',
         ];
     }
 
@@ -60,7 +61,8 @@ class OutRequest extends FormRequest
         return [
             'qty_pull' => trans('Quantity added'),
             'reason' => trans('Reason'),
-            'note' => trans('note'),
+            'note' => trans('Note'),
+            'location_id' => trans('Destination location'),
         ];
     }
 }

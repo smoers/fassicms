@@ -100,20 +100,6 @@ class Store extends Model
     }
 
     /**
-     * Retourne l'objet Catalog pour une année précisée
-     *
-     * @param int|null $year
-     * @return Catalog
-     */
-    public function getCatalog(int $year = null): ?Catalog
-    {
-        if (is_null($year))
-            $year = Carbon::now()->year;
-        //recherche l'object Catalog pour une année précise
-        return Catalog::where('store_id','=',$this->attributes['id'])->where('year','=',$year)->first();
-    }
-
-    /**
      * Retourne la quantité pour une année précisée
      *
      * @param int|null $year
@@ -121,7 +107,7 @@ class Store extends Model
      */
     public function getPrice(int $year = null)
     {
-        $catalog = $this->getCatalog($year);
+        $catalog = $this->partmetadata()->first()->getCatalog($year);
         return is_null($catalog) ? null : $catalog->price;
     }
 

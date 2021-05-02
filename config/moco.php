@@ -78,6 +78,14 @@ return [
          * Valeur par défaut de l'emplacement dans l'entête de la liste des pièces en stock
          */
         'defaultLocation' => 2,
+        /**
+         * Id de la raison pour un mouvement depuis une autre location
+         */
+        'moveFrom' => 10,
+        /**
+         * Id de la raison pour un mouvement vers une autre location
+         */
+        'moveTo' => 9,
     ],
 
     /**
