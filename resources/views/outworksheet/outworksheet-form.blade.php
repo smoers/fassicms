@@ -9,8 +9,23 @@
             <div class="card-body">
                 <form name="inworksheet-form" id="inworksheet-form" method="post" action="{{route('outworksheet.outtreatment')}}">
                     @csrf
+                    <input type="hidden" id="worksheet_id" name="worksheet_id" value=""/>
+                    <input type="hidden" id="cookie" name="cookie" value="{{$cookie}}"/>
                     <div class="d-flex justify-content-center p-2 bg-light">
-                        <input type="hidden" id="worksheet_id" name="worksheet_id" value=""/>
+
+                        <div class="mr-2 mt-1 moco-color-error">{{__('Location')}} :</div>
+                        <select id="location_id" name="location_id" class="form-control form-control-sm mr-2" autocomplete="off" style="width: auto">
+                            <option></option>
+                            @foreach(App\Models\Location::all() as $location)
+                                <option value="{{$location->id}}" @if($location->id == $cookie) selected @endif>{{$location->location.' : '.$location->description}}</option>
+                            @endforeach
+                        </select>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="auto" @if($cookie != 0) checked @endif>
+                            <label class="custom-control-label mr-2 mt-1 moco-color-error" for="auto">{{__('Auto')}}</label>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-center p-2 bg-light">
                         <div class="mr-2 mt-1 moco-color-error">{{__('Worksheet Number')}} :</div>
                         <input id="number" name="number" class="form-control form-control-sm mr-2" style="width: auto" autocomplete="off" value=""/>
                         <div class="mr-2 mt-1 moco-color-error">{{__('Part Number')}} :</div>
@@ -91,6 +106,7 @@
         $(function (){
             var _url_number = "{{ route('outworksheet.ajaxworksheetcheck') }}";
             var _url_part_number = "{{ route('outworksheet.ajaxpartcheckout') }}";
+            var _init_cookie = $('#cookie').val() == 0 ? false : true;
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -99,14 +115,48 @@
                 dataType: "json",
                 async: true,
             });
-            /**
-             * Focus sur le champ avec le numéro de fiche
-             */
-            $('#number').focus();
+            /** place le status des champs sur base de la valeur du cookie **/
+            if(parseInt($('#cookie').val()) == 0){
+                /** place le champ number en readonly **/
+                $('#number').attr('readonly','readonly');
+                /** focus sur le select **/
+                setFocus();
+            } else {
+                /** place le champ location en readonly **/
+                $('#location_id').attr('readonly','readonly');
+                $('#location_id option:not(:selected)').prop('disabled', true);
+                /** Focus sur le champ avec le numéro de fiche **/
+                setFocus();
+            }
             /**
              * place le champ part number en readonly
              */
             $('#part_number').attr('readonly','readonly');
+            /** Event sur le checkbox Auto**/
+            $('#auto').on('click', function() {
+                if($('#auto').is(':checked')){
+                    /** si on flag the checkbox on mémorise la valeur de l'emplacement **/
+                    $('#cookie').val($('#location_id').val());
+                } else if(!$('#auto').is(':checked') && _init_cookie){
+                    _init_cookie = false;
+                    $('#location_id').removeAttr('readonly');
+                    $('#location_id option:not(:selected)').prop('disabled', false);
+                    /**  on active le champ number  **/
+                    $('#number').attr('readonly','readonly');
+                    setFocus();
+                }
+            });
+            /** event sur le changement de valeur du select **/
+            $('#location_id').on('change', function () {
+                if($(this).val() != ''){
+                    /** si la selection n'est pas null on place le select en readonly **/
+                    $(this).attr('readonly','readonly');
+                    $('#location_id option:not(:selected)').prop('disabled', true);
+                    /**  on active le champ number  **/
+                    $('#number').removeAttr('readonly');
+                    setFocus();
+                };
+            })
             /**
              * Event sur le champ fiche de travail
              */
@@ -216,7 +266,8 @@
                      */
                     let _data = {
                         part_number: part,
-                        qty: qty
+                        qty: qty,
+                        location_id: parseInt($('#location_id').val())
                     };
                     /**
                      * La requète Ajax
@@ -341,9 +392,11 @@
          * Assigne le focus au champ actif
          */
         function setFocus(){
-            if ($('#number').attr("readonly") == null){
+            if($('#location_id').attr("readonly") == null){
+                $('#location_id').focus();
+            } else if ($('#number').attr("readonly") == null){
                 $('#number').focus();
-            } else {
+            } else if($('#part_number').attr("readonly") == null){
                 $('#part_number').focus();
             }
         }

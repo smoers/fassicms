@@ -215,32 +215,36 @@ class Store extends Model
      * Retourne l'objet Store sur base du part number
      *
      * @param string $part_number
+     * @param int $location_id
      * @param bool $enabled
      * @param bool $lockForUpdate
      * @return mixed
      */
-    public static function getStoreByPartNumber(string $part_number, bool $enabled = true, bool $lockForUpdate = false): ?Store
+    public static function getStoreByPartNumber(string $part_number, int $location_id, bool $enabled = true, bool $lockForUpdate = false): ?Store
     {
-        if ($lockForUpdate)
-            return self::where('part_number','=', $part_number)->where('enabled','=',$enabled)->lockForUpdate()->first();
+        $partmetadata = Partmetadata::getPartmetadataByPartNumber($part_number, $enabled);
+        if (!is_null($partmetadata))
+            return $partmetadata->getStoreByLocation($location_id,$lockForUpdate);
         else
-            return self::where('part_number','=', $part_number)->where('enabled','=',$enabled)->first();
+            return null;
     }
 
     /**
      * Retourne l'objet Store sur base du code barre
      *
      * @param string $bar_code
+     * @param int $location_id
      * @param bool $enabled
      * @param bool $lockForUpdate
      * @return mixed
      */
-    public static function getStoreByBarCode(string $bar_code, bool $enabled = true, bool $lockForUpdate = false): ?Store
+    public static function getStoreByBarCode(string $bar_code, int $location_id, bool $enabled = true, bool $lockForUpdate = false): ?Store
     {
-        if ($lockForUpdate)
-            return self::where('bar_code','=', $bar_code)->where('enabled','=',$enabled)->lockForUpdate()->first();
+        $partmetadata = Partmetadata::getPartmetadataByBarCode($bar_code, $enabled);
+        if (!is_null($partmetadata))
+            return $partmetadata->getStoreByLocation($location_id,$lockForUpdate);
         else
-            return self::where('bar_code','=', $bar_code)->where('enabled','=',$enabled)->first() ;
+            return null;
     }
 
 

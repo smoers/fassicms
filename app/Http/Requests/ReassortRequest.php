@@ -22,10 +22,13 @@
 
 namespace App\Http\Requests;
 
+use App\Moco\Common\MocoFormRequestAjaxValidation;
+use App\Rules\StoreSourceQty;
 use Illuminate\Foundation\Http\FormRequest;
 
 class ReassortRequest extends FormRequest
 {
+    use MocoFormRequestAjaxValidation;
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -45,9 +48,10 @@ class ReassortRequest extends FormRequest
     {
         $worksheetId = config('moco.reason.worksheetId');
         return [
-            'qty_add' => 'required|numeric|integer|min:1',
+            'qty_add' => ['required','numeric','integer','min:1', new StoreSourceQty($this->getRequestArray())],
             'reason' => 'required',
             'note' => 'max:255|exclude_unless:reason,'.$worksheetId.'|required|exists:worksheets,number',
+            'location_id' => 'sometimes|required',
         ];
     }
 
@@ -79,6 +83,8 @@ class ReassortRequest extends FormRequest
             'qty_add' => trans('Quantity added'),
             'reason' => trans('Reason'),
             'note' => trans('note'),
+            'location_id' => trans('Source location'),
+            'src_stock' => trans('Source stock')
         ];
     }
 }

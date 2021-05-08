@@ -81,11 +81,49 @@ class Partmetadata extends Model
      * Retourne un objet Store sur base de l'emplacement
      *
      * @param int $location_id
+     * @param bool $lockForUpdate
      * @return Store|null
      */
-    public function getStoreByLocation(int $location_id): ?Store
+    public function getStoreByLocation(int $location_id, bool $lockForUpdate = false): ?Store
     {
-        return $this->stores()->where('location_id','=',$location_id)->first();
+        if($lockForUpdate)
+            return  $this->stores()->where('location_id','=',$location_id)->lockForUpdate()->first();
+        else
+            return $this->stores()->where('location_id','=',$location_id)->first();
     }
+
+    /**
+     * retourne une objet Partmetadata sur base du part number
+     *
+     * @param string $part_number
+     * @param bool $enabled
+     * @param bool $lockForUpdate
+     * @return Partmetadata|null
+     */
+    public static function getPartmetadataByPartNumber(string $part_number, bool $enabled = true, bool $lockForUpdate = false): ?Partmetadata
+    {
+        if ($lockForUpdate)
+            return self::where('part_number','=', $part_number)->where('enabled','=',$enabled)->lockForUpdate()->first();
+        else
+            return self::where('part_number','=', $part_number)->where('enabled','=',$enabled)->first();
+    }
+
+    /**
+     * retourne une objet Partmetadata sur base du code barre
+     *
+     * @param string $bar_code
+     * @param bool $enabled
+     * @param bool $lockForUpdate
+     * @return Partmetadata|null
+     */
+    public static function getPartmetadataByBarCode(string $bar_code, bool $enabled = true, bool $lockForUpdate = false): ?Partmetadata
+    {
+        if ($lockForUpdate)
+            return self::where('bar_code','=', $bar_code)->where('enabled','=',$enabled)->lockForUpdate()->first();
+        else
+            return self::where('bar_code','=', $bar_code)->where('enabled','=',$enabled)->first() ;
+    }
+
+
 
 }

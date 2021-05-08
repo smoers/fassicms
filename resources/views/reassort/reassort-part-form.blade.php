@@ -79,18 +79,29 @@
                                 <input type="text" id="note" name="note" class="form-control" value="{{old('note')}}" moco-validation />
                                 <div class="moco-error-small danger-darker-hover" id="noteError"></div>
                             </div>
-                            <!-- Location -->
-                            <div class="d-flex flex-column location_area">
-                                <div class="location_area">{{ __('Location from')  }}</div>
-                                <div class="location_area">
-                                    <select id="location_id" name="location_id" disabled class="selectpicker form-control" data-width="fit" title="{{__('Select a Location')}}" moco-validation>
-                                        @foreach(App\Models\Location::all() as $location)
-                                            <option value="{{$location->id}}" @if(old('location_id',$_store->location_id) == $location->id) selected @endif>{{__($location->location)." : ".__($location->description)}}</option>
-                                        @endforeach
-                                    </select>
-                                    <div class="moco-error-small danger-darker-hover" id="location_idError"></div>
+                            <div class="row">
+                                <div class="col-8">
+                                    <!-- Location -->
+                                    <div class="d-flex flex-column location_area">
+                                        <div class="location_area">{{ __('Location from')  }}</div>
+                                        <div class="location_area">
+                                            <select id="location_id" name="location_id" disabled class="selectpicker form-control" data-width="fit" title="{{__('Select a Location')}}" moco-validation>
+                                                @foreach(App\Models\Location::all() as $location)
+                                                    <option value="{{$location->id}}" @if(old('location_id',$_store->location_id) == $location->id) selected @endif>{{__($location->location)." : ".__($location->description)}}</option>
+                                                @endforeach
+                                            </select>
+                                            <div class="moco-error-small danger-darker-hover" id="location_idError"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="form-group location_area">
+                                        <label for="src_stock">{{ __('Source stock')  }}</label>
+                                        <input type="text" id="src_stock" disabled name="src_stock" class="form-control" readonly moco-validation/>
+                                    </div>
                                 </div>
                             </div>
+
                         </div>
                     </div>
                     <div class="d-flex justify-content-between">
@@ -145,37 +156,21 @@
                 async: true,
             });
             /** url pour les requêtes Ajax **/
-            var _url_ajax_reassort = '{{route('clocking.ajaxworksheetcheck')}}'
+            var _url_ajax_reassort = '{{route('reassort.ajaxreassortcheck')}}'
             /** Cache le champ location **/
             $('.location_area').hide();
             /** on retire de la liste l'emplacement actuel **/
             $('#location_id').find('[value={{$_store->location()->first()->id}}]').remove();
+            /** dans le cas d'un retour vers le formulaire après une validation avec erreur **/
+            updateInterface();
+            setLocation(_url_ajax_reassort);
             /** event sur le changement de raison **/
             $('#reason').on('changed.bs.select', function (e, clickedIndex, isSelected, previousValue){
-                if($('#reason').val() == {{$_move_from}}){
-                    /** affiche le combo avec les emplacements **/
-                    $('.note_area').hide();
-                    $('.location_area').show();
-                    $('#location_id').prop('disabled', false);
-                    $('#location_id').selectpicker('refresh');
-                    /** s'assure que la pièce existe à cette emplacement **/
-                    let data = {
-                        part_number : $('#part_number').val(),
-                        location_id: parseInt($('#location_id').val())
-                    }
-                    request(data, _url_ajax_reassort).then((result) => {
-                        if (result.checked != true){
-                            /**
-                             * affiche le message modal
-                             */
-                            $('#_msg').html(result.msg);
-                            $('#modal_msg').modal('show');
-                        }
-                    });
-                } else {
-                    $('.note_area').show();
-                    $('.location_area').hide();
-                };
+                updateInterface();
+            });
+            /** event sur le choix de l'emplacement d'origine **/
+            $('#location_id').on('changed.bs.select', function (){
+                setLocation(_url_ajax_reassort);
             });
             /** calcule la nouvelle valeur du stock **/
             $('#qty_add').on('keyup', function (event) {
@@ -185,17 +180,51 @@
                     $('#qty_new').val(parseInt(before) + parseInt(add));
                 }
             });
-            /**
-             * Disabled la touche enter pour pouvoir utiliser un scanner
-             */
-            $('#part-form').on('keypress', function (event) {
-                var keyPressed = event.keyCode || event.which;
-                if (keyPressed === 13) {
-                    event.preventDefault();
-                    return false;
+        });
+        /**
+         * quand un emplacement est choisi on en recherche la qty en stock
+         */
+        function setLocation(url){
+            let data = {
+                location_id: parseInt($('#location_id').val()),
+                id: parseInt($('#id').val())
+            }
+            /** requète ajax **/
+            request(data,url).then((result) => {
+                if (result.checked == true){
+                    $('#src_stock').val(result.src_stock);
+                } else {
+                    /**
+                     * affiche le message modal
+                     */
+                    $('#_msg').html(result.msg);
+                    $('#modal_msg').modal('show');
                 }
-            })
-
+            });
+        }
+        /**
+         * affiche les champs en relation avec le choix de la raison
+         */
+        function updateInterface(){
+            if($('#reason').val() == {{$_move_from}}){
+                /** affiche le combo avec les emplacements **/
+                $('.note_area').hide();
+                $('.location_area').show();
+                $('#location_id').prop('disabled', false);
+                $('#location_id').selectpicker('refresh');
+                $('#src_stock').removeAttr('disabled');
+            } else {
+                $('.note_area').show();
+                $('.location_area').hide();
+                $('#location_id').prop('disabled', true);
+                $('#location_id').selectpicker('refresh');
+                $('#src_stock').attr('disabled','disabled');
+            };
+        }
+        /** remet la valeur du combo location sur null **/
+        $('#modal_msg').on('hidden.bs.modal',() => {
+            $('#location_id').val('default').selectpicker('refresh');
+            $('#src_stock').val('');
         });
     </script>
 @endsection

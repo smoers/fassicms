@@ -73,6 +73,7 @@ Route::group(['middleware' => ['role_or_permission:admin','auth']],function (){
     Route::get('/reassort/{id}/edit',[ReassortController::class,'edit'])->name('reassort.edit');
     Route::post('/reassort/update',[ReassortController::class,'update'])->name('reassort.update');
     Route::post('/reassort/ajaxvalidation',[ReassortController::class,'ajaxValidation'])->name('reassort.ajaxvalidation');
+    Route::post('/reassort/ajaxreassortcheck',[ReassortController::class,'ajaxReassortCheck'])->name('reassort.ajaxreassortcheck');
 
     /**
      * Out Controller

@@ -33,6 +33,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Models\Store;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 /**
  * Class ReassortController
@@ -44,6 +45,7 @@ class ReassortController extends Controller
     use MocoAjaxValidation;
     protected $reason_filtering;
     protected $reason_worksheetId;
+    protected $reason_move_from;
 
     /**
      * ReassortController constructor.
@@ -53,6 +55,7 @@ class ReassortController extends Controller
         $this->formRequest = new ReassortRequest();
         $this->reason_filtering = config('moco.reason.filtering');
         $this->reason_worksheetId = config('moco.reason.worksheetId');
+        $this->reason_move_from = config('moco.reassort.moveFrom');
     }
 
 
@@ -88,14 +91,31 @@ class ReassortController extends Controller
      *
      * @param Request $request
      */
-    public function update(ReassortRequest $request)
+    public function update(Request $request)
     {
+        $this->formRequest->setRequestArray($request->all());
         //Validation des données
-        $validatedData = $request->validated();
+        $validatedData = $this->validate($request,$this->formRequest->rules(),$this->formRequest->messages(),$this->formRequest->attributes());
         //Récupérer l'objet Store
         $store = Store::find($request->post('id'));
         //Récupérer L'objet
         $reason = Reason::find($validatedData['reason']);
+        /**
+         * si la raison est un mouvement de stock
+         * depuis une autre location
+         */
+        $store_src = null;
+        $out = null;
+        if ($validatedData['reason'] == $this->reason_move_from){
+            /**
+             * on retrouve le stock source depuis le stock de destination
+             */
+            $store_src = $store->partmetadata()->first()->getStoreByLocation($request->location_id);
+            /**
+             * création de l'objet Out et mise à jour de la valeur du stock
+             */
+            $out = $store_src->getOutHydrated($validatedData['qty_add'],$reason, $reason->reason);
+        }
         /**
          * si la raison est un retour sur worksheet
          * il faut créer un objet part
@@ -129,22 +149,65 @@ class ReassortController extends Controller
             $part->user()->associate(Auth::user());
             $part->worksheet()->associate($worksheet);
         }
-        //Nouvel objet Reassortement
-        $reassort = new Reassortement();
-        $reassort->qty_add = $validatedData['qty_add'];
-        $reassort->note = $request->post('note');
-        $reassort->qty_before = $store->qty;
-        $reassort->store()->associate($store);
-        $reassort->reason()->associate($reason);
-        $reassort->user()->associate(Auth::user());
-        //mise à jour de la quantité en stock
-        $store->increaseQuantity($reassort->qty_add);
-        //Sauvegarde des objets
-        if (!is_null($part))
-            $part->save();
-        $reassort->save();
-        $store->save();
-        return redirect('reassort')->with('success', 'The new value of the stock has been saved');
+        /**
+         * création de l'objet Reassort et mise à jour de la quantité
+         */
+        $reassort = $store->getReassortementHydrated($validatedData['qty_add'],$reason,$request->note);
+        /**
+         * Sauvegarde des objets
+         */
+        DB::transaction(function () use ($store, $store_src, $part, $reassort, $out) {
+            /**
+             * Si un objet part à été créé
+             */
+            if (!is_null($part))
+                $part->save();
+            /**
+             * Si un objet store_src & out ont été créés
+             */
+            if((!is_null($store_src)) && !is_null($out)){
+                $store_src->save();
+                $out->save();
+            }
+            $reassort->save();
+            $store->save();
+        });
+
+        return redirect()->route('reassort.index')->with('success', 'The new value of the stock has been saved');
     }
+
+    /**
+     * Retourne la valeur du stock pour l'emplacement source
+     * si ce dernier est null ou inférieur à 1 une erreur est retournée
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function ajaxReassortCheck(Request $request)
+    {
+        $result = [
+            'checked' => false,
+            'src_stock' => 0,
+            'msg' => null,
+        ];
+        /**
+         * Objet de destination
+         */
+        $store = Store::find($request->id);
+        /**
+         * Object source
+         */
+        $store_src = $store->partmetadata()->first()->getStoreByLocation($request->location_id);
+        /**
+         * Si l'objet source n'est pas null and la qty est supérieur ou egal à 1
+         */
+        if (!is_null($store_src) && $store_src->qty >= 1){
+            $result['checked'] = true;
+            $result['src_stock'] = $store_src->qty;
+        } else {
+            $result['msg'] = trans('There is no stock available at this location');
+        }
+        return response()->json($result);
+     }
 
 }

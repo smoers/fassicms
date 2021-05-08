@@ -32,6 +32,7 @@ use App\Models\ViewPartsTotal;
 use App\Models\Worksheet;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
@@ -68,9 +69,14 @@ class OutWorksheetController extends Controller
      *
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
-    public function out()
+    public function out(Request $request)
     {
-        return view('outworksheet.outworksheet-form');
+        Cookie::queue('location',4,2147483647);
+        //Cookie::queue(Cookie::forget('location'));
+        $cookie = $request->cookie('location',null);
+        return view('outworksheet.outworksheet-form',[
+            'cookie' => intval($cookie),
+        ]);
     }
 
     /**
@@ -146,7 +152,7 @@ class OutWorksheetController extends Controller
          * car il faudra un prix pour la pièce lors de l'enregistrement de la transaction
          * On récupére pour lire la valeur du stock
          */
-        $store = Store::getStoreByBarCode($request->post('part_number'));
+        $store = Store::getStoreByBarCode($request->part_number, intval($request->location_id));
         if (!is_null($store)){
             /**
              * S'assure qu'il y a suffisament de pièce en stock
