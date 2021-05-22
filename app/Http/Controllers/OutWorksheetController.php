@@ -25,14 +25,15 @@ namespace App\Http\Controllers;
 use App\Http\Requests\OutWorksheetValidationStepAjaxRequest;
 use App\Moco\Common\Moco;
 use App\Moco\Common\MocoAjaxValidation;
+use App\Models\Location;
 use App\Models\Part;
+use App\Models\Partmetadata;
 use App\Models\Reason;
 use App\Models\Store;
 use App\Models\ViewPartsTotal;
 use App\Models\Worksheet;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
@@ -61,7 +62,16 @@ class OutWorksheetController extends Controller
      */
     public function in()
     {
-        return view('outworksheet.inworksheet-form');
+        /**
+         * Recherche le cookie avec la localisation
+         */
+        $cookie = Moco::cookie('location');
+        /**
+         * Ouverture du formulaire
+         */
+        return view('outworksheet.inworksheet-form',[
+            'cookie' => intval($cookie),
+        ]);
     }
 
     /**
@@ -69,11 +79,15 @@ class OutWorksheetController extends Controller
      *
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
-    public function out(Request $request)
+    public function out()
     {
-        Cookie::queue('location',4,2147483647);
-        //Cookie::queue(Cookie::forget('location'));
-        $cookie = $request->cookie('location',null);
+        /**
+         * Recherche le cookie avec la localisation
+         */
+        $cookie = Moco::cookie('location');
+        /**
+         * Ouverture du formulaire
+         */
         return view('outworksheet.outworksheet-form',[
             'cookie' => intval($cookie),
         ]);
@@ -189,23 +203,33 @@ class OutWorksheetController extends Controller
     public function ajaxPartQtyCheck(Request $request)
     {
         $result = [];
+        $qty = intval($request->qty);
         /**
          * S'assure que ce part number existe sur la fiche de travail avec une qty suffisante
          */
-        $part = ViewPartsTotal::where('worksheet_id','=',$request->post('worksheet_id'))
-            ->where('bar_code','=',$request->post('part_number'))
-            ->where('qty_total','>=',$request->post('qty'))
-            ->first();
+        $part = ViewPartsTotal::getPartByBarCode($request->worksheet_id, $request->part_number);
         if (is_null($part)){
             $result = [
                 'checked' => false,
-                'msg' => trans('The quantity available on worksheet is not enough'),
+                'msg' => trans('This part was not output on this worksheet'),
             ];
         } else {
-            $result = [
-                'checked' => true,
-                'msg' => null,
-            ];
+            /**
+             * On test si la quantité à retourner et suffisante sur la fiche de travail
+             */
+            if ($qty <= $part->qty_total) {
+                $result = [
+                    'checked' => true,
+                    'wks_qty' => $part->qty_total,
+                    'msg' => null,
+                ];
+            } else {
+                $result = [
+                    'checked' => false,
+                    'wks_qty' => $part->qty_total,
+                    'msg' => trans('The quantity available on worksheet is not enough'),
+                ];
+            }
         }
         return response()->json($result);
     }
@@ -219,6 +243,11 @@ class OutWorksheetController extends Controller
     public function inTreatment(Request $request)
     {
         /**
+         * Gestion du cookie
+         */
+        $cookie_remove = !($request->auto == 'on');
+        Moco::cookie('location',$cookie_remove,intval($request->location_id));
+        /**
          * Charge la fiche de travail
          */
         $worksheet = Worksheet::find($request->post('worksheet_id'));
@@ -228,10 +257,14 @@ class OutWorksheetController extends Controller
         if (!$worksheet->validated){
             $parts = array_combine($request->post('parts'),$request->post('qtys'));
             /**
-             * récupère  la raison
+             * récupère la raison
              */
             $reason = Reason::find($this->worksheetId);
-            return DB::transaction(function () use ($parts, $worksheet, $reason){
+            /**
+             * récupère la localisation
+             */
+            $location = Location::find($request->location_id);
+            return DB::transaction(function () use ($parts, $worksheet, $reason, $location){
                 /**
                  * Parcours la liste des piéces à enregistrer
                  */
@@ -240,10 +273,19 @@ class OutWorksheetController extends Controller
                      * on s'assure qu'il y a bien une pièce avec ce part number dans le stock et
                      * qu'elle est active
                      */
-                    $store = Store::where('bar_code','=',$_part)->where('enabled','=',true)->lockForUpdate()->first();
+                    $partmetadata = Partmetadata::getPartmetadataByBarCode($_part);
+                    if (is_null($partmetadata)){
+                        DB::rollBack();
+                        return redirect()->route('outworksheet.in')->with('error', trans('This part does not exist or is disabled ') . $_part);
+                    }
+                    /**
+                     * on s'assure qu'il y a bien une pièce avec ce part number dans le stock et
+                     * qu'elle est active
+                     */
+                    $store = Store::getStoreByBarCode($_part, $location->id,true,true);
                     if (is_null($store)){
                         DB::rollBack();
-                        return redirect()->route('outworksheet.in')->with('error', trans('This part does not exist or is disabled ').$_part);
+                        return redirect()->route('outworksheet.in')->with('error', trans('This part does not exist for this location').$_part);
                     }
                     /**
                      * Recherche le prix de la pièce dans le catalogue
@@ -259,11 +301,8 @@ class OutWorksheetController extends Controller
                      * On s'assure que la pièce existe sur la fiche de travail
                      * avec une quantité suffisante
                      */
-                    $temp_part = ViewPartsTotal::where('worksheet_id','=',$worksheet->id)
-                        ->where('bar_code','=',$_part)
-                        ->where('qty_total','>=',$_qty)
-                        ->first();
-                    if (is_null($temp_part)){
+                    $temp_part = ViewPartsTotal::getPartByBarCode($worksheet->id,$_part);
+                    if (is_null($temp_part) || $_qty > $temp_part->qty_total){
                         DB::rollBack();
                         return redirect()->route('outworksheet.in')->with('error', trans('This part was not output on this worksheet or the quantity is not enough ').$_part);
                     }
@@ -277,15 +316,16 @@ class OutWorksheetController extends Controller
                      * Nouvel objet Part et hydratation
                      */
                     $part = new Part();
-                    $part->part_number = $store->part_number;
+                    $part->part_number = $partmetadata->part_number;
                     $part->bar_code = $_part;
-                    $part->description = $store->description;
+                    $part->description = $partmetadata->description;
                     $part->qty = intval($_qty);
                     $part->price = $price;
                     $part->type = 'R';
                     $part->year = Carbon::now()->year;
                     $part->user()->associate(Auth::user());
                     $part->worksheet()->associate($worksheet);
+                    $part->location()->associate($location);
                     /**
                      * Sauvegarde des objets
                      */
@@ -293,7 +333,7 @@ class OutWorksheetController extends Controller
                     $part->save();
                     $reassort->save();
                 }
-                return redirect()->route('dashboard')->with('success','The parts have been saved with success');
+                return redirect()->route('outworksheet.in')->with('success',trans('The parts have been successfully returned to stock from the worksheet : ').$worksheet->number);
             });
         }
         return redirect()->route('outworksheet.in')->with('error', trans('This worksheet is validated.  No changes are authorized ').$worksheet->number);
@@ -307,7 +347,15 @@ class OutWorksheetController extends Controller
      */
     public function outTreatment(Request $request)
     {
-
+        /**
+         * location_id formet int
+         */
+        $location_id = intval($request->location_id);
+        /**
+         * Gestion du cookie
+         */
+        $cookie_remove = !($request->auto == 'on');
+        Moco::cookie('location',$cookie_remove,$location_id);
         /**
          * Charge la fiche de travail
          */
@@ -321,7 +369,11 @@ class OutWorksheetController extends Controller
              * récupère  la raison
              */
             $reason = Reason::find($this->worksheetId);
-            return DB::transaction(function () use ($parts, $worksheet, $reason){
+            /**
+             * récupère la localisation
+             */
+            $location = Location::find($location_id);
+            return DB::transaction(function () use ($parts, $worksheet, $reason, $location){
                 /**
                  * Parcours la liste des piéces à enregistrer
                  */
@@ -330,10 +382,18 @@ class OutWorksheetController extends Controller
                      * on s'assure qu'il y a bien une pièce avec ce part number dans le stock et
                      * qu'elle est active
                      */
-                    $store = Store::getStoreByBarCode($_part,true, true);
+                    $partmetadata = Partmetadata::getPartmetadataByBarCode($_part);
+                    if (is_null($partmetadata)){
+                        DB::rollBack();
+                        return redirect()->route('outworksheet.out')->with('error', trans('This part does not exist or is disabled ') . $_part);
+                    }
+                    /**
+                     * on s'assure qu'il y a bien une pièce avec ce part number dans cette location
+                     */
+                    $store = Store::getStoreByBarCode($_part,$location->id, true, true);
                     if (is_null($store)) {
                         DB::rollBack();
-                        return redirect()->route('outworksheet.in')->with('error', trans('This part does not exist or is disabled ') . $_part);
+                        return redirect()->route('outworksheet.out')->with('error', trans('This part does not exist for this location') . $_part);
                     }
                     /**
                      * Recherche le prix de la pièce dans le catalogue
@@ -343,7 +403,7 @@ class OutWorksheetController extends Controller
                     $price = $store->getPrice();
                     if (is_null($price)) {
                         DB::rollBack();
-                        return redirect()->route('outworksheet.in')->with('error', trans('No price is available for this part number ') . $_part);
+                        return redirect()->route('outworksheet.out')->with('error', trans('No price is available for this part number ') . $_part);
                     }
                     /**
                      * Validation et hydratation de l'objet Out
@@ -351,18 +411,19 @@ class OutWorksheetController extends Controller
                     $out = $store->getOutHydrated($_qty, $reason, $worksheet->number);
                     if (is_null($out)){
                         DB::rollBack();
-                        return redirect()->route('outworksheet.in')->with('error', trans('The stock quantity is not enough') . $_part);
+                        return redirect()->route('outworksheet.out')->with('error', trans('The stock quantity is not enough') . $_part);
                     }
                     $part = new Part();
-                    $part->part_number = $store->part_number;
+                    $part->part_number = $partmetadata->part_number;
                     $part->bar_code = $_part;
-                    $part->description = $store->description;
+                    $part->description = $partmetadata->description;
                     $part->qty = intval($_qty);
                     $part->price = $price;
                     $part->type = 'O';
                     $part->year = Carbon::now()->year;
                     $part->user()->associate(Auth::user());
                     $part->worksheet()->associate($worksheet);
+                    $part->location()->associate($location);
                     /**
                      * Sauvegarde des objets
                      */
@@ -370,7 +431,7 @@ class OutWorksheetController extends Controller
                     $part->save();
                     $out->save();
                 }
-                return redirect()->route('dashboard')->with('success','The parts have been saved with success');
+                return redirect()->route('outworksheet.out')->with('success', trans('The parts have been taken out with success on the worksheet : ').$worksheet->number);
             });
         }
         return redirect()->route('outworksheet.out')->with('error', trans('This worksheet is validated.  No changes are authorized ').$worksheet->number);

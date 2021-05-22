@@ -26,7 +26,6 @@ class RedirectIfAuthenticated
                 return redirect()->route('dashboard');
             }
         }
-
         return $next($request);
     }
 }

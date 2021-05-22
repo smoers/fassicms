@@ -33,6 +33,7 @@ namespace App\Moco\Common;
 use App\Models\Worksheet;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cookie;
 
 class Moco
 {
@@ -87,5 +88,24 @@ class Moco
     {
         $bytes = random_bytes(4);
         return bin2hex($bytes);
+    }
+
+    /**
+     * gestion simplifée des cookies
+     *
+     * @param string $name
+     * @param bool $remove
+     * @param null $value
+     * @return array|string|null
+     */
+    public static function cookie(string $name, bool $remove = false, $value = null, $default = null)
+    {
+        if ($remove == false && $value == null){
+            return Cookie::get($name,$default);
+        } elseif ($remove == false && $value != null){
+            Cookie::queue($name,$value,2147483647);
+        } elseif ($remove){
+            Cookie::queue(Cookie::forget($name));
+        }
     }
 }

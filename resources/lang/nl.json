@@ -7,6 +7,7 @@
     "Settings": "Instellingen",
     "Dashboard": "Dashboard",
     "Worksheet": "Werkbladen",
+    "Technician clocking": "Technici wijzen",
     "Stocks": "Aandelen",
     "Company data": "Bedrijfsgegevens",
     "Customers": "Klanten",
@@ -30,6 +31,7 @@
     "Error": "Vergissing",
     "Warning": "Waarschuwing",
     "Reassort Level": "Aanvullingsniveau",
+    "Error message": "Foutmelding",
 
     "The serial number of the crane is required": "Het serienummer van de kraan is vereist",
     "The maximum size for a serial is 20 characters": "De maximale grootte voor een serie is 20 tekens",
@@ -120,7 +122,7 @@
     "The minimum of added part is :min": "Het minimum van het toegevoegde onderdeel is :min",
     "The number of pieces added must be an integer": "Het aantal toegevoegde stukjes moet een geheel getal zijn",
     "The number of parts issued must be less than or equal to the number of parts in stock": "Het aantal afgegeven onderdelen moet kleiner of gelijk zijn aan het aantal op voorraad zijnde onderdelen",
-    "Movement of stock": "Beweging van voorraad",
+    "Movement of stock": "Voorraad (exit / retour)",
     "Out of stock": "Uitverkocht",
     "Number of pieces to take out": "Aantal uitgenomen onderdelen",
     "Select a reason": "Selecteer een reden",
@@ -161,6 +163,8 @@
     "Collecting spare parts": "Reserveonderdelen verzamelen",
     "Now, you can collect the parts in the bins and scan the barcode available on this bins.": "Nu kunt u de munten in de bakken verzamelen en de streepjescode op die bakken scannen.",
     "Qty available": "Aantal beschikbaar",
+    "Worksheet Quantity": "Aantal werkblad",
+    "Stock Quantity": "Aantal op voorraad",
     "The parts have been output on the worksheet": "De onderdelen werden op een werkblad uitgevoerd",
     "In on worksheet": "Feedback op een werkblad",
     "Stock restocking on worksheet": "Weer op voorraad op een werkblad",
@@ -168,6 +172,9 @@
     "Out of stock on worksheet": "Niet op voorraad op een werkblad",
     "This part does not exist or is disabled ": "Dit onderdeel bestaat niet of is inactief ",
     "No price is available for this part number ": "Voor dit onderdeel is geen prijs beschikbaar ",
-    "This part was not output on this worksheet or the quantity is enough ": "Dit onderdeel is niet uitgevoerd op dit werkblad of het aantal is onvoldoende ",
-    "The parts have been saved with success": "Onderdelen zijn succesvol teruggebracht naar de voorraad"
+    "The parts have been taken out with success on the worksheet : ": "De onderdelen zijn met succes uit de voorraad op het werkblad verwijderd : ",
+    "The parts were successfully returned to stock on the worksheet : ": "De onderdelen zijn met succes teruggebracht naar de voorraad op het werkblad : ",
+    "This part was not output on this worksheet": "Dit onderdeel is niet uitgevoerd op dit werkblad",
+    "The quantity available on worksheet is not enough": "De hoeveelheid is niet voldoende op dit werkblad",
+    "The parts have been successfully returned to stock from the worksheet : ": "De onderdelen zijn met succes teruggebracht naar de voorraad vanuit het werkblad : "
 }

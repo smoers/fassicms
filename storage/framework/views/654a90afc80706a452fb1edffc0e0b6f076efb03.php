@@ -12,21 +12,21 @@ Date : 27-10-20
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-
-                        <div class="container-fluid w-100">
+                    <div class="container-fluid w-100">
                         <div class="d-flex justify-content-between">
                             <div class="p-2"><img src="./images/logo.png"></div>
-                            <div class="p-2" style="color: red; font-size: 35px; font-weight: bold">CMS</div>
                             <div class="p-2">
                                 <select id="lang" class="form-control-sm">
-                                    <option value="en">EN</option>
-                                    <option value="fr" selected>FR</option>
-                                    <option value="nl">NL</option>
+                                    <option value="en" <?php if($cookie == 'en'): ?> selected <?php endif; ?>>EN</option>
+                                    <option value="fr" <?php if($cookie == 'fr'): ?> selected <?php endif; ?>>FR</option>
+                                    <option value="nl" <?php if($cookie == 'nl'): ?> selected <?php endif; ?>>NL</option>
                                 </select>
                             </div>
                         </div>
+                        <div class="d-flex justify-content-center">
+                            <div class="p-2 blue-darker-hover" style="font-size: 34px; font-weight: bold; font-style: italic">Stock Management System</div>
                         </div>
-
+                    </div>
                 </div>
                 <div class="modal-body">
                     <form method="POST" action="<?php echo e(route('login')); ?>">
@@ -87,7 +87,7 @@ endif;
 unset($__errorArgs, $__bag); ?>
                             </div>
                         </div>
-
+                        <!--
                         <div class="form-group row">
                             <div class="col-md-6 offset-md-4">
                                 <div class="form-check">
@@ -100,7 +100,7 @@ unset($__errorArgs, $__bag); ?>
                                 </div>
                             </div>
                         </div>
-
+                        -->
                         <div class="form-group row mb-0">
                             <div class="col-md-8 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
@@ -127,10 +127,22 @@ unset($__errorArgs, $__bag); ?>
         </div>
     </div>
 
+    <script type="text/javascript" src="<?php echo e(asset('js/moco.redirect.js')); ?>"></script>
     <script>
-        //Ouverture du formulaire de connexion en mode modal
         $(document).ready(function(){
+            /** Ouverture du formulaire de connexion en mode modal **/
             $('#loginmodal').modal('show');
+            /** cookie pour la langue **/
+            $('#lang').on('change',function(){
+                let data = [];
+                data['_token'] = $('meta[name="csrf-token"]').attr('content');
+                data['lg'] = $('#lang').val();
+                $.redirect({
+                    url: '<?php echo e(route('login.setcookie')); ?>',
+                    method: 'post',
+                    data: data,
+                });
+            });
         });
     </script>
 <?php $__env->stopSection(); ?>

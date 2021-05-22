@@ -37,6 +37,7 @@ class Part extends Model
 
     /**
      * Retourne le User lié à cette object
+     *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function user()
@@ -46,11 +47,22 @@ class Part extends Model
 
     /**
      * Retourne le Worksheet lié à cette object
+     *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function worksheet()
     {
         return $this->belongsTo(Worksheet::class);
+    }
+
+    /**
+     * Retourne la location pour cette pièce
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function location()
+    {
+        return $this->belongsTo(Location::class);
     }
 
     /*

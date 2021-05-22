@@ -7,6 +7,7 @@
     "Settings": "Paramètres",
     "Dashboard": "Tableau de bord",
     "Worksheets": "Fiches de travail",
+    "Technician clocking": "Pointage techniciens",
     "Stocks": "Stocks",
     "Company data": "Données d'entreprise",
     "Customers": "Clients",
@@ -30,6 +31,7 @@
     "Error": "Erreur",
     "Warning": "Attention",
     "Reassort Level": "Niveau de réassort.",
+    "Error message": "Message d'erreur",
 
     "The serial number of the crane is required": "Le numéro de série de la grue est requis",
     "The maximum size for a serial is 20 characters": "La taille maximum pour un sérial est de 20 caractères",
@@ -120,7 +122,7 @@
     "The minimum of added part is :min": "Le minimum de pièce ajoutée est :min",
     "The number of pieces added must be an integer": "Le nombre de pièces ajoutées doit être un entier",
     "The number of parts issued must be less than or equal to the number of parts in stock": "Le nombre de pièces sorties doit être inférieur ou égal au nombre de pièces en stock",
-    "Movement of stock": "Mouvement de stock",
+    "Movement of stock": "Stock (sortie/retour)",
     "Out of stock": "Sortie de stock",
     "Number of pieces to take out": "Nombre de pièces sorties",
     "Select a reason": "Sélectionner une raison",
@@ -155,12 +157,14 @@
     "Searching...": "Recherche...",
     "Please enter more characters": "Veuillez saisir plus de caractères",
 
-    "#####": "!! Out Worksheet !!",
+    "#####": "!! In/Out Worksheet !!",
     "Out on worksheet": "Sortie sur une fiche de travail",
     "Please scan the barcode available on your worksheet !": "Veuillez scanner le code-barres disponible sur votre fiche de travail !",
     "Collecting spare parts": "Collecte des pièces de rechange",
     "Now, you can collect the parts in the bins and scan the barcode available on this bins.": "Maintenant, vous pouvez collecter les pièces dans les bacs et scanner le code-barres disponible sur ces bacs.",
     "Qty available": "Qté disponible",
+    "Worksheet Quantity": "Qté fiche de travail",
+    "Stock Quantity": "Qté en stock",
     "The parts have been output on the worksheet": "Les pièces ont été sortie sur une fiche de travail",
     "In on worksheet": "Retour sur une fiche de travail",
     "Stock restocking on worksheet": "Retour en stock sur une fiche de travail",
@@ -168,6 +172,9 @@
     "Out of stock on worksheet": "Sortie de stock sur une fiche de travail",
     "This part does not exist or is disabled ": "Cette pièce n'existe pas ou est inactive ",
     "No price is available for this part number ": "Aucun prix n'est disponible pour cette pièce ",
-    "This part was not output on this worksheet or the quantity is enough ": "Cette pièce n'a pas été sortie sur cette fiche de travail ou la quantité est insuffisante ",
-    "The parts have been saved with success": "Les pièces ont été retournées en stock avec succès"
+    "The parts have been taken out with success on the worksheet : ": "Les pièces ont été sorties du stock avec succès sur la fiche de travail : ",
+    "The parts were successfully returned to stock on the worksheet : ": "Les pièces ont été retournées en stock avec succès sur la fiche de travail : ",
+    "This part was not output on this worksheet": "Cette pièce n'a pas été sortie sur cette fiche de travail",
+    "The quantity available on worksheet is not enough": "La quantité n'est pas suffisante sur cette fiche de travail",
+    "The parts have been successfully returned to stock from the worksheet : ": "Les pièces ont été retournées en stock avec succès depuis la fiche de travail : "
 }

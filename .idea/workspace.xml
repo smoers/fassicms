@@ -2,22 +2,24 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9ec171e7-05c7-490b-8f14-40ae5b7978c4" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources/8074035a-9972-402f-a879-6c4d22e21adb/storage_v2/_src_/schema/mysql.osA4Bg.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources/8074035a-9972-402f-a879-6c4d22e21adb/storage_v2/_src_/schema/performance_schema.kIw0nw.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Rules/StoreSourceQty.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/sessions/xf7SGZuQEFcxT3gYewH8PaZboDb9eNqglLNsXNRC" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/sessions/bnH16mNVNkwBWT99TGvCzO9P0ugxM2ZfItsLiMlu" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Auth/LoginController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Auth/LoginController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/OutWorksheetController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/OutWorksheetController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ReassortController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ReassortController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Requests/ReassortRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/ReassortRequest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Partmetadata.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Partmetadata.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Store.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Store.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Middleware/RedirectIfAuthenticated.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Middleware/RedirectIfAuthenticated.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Moco/Common/Moco.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Moco/Common/Moco.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Location.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Location.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Part.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Part.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/ViewPartsTotal.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/ViewPartsTotal.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/lang/fr.json" beforeDir="false" afterPath="$PROJECT_DIR$/resources/lang/fr.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/lang/nl.json" beforeDir="false" afterPath="$PROJECT_DIR$/resources/lang/nl.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/auth/login.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/login.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/outworksheet/inworksheet-form.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/outworksheet/inworksheet-form.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/outworksheet/outworksheet-form.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/outworksheet/outworksheet-form.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/reassort/reassort-part-form.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/reassort/reassort-part-form.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/3gI702DlCM7eDMJ5UmDqTykPcHZZt33Kxw8PWcjf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/views/5b88c7c4d84639ceeeb6cbc0f0390d4de1297009.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/5b88c7c4d84639ceeeb6cbc0f0390d4de1297009.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/xf7SGZuQEFcxT3gYewH8PaZboDb9eNqglLNsXNRC" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/197db771ff09ea7a71966d31b59b863956397ef2.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/197db771ff09ea7a71966d31b59b863956397ef2.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/654a90afc80706a452fb1edffc0e0b6f076efb03.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/654a90afc80706a452fb1edffc0e0b6f076efb03.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/storage/framework/views/6622be8e1b69193c2ba4000eea9104186c4f3fbc.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/6622be8e1b69193c2ba4000eea9104186c4f3fbc.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -45,6 +47,14 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
   </component>
   <component name="PhpWorkspaceProjectConfiguration">
     <include_path>
@@ -817,7 +827,10 @@
       <workItem from="1620243893523" duration="3923000" />
       <workItem from="1620464687107" duration="87000" />
       <workItem from="1620464803968" duration="72000" />
-      <workItem from="1620464935683" duration="15933000" />
+      <workItem from="1620464935683" duration="15962000" />
+      <workItem from="1621273165419" duration="17000" />
+      <workItem from="1621273192116" duration="2016000" />
+      <workItem from="1621667208678" duration="26715000" />
     </task>
     <task id="LOCAL-00001" summary="20201031 - Init">
       <created>1604168127520</created>
@@ -1113,7 +1126,14 @@
       <option name="project" value="LOCAL" />
       <updated>1619990576799</updated>
     </task>
-    <option name="localTasksCounter" value="43" />
+    <task id="LOCAL-00043" summary="20210508 - v2.0 Stores by location">
+      <created>1620485154677</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1620485154677</updated>
+    </task>
+    <option name="localTasksCounter" value="44" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -1122,7 +1142,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="20201204 - v1.0" />
     <MESSAGE value="20201205 - v1.0" />
     <MESSAGE value="20201209 - v1.0" />
     <MESSAGE value="20201210 - v1.0" />
@@ -1147,7 +1166,8 @@
     <MESSAGE value="20210422 - v1.1 Scan New Version" />
     <MESSAGE value="20210428 - v2.0 Stores by location" />
     <MESSAGE value="20210502 - v2.0 Stores by location" />
-    <option name="LAST_COMMIT_MESSAGE" value="20210502 - v2.0 Stores by location" />
+    <MESSAGE value="20210508 - v2.0 Stores by location" />
+    <option name="LAST_COMMIT_MESSAGE" value="20210508 - v2.0 Stores by location" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

@@ -12,7 +12,6 @@
                     <input type="hidden" id="worksheet_id" name="worksheet_id" value=""/>
                     <input type="hidden" id="cookie" name="cookie" value="{{$cookie}}"/>
                     <div class="d-flex justify-content-center p-2 bg-light">
-
                         <div class="mr-2 mt-1 moco-color-error">{{__('Location')}} :</div>
                         <select id="location_id" name="location_id" class="form-control form-control-sm mr-2" autocomplete="off" style="width: auto">
                             <option></option>
@@ -21,7 +20,7 @@
                             @endforeach
                         </select>
                         <div class="custom-control custom-checkbox">
-                            <input type="checkbox" class="custom-control-input" id="auto" @if($cookie != 0) checked @endif>
+                            <input type="checkbox" class="custom-control-input" id="auto" name="auto" @if($cookie != 0) checked @endif>
                             <label class="custom-control-label mr-2 mt-1 moco-color-error" for="auto">{{__('Auto')}}</label>
                         </div>
                     </div>
@@ -137,10 +136,12 @@
                 if($('#auto').is(':checked')){
                     /** si on flag the checkbox on mémorise la valeur de l'emplacement **/
                     $('#cookie').val($('#location_id').val());
-                } else if(!$('#auto').is(':checked') && _init_cookie){
+                    setFocus();
+                } else if(!$('#auto').is(':checked') && _init_cookie && $('#number').attr('readonly') == undefined && $('#part_number').attr('readonly') != undefined){
                     _init_cookie = false;
                     $('#location_id').removeAttr('readonly');
                     $('#location_id option:not(:selected)').prop('disabled', false);
+                    $('#location_id').val('');
                     /**  on active le champ number  **/
                     $('#number').attr('readonly','readonly');
                     setFocus();
