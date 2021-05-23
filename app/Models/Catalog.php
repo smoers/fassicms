@@ -105,4 +105,5 @@ class Catalog extends Model
             return number_format(intval($value),0,',','');
         }
     }
+
 }

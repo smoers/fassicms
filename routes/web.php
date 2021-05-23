@@ -32,9 +32,9 @@ Route::post('/login',[LoginController::class,'login']);
 Route::post('/login/setcookie',[LoginController::class,'setCookie'])->name('login.setcookie');
 Route::post('/logout',[LoginController::class,'logout'])->name('logout');
 
-Route::get('/permissions',[PermissionController::class,'add'])->name('permissions.add');
+//Route::get('/permissions',[PermissionController::class,'add'])->name('permissions.add');
 
-Route::group(['middleware' => ['role_or_permission:admin','auth']],function (){
+Route::group(['middleware' => ['auth']],function (){
 
 
     Route::get('/', function () {
@@ -49,98 +49,98 @@ Route::group(['middleware' => ['role_or_permission:admin','auth']],function (){
     /**
      * Crane Controller
      */
-    Route::get('/crane',[CraneController::class,'index'])->name('crane.index');
-    Route::get('/crane/create',[CraneController::class,'create'])->name('crane.create');
-    Route::get('/crane/{id}/edit',[CraneController::class,'edit'])->name('crane.edit');
-    Route::post('/crane/store',[CraneController::class,'store'])->name('crane.store');
-    Route::post('/crane/{id}/update',[CraneController::class,'update'])->name('crane.update');
-    Route::post('/crane/ajaxvalidation',[CraneController::class,'ajaxValidation'])->name('crane.ajaxvalidation');
+    Route::get('/crane',[CraneController::class,'index'])->name('crane.index')->middleware(['ifnot:list crane']);
+    Route::get('/crane/create',[CraneController::class,'create'])->name('crane.create')->middleware(['ifnot:create crane']);
+    Route::get('/crane/{id}/edit',[CraneController::class,'edit'])->name('crane.edit')->middleware(['ifnot:edit crane']);
+    Route::post('/crane/store',[CraneController::class,'store'])->name('crane.store')->middleware(['ifnot:create crane']);
+    Route::post('/crane/{id}/update',[CraneController::class,'update'])->name('crane.update')->middleware(['ifnot:edit crane']);
+    Route::post('/crane/ajaxvalidation',[CraneController::class,'ajaxValidation'])->name('crane.ajaxvalidation')->middleware(['ifnot:create crane|edit crane']);
 
     /**
      * Store Controller
      */
-    Route::get('store',[StoreController::class,'index'])->name('store.index');
-    Route::get('/store/create',[StoreController::class,'create'])->name('store.create');
-    Route::post('/store/store',[StoreController::class,'store'])->name('store.store');
-    Route::post('/store/update',[StoreController::class,'update'])->name('store.update');
-    Route::get('/store/{id}/{cat_id}/edit',[StoreController::class,'edit'])->name('store.edit');
-    Route::post('/store/ajaxvalidation',[StoreController::class,'ajaxValidation'])->name('store.ajaxvalidation');
-    Route::get('/store/{id}/bs',[StoreController::class,'barcodeSticker'])->name('store.barcode_sticker');
+    Route::get('store',[StoreController::class,'index'])->name('store.index')->middleware(['ifnot:list catalog']);
+    Route::get('/store/create',[StoreController::class,'create'])->name('store.create')->middleware(['ifnot:create catalog']);
+    Route::post('/store/store',[StoreController::class,'store'])->name('store.store')->middleware(['ifnot:create catalog']);
+    Route::post('/store/update',[StoreController::class,'update'])->name('store.update')->middleware(['ifnot:edit catalog']);
+    Route::get('/store/{id}/{cat_id}/edit',[StoreController::class,'edit'])->name('store.edit')->middleware(['ifnot:edit catalog']);
+    Route::post('/store/ajaxvalidation',[StoreController::class,'ajaxValidation'])->name('store.ajaxvalidation')->middleware(['ifnot:create catalog|edit catalog']);
+    Route::get('/store/{id}/bs',[StoreController::class,'barcodeSticker'])->name('store.barcode_sticker')->middleware(['ifnot:print catalog']);
 
     /**
      * Reassort Controller
      */
-    Route::get('/reassort',[ReassortController::class,'index'])->name('reassort.index');
-    Route::get('/reassort/{id}/edit',[ReassortController::class,'edit'])->name('reassort.edit');
-    Route::post('/reassort/update',[ReassortController::class,'update'])->name('reassort.update');
-    Route::post('/reassort/ajaxvalidation',[ReassortController::class,'ajaxValidation'])->name('reassort.ajaxvalidation');
-    Route::post('/reassort/ajaxreassortcheck',[ReassortController::class,'ajaxReassortCheck'])->name('reassort.ajaxreassortcheck');
+    Route::get('/reassort',[ReassortController::class,'index'])->name('reassort.index')->middleware(['ifnot:list stock']);
+    Route::get('/reassort/{id}/edit',[ReassortController::class,'edit'])->name('reassort.edit')->middleware(['ifnot:reassort stock']);
+    Route::post('/reassort/update',[ReassortController::class,'update'])->name('reassort.update')->middleware(['ifnot:reassort stock']);
+    Route::post('/reassort/ajaxvalidation',[ReassortController::class,'ajaxValidation'])->name('reassort.ajaxvalidation')->middleware(['ifnot:reassort stock']);
+    Route::post('/reassort/ajaxreassortcheck',[ReassortController::class,'ajaxReassortCheck'])->name('reassort.ajaxreassortcheck')->middleware(['ifnot:reassort stock']);
 
     /**
      * Out Controller
      */
-    Route::get('/out/{id}/edit',[OutController::class,'edit'])->name('out.edit');
-    Route::post('/out/update',[OutController::class,'update'])->name('out.update');
-    Route::post('/out/ajaxvalidation',[OutController::class,'ajaxValidation'])->name('out.ajaxvalidation');
-    Route::post('/out/ajaxoutcheck',[OutController::class,'ajaxOutCheck'])->name('out.ajaxoutcheck');
+    Route::get('/out/{id}/edit',[OutController::class,'edit'])->name('out.edit')->middleware(['ifnot:out stock']);
+    Route::post('/out/update',[OutController::class,'update'])->name('out.update')->middleware(['ifnot:out stock']);
+    Route::post('/out/ajaxvalidation',[OutController::class,'ajaxValidation'])->name('out.ajaxvalidation')->middleware(['ifnot:out stock']);
+    Route::post('/out/ajaxoutcheck',[OutController::class,'ajaxOutCheck'])->name('out.ajaxoutcheck')->middleware(['ifnot:out stock']);
 
     /**
      * Customer Controller
      */
-    Route::get('/customer',[CustomerController::class,'index'])->name('customer.index');
-    Route::get('/customer/create',[CustomerController::class,'create'])->name('customer.create');
-    Route::get('/customer/{id}/edit',[CustomerController::class,'edit'])->name('customer.edit');
-    Route::post('/customer/store',[CustomerController::class,'store'])->name('customer.store');
-    Route::post('/customer/{id}/update',[CustomerController::class,'update'])->name('customer.update');
-    Route::post('/customer/ajaxvalidation',[CustomerController::class,'ajaxValidation'])->name('customer.ajaxvalidation');
-    Route::post('/customer/ajaxselect',[CustomerController::class,'ajaxSelect'])->name('customer.ajaxselect');
+    Route::get('/customer',[CustomerController::class,'index'])->name('customer.index')->middleware(['ifnot:list customer']);
+    Route::get('/customer/create',[CustomerController::class,'create'])->name('customer.create')->middleware(['ifnot:create customer']);
+    Route::get('/customer/{id}/edit',[CustomerController::class,'edit'])->name('customer.edit')->middleware(['ifnot:edit customer']);
+    Route::post('/customer/store',[CustomerController::class,'store'])->name('customer.store')->middleware(['ifnot:create customer']);
+    Route::post('/customer/{id}/update',[CustomerController::class,'update'])->name('customer.update')->middleware(['ifnot:edit customer']);
+    Route::post('/customer/ajaxvalidation',[CustomerController::class,'ajaxValidation'])->name('customer.ajaxvalidation')->middleware(['ifnot:create customer|edit customer']);
+    Route::post('/customer/ajaxselect',[CustomerController::class,'ajaxSelect'])->name('customer.ajaxselect')->middleware(['ifnot:create customer|edit customer']);
 
     /**
      * OutWorksheet Controller
      */
-    Route::get('/outworksheet/in',[OutWorksheetController::class,'in'])->name('outworksheet.in');
-    Route::get('/outworksheet/out',[OutWorksheetController::class,'out'])->name('outworksheet.out');
-    Route::post('/outworksheet/in',[OutWorksheetController::class,'inTreatment'])->name('outworksheet.intreatment');
-    Route::post('/outworksheet/out',[OutWorksheetController::class,'outTreatment'])->name('outworksheet.outtreatment');
-    Route::post('/outworksheet/ajaxworksheetcheck',[OutWorksheetController::class,'ajaxWorksheetCheck'])->name('outworksheet.ajaxworksheetcheck');
-    Route::post('/outworksheet/ajaxpartcheck',[OutWorksheetController::class,'ajaxPartCheck'])->name('outworksheet.ajaxpartcheck');
-    Route::post('/outworksheet/ajaxpartcheckout',[OutWorksheetController::class,'ajaxPartCheckOut'])->name('outworksheet.ajaxpartcheckout');
-    Route::post('/outworksheet/ajaxpartqtycheck',[OutWorksheetController::class,'ajaxPartQtyCheck'])->name('outworksheet.ajaxpartqtycheck');
+    Route::get('/outworksheet/in',[OutWorksheetController::class,'in'])->name('outworksheet.in')->middleware(['ifnot:reassort worksheet stock']);
+    Route::get('/outworksheet/out',[OutWorksheetController::class,'out'])->name('outworksheet.out')->middleware(['ifnot:out worksheet stock']);
+    Route::post('/outworksheet/in',[OutWorksheetController::class,'inTreatment'])->name('outworksheet.intreatment')->middleware(['ifnot:reassort worksheet stock']);
+    Route::post('/outworksheet/out',[OutWorksheetController::class,'outTreatment'])->name('outworksheet.outtreatment')->middleware(['ifnot:out worksheet stock']);
+    Route::post('/outworksheet/ajaxworksheetcheck',[OutWorksheetController::class,'ajaxWorksheetCheck'])->name('outworksheet.ajaxworksheetcheck')->middleware(['ifnot:reassort worksheet stock|reassort worksheet stock']);
+    Route::post('/outworksheet/ajaxpartcheck',[OutWorksheetController::class,'ajaxPartCheck'])->name('outworksheet.ajaxpartcheck')->middleware(['ifnot:reassort worksheet stock|reassort worksheet stock']);
+    Route::post('/outworksheet/ajaxpartcheckout',[OutWorksheetController::class,'ajaxPartCheckOut'])->name('outworksheet.ajaxpartcheckout')->middleware(['ifnot:reassort worksheet stock|reassort worksheet stock']);
+    Route::post('/outworksheet/ajaxpartqtycheck',[OutWorksheetController::class,'ajaxPartQtyCheck'])->name('outworksheet.ajaxpartqtycheck')->middleware(['ifnot:reassort worksheet stock|reassort worksheet stock']);
 
     /**
      * Worksheet Controller
      */
-    Route::get('/worksheet/index',[WorksheetController::class,'index'])->name('worksheet.index');
-    Route::get('/worksheet/create',[WorksheetController::class,'create'])->name('worksheet.create');
-    Route::get('/worksheet/{id}/edit',[WorksheetController::class,'edit'])->name('worksheet.edit');
-    Route::get('/worksheet/{id}/part',[WorksheetController::class,'partConsult'])->name('worksheet.part');
-    Route::post('/worksheet/print',[WorksheetController::class,'print'])->name('worksheet.print');
-    Route::post('/worksheet/store',[worksheetController::class,'store'])->name('worksheet.store');
-    Route::post('/worksheet/{id}/update',[worksheetController::class,'update'])->name('worksheet.update');
-    Route::post('/worksheet/ajaxselect',[WorksheetController::class,'ajaxSelect'])->name('worksheet.ajaxselect');
-    Route::post('/worksheet/ajaxvalidation',[WorksheetController::class,'ajaxValidation'])->name('worksheet.ajaxvalidation');
-    Route::post('/worksheet/addoption',[WorksheetController::class,'addOption'])->name('worksheet.add.option');
+    Route::get('/worksheet/index',[WorksheetController::class,'index'])->name('worksheet.index')->middleware(['ifnot:list worksheet']);
+    Route::get('/worksheet/create',[WorksheetController::class,'create'])->name('worksheet.create')->middleware(['ifnot:create worksheet']);
+    Route::get('/worksheet/{id}/edit',[WorksheetController::class,'edit'])->name('worksheet.edit')->middleware(['ifnot:edit worksheet']);
+    Route::get('/worksheet/{id}/part',[WorksheetController::class,'partConsult'])->name('worksheet.part')->middleware(['ifnot:part worksheet']);
+    Route::post('/worksheet/print',[WorksheetController::class,'print'])->name('worksheet.print')->middleware(['ifnot:print worksheet']);
+    Route::post('/worksheet/store',[worksheetController::class,'store'])->name('worksheet.store')->middleware(['ifnot:create worksheet']);
+    Route::post('/worksheet/{id}/update',[worksheetController::class,'update'])->name('worksheet.update')->middleware(['ifnot:edit worksheet']);
+    Route::post('/worksheet/ajaxselect',[WorksheetController::class,'ajaxSelect'])->name('worksheet.ajaxselect')->middleware(['ifnot:create worksheet|edit worksheet']);
+    Route::post('/worksheet/ajaxvalidation',[WorksheetController::class,'ajaxValidation'])->name('worksheet.ajaxvalidation')->middleware(['ifnot:create worksheet|edit worksheet']);
+    Route::post('/worksheet/addoption',[WorksheetController::class,'addOption'])->name('worksheet.add.option')->middleware(['ifnot:create worksheet|edit worksheet']);
 
     /**
      * Clocking Controller
      */
-    Route::get('/clocking/{id}/edit',[ClockingController::class,'edit'])->name('clocking.edit');
-    Route::get('/clocking/{id}/show',[ClockingController::class,'show'])->name('clocking.show');
-    Route::get('/clocking/clockingtechnician',[ClockingController::class,'ClockingTechnician'])->name('clocking.technician');
-    Route::post('/clocking/{id}/update',[ClockingController::class,'update'])->name('clocking.update');
-    Route::post('/clocking/ajaxworksheetcheck',[ClockingController::class,'ajaxWorksheetCheck'])->name('clocking.ajaxworksheetcheck');
-    Route::post('/clocking/ajaxtechniciancheck',[ClockingController::class,'ajaxTechnicianCheck'])->name('clocking.ajaxtechniciancheck');
+    Route::get('/clocking/{id}/edit',[ClockingController::class,'edit'])->name('clocking.edit')->middleware(['ifnot:clocking worksheet']);
+    //Route::get('/clocking/{id}/show',[ClockingController::class,'show'])->name('clocking.show');
+    Route::get('/clocking/clockingtechnician',[ClockingController::class,'ClockingTechnician'])->name('clocking.technician')->middleware(['ifnot:clocking technician']);
+    Route::post('/clocking/{id}/update',[ClockingController::class,'update'])->name('clocking.update')->middleware(['ifnot:clocking worksheet']);
+    Route::post('/clocking/ajaxworksheetcheck',[ClockingController::class,'ajaxWorksheetCheck'])->name('clocking.ajaxworksheetcheck')->middleware(['ifnot:clocking technician']);
+    Route::post('/clocking/ajaxtechniciancheck',[ClockingController::class,'ajaxTechnicianCheck'])->name('clocking.ajaxtechniciancheck')->middleware(['ifnot:clocking technician']);
 
     /**
      * Technician Controller
      */
-    Route::get('/technician',[TechnicianController::class,'index'])->name('technician.index');
-    Route::get('/technician/create',[TechnicianController::class,'create'])->name('technician.create');
-    Route::get('/technician/{id}/edit',[TechnicianController::class,'edit'])->name('technician.edit');
-    Route::post('/technician/store',[TechnicianController::class,'store'])->name('technician.store');
-    Route::post('/technician/{id}/update',[TechnicianController::class,'update'])->name('technician.update');
-    Route::post('/technician/ajaxvalidation',[TechnicianController::class,'ajaxValidation'])->name('technician.ajaxvalidation');
-    Route::post('/technician/ajaxnamecheck',[TechnicianController::class,'ajaxNameCheck'])->name('technician.ajaxnamecheck');
+    Route::get('/technician',[TechnicianController::class,'index'])->name('technician.index')->middleware(['ifnot:list technician']);
+    Route::get('/technician/create',[TechnicianController::class,'create'])->name('technician.create')->middleware(['ifnot:create technician']);
+    Route::get('/technician/{id}/edit',[TechnicianController::class,'edit'])->name('technician.edit')->middleware(['ifnot:edit technician']);
+    Route::post('/technician/store',[TechnicianController::class,'store'])->name('technician.store')->middleware(['ifnot:create technician']);
+    Route::post('/technician/{id}/update',[TechnicianController::class,'update'])->name('technician.update')->middleware(['ifnot:edit technician']);
+    Route::post('/technician/ajaxvalidation',[TechnicianController::class,'ajaxValidation'])->name('technician.ajaxvalidation')->middleware(['ifnot:create technician|edit technician']);
+    Route::post('/technician/ajaxnamecheck',[TechnicianController::class,'ajaxNameCheck'])->name('technician.ajaxnamecheck')->middleware(['ifnot:create technician|edit technician']);
 
 });
 

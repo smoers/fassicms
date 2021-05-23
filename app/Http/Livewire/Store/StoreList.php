@@ -98,6 +98,7 @@ class StoreList extends TableComponent
                 ->searchable()
                 ->sortable(),
             Column::make(trans('Price')." $this->year",'price')
+                ->hideIf(!auth()->user()->can('price catalog'))
                 ->format(function (Partmetadata $model){
                     return $this->html('<div class="text-right w-100 ">'.number_format($model->price,2,',','.').'</div>');
                 }),
