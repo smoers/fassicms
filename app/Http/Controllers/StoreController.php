@@ -122,15 +122,10 @@ class StoreController extends Controller
     {
         $partmetadata = Partmetadata::find($request->id);
         if (!is_null($partmetadata)){
-            /**
-             * Charge les modèles des relations
-             */
-            $partmetadata->loadForConsult();
-            $mocoModelForConsult = new MocoModelForConsult($partmetadata);
-            //dd($mocoModelForConsult->getBladeLayout());
+            $mocoModelForConsult = new MocoModelForConsult($partmetadata,true);
             return view('consult.consult',
                 [
-                    'title' => trans('Consult Catalog'),
+                    'title' => trans('Consult Part Metadata'),
                     'consult' => $mocoModelForConsult->getBladeLayout(),
                 ]);
         }

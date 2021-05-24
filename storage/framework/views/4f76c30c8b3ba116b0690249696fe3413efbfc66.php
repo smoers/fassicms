@@ -22,7 +22,7 @@
         <?php  $_r_modify = true; ?>
     <?php elseif($whatIs == 'worksheet'): ?>
         <?php  $_modify = route('worksheet.edit',$worksheet->id); ?>
-        <?php  $_show = ''; ?>
+        <?php  $_show = route('worksheet.show',$worksheet->id); ?>
         <?php  $_remove = ''; ?>
         <?php  $_hour = route('clocking.edit',$worksheet->id); ?>
         <?php  $_part = route('worksheet.part',$worksheet->id); ?>

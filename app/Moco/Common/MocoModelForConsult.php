@@ -30,57 +30,139 @@
 namespace App\Moco\Common;
 
 
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Schema;
+use PhpParser\Node\Scalar\String_;
 
 class MocoModelForConsult
 {
     protected $model = null;
-    protected $consult_array = null;
-    protected $default_config = null;
+    protected $extended;
     protected $item_layout = '<tr class="moco-row-table-font-small"><td class="moco-color-info" style="font-style: italic">{{$key}}</td><td>{{$value}}</td></tr>';
     protected $header_layout = '<table class="table table-sm"><thead class="thead-light"><tr><th>Fields</th><th>Values</th></tr></thead><tbody>{{$item}}</tbody></table>';
+    protected $follow = [];
 
     /**
      * MocoModelForConsult constructor.
      * @param null $consult_array
      */
-    public function __construct(Model $model)
+    public function __construct(MocoModelForConsultInterface $model, bool $extended = true)
     {
-        $this->default_config = $this->getConfig($model->getTable());
-        $this->consult_array = $model->toArray();
+        $this->model = $model;
+        $this->extended = $extended;
+        $this->follow = config('moco.consult.follow');
     }
 
-    public function getBladeLayout()
+    /**
+     * @return string|null
+     */
+    public function getBladeLayout(): ? string
     {
-        return $this->browse($this->consult_array);
+        return $this->getBladeLayoutModel();
     }
 
-    protected function browse(array $node)
+    /**
+     * @return string|null
+     */
+    protected function getBladeLayoutModel(): ?string
+    {
+        return $this->insertTable($this->getBladeLayoutModelExtended());
+    }
+
+    protected function getBladeLayoutModelExtended(): ?String
+    {
+        $layout = $this->getAttributesLayoutRow($this->model);
+        if ($this->extended)
+            $layout .= $this->getBladeLayoutRelations();
+        return $layout;
+    }
+
+    /**
+     * @return string|null
+     */
+    protected function getBladeLayoutRelations(): ?string
     {
         $layout = '';
-        foreach ($node as $key => $value){
-            if (is_array($value)){
-                $layout .= $this->insertRow($key,$this->browse($value));
+        foreach ($this->model->WithForConsult() as $relation){
+            if ($this->model->$relation instanceof Collection){
+                foreach ($this->model->$relation->all() as $model){
+                    $layout .= $this->insertRow($relation,$this->getAttributesLayoutTable($model));
+                }
             } else {
-                $layout .= $this->insertRow($key, $value);
+                $model = $this->model->$relation;
+                $layout .= $this->insertRow($relation,$this->getAttributesLayoutTable($model));
             }
         }
-        return $this->insertTable($layout);
+        return $layout;
     }
 
-    protected function insertRow(?string $key, ?string $value)
+    /**
+     * @param Model $model
+     * @return string|null
+     */
+    protected function getAttributesLayoutRow(Model $model): ?string
+    {
+        $layout = '';
+        $table_name = $model->getTable();
+        foreach ($model->getAttributes() as $key => $value){
+            if ($this->getField($table_name.'.show.'.$key,true)) {
+                $_name = $this->getField($table_name . '.name.' . $key, $key);
+                if (array_key_exists($key,$this->follow)){
+                    $_value = $this->getFollowLink($model,$this->follow[$key]);
+                } else {
+                    $_value = $this->valueConverter($table_name, $key, $value);
+                }
+                $layout .= $this->insertRow(trans($_name), $_value);
+            }
+        }
+        return $layout;
+    }
+
+    protected function getAttributesLayoutTable(Model $model): ?string
+    {
+        return $this->insertTable($this->getAttributesLayoutRow($model));
+    }
+
+    protected function insertRow(?string $key, ?string $value): ?string
     {
         return str_replace(['{{$key}}','{{$value}}'],[$key,$value],$this->item_layout);
     }
 
-    protected function insertTable(?string $item)
+    protected function insertTable(?string $item): ?string
     {
         return str_replace('{{$item}}',$item,$this->header_layout);
     }
 
-    protected function getConfig(string $key)
+    /**
+     * @param string $key
+     * @return \Illuminate\Config\Repository|\Illuminate\Contracts\Foundation\Application|mixed
+     */
+    protected function getField(string $key, $default = null)
     {
+        return config('moco.consult.fields.'.$key,$default);
+    }
 
+    protected function valueConverter(string $table_name, string $field, $value)
+    {
+        switch (Schema::getColumnType($table_name, $field)){
+            case 'boolean':
+                $value = $value == 1 ? 'yes' : 'no';
+        }
+        return $value;
+    }
+
+    protected function getFollowLink(Model $model, string $follow)
+    {
+        $content = null;
+        $follows = explode(':',$follow);
+        $relation = $follows[0];
+        $list_fields = explode('|',$follows[1]);
+        $relation_model = $model->{$relation}()->first();
+        foreach ($list_fields as $field){
+            $content .= (!is_null($content)? '</br>' : '').$relation_model->getAttribute($field);
+        }
+        return $content;
     }
 
 

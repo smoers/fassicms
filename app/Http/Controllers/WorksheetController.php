@@ -26,6 +26,7 @@ use App\Http\Requests\WorksheetRequest;
 use App\Moco\Common\Moco;
 use App\Moco\Common\MocoAjaxValidation;
 use App\Moco\Common\MocoArrayFieldsValues;
+use App\Moco\Common\MocoModelForConsult;
 use App\Moco\Common\MocoOptions;
 use App\Moco\Common\MocoOptionsListWorksheetPrint;
 use App\Moco\Printer\MocoPrintTemplate;
@@ -260,6 +261,15 @@ class WorksheetController extends Controller
     public function show($id)
     {
         $worksheet = Worksheet::find($id);
+        if (!is_null($worksheet)){
+            $mocoModelForConsult = new MocoModelForConsult($worksheet,true);
+            return view('consult.consult',
+                [
+                    'title' => trans('Consult Worksheet'),
+                    'consult' => $mocoModelForConsult->getBladeLayout(),
+                ]);
+        }
+        return redirect()->route('worksheet.index');
     }
 
     /**

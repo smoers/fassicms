@@ -60,7 +60,7 @@ class ClockingController extends Controller
             'action' => route('clocking.update',$id),
             'technicians' => Technician::all()->sortBy('lastname'),
             'worksheet' => $worksheet,
-            'clockings' => $worksheet->clocking,
+            'clockings' => $worksheet->clockings,
         ]);
     }
 

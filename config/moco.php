@@ -182,33 +182,59 @@ return [
      * ce sont la liste des champs contenus dans le tables
      * utilisé pour construire l'interface Consult
      */
-    'fields' => [
-        'partmetadatas' => [
-            'name' => [
-                'id' => 'Identifier',
-                'part_number' => 'Part Number',
-                'description' => 'Description',
-                'enabled' => 'Enabled',
-                'electrical_part' => 'Electrical Part',
-                'bar_code' => 'BarCode',
-                'created_at' => 'Created Date',
-                'updated_at' => 'Updated Date',
-                'reassort_level' => 'Reassortment Level',
-                'user_id' => 'User Identifier'
+    'consult' => [
+        'follow' => [
+            'location_id' => 'location:location|description',
+            'provider_id' => 'provider:name',
+            'user_id' => 'user:firstname|lastname',
+        ],
+        'fields' => [
+            'partmetadatas' => [
+                'name' => [
+                    'id' => 'Identifier',
+                    'part_number' => 'Part Number',
+                    'description' => 'Description',
+                    'enabled' => 'Enabled',
+                    'electrical_part' => 'Electrical Part',
+                    'bar_code' => 'BarCode',
+                    'created_at' => 'Created Date',
+                    'updated_at' => 'Updated Date',
+                    'reassort_level' => 'Reassortment Level',
+                    'user_id' => 'User Identifier'
+                ],
+                'show' => [
+                    'id' => true,
+                    'part_number' => true,
+                    'description' => true,
+                    'enabled' => true,
+                    'electrical_part' => true,
+                    'bar_code' => true,
+                    'created_at' => true,
+                    'updated_at' => true,
+                    'reassort_level' => true,
+                    'user_id' => false,
+                ],
             ],
-            'parameters' => [
-                'id' => ['show' => true, 'type' => null],
-                'part_number' =>  ['show' => true, 'type' => null],
-                'description' =>  ['show' => true, 'type' => null],
-                'enabled' =>  ['show' => true, 'type' => 'bool'],
-                'electrical_part' =>  ['show' => true, 'type' => 'bool'],
-                'bar_code' =>  ['show' => true, 'type' => null],
-                'created_at' =>  ['show' => true, 'type' => 'date'],
-                'updated_at' =>  ['show' => true, 'type' => 'date'],
-                'reassort_level' =>  ['show' => false, 'type' => null],
-                'user_id' =>  ['show' => false, 'type' => null],
-            ],
-        ]
+            'stores' => [
+                'name' => [
+                    'id' => 'Identifier',
+                    'qty' => 'Quantity',
+                    'created_at' => 'Created Date',
+                    'updated_at' => 'Updated Date',
+                    'location_id' => 'Location Identifier',
+                    'partmetadata_id' => 'Partmetadata Identifier',
+                    'user_id' => 'User Identifier',
+                ],
+                'show' => [
+                    'id' => true,
+                    'qty' => true,
+                    'created_at' => true,
+                    'updated_at' => true,
+                    'location_id' => true,
+                    'partmetadata_id' => false,
+                    'user_id' => false,
+                ],
+            ]
+        ],
     ],
-
-];
+ ];

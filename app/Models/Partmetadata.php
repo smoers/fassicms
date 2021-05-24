@@ -3,11 +3,12 @@
 namespace App\Models;
 
 use App\Moco\Common\MocoModelCreatedUpdatedAt;
+use App\Moco\Common\MocoModelForConsultInterface;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Partmetadata extends Model
+class Partmetadata extends Model implements MocoModelForConsultInterface
 {
     use HasFactory, MocoModelCreatedUpdatedAt;
 
@@ -21,7 +22,7 @@ class Partmetadata extends Model
     ];
 
     /**
-     * Liste des relations à rafraichir pour le formulaire de consultation
+     * Liste des relations utilisée pour le formulaire de consultation
      *
      * @var string[]
      */
@@ -140,5 +141,11 @@ class Partmetadata extends Model
         $this->load($this->withForConsult);
     }
 
-
+    /**
+     * @return string[]
+     */
+    public function WithForConsult()
+    {
+        return $this->withForConsult;
+    }
 }

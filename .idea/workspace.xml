@@ -2,24 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9ec171e7-05c7-490b-8f14-40ae5b7978c4" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Moco/Common/MocoModelCreatedUpdatedAt.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Moco/Common/MocoModelForConsult.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/consult/consult.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/sessions/GI5Lsi7dylsnuyA571AfiUlxcggHYGnAafj4XOkH" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/523b1a5710afb7bc69be41c6fec32eb9b498ac4d.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Moco/Common/MocoModelForConsultInterface.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/fassicms.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/fassicms.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ClockingController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ClockingController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/StoreController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/StoreController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Catalog.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Catalog.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/WorksheetController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/WorksheetController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Moco/Common/MocoModelForConsult.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Moco/Common/MocoModelForConsult.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Models/Partmetadata.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Partmetadata.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Store.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Store.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Worksheet.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Worksheet.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config/moco.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/moco.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/menus/store-list-sub.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/menus/store-list-sub.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/menus/list-submenu.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/menus/list-submenu.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/bnH16mNVNkwBWT99TGvCzO9P0ugxM2ZfItsLiMlu" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/nwUGL8IYzIoVopPg7nE6ajORrWC9CnPh7772FuX0" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/yyBMBDzyyN5vQfYQWl381XS8TTyvkBQbVSjwwC9u" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/views/66e5c1a2733047657c380e29e0bc92c6411801b4.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/66e5c1a2733047657c380e29e0bc92c6411801b4.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/4f76c30c8b3ba116b0690249696fe3413efbfc66.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/4f76c30c8b3ba116b0690249696fe3413efbfc66.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -172,6 +170,10 @@
       <path value="$PROJECT_DIR$/vendor/rappasoft/laravel-livewire-tables" />
       <path value="$PROJECT_DIR$/vendor/tecnickcom/tcpdf" />
       <path value="$PROJECT_DIR$/vendor/laracasts/generators" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/deprecations" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/event-manager" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/dbal" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/cache" />
     </include_path>
   </component>
   <component name="ProjectId" id="1jdZiM5812ctBuM0QfegVcPS6Km" />
@@ -832,7 +834,7 @@
       <workItem from="1621667208678" duration="27964000" />
       <workItem from="1621762853230" duration="17265000" />
       <workItem from="1621845926279" duration="3140000" />
-      <workItem from="1621849275965" duration="14585000" />
+      <workItem from="1621849275965" duration="30987000" />
     </task>
     <task id="LOCAL-00001" summary="20201031 - Init">
       <created>1604168127520</created>
@@ -1149,7 +1151,14 @@
       <option name="project" value="LOCAL" />
       <updated>1621789613826</updated>
     </task>
-    <option name="localTasksCounter" value="46" />
+    <task id="LOCAL-00046" summary="20210524 - v2.0 Stores by location">
+      <created>1621865566860</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1621865566860</updated>
+    </task>
+    <option name="localTasksCounter" value="47" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -1158,7 +1167,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="20201210 - v1.0" />
     <MESSAGE value="20201214 - v1.0" />
     <MESSAGE value="202012191134 - v1.0" />
     <MESSAGE value="202012191825 - v1.0" />
@@ -1183,7 +1191,8 @@
     <MESSAGE value="20210508 - v2.0 Stores by location" />
     <MESSAGE value="20210522 - v2.0 Stores by location" />
     <MESSAGE value="20210523 - v2.0 Stores by location" />
-    <option name="LAST_COMMIT_MESSAGE" value="20210523 - v2.0 Stores by location" />
+    <MESSAGE value="20210524 - v2.0 Stores by location" />
+    <option name="LAST_COMMIT_MESSAGE" value="20210524 - v2.0 Stores by location" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

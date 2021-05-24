@@ -22,7 +22,7 @@
         @var $_r_modify = true
     @elseif($whatIs == 'worksheet')
         @var $_modify = route('worksheet.edit',$worksheet->id)
-        @var $_show = ''
+        @var $_show = route('worksheet.show',$worksheet->id)
         @var $_remove = ''
         @var $_hour = route('clocking.edit',$worksheet->id)
         @var $_part = route('worksheet.part',$worksheet->id)

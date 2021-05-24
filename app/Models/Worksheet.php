@@ -23,13 +23,16 @@
  */
 namespace App\Models;
 
+use App\Moco\Common\MocoModelCreatedUpdatedAt;
+use App\Moco\Common\MocoModelForConsultInterface;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Worksheet extends Model
+class Worksheet extends Model implements MocoModelForConsultInterface
 {
-    use HasFactory;
+    use HasFactory, MocoModelCreatedUpdatedAt;
+
     protected $fillable = [
         'number',
         'date',
@@ -39,6 +42,13 @@ class Worksheet extends Model
         'oil_filtered',
         'warranty',
     ];
+
+    /**
+     * Liste des relations utilisée pour le formulaire de consultation
+     *
+     * @var string[]
+     */
+    protected $withForConsult = ['customer','crane','parts','clockings','user'];
 
     /**
      * Retourne l'objet Customer lié à l'objet Worksheet
@@ -73,7 +83,7 @@ class Worksheet extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function clocking()
+    public function clockings()
     {
         return $this->hasMany(Clocking::class);
     }
@@ -139,4 +149,8 @@ class Worksheet extends Model
     }
 
 
+    public function WithForConsult()
+    {
+        return $this->withForConsult;
+    }
 }
