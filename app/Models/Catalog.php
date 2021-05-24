@@ -23,12 +23,13 @@
  */
 namespace App\Models;
 
+use App\Moco\Common\MocoModelCreatedUpdatedAt;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Catalog extends Model
 {
-    use HasFactory;
+    use HasFactory, MocoModelCreatedUpdatedAt;
 
     protected $fillable = ['price','year'];
 

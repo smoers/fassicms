@@ -178,5 +178,37 @@ return [
             'register' => 'R',
         ]
     ],
+    /**
+     * ce sont la liste des champs contenus dans le tables
+     * utilisé pour construire l'interface Consult
+     */
+    'fields' => [
+        'partmetadatas' => [
+            'name' => [
+                'id' => 'Identifier',
+                'part_number' => 'Part Number',
+                'description' => 'Description',
+                'enabled' => 'Enabled',
+                'electrical_part' => 'Electrical Part',
+                'bar_code' => 'BarCode',
+                'created_at' => 'Created Date',
+                'updated_at' => 'Updated Date',
+                'reassort_level' => 'Reassortment Level',
+                'user_id' => 'User Identifier'
+            ],
+            'parameters' => [
+                'id' => ['show' => true, 'type' => null],
+                'part_number' =>  ['show' => true, 'type' => null],
+                'description' =>  ['show' => true, 'type' => null],
+                'enabled' =>  ['show' => true, 'type' => 'bool'],
+                'electrical_part' =>  ['show' => true, 'type' => 'bool'],
+                'bar_code' =>  ['show' => true, 'type' => null],
+                'created_at' =>  ['show' => true, 'type' => 'date'],
+                'updated_at' =>  ['show' => true, 'type' => 'date'],
+                'reassort_level' =>  ['show' => false, 'type' => null],
+                'user_id' =>  ['show' => false, 'type' => null],
+            ],
+        ]
+    ],
 
 ];

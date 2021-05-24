@@ -2,13 +2,14 @@
 
 namespace App\Models;
 
+use App\Moco\Common\MocoModelCreatedUpdatedAt;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Partmetadata extends Model
 {
-    use HasFactory;
+    use HasFactory, MocoModelCreatedUpdatedAt;
 
     protected $fillable = [
         'part_number',
@@ -18,6 +19,13 @@ class Partmetadata extends Model
         'bar_code',
         'reassort_level',
     ];
+
+    /**
+     * Liste des relations à rafraichir pour le formulaire de consultation
+     *
+     * @var string[]
+     */
+    protected $withForConsult = ['Stores','Catalogs','User'];
 
     /**
      * Retourne les objets Catalog lié à l'object Partmetadata
@@ -124,6 +132,13 @@ class Partmetadata extends Model
             return self::where('bar_code','=', $bar_code)->where('enabled','=',$enabled)->first() ;
     }
 
+    /**
+     * Charge les modèles des relations
+     */
+    public function loadForConsult()
+    {
+        $this->load($this->withForConsult);
+    }
 
 
 }

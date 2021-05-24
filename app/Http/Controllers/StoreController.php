@@ -25,6 +25,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\PartmetadataUpdateRequest;
 use App\Http\Requests\StorePartRequest;
 use App\Moco\Common\MocoAjaxValidation;
+use App\Moco\Common\MocoModelForConsult;
 use App\Moco\Printer\MocoSticker;
 use App\Moco\Printer\MocoStickerModel;
 use App\Models\Catalog;
@@ -117,9 +118,25 @@ class StoreController extends Controller
     /**
      * @return string
      */
-    public function show()
+    public function show(Request $request)
     {
-        return 'test';
+        $partmetadata = Partmetadata::find($request->id);
+        if (!is_null($partmetadata)){
+            /**
+             * Charge les modèles des relations
+             */
+            $partmetadata->loadForConsult();
+            $mocoModelForConsult = new MocoModelForConsult($partmetadata);
+            //dd($mocoModelForConsult->getBladeLayout());
+            return view('consult.consult',
+                [
+                    'title' => trans('Consult Catalog'),
+                    'consult' => $mocoModelForConsult->getBladeLayout(),
+                ]);
+        }
+
+        return redirect()->route('store.index');
+
     }
 
     /**

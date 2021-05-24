@@ -66,6 +66,7 @@ Route::group(['middleware' => ['auth']],function (){
     Route::get('/store/{id}/{cat_id}/edit',[StoreController::class,'edit'])->name('store.edit')->middleware(['ifnot:edit catalog']);
     Route::post('/store/ajaxvalidation',[StoreController::class,'ajaxValidation'])->name('store.ajaxvalidation')->middleware(['ifnot:create catalog|edit catalog']);
     Route::get('/store/{id}/bs',[StoreController::class,'barcodeSticker'])->name('store.barcode_sticker')->middleware(['ifnot:print catalog']);
+    Route::get('/store/{id}/show',[StoreController::class,'show'])->name('store.show')->middleware(['ifnot:consult catalog']);
 
     /**
      * Reassort Controller

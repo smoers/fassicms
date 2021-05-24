@@ -23,6 +23,7 @@
  */
 namespace App\Models;
 
+use App\Moco\Common\MocoModelCreatedUpdatedAt;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -30,7 +31,7 @@ use Illuminate\Support\Facades\Auth;
 
 class Store extends Model
 {
-    use HasFactory;
+    use HasFactory, MocoModelCreatedUpdatedAt;
 
     protected $fillable = [
         'qty',
