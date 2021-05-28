@@ -1,21 +1,21 @@
 <div class="container-fluid">
     <?php if($whatIs == 'crane'): ?>
         <?php  $_modify = route('crane.edit',$crane->id); ?>
-        <?php  $_show = ''; ?>
+        <?php  $_show = route('crane.show',$crane->id); ?>
         <?php  $_remove = ''; ?>
         <?php  $_print = ''; ?>
         <?php  $_print_id = ''; ?>
         <?php  $_r_modify = true; ?>
     <?php elseif($whatIs == 'customer'): ?>
         <?php  $_modify = route('customer.edit',$customer->id); ?>
-        <?php  $_show = ''; ?>
+        <?php  $_show = route('customer.show',$customer->id); ?>
         <?php  $_remove = ''; ?>
         <?php  $_print = ''; ?>
         <?php  $_print_id = ''; ?>
         <?php  $_r_modify = true; ?>
     <?php elseif($whatIs == 'technician'): ?>
         <?php  $_modify = route('technician.edit',$technician->id); ?>
-        <?php  $_show = ''; ?>
+        <?php  $_show = route('technician.show',$technician->id); ?>
         <?php  $_remove = ''; ?>
         <?php  $_print = ''; ?>
         <?php  $_print_id = ''; ?>

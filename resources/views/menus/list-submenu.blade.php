@@ -1,21 +1,21 @@
 <div class="container-fluid">
     @if($whatIs == 'crane')
         @var $_modify = route('crane.edit',$crane->id)
-        @var $_show = ''
+        @var $_show = route('crane.show',$crane->id)
         @var $_remove = ''
         @var $_print = ''
         @var $_print_id = ''
         @var $_r_modify = true
     @elseif($whatIs == 'customer')
         @var $_modify = route('customer.edit',$customer->id)
-        @var $_show = ''
+        @var $_show = route('customer.show',$customer->id)
         @var $_remove = ''
         @var $_print = ''
         @var $_print_id = ''
         @var $_r_modify = true
     @elseif($whatIs == 'technician')
         @var $_modify = route('technician.edit',$technician->id)
-        @var $_show = ''
+        @var $_show = route('technician.show',$technician->id)
         @var $_remove = ''
         @var $_print = ''
         @var $_print_id = ''

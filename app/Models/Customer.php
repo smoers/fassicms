@@ -23,12 +23,14 @@
  */
 namespace App\Models;
 
+use App\Moco\Common\MocoModelCreatedUpdatedAt;
+use App\Moco\Common\MocoModelForConsultInterface;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Customer extends Model
+class Customer extends Model implements MocoModelForConsultInterface
 {
-    use HasFactory;
+    use HasFactory, MocoModelCreatedUpdatedAt;
 
     protected $fillable =[
         'name',
@@ -42,6 +44,13 @@ class Customer extends Model
         'mobile',
         'vat'
     ];
+
+    /**
+     * Liste des relations utilisée pour le formulaire de consultation
+     *
+     * @var string[]
+     */
+    protected $withForConsult = ['worksheets','user'];
 
     /**
      * Retourne l'objet User lié à l'objet Worksheet
@@ -58,5 +67,10 @@ class Customer extends Model
      */
     public function worksheets(){
         return $this->hasMany(Worksheet::class);
+    }
+
+    public function WithForConsult()
+    {
+        return $this->withForConsult;
     }
 }

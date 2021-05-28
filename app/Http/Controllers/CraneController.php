@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CraneRequest;
 use App\Moco\Common\MocoAjaxValidation;
+use App\Moco\Common\MocoModelForConsult;
 use App\Models\Crane;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 
 class CraneController extends Controller
@@ -46,7 +48,7 @@ class CraneController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function store(Request $request)
     {
@@ -80,11 +82,20 @@ class CraneController extends Controller
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\RedirectResponse
      */
     public function show($id)
     {
-        //
+        $crane = Crane::find($id);
+        if (!is_null($crane)){
+            $mocoModelForConsult = new MocoModelForConsult($crane,true);
+            return view('consult.consult',
+                [
+                    'title' => trans('Consult Crane'),
+                    'consult' => $mocoModelForConsult->getBladeLayout(),
+                ]);
+        }
+        return redirect()->route('crane.index');
     }
 
     /**
@@ -109,7 +120,7 @@ class CraneController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function update(Request $request, $id)
     {
@@ -126,7 +137,7 @@ class CraneController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function destroy($id)
     {

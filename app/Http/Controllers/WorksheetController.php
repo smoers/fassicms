@@ -258,6 +258,12 @@ class WorksheetController extends Controller
 
     }
 
+    /**
+     * Permet l'affichage des données en mode consultation
+     *
+     * @param $id
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\RedirectResponse
+     */
     public function show($id)
     {
         $worksheet = Worksheet::find($id);

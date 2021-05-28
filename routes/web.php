@@ -52,6 +52,7 @@ Route::group(['middleware' => ['auth']],function (){
     Route::get('/crane',[CraneController::class,'index'])->name('crane.index')->middleware(['ifnot:list crane']);
     Route::get('/crane/create',[CraneController::class,'create'])->name('crane.create')->middleware(['ifnot:create crane']);
     Route::get('/crane/{id}/edit',[CraneController::class,'edit'])->name('crane.edit')->middleware(['ifnot:edit crane']);
+    Route::get('/crane/{id}/show',[CraneController::class,'show'])->name('crane.show')->middleware(['ifnot:consult crane']);
     Route::post('/crane/store',[CraneController::class,'store'])->name('crane.store')->middleware(['ifnot:create crane']);
     Route::post('/crane/{id}/update',[CraneController::class,'update'])->name('crane.update')->middleware(['ifnot:edit crane']);
     Route::post('/crane/ajaxvalidation',[CraneController::class,'ajaxValidation'])->name('crane.ajaxvalidation')->middleware(['ifnot:create crane|edit crane']);
@@ -91,6 +92,7 @@ Route::group(['middleware' => ['auth']],function (){
     Route::get('/customer',[CustomerController::class,'index'])->name('customer.index')->middleware(['ifnot:list customer']);
     Route::get('/customer/create',[CustomerController::class,'create'])->name('customer.create')->middleware(['ifnot:create customer']);
     Route::get('/customer/{id}/edit',[CustomerController::class,'edit'])->name('customer.edit')->middleware(['ifnot:edit customer']);
+    Route::get('/customer/{id}/show',[CustomerController::class,'show'])->name('customer.show')->middleware(['ifnot:consult customer']);
     Route::post('/customer/store',[CustomerController::class,'store'])->name('customer.store')->middleware(['ifnot:create customer']);
     Route::post('/customer/{id}/update',[CustomerController::class,'update'])->name('customer.update')->middleware(['ifnot:edit customer']);
     Route::post('/customer/ajaxvalidation',[CustomerController::class,'ajaxValidation'])->name('customer.ajaxvalidation')->middleware(['ifnot:create customer|edit customer']);
@@ -139,6 +141,7 @@ Route::group(['middleware' => ['auth']],function (){
     Route::get('/technician',[TechnicianController::class,'index'])->name('technician.index')->middleware(['ifnot:list technician']);
     Route::get('/technician/create',[TechnicianController::class,'create'])->name('technician.create')->middleware(['ifnot:create technician']);
     Route::get('/technician/{id}/edit',[TechnicianController::class,'edit'])->name('technician.edit')->middleware(['ifnot:edit technician']);
+    Route::get('/technician/{id}/show',[TechnicianController::class,'show'])->name('technician.show')->middleware(['ifnot:consult technician']);
     Route::post('/technician/store',[TechnicianController::class,'store'])->name('technician.store')->middleware(['ifnot:create technician']);
     Route::post('/technician/{id}/update',[TechnicianController::class,'update'])->name('technician.update')->middleware(['ifnot:edit technician']);
     Route::post('/technician/ajaxvalidation',[TechnicianController::class,'ajaxValidation'])->name('technician.ajaxvalidation')->middleware(['ifnot:create technician|edit technician']);

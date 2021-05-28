@@ -30,6 +30,8 @@ Date : 27-10-20
         <!-- Ajax Bootstrap Select-->
         <link href="<?php echo e(asset('3rd/Ajax-Bootstrap-Select-1.4.5/dist/css/ajax-bootstrap-select.min.css')); ?>" rel="stylesheet">
         <link href="<?php echo e(asset('3rd/bttn.css-v0.2.4/bttn.css')); ?>" rel="stylesheet">
+        <!-- iziToast -->
+        <link href="<?php echo e(asset('3rd/iziToast-master/dist/css/iziToast.min.css')); ?>" rel="stylesheet">
         <!-- CSS MOCO -->
         <link href="<?php echo e(asset('css/all.css')); ?>" rel="stylesheet" type="text/css">
 
@@ -51,6 +53,8 @@ Date : 27-10-20
         <script type="text/javascript" src="<?php echo e(asset('3rd/handlebars-v4.7.6/handlebars-v4.7.6.js')); ?>"></script>
         <!-- Moment-->
         <script type="text/javascript" src="<?php echo e(asset('3rd/moment.2.91.1/moment.min.js')); ?>"></script>
+        <!-- iziToast -->
+        <script type="text/javascript" src="<?php echo e(asset('3rd/iziToast-master/dist/js/iziToast.min.js')); ?>"></script>
         <!-- Moco -->
         <script type="text/javascript" src="<?php echo e(asset('js/moco.request.js')); ?>"></script>
 

@@ -108,4 +108,16 @@ class Moco
             Cookie::queue(Cookie::forget($name));
         }
     }
+
+    /**
+     * retourne une clé aléatoire
+     *
+     * @return string
+     * @throws \Exception
+     */
+    public static function randomKey(): string
+    {
+        $bytes = random_bytes(8);
+        return bin2hex($bytes);
+    }
 }

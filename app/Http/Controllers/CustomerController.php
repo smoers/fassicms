@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CustomerRequest;
 use App\Moco\Common\MocoAjaxValidation;
+use App\Moco\Common\MocoModelForConsult;
 use App\Models\Customer;
 use App\Models\Zipcode;
 use Illuminate\Http\Request;
@@ -119,5 +120,25 @@ class CustomerController extends Controller
     {
         $zipcodes = Zipcode::where('zipcode','like',$request->post('zipcode').'%')->get();
         return response()->json($zipcodes);
+    }
+
+    /**
+     * Permet l'affichage des données en mode consultation
+     *
+     * @param $id
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\RedirectResponse
+     */
+    public function show($id)
+    {
+        $customer = Customer::find($id);
+        if (!is_null($customer)){
+            $mocoModelForConsult = new MocoModelForConsult($customer,true);
+            return view('consult.consult',
+                [
+                    'title' => trans('Consult Customer'),
+                    'consult' => $mocoModelForConsult->getBladeLayout(),
+                ]);
+        }
+        return redirect()->route('customer.index');
     }
 }

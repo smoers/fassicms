@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\TechnicianRequest;
 use App\Moco\Common\Moco;
 use App\Moco\Common\MocoAjaxValidation;
+use App\Moco\Common\MocoModelForConsult;
 use App\Models\Technician;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -127,5 +128,19 @@ class TechnicianController extends Controller
             ];
         }
         return response()->json($result);
+    }
+
+    public function show($id)
+    {
+        $technician = Technician::find($id);
+        if (!is_null($technician)){
+            $mocoModelForConsult = new MocoModelForConsult($technician,true);
+            return view('consult.consult',
+                [
+                    'title' => trans('Consult Customer'),
+                    'consult' => $mocoModelForConsult->getBladeLayout(),
+                ]);
+        }
+        return redirect()->route('technicien.index');
     }
 }

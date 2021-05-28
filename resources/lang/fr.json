@@ -34,6 +34,9 @@
     "Warning": "Attention",
     "Reassort Level": "Niveau de réassort.",
     "Error message": "Message d'erreur",
+    "Create Date": "Date de création",
+    "Update Date": "Date de mise à jour",
+    "Identifier": "Identifiant",
 
     "The serial number of the crane is required": "Le numéro de série de la grue est requis",
     "The maximum size for a serial is 20 characters": "La taille maximum pour un sérial est de 20 caractères",
@@ -140,6 +143,7 @@
     "#####": "!! Customer !!",
     "Customer": "Client",
     "Add customer": "Ajouter un client",
+    "Consult Customer": "Consulter le client",
     "Company name": "Nom de la compagnie",
     "Address": "Adresse",
     "Address (optional)": "Adresse (optionelle)",

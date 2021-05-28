@@ -34,6 +34,9 @@
     "Warning": "Waarschuwing",
     "Reassort Level": "Aanvullingsniveau",
     "Error message": "Foutmelding",
+    "Create Date": "Aanmaakdatum",
+    "Update Date": "Datum van update",
+    "Identifier": "Gebruikersnaam",
 
     "The serial number of the crane is required": "Het serienummer van de kraan is vereist",
     "The maximum size for a serial is 20 characters": "De maximale grootte voor een serie is 20 tekens",
@@ -140,6 +143,7 @@
     "#####": "!! Customer !!",
     "Customer": "Klant",
     "Add customer": "Voeg een klant toe",
+    "Consult Customer": "Raadpleeg de klant",
     "Company name": "Bedrijfsnaam",
     "Address": "Adres",
     "Address (optional)": "Adres (optioneel)",

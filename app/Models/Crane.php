@@ -23,17 +23,26 @@
  */
 namespace App\Models;
 
+use App\Moco\Common\MocoModelCreatedUpdatedAt;
+use App\Moco\Common\MocoModelForConsultInterface;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Crane extends Model
+class Crane extends Model implements MocoModelForConsultInterface
 {
-    use HasFactory;
+    use HasFactory, MocoModelCreatedUpdatedAt;
     protected $fillable =[
         'serial',
         'model',
         'plate',
     ];
+
+    /**
+     * Liste des relations utilisée pour le formulaire de consultation
+     *
+     * @var string[]
+     */
+    protected $withForConsult = ['worksheets','user'];
 
     /**
      * Retourne les objets Worksheet pour cet objet Crane
@@ -60,5 +69,13 @@ class Crane extends Model
      */
     public static function exist(string $serial, string $plate){
         return self::where('serial','=',$serial)->where('plate','=',$plate)->get()->count() == 1;
+    }
+
+    /**
+     * @return string[]
+     */
+    public function WithForConsult()
+    {
+        return $this->withForConsult;
     }
 }

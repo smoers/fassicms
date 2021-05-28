@@ -33,19 +33,29 @@ namespace App\Moco\Common;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Schema;
-use PhpParser\Node\Scalar\String_;
 
+/**
+ * Cette classe se charge de l'affichage en mode consultation
+ * des modèles
+ *
+ * Class MocoModelForConsult
+ * @package App\Moco\Common
+ */
 class MocoModelForConsult
 {
     protected $model = null;
     protected $extended;
-    protected $item_layout = '<tr class="moco-row-table-font-small"><td class="moco-color-info" style="font-style: italic">{{$key}}</td><td>{{$value}}</td></tr>';
+    protected $item_layout = '<tr class="moco-row-table-font-small"><td class="moco-color-info" style="font-style: italic; width: 25%">{{$key}}</td><td>{{$value}}</td></tr>';
     protected $header_layout = '<table class="table table-sm"><thead class="thead-light"><tr><th>Fields</th><th>Values</th></tr></thead><tbody>{{$item}}</tbody></table>';
+    protected $collapse_href = '<a class="btn btn-primary" data-toggle="collapse" href="#{{$randomkey}}" role="button" aria-expanded="false" aria-controls="{{$randomkey}}">{{$relation}} <i class="fas fa-caret-right"></i></a>';
+    protected $collapse_content = '<div class="collapse" id="{{$randomkey}}">{{$table}}</div>';
     protected $follow = [];
 
     /**
-     * MocoModelForConsult constructor.
-     * @param null $consult_array
+     * Constructeur
+     *
+     * @param MocoModelForConsultInterface $model
+     * @param bool $extended
      */
     public function __construct(MocoModelForConsultInterface $model, bool $extended = true)
     {
@@ -55,6 +65,9 @@ class MocoModelForConsult
     }
 
     /**
+     * Retourne le contenu HTML à passer à la vue
+     * qui se charge de l'affichage
+     *
      * @return string|null
      */
     public function getBladeLayout(): ? string
@@ -63,6 +76,8 @@ class MocoModelForConsult
     }
 
     /**
+     * Retourne le contenu HTML en chassé dans une balise <TABLE>
+     *
      * @return string|null
      */
     protected function getBladeLayoutModel(): ?string
@@ -70,6 +85,11 @@ class MocoModelForConsult
         return $this->insertTable($this->getBladeLayoutModelExtended());
     }
 
+    /**
+     * Construit le HTML
+     *
+     * @return String|null
+     */
     protected function getBladeLayoutModelExtended(): ?String
     {
         $layout = $this->getAttributesLayoutRow($this->model);
@@ -79,25 +99,51 @@ class MocoModelForConsult
     }
 
     /**
+     * Retourne le HTML des relations du modele principal
+     *
      * @return string|null
      */
     protected function getBladeLayoutRelations(): ?string
     {
         $layout = '';
+        $randomKey = '';
+        /**
+         * pour chaque relation fournie par la méthode WithForConsult
+         * on recherche les données du ou des modèles liés
+         */
         foreach ($this->model->WithForConsult() as $relation){
             if ($this->model->$relation instanceof Collection){
+                /**
+                 * si la relation retourne une collection, il faut la parcourir
+                 */
                 foreach ($this->model->$relation->all() as $model){
-                    $layout .= $this->insertRow($relation,$this->getAttributesLayoutTable($model));
+                    /**
+                     * on défini la clé pour le collapse
+                     */
+                    $randomKey = 'k'.Moco::randomKey();
+                    $layout .= $this->insertRow(
+                        $this->insertCollapseHref($randomKey,$relation),
+                        $this->insertCollapseContent($randomKey,$this->getAttributesLayoutTable($model))
+                    );
                 }
             } else {
+                /**
+                 * on défini la clé pour le collapse
+                 */
+                $randomKey = 'k'.Moco::randomKey();
                 $model = $this->model->$relation;
-                $layout .= $this->insertRow($relation,$this->getAttributesLayoutTable($model));
+                $layout .= $this->insertRow(
+                    $this->insertCollapseHref($randomKey,$relation),
+                    $this->insertCollapseContent($randomKey,$this->getAttributesLayoutTable($model))
+                );
             }
         }
         return $layout;
     }
 
     /**
+     * Construit une ligne du tableau par attributs du modèle
+     *
      * @param Model $model
      * @return string|null
      */
@@ -119,22 +165,53 @@ class MocoModelForConsult
         return $layout;
     }
 
+    /**
+     * En chasse les lignes avec les attributs dans une balise <TABLE>
+     *
+     * @param Model $model
+     * @return string|null
+     */
     protected function getAttributesLayoutTable(Model $model): ?string
     {
         return $this->insertTable($this->getAttributesLayoutRow($model));
     }
 
+    /**
+     * Insère les valeurs dans les balises HTML de basses
+     *
+     * @param string|null $key
+     * @param string|null $value
+     * @return string|null
+     */
     protected function insertRow(?string $key, ?string $value): ?string
     {
         return str_replace(['{{$key}}','{{$value}}'],[$key,$value],$this->item_layout);
     }
 
+    /**
+     * Insère les balises HTML de basses dans les balises du tableau de basses
+     *
+     * @param string|null $item
+     * @return string|null
+     */
     protected function insertTable(?string $item): ?string
     {
         return str_replace('{{$item}}',$item,$this->header_layout);
     }
 
+    protected function insertCollapseHref(string $randomKey, string $relation)
+    {
+        return str_replace(['{{$randomkey}}','{{$relation}}'],[$randomKey,$relation],$this->collapse_href);
+    }
+
+    protected function insertCollapseContent(string $randomKey, string $table)
+    {
+        return str_replace(['{{$randomkey}}','{{$table}}'],[$randomKey,$table],$this->collapse_content);
+    }
+
     /**
+     * Obtenir les infos depuis le fichier de configuration
+     *
      * @param string $key
      * @return \Illuminate\Config\Repository|\Illuminate\Contracts\Foundation\Application|mixed
      */
@@ -143,6 +220,14 @@ class MocoModelForConsult
         return config('moco.consult.fields.'.$key,$default);
     }
 
+    /**
+     * Converti une valeur
+     *
+     * @param string $table_name
+     * @param string $field
+     * @param $value
+     * @return mixed|string
+     */
     protected function valueConverter(string $table_name, string $field, $value)
     {
         switch (Schema::getColumnType($table_name, $field)){
@@ -152,6 +237,23 @@ class MocoModelForConsult
         return $value;
     }
 
+    /**
+     * Cette méthode permet de récupérer des informations spécifiées dans le fichier de configuration
+     * depuis les relations du modèle principal
+     *
+     *     'consult' => [
+     *          'follow' => [
+     *              'location_id' => 'location:location|description',
+     *              'provider_id' => 'provider:name',
+     *              'user_id' => 'user:firstname|lastname',
+     *              'customer_id' => 'customer:name|address|zipcode|city|country',
+     *              'crane_id' => 'crane:serial|model|plate',
+     *          ],
+     *
+     * @param Model $model
+     * @param string $follow
+     * @return string|null
+     */
     protected function getFollowLink(Model $model, string $follow)
     {
         $content = null;

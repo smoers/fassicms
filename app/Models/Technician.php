@@ -2,13 +2,22 @@
 
 namespace App\Models;
 
+use App\Moco\Common\MocoModelCreatedUpdatedAt;
+use App\Moco\Common\MocoModelForConsultInterface;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use phpDocumentor\Reflection\Types\Boolean;
 
-class Technician extends Model
+class Technician extends Model implements MocoModelForConsultInterface
 {
-    use HasFactory;
+    use HasFactory, MocoModelCreatedUpdatedAt;
+
+    /**
+     * Liste des relations utilisée pour le formulaire de consultation
+     *
+     * @var string[]
+     */
+    protected $withForConsult = ['clockings','user'];
 
     /**
      * Retourne les objet Clocking liés à ce technicien
@@ -39,5 +48,11 @@ class Technician extends Model
     public static function getTechnician(string $number, bool $enabled = true): ?Technician
     {
         return self::where('number','=',$number)->where('enabled','=',$enabled)->first();
+    }
+
+
+    public function WithForConsult()
+    {
+        return $this->withForConsult;
     }
 }
