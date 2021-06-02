@@ -9,11 +9,11 @@
             <div class="card-body">
                 <div class="d-flex justify-content-between mb-5">
                     <div class="d-flex flex-row">
-                        <div class="mr-2">{{_('Date')}} :</div>
+                        <div class="mr-2">{{__('Date')}} :</div>
                         <div class="mr-2">{{$worksheet->date}}</div>
                     </div>
                     <div class="d-flex flex-row">
-                        <div class="mr-2">{{_('Number')}} :</div>
+                        <div class="mr-2">{{__('Number')}} :</div>
                         <div class="mr-2 moco-color-error">{{$worksheet->number}}</div>
                     </div>
                 </div>

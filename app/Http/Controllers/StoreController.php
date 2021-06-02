@@ -122,11 +122,12 @@ class StoreController extends Controller
     {
         $partmetadata = Partmetadata::find($request->id);
         if (!is_null($partmetadata)){
-            $mocoModelForConsult = new MocoModelForConsult($partmetadata,true);
+            $mocoModelForConsult = new MocoModelForConsult($partmetadata,Auth::user()->can('consult catalog extended'));
             return view('consult.consult',
                 [
                     'title' => trans('Consult Part Metadata'),
                     'consult' => $mocoModelForConsult->getBladeLayout(),
+                    'return' => route('store.index'),
                 ]);
         }
 

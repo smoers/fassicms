@@ -2,28 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9ec171e7-05c7-490b-8f14-40ae5b7978c4" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/resources/views/consult/test.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CraneController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CraneController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CustomerController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CustomerController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/StoreController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/StoreController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/TechnicianController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/TechnicianController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/WorksheetController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/WorksheetController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Moco/Common/Moco.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Moco/Common/Moco.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Moco/Common/MocoModelForConsult.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Moco/Common/MocoModelForConsult.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Crane.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Crane.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Customer.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Customer.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Technician.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Technician.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config/moco.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/moco.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/lang/fr.json" beforeDir="false" afterPath="$PROJECT_DIR$/resources/lang/fr.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/lang/nl.json" beforeDir="false" afterPath="$PROJECT_DIR$/resources/lang/nl.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/layout.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/layout.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/menus/list-submenu.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/menus/list-submenu.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/root/message.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/root/message.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/GI5Lsi7dylsnuyA571AfiUlxcggHYGnAafj4XOkH" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/views/4f76c30c8b3ba116b0690249696fe3413efbfc66.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/4f76c30c8b3ba116b0690249696fe3413efbfc66.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/views/53fd60962b50afb3459b3cd9201f6ea36bc3470a.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/53fd60962b50afb3459b3cd9201f6ea36bc3470a.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/views/90c48dcb194d2bb220a0b74a2b7047854d23d0fb.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/90c48dcb194d2bb220a0b74a2b7047854d23d0fb.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/consult/consult.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/consult/consult.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/consult/test.blade.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/worksheet/clocking-form.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/worksheet/clocking-form.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/bjjdqJkElOgjtwC3ZNiDObP90sgj32oADzwP808p" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/523b1a5710afb7bc69be41c6fec32eb9b498ac4d.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/523b1a5710afb7bc69be41c6fec32eb9b498ac4d.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/ac3c96cf1a768cced82534420a844a273578f896.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/ac3c96cf1a768cced82534420a844a273578f896.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -842,7 +836,8 @@
       <workItem from="1621845926279" duration="3140000" />
       <workItem from="1621849275965" duration="31014000" />
       <workItem from="1622047005515" duration="8277000" />
-      <workItem from="1622207822722" duration="7507000" />
+      <workItem from="1622207822722" duration="8150000" />
+      <workItem from="1622650264195" duration="7479000" />
     </task>
     <task id="LOCAL-00001" summary="20201031 - Init">
       <created>1604168127520</created>
@@ -1173,7 +1168,14 @@
       <option name="project" value="LOCAL" />
       <updated>1621891250587</updated>
     </task>
-    <option name="localTasksCounter" value="48" />
+    <task id="LOCAL-00048" summary="20210528 - v2.0 Stores by location">
+      <created>1622215716673</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1622215716673</updated>
+    </task>
+    <option name="localTasksCounter" value="49" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -1182,7 +1184,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="20201214 - v1.0" />
     <MESSAGE value="202012191134 - v1.0" />
     <MESSAGE value="202012191825 - v1.0" />
     <MESSAGE value="20201220 - v1.0" />
@@ -1207,7 +1208,8 @@
     <MESSAGE value="20210522 - v2.0 Stores by location" />
     <MESSAGE value="20210523 - v2.0 Stores by location" />
     <MESSAGE value="20210524 - v2.0 Stores by location" />
-    <option name="LAST_COMMIT_MESSAGE" value="20210524 - v2.0 Stores by location" />
+    <MESSAGE value="20210528 - v2.0 Stores by location" />
+    <option name="LAST_COMMIT_MESSAGE" value="20210528 - v2.0 Stores by location" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

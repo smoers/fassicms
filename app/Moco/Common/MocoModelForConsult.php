@@ -30,6 +30,7 @@
 namespace App\Moco\Common;
 
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Schema;
@@ -106,13 +107,17 @@ class MocoModelForConsult
     protected function getBladeLayoutRelations(): ?string
     {
         $layout = '';
-        $randomKey = '';
         /**
          * pour chaque relation fournie par la méthode WithForConsult
          * on recherche les données du ou des modèles liés
          */
         foreach ($this->model->WithForConsult() as $relation){
             if ($this->model->$relation instanceof Collection){
+                /**
+                 * le layout temporaire avant de l'insérer dans
+                 * le layout définitif
+                 */
+                $layoutTemp = '';
                 /**
                  * si la relation retourne une collection, il faut la parcourir
                  */
@@ -121,11 +126,23 @@ class MocoModelForConsult
                      * on défini la clé pour le collapse
                      */
                     $randomKey = 'k'.Moco::randomKey();
-                    $layout .= $this->insertRow(
-                        $this->insertCollapseHref($randomKey,$relation),
+                    if (!is_null($model->id))
+                        $idKey = $model->id;
+                    else
+                        $idKey = '?';
+                    $layoutTemp .= $this->insertRow(
+                        $this->insertCollapseHref($randomKey,$idKey),
                         $this->insertCollapseContent($randomKey,$this->getAttributesLayoutTable($model))
                     );
                 }
+                /**
+                 * on défini la clé pour le collapse
+                 */
+                $randomKey = 'k'.Moco::randomKey();
+                $layout .= $this->insertRow(
+                    $this->insertCollapseHref($randomKey,$relation),
+                    $this->insertCollapseContent($randomKey,$this->insertTable($layoutTemp))
+                );
             } else {
                 /**
                  * on défini la clé pour le collapse
@@ -201,7 +218,7 @@ class MocoModelForConsult
 
     protected function insertCollapseHref(string $randomKey, string $relation)
     {
-        return str_replace(['{{$randomkey}}','{{$relation}}'],[$randomKey,$relation],$this->collapse_href);
+        return str_replace(['{{$randomkey}}','{{$relation}}'],[$randomKey,trans(ucfirst($relation))],$this->collapse_href);
     }
 
     protected function insertCollapseContent(string $randomKey, string $table)
@@ -232,7 +249,14 @@ class MocoModelForConsult
     {
         switch (Schema::getColumnType($table_name, $field)){
             case 'boolean':
-                $value = $value == 1 ? 'yes' : 'no';
+                $value = $value == 1 ? trans('Yes') : trans('No');
+                break;
+            case 'decimal':
+                $value = number_format(intval($value),2,',','');
+                break;
+            case 'datetime':
+                $value = Carbon::parse($value)->format('d/m/Y H:i');
+                break;
         }
         return $value;
     }

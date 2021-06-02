@@ -37,6 +37,10 @@
     "Create Date": "Date de création",
     "Update Date": "Date de mise à jour",
     "Identifier": "Identifiant",
+    "Clockings": "Pointages",
+    "User": "Utilisateur",
+    "Return": "Retour",
+    "Consult Part Metadata": "Consulter les données d'une pièce",
 
     "The serial number of the crane is required": "Le numéro de série de la grue est requis",
     "The maximum size for a serial is 20 characters": "La taille maximum pour un sérial est de 20 caractères",
@@ -182,5 +186,14 @@
     "The parts were successfully returned to stock on the worksheet : ": "Les pièces ont été retournées en stock avec succès sur la fiche de travail : ",
     "This part was not output on this worksheet": "Cette pièce n'a pas été sortie sur cette fiche de travail",
     "The quantity available on worksheet is not enough": "La quantité n'est pas suffisante sur cette fiche de travail",
-    "The parts have been successfully returned to stock from the worksheet : ": "Les pièces ont été retournées en stock avec succès depuis la fiche de travail : "
+    "The parts have been successfully returned to stock from the worksheet : ": "Les pièces ont été retournées en stock avec succès depuis la fiche de travail : ",
+
+    "#####": "!! Clocking !!",
+    "Edit clocking": "Modification des pointages",
+    "Start date": "Date de début",
+    "Stop date": "Date d'arrêt",
+    "Technician": "Technicien",
+    "Start time": "Heure de début",
+    "Stop time": "Heure d'arrêt",
+    "Difference": "Différence"
 }

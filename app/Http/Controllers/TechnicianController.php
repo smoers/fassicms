@@ -134,11 +134,12 @@ class TechnicianController extends Controller
     {
         $technician = Technician::find($id);
         if (!is_null($technician)){
-            $mocoModelForConsult = new MocoModelForConsult($technician,true);
+            $mocoModelForConsult = new MocoModelForConsult($technician,Auth::user()->can('consult technician extended'));
             return view('consult.consult',
                 [
                     'title' => trans('Consult Customer'),
                     'consult' => $mocoModelForConsult->getBladeLayout(),
+                    'return' => route('technician.index'),
                 ]);
         }
         return redirect()->route('technicien.index');

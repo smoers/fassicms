@@ -132,11 +132,12 @@ class CustomerController extends Controller
     {
         $customer = Customer::find($id);
         if (!is_null($customer)){
-            $mocoModelForConsult = new MocoModelForConsult($customer,true);
+            $mocoModelForConsult = new MocoModelForConsult($customer,Auth::user()->can('consult customer extended'));
             return view('consult.consult',
                 [
                     'title' => trans('Consult Customer'),
                     'consult' => $mocoModelForConsult->getBladeLayout(),
+                    'return' => route('customer.index'),
                 ]);
         }
         return redirect()->route('customer.index');

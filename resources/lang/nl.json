@@ -37,6 +37,11 @@
     "Create Date": "Aanmaakdatum",
     "Update Date": "Datum van update",
     "Identifier": "Gebruikersnaam",
+    "Clockings": "Scores",
+    "User": "Gebruiker",
+    "Return": "Terugkeer",
+    "Consult Part Metadata": "Raadpleeg de gegevens van een onderdeel",
+
 
     "The serial number of the crane is required": "Het serienummer van de kraan is vereist",
     "The maximum size for a serial is 20 characters": "De maximale grootte voor een serie is 20 tekens",
@@ -182,5 +187,14 @@
     "The parts were successfully returned to stock on the worksheet : ": "De onderdelen zijn met succes teruggebracht naar de voorraad op het werkblad : ",
     "This part was not output on this worksheet": "Dit onderdeel is niet uitgevoerd op dit werkblad",
     "The quantity available on worksheet is not enough": "De hoeveelheid is niet voldoende op dit werkblad",
-    "The parts have been successfully returned to stock from the worksheet : ": "De onderdelen zijn met succes teruggebracht naar de voorraad vanuit het werkblad : "
+    "The parts have been successfully returned to stock from the worksheet : ": "De onderdelen zijn met succes teruggebracht naar de voorraad vanuit het werkblad : ",
+
+    "#####": "!! Clocking !!",
+    "Edit clocking": "Partituren bewerken",
+    "Start date": "Startdatum",
+    "Stop date": "Einddatum",
+    "Technician": "Technicien",
+    "Start time": "Starttijd",
+    "Stop time": "Stoptijd",
+    "Difference": "Verschil"
 }

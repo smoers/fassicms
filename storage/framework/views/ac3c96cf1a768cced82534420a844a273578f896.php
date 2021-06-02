@@ -7,11 +7,11 @@
             <div class="card-body">
                 <div class="d-flex justify-content-between mb-5">
                     <div class="d-flex flex-row">
-                        <div class="mr-2"><?php echo e(_('Date')); ?> :</div>
+                        <div class="mr-2"><?php echo e(__('Date')); ?> :</div>
                         <div class="mr-2"><?php echo e($worksheet->date); ?></div>
                     </div>
                     <div class="d-flex flex-row">
-                        <div class="mr-2"><?php echo e(_('Number')); ?> :</div>
+                        <div class="mr-2"><?php echo e(__('Number')); ?> :</div>
                         <div class="mr-2 moco-color-error"><?php echo e($worksheet->number); ?></div>
                     </div>
                 </div>

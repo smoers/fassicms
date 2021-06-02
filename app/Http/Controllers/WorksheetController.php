@@ -268,11 +268,12 @@ class WorksheetController extends Controller
     {
         $worksheet = Worksheet::find($id);
         if (!is_null($worksheet)){
-            $mocoModelForConsult = new MocoModelForConsult($worksheet,true);
+            $mocoModelForConsult = new MocoModelForConsult($worksheet,Auth::user()->can('consult worksheet extended'));
             return view('consult.consult',
                 [
                     'title' => trans('Consult Worksheet'),
                     'consult' => $mocoModelForConsult->getBladeLayout(),
+                    'return' => route('worksheet.index'),
                 ]);
         }
         return redirect()->route('worksheet.index');

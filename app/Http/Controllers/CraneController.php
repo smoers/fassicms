@@ -88,11 +88,12 @@ class CraneController extends Controller
     {
         $crane = Crane::find($id);
         if (!is_null($crane)){
-            $mocoModelForConsult = new MocoModelForConsult($crane,true);
+            $mocoModelForConsult = new MocoModelForConsult($crane,Auth::user()->can('consult crane extended'));
             return view('consult.consult',
                 [
                     'title' => trans('Consult Crane'),
                     'consult' => $mocoModelForConsult->getBladeLayout(),
+                    'return' => route('crane.index'),
                 ]);
         }
         return redirect()->route('crane.index');
