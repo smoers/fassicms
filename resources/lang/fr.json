@@ -41,6 +41,9 @@
     "User": "Utilisateur",
     "Return": "Retour",
     "Consult Part Metadata": "Consulter les données d'une pièce",
+    "Reassortment List": "Liste des pièces à réassortir",
+    "Move From": "Mouvement de la location",
+    "Move to": "Mouvement depuis ma location",
 
     "The serial number of the crane is required": "Le numéro de série de la grue est requis",
     "The maximum size for a serial is 20 characters": "La taille maximum pour un sérial est de 20 caractères",
@@ -158,6 +161,7 @@
     "Phone": "Téléphone",
     "Mobile": "Mobile",
     "VAT": "TVA",
+    "Black listed": "Liste noir",
     "Currently selected": "Actuellement sélectionné",
     "Select and Begin Typing": "Sélectionnez et commencez à taper",
     "Unable to retrieve results": "Impossible de récupérer les résultats",

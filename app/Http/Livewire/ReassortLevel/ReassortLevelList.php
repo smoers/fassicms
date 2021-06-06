@@ -1,63 +1,58 @@
 <?php
 
-namespace App\Http\Livewire\Customer;
+namespace App\Http\Livewire\ReassortLevel;
 
-use App\Models\Customer;
+use App\Models\ViewPartmetadatasReassort;
 use Illuminate\Database\Eloquent\Builder;
+use Livewire\Component;
 use Rappasoft\LaravelLivewireTables\TableComponent;
 use Rappasoft\LaravelLivewireTables\Traits\HtmlComponents;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 
-class CustomerList extends TableComponent
+class ReassortLevelList extends TableComponent
 {
     use HtmlComponents;
-    protected $rowClass ='';
 
     /**
-     * CustomerList constructor.
+     * ReassortListParts constructor.
      * @param null $id
      */
     public function __construct($id = null)
     {
         $this->perPage = config('moco.table.perPage');
+        $this->paginationTheme = 'bootstrap';
         $this->perPageOptions = config('moco.table.perPageOptions');
+        $this->rowClass =  config('moco.table.rowClass');
         $this->loadingIndicator =true;
-        $this->sortField = 'name';
+        $this->sortField = 'part_number';
         $this->sortDefaultIcon = '<i class="fas fa-sort-alpha-down"></i>';
         $this->ascSortIcon = '<i class="fas fa-sort-alpha-up"></i>';
         $this->descSortIcon = '<i class="fas fa-sort-alpha-down"></i>';
+        $this->searchEnabled = false;
         parent::__construct($id);
     }
 
     public function query(): Builder
     {
-        return Customer::select();
+        return ViewPartmetadatasReassort::select();
     }
 
     public function columns(): array
     {
         return [
-            Column::make(trans('Company name'),'name')
+            Column::make(trans('Part Number'), 'part_number')
                 ->searchable()
-                ->sortable()
-                ->format(function (Customer $model){
-                    return $model->black_listed ? view('customer.customer-black-listed-col-list',['name' => $model->name]) : $model->name;
+                ->sortable(),
+            Column::make(trans('Description'),'description')
+                ->searchable()
+                ->sortable(),
+            Column::make(trans('Quantity'), 'qty')
+                ->format(function (ViewPartmetadatasReassort $model){
+                    return $this->html('<div class="text-right w-100 ">'.$model->qty.'</div>');
                 }),
-            Column::make(trans('City'),'city')
-                ->searchable()
-                ->sortable(),
-            Column::make(trans('Email address'),'mail')
-                ->searchable()
-                ->sortable(),
-            Column::make(trans('Phone'),'phone')
-                ->searchable()
-                ->sortable(),
-            Column::make(trans('Mobile'),'mobile')
-                ->searchable()
-                ->sortable(),
-            Column::make(trans('Actions'),'actions')
-                ->format(function (Customer $model){
-                    return view('menus.list-submenu',['whatIs' => 'customer', 'customer' => $model]);
+            Column::make(trans('Reassort Level'),'reassort_level')
+                ->format(function (ViewPartmetadatasReassort $model){
+                    return $this->html('<div class="text-right w-100 ">'.$model->reassort_level.'</div>');
                 }),
         ];
     }
@@ -70,8 +65,12 @@ class CustomerList extends TableComponent
     {
         $extend = ' ';
         switch ($attribute) {
-            case 'actions':
-                $extend .= 'moco-size-column-table-400';
+            case 'part_number':
+                $extend .= 'moco-size-column-table-150';
+                break;
+            case 'reassort_level':
+            case 'qty':
+                $extend .= 'moco-size-column-table-100';
                 break;
         }
         return 'moco-title-table'.$extend;
@@ -86,5 +85,4 @@ class CustomerList extends TableComponent
     {
         return $this->rowClass;
     }
-
 }

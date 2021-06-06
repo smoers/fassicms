@@ -34,6 +34,7 @@ class CustomerRequest extends FormRequest
             'phone' => 'max:100',
             'mobile' => 'max:100',
             'vat' => 'max:15',
+            'black_listed' => 'required',
         ];
     }
 
@@ -58,6 +59,7 @@ class CustomerRequest extends FormRequest
             'phone' => ('Phone number'),
             'mobile' => ('Mobile number'),
             'vat' => trans('VAT'),
+            'black_listed' => trans('Black listed'),
         ];
     }
 }

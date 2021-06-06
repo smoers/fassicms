@@ -19,7 +19,7 @@ class CustomerController extends Controller
      */
     public function __construct()
     {
-            //nécessaire pour le trait de validation
+        //nécessaire pour le trait de validation
         $this->formRequest = new CustomerRequest();
     }
 
@@ -73,7 +73,7 @@ class CustomerController extends Controller
         $customer->fill($request->validated());
         $customer->user()->associate(Auth::user());
         $customer->save();
-        return redirect()->route('customer.index')->with('success','The customer has been modified with success');
+        return redirect()->route('customer.index')->with('success',trans('The customer has been modified with success'));
 
     }
 
@@ -93,7 +93,7 @@ class CustomerController extends Controller
         /**
          * récupère la route par défaut
          */
-        $route = route('dashboard');
+        $route = route('customer.index');
         /**
          * On controle si la demande d'ajout a été faite depuis le formulaire d'ajout d'une fiche de travail
          */
@@ -108,7 +108,7 @@ class CustomerController extends Controller
             $request->session()->put('worksheet_form',$worksheet_form);
             $route = $request->session()->get('worksheet_source');
         }
-        return redirect($route)->with('success', 'The new customer has been saved');
+        return redirect($route)->with('success', trans('The new customer has been saved'));
     }
 
     /**

@@ -41,7 +41,9 @@
     "User": "Gebruiker",
     "Return": "Terugkeer",
     "Consult Part Metadata": "Raadpleeg de gegevens van een onderdeel",
-
+    "Reassortment List": "Lijst met onderdelen om aan te vullen",
+    "Move From": "Verhuur beweging",
+    "Move to": "Verhuizing van mijn verhuur",
 
     "The serial number of the crane is required": "Het serienummer van de kraan is vereist",
     "The maximum size for a serial is 20 characters": "De maximale grootte voor een serie is 20 tekens",
@@ -159,6 +161,7 @@
     "Phone": "Telefoon",
     "Mobile": "Mobile",
     "VAT": "VAT",
+    "Black listed": "Zwarte lijst",
     "Currently selected": "Momenteel geselecteerd",
     "Select and Begin Typing": "Selecteer en begin met typen",
     "Unable to retrieve results": "Resultaten kunnen niet worden opgehaald",

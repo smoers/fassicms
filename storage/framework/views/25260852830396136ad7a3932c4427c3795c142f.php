@@ -8,9 +8,10 @@
                 <form name="customer-form" id="customer-form" method="post" action="<?php echo e($action); ?>" moco-validation>
                     <?php echo csrf_field(); ?>
                     <input type="hidden" id="id" name="id" value="<?php echo e($customer->id); ?>">
+                    <input type="hidden" id="black_listed" name="black_listed" value="<?php echo e($customer->black_listed); ?>">
                     <!-- Name -->
                     <div class="form-group">
-                        <label for="name"><?php echo e(__('Company name')); ?></label>
+                        <label for="name"><?php echo e(__('Company name')); ?>  :  <a href="#" id="black_listed_href"><i class="fas fa-thumbs-up green-lighter-hover" id="black_listed_fa"></i></a></label>
                         <input type="text" id="name" name="name" class="form-control" value="<?php echo e(old('name',$customer->name)); ?>" autocomplete="off" moco-validation>
                         <div class="moco-error-small danger-darker-hover" id="nameError"></div>
                     </div>
@@ -112,7 +113,8 @@
         $(function (){
             //init le champ zipcode
             $('#zipcode').hide();
-
+            /** place l'icon Black Listed à la valeur correct**/
+            setBlackListedValue();
             /*
             * definition de l'objet selectPickerOptions
              */
@@ -159,8 +161,28 @@
                     $('#_zipcode').parent().show();
                     $('#zipcode').hide();
                 }
-            })
+            });
+            /** Black Listed action **/
+            $('#black_listed_href').on('click', () => {
+                if (parseInt($('#black_listed').val()) == 1){
+                    $('#black_listed').val(0);
+                } else {
+                    $('#black_listed').val(1);
+                }
+               setBlackListedValue();
+            });
+
+            function setBlackListedValue(){
+                if (parseInt($('#black_listed').val()) == 1){
+                    $('#black_listed_fa').attr('class', 'fas fa-biohazard red-darker-hover');
+                } else {
+                    $('#black_listed_fa').attr('class', 'fas fa-thumbs-up green-lighter-hover');
+                }
+                console.log($('#black_listed').val());
+            }
         })
+
+
     </script>
 <?php $__env->stopSection(); ?>
 

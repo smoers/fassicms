@@ -29,11 +29,9 @@ use App\Moco\Common\MocoArrayFieldsValues;
 use App\Moco\Common\MocoModelForConsult;
 use App\Moco\Common\MocoOptions;
 use App\Moco\Common\MocoOptionsListWorksheetPrint;
-use App\Moco\Printer\MocoPrintTemplate;
 use App\Moco\Printer\MocoWorksheet;
 use App\Models\Crane;
 use App\Models\Customer;
-use App\Models\Technician;
 use App\Models\ViewPartsSignedValues;
 use App\Models\Worksheet;
 use Carbon\Carbon;
@@ -289,7 +287,7 @@ class WorksheetController extends Controller
     {
         $return = null;
         if ($request->post('whatIs') == 'customer'){
-            $return = Customer::where('name','like','%'.$request->post('name').'%' )->orderBy('name')->get();
+            $return = Customer::where('name','like','%'.$request->post('name').'%' )->where('black_listed','=',false)->orderBy('name')->get();
         } elseif ($request->post('whatIs') == 'crane'){
             $return = Crane::where('serial','like','%'.$request->post('serial').'%')->orderBy('serial')->get();
         }

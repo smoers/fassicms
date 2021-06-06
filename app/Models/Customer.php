@@ -42,7 +42,8 @@ class Customer extends Model implements MocoModelForConsultInterface
         'mail',
         'phone',
         'mobile',
-        'vat'
+        'vat',
+        'black_listed',
     ];
 
     /**
