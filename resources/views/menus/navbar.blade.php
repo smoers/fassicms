@@ -11,7 +11,7 @@
                     <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">{{ __('Company data') }}</a>
                     <ul class="dropdown-menu">
                         @canany(['list customer','create customer'])
-                        <li><a class="dropdown-item" href="#"> {{ __('Customers') }}   <i class="fa fa-caret-right"></i></a>
+                        <li><a class="dropdown-item" href="{{ route('customer.index')}}"> {{ __('Customers') }}   <i class="fa fa-caret-right"></i></a>
                             <ul class="submenu dropdown-menu">
                                 @can('list customer')<li><a class="dropdown-item" href="{{ route('customer.index')}}">{{ __('List') }}</a></li>@endcan
                                 @can('create customer')<li><a class="dropdown-item" href="{{ route('customer.create')}}">{{ __('Add') }}</a></li>@endcan
@@ -20,7 +20,7 @@
                         <div class="dropdown-divider"></div>
                         @endcanany
                         @canany(['list crane','create crane'])
-                        <li><a class="dropdown-item" href="#"> {{ __('Cranes') }}   <i class="fa fa-caret-right"></i></a>
+                        <li><a class="dropdown-item" href="{{ route('crane.index') }}"> {{ __('Cranes') }}   <i class="fa fa-caret-right"></i></a>
                             <ul class="submenu dropdown-menu">
                                 @can('list crane')<li><a class="dropdown-item" href="{{ route('crane.index') }}">{{ __('List') }}</a></li>@endcan
                                 @can('create crane')<li><a class="dropdown-item" href="{{ route('crane.create') }}">{{ __('Add') }}</a></li>@endcan
@@ -29,12 +29,16 @@
                         @endcanany
                         @canany(['list technician','create technician'])
                         <div class="dropdown-divider"></div>
-                        <li><a class="dropdown-item" href="#"> {{ __('Technicians') }}   <i class="fa fa-caret-right"></i></a>
+                        <li><a class="dropdown-item" href="{{ route('technician.index') }}"> {{ __('Technicians') }}   <i class="fa fa-caret-right"></i></a>
                             <ul class="submenu dropdown-menu">
                                 @can('list technician')<li><a class="dropdown-item" href="{{ route('technician.index') }}">{{ __('List') }}</a></li>@endcan
                                 @can('create technician')<li><a class="dropdown-item" href="{{ route('technician.create') }}">{{ __('Add') }}</a></li>@endcan
                             </ul>
                         </li>
+                        @endcanany
+                        @can('list provider')
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="{{route('provider.index')}}">{{__('Providers')}}</a>
                         @endcanany
                     </ul>
                 </li>
@@ -47,7 +51,8 @@
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         @can('list worksheet')<a class="dropdown-item" href="{{route('worksheet.index')}}">{{__('List')}}</a>@endcan
                         @can('create worksheet')<a class="dropdown-item" href="{{route('worksheet.create')}}">{{__('Add')}}</a>@endcan
-                            @can('clocking worksheet')<div class="dropdown-divider"></div>@endcan
+                        @can('create worksheet')<a class="dropdown-item" href="{{route('worksheet.template.create')}}">{{__('Template creation')}}</a>@endcan
+                        @can('clocking worksheet')<div class="dropdown-divider"></div>@endcan
                         @can('clocking worksheet')<a class="dropdown-item" href="{{route('clocking.technician')}}">{{__('Technician clocking')}}</a>@endcan
                     </div>
                 </li>

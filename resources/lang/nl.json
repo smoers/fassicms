@@ -44,6 +44,9 @@
     "Reassortment List": "Lijst met onderdelen om aan te vullen",
     "Move From": "Verhuur beweging",
     "Move to": "Verhuizing van mijn verhuur",
+    "Launch" : "Gooien",
+    "Please wait ...": "Wacht alsjeblieft ...",
+    "Template creation": "Maken van modellen",
 
     "The serial number of the crane is required": "Het serienummer van de kraan is vereist",
     "The maximum size for a serial is 20 characters": "De maximale grootte voor een serie is 20 tekens",
@@ -89,6 +92,10 @@
     "Customer name": "Klantnaam",
     "Crane serial": "Serienummer van de kraan",
     "The worksheet has been saved": "Het werkblad is opgeslagen",
+    "Worksheet template creation": "Een sjabloonwerkblad maken",
+    "Number of worksheet": "Aantal werkbladen",
+    "The worksheet template have been saved": "De sjabloonwerkbladen zijn opgeslagen",
+    "The following worksheet template have not been saved : ": "De volgende sjabloonwerkbladen kunnen niet worden opgeslagen",
 
     "#####": "!! STORE !!",
     "Quantity": "Kwantiteit",

@@ -11,6 +11,7 @@
                     @csrf
                     <input type="hidden" id="id" name="id" value="{{ $partmetadata->id }}">
                     <input type="hidden" id="cat_id" name="cat_id" value="{{ $catalog->id }}">
+                    <input type="hidden" id="new_provider_name" name="new_provider_name" value="{{old('new_provider_name')}}">
 
                     <div class="row">
                         <div class="col-6">
@@ -115,7 +116,7 @@
                         <div class="col-10">
                             <!-- Provider -->
                             <div class="form-group">
-                                <label for="provider">{{ __('Provider')  }}</label>
+                                <label for="provider">{{ __('Provider')  }} <a href="#" id="add_provider"><i class="fas fa-plus-square green-darker-hover"></i></a></label> </label>
                                 @if($partmetadata->id != null)
                                     <input type="text" id="provider" name="provider" class="form-control mt-2"
                                            value="{{ \App\Models\Provider::find($catalog->provider_id)->name }}"
@@ -158,6 +159,31 @@
             </div>
         </div>
     </div>
+    <!-- Modal message-->
+    <div class="modal" id="modal_msg" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="container-fluid">
+                        <div class="d-flex justify-content-sm-center">
+                            <p class="moco-color-info h4"> {{__('Enter new provider')}}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-body">
+                    <input type="text" id="new_provider" class="form-control"/>
+                </div>
+                <div class="modal-footer">
+                    <div class="container-fluid">
+                        <div class="d-flex justify-content-md-between">
+                            <div><button type="button" class="btn btn-primary" data-dismiss="modal" id="validate">{{__('Validate')}}</button></div>
+                            <div><button type="button" class="btn btn-primary" data-dismiss="modal">{{__('Cancel')}}</button></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <script type="text/javascript" src="{{ asset('js/moco.ajax.validation.js') }}"></script>
     <script type="text/javascript">
         $(function (){
@@ -175,6 +201,28 @@
                     return false;
                 }
             })
+            /** ouvre la fenetre modal pour ajouter un fournisseur **/
+            $('#add_provider').on('click',() => {
+                $('#modal_msg').modal('show');
+            });
+            /** action sur la validation du nouveau fournisseur **/
+            $('#validate').on('click', () => {
+                let value = $('#new_provider').val();
+                if (value != ''){
+                    /** on supprime la selection **/
+                    $('#provider').selectpicker('deselectAll');
+                    /** on retire le précédent nouveau fournisseur s'il existe **/
+                    $('#provider').find('[value=0]').remove();
+                    /** on crée une option avec le nom du nouveau fournisseur **/
+                    $('#provider').append('<option value="0">'+value+'</option>');
+                    /** on le selectionne **/
+                    $('#provider').val(0);
+                    /** on rafraichi le layout du select **/
+                    $('#provider').selectpicker('refresh');
+                    /** on charge le champ caché avec le nouveau nom du founisseur **/
+                    $('#new_provider_name').val(value);
+                }
+            });
         })
     </script>
 @endsection

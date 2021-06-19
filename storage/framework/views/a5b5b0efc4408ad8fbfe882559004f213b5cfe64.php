@@ -6,7 +6,7 @@
                 <div class="card-body">
             <div class="d-flex justify-content-between">
                 <p>Fassi Belgium - Store Management System</p>
-                <p>Version 2.0</p>
+                <p><?php echo e(config('moco.app.version')); ?></p>
             </div>
                 </div>
             </div>
@@ -15,7 +15,9 @@
                 <p class="display-4">
                     Fassi Store Management System
                 </p>
-                <p>Version 2.0</p>
+                <p><?php echo config('moco.app.version'); ?></p>
+                <p class="text text-info" style="font-style: italic;font-weight: bold;font-size: 10px">Release note :</p>
+                <p class="text text-info" style="font-style: italic; font-size: 10px"><?php echo config('moco.app.release'); ?></p>
             </div>
     <?php endif; ?>
     </div>

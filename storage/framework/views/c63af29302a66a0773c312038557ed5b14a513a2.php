@@ -11,7 +11,7 @@
                     <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"><?php echo e(__('Company data')); ?></a>
                     <ul class="dropdown-menu">
                         <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->any(['list customer','create customer'])): ?>
-                        <li><a class="dropdown-item" href="#"> <?php echo e(__('Customers')); ?>   <i class="fa fa-caret-right"></i></a>
+                        <li><a class="dropdown-item" href="<?php echo e(route('customer.index')); ?>"> <?php echo e(__('Customers')); ?>   <i class="fa fa-caret-right"></i></a>
                             <ul class="submenu dropdown-menu">
                                 <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('list customer')): ?><li><a class="dropdown-item" href="<?php echo e(route('customer.index')); ?>"><?php echo e(__('List')); ?></a></li><?php endif; ?>
                                 <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('create customer')): ?><li><a class="dropdown-item" href="<?php echo e(route('customer.create')); ?>"><?php echo e(__('Add')); ?></a></li><?php endif; ?>
@@ -20,7 +20,7 @@
                         <div class="dropdown-divider"></div>
                         <?php endif; ?>
                         <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->any(['list crane','create crane'])): ?>
-                        <li><a class="dropdown-item" href="#"> <?php echo e(__('Cranes')); ?>   <i class="fa fa-caret-right"></i></a>
+                        <li><a class="dropdown-item" href="<?php echo e(route('crane.index')); ?>"> <?php echo e(__('Cranes')); ?>   <i class="fa fa-caret-right"></i></a>
                             <ul class="submenu dropdown-menu">
                                 <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('list crane')): ?><li><a class="dropdown-item" href="<?php echo e(route('crane.index')); ?>"><?php echo e(__('List')); ?></a></li><?php endif; ?>
                                 <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('create crane')): ?><li><a class="dropdown-item" href="<?php echo e(route('crane.create')); ?>"><?php echo e(__('Add')); ?></a></li><?php endif; ?>
@@ -29,12 +29,16 @@
                         <?php endif; ?>
                         <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->any(['list technician','create technician'])): ?>
                         <div class="dropdown-divider"></div>
-                        <li><a class="dropdown-item" href="#"> <?php echo e(__('Technicians')); ?>   <i class="fa fa-caret-right"></i></a>
+                        <li><a class="dropdown-item" href="<?php echo e(route('technician.index')); ?>"> <?php echo e(__('Technicians')); ?>   <i class="fa fa-caret-right"></i></a>
                             <ul class="submenu dropdown-menu">
                                 <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('list technician')): ?><li><a class="dropdown-item" href="<?php echo e(route('technician.index')); ?>"><?php echo e(__('List')); ?></a></li><?php endif; ?>
                                 <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('create technician')): ?><li><a class="dropdown-item" href="<?php echo e(route('technician.create')); ?>"><?php echo e(__('Add')); ?></a></li><?php endif; ?>
                             </ul>
                         </li>
+                        <?php endif; ?>
+                        <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('list provider')): ?>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="<?php echo e(route('provider.index')); ?>"><?php echo e(__('Providers')); ?></a>
                         <?php endif; ?>
                     </ul>
                 </li>
@@ -48,7 +52,8 @@
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('list worksheet')): ?><a class="dropdown-item" href="<?php echo e(route('worksheet.index')); ?>"><?php echo e(__('List')); ?></a><?php endif; ?>
                         <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('create worksheet')): ?><a class="dropdown-item" href="<?php echo e(route('worksheet.create')); ?>"><?php echo e(__('Add')); ?></a><?php endif; ?>
-                            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('clocking worksheet')): ?><div class="dropdown-divider"></div><?php endif; ?>
+                        <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('create worksheet')): ?><a class="dropdown-item" href="<?php echo e(route('worksheet.template.create')); ?>"><?php echo e(__('Template creation')); ?></a><?php endif; ?>
+                        <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('clocking worksheet')): ?><div class="dropdown-divider"></div><?php endif; ?>
                         <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('clocking worksheet')): ?><a class="dropdown-item" href="<?php echo e(route('clocking.technician')); ?>"><?php echo e(__('Technician clocking')); ?></a><?php endif; ?>
                     </div>
                 </li>

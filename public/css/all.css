@@ -79,7 +79,7 @@ Date : 09-10-20
 }
 
 .moco-size-column-table-350 {
-    width: 50px;
+    width: 350px;
 }
 
 .moco-size-column-table-400 {
@@ -96,6 +96,10 @@ Date : 09-10-20
 
 .moco-row-table-font-large {
     font-size: large;
+}
+
+.moco-row-table-height-small {
+    height: 5px;
 }
 
 .moco-row-highlight-table {

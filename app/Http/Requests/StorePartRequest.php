@@ -67,6 +67,7 @@ class StorePartRequest extends FormRequest
             'reassort_level' => 'numeric|min:1|nullable',
             'location_id' => 'sometimes|required',
             'electrical_part' => 'required',
+            'new_provider_name' => 'nullable',
         ];
     }
 

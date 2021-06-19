@@ -72,7 +72,13 @@ var mocoAjaxValidation = function (selector,value,url) {
  * @returns {string}
  */
 var mocoURL = function (action) {
-    return action.match(/[^\/]+/g)[0]+'//'+action.match(/[^\/]+/g)[1]+'/'+action.match(/[^\/]+/g)[2]+'/';
+    let result = action.match(/[^\/]+/g);
+    let url = result[0]+'//';
+    for(let i=1;i<=result.length-2;i++){
+        url = url + result[i]+'/';
+    }
+    console.log(url);
+    return url;
 }
 
 /**

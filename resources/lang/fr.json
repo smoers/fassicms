@@ -44,6 +44,9 @@
     "Reassortment List": "Liste des pièces à réassortir",
     "Move From": "Mouvement de la location",
     "Move to": "Mouvement depuis ma location",
+    "Launch" : "Lancer",
+    "Please wait ...": "Merci de patienter ...",
+    "Template creation": "Création de modèles",
 
     "The serial number of the crane is required": "Le numéro de série de la grue est requis",
     "The maximum size for a serial is 20 characters": "La taille maximum pour un sérial est de 20 caractères",
@@ -89,6 +92,10 @@
     "Customer name": "Nom du client",
     "Crane serial": "Numéro de série de la grue",
     "The worksheet has been saved": "La fiche de travail a été sauvée",
+    "Worksheet template creation": "Création de fiche de travail modèle",
+    "Number of worksheet": "Nombre de fiche de travail",
+    "The worksheet template have been saved": "Les fiches de travail modèles ont été sauvées",
+    "The following worksheet template have not been saved : ": "Les fiches de travail modèles suivantes n'ont pas pu être sauvées",
 
     "#####": "!! STORE !!",
     "Quantity": "Quantité",

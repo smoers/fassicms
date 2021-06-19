@@ -1,8 +1,8 @@
 <?php
 
+use App\Http\Controllers\ProviderController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\StoreController;
 use App\Http\Controllers\CraneController;
 use App\Http\Controllers\ReassortController;
@@ -115,6 +115,8 @@ Route::group(['middleware' => ['auth']],function (){
      */
     Route::get('/worksheet/index',[WorksheetController::class,'index'])->name('worksheet.index')->middleware(['ifnot:list worksheet']);
     Route::get('/worksheet/create',[WorksheetController::class,'create'])->name('worksheet.create')->middleware(['ifnot:create worksheet']);
+    Route::get('/worksheet/template',[WorksheetController::class,'templateCreate'])->name('worksheet.template.create')->middleware(['ifnot:create worksheet']);
+    Route::post('/worksheet/template',[WorksheetController::class,'templateStore'])->name('worksheet.template.store')->middleware(['ifnot:create worksheet']);
     Route::get('/worksheet/{id}/edit',[WorksheetController::class,'edit'])->name('worksheet.edit')->middleware(['ifnot:edit worksheet']);
     Route::get('/worksheet/{id}/part',[WorksheetController::class,'partConsult'])->name('worksheet.part')->middleware(['ifnot:part worksheet']);
     Route::get('/worksheet/{id}/show',[WorksheetController::class,'show'])->name('worksheet.show')->middleware(['ifnot:consult worksheet']);
@@ -147,5 +149,9 @@ Route::group(['middleware' => ['auth']],function (){
     Route::post('/technician/ajaxvalidation',[TechnicianController::class,'ajaxValidation'])->name('technician.ajaxvalidation')->middleware(['ifnot:create technician|edit technician']);
     Route::post('/technician/ajaxnamecheck',[TechnicianController::class,'ajaxNameCheck'])->name('technician.ajaxnamecheck')->middleware(['ifnot:create technician|edit technician']);
 
+    /**
+     * Provider Controller
+     */
+    Route::get('/provider',[ProviderController::class,'index'])->name('provider.index')->middleware(['ifnot:list provider']);
 });
 

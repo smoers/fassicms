@@ -35,7 +35,13 @@
  */
 
 return [
-
+    /**
+     * Version release
+     */
+    'app' => [
+        'version' => 'Version 2.1',
+        'release' => 'Possibilité de créer un nouveau fournisseur.</br>Création d\'une fiche de travail type modèle.</br>Mogelijkheid om een nieuwe leverancier aan te maken.</br>Creatie van het werkblad van het sjabloontype. '
+    ],
     /**
      * Sortie sur Worksheet
      */

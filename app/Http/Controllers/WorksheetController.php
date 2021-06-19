@@ -128,6 +128,32 @@ class WorksheetController extends Controller
             ]);
     }
 
+    public function templateCreate()
+    {
+        return view('worksheet.worksheet-template-create',[
+            'title' => trans('Worksheet template creation'),
+        ]);
+    }
+
+    public function templateStore(Request $request)
+    {
+        $error = null;
+        foreach ($request->number as $number){
+            if(Worksheet::where('number', $number)->exists()){
+                $error .= $number.',';
+            } else {
+                $worksheet = new Worksheet();
+                $worksheet->number = $number;
+                $worksheet->user()->associate(Auth::user());
+                $worksheet->save();
+            }
+        }
+        if (is_null($error))
+            return redirect()->route('worksheet.index')->with('success', trans('The worksheet template have been saved'));
+        else
+            return redirect()->route('worksheet.index')->with('warning', trans('The following worksheet template have not been saved : ').$error);
+    }
+
     /**
      * Sauvegarde la nouvelle fiche de travail
      *
@@ -164,7 +190,7 @@ class WorksheetController extends Controller
         /**
          * redirection
          */
-        return redirect()->route('dashboard')->with('success','The worksheet has been saved');
+        return redirect()->route('worksheet.index')->with('success',trans('The worksheet has been saved'));
     }
 
     /**
@@ -252,7 +278,7 @@ class WorksheetController extends Controller
         /**
          * redirection
          */
-        return redirect()->route('worksheet.index')->with('success','The worksheet has been saved');
+        return redirect()->route('worksheet.index')->with('success',trans('The worksheet has been saved'));
 
     }
 
@@ -304,7 +330,7 @@ class WorksheetController extends Controller
     public function addOption(Request $request)
     {
         $request->session()->put('worksheet_form',$request->all());
-        $route = route('dashboard');
+        $route = route('worksheet.index');
         if ($request->post('whatIs') == 'add_customer'){
             $route = route('customer.create');
         } elseif ($request->post('whatIs') == 'add_crane'){

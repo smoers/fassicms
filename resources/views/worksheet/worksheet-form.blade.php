@@ -260,7 +260,8 @@
                 'remarks',
                 'work',
                 'oil_replace',
-                'oil_filtered'
+                'oil_filtered',
+                'warranty',
             ];
 
             $('#date').datepicker({

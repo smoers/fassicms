@@ -148,9 +148,19 @@ class StoreController extends Controller
          */
         $validatedData = $request->validated();
         /**
-         * recherche l'objet Provider
+         * Controle si c'est un nouveau client
          */
-        $provider = Provider::find($validatedData['provider']);
+        $new_provider = false;
+        if (intval($validatedData['provider']) == 0){
+            $new_provider = true;
+            $provider = new Provider();
+            $provider->name = $validatedData['new_provider_name'];
+        } else {
+            /**
+             * recherche l'objet Provider
+             */
+            $provider = Provider::find($validatedData['provider']);
+        }
         /**
          * recherche l'objet reason
          */
@@ -178,7 +188,6 @@ class StoreController extends Controller
         $catalog = new Catalog();
         $catalog->fill((array) $validatedData);
         $catalog->user()->associate(Auth::user());
-        $catalog->provider()->associate($provider);
         /**
          * crée le réassortiment initial
          */
@@ -190,9 +199,15 @@ class StoreController extends Controller
         /**
          * Sauvegarde des objets
          */
-        DB::transaction(function () use ($partmetadata, $store, $catalog, $reassort){
+        DB::transaction(function () use ($partmetadata, $store, $catalog, $reassort, $provider, $new_provider){
+            /**
+             * si nouveau fournisseur on le sauvegarde
+             */
+            if ($new_provider)
+                $provider->save();
             $partmetadata->save();
             $store->partmetadata()->associate($partmetadata)->save();
+            $catalog->provider()->associate($provider);
             $catalog->partmetadata()->associate($partmetadata)->save();
             $reassort->store()->associate($store)->save();
         });
