@@ -261,7 +261,7 @@ class StoreController extends Controller
     public function barcodeSticker($id)
     {
         $partmetadata = Partmetadata::find($id);
-        $mocoStickerModel = new MocoStickerModel(config('sticker.brother'));
+        $mocoStickerModel = new MocoStickerModel(config('sticker.brother-GL-800'));
         $mocoSticker = new MocoSticker($mocoStickerModel);
         $mocoSticker->setStickerHeader('Fassi Belgium');
         $mocoSticker->setStickerPartNumber($partmetadata->part_number);

@@ -221,16 +221,28 @@ class OutWorksheetController extends Controller
                 $result = [
                     'checked' => true,
                     'wks_qty' => $part->qty_total,
+                    'part_number' => $part->part_number,
+                    'new_stock' => false,
                     'msg' => null,
                 ];
             } else {
                 $result = [
                     'checked' => false,
                     'wks_qty' => $part->qty_total,
+                    'part_number' => $part->part_number,
+                    'new_stock' => false,
                     'msg' => trans('The quantity available on worksheet is not enough'),
                 ];
             }
+            /**
+             * Existe-t-il un stock pour cette pièce à la localisation choisie
+             */
+            $store = Store::getStoreByBarCode($part->bar_code, $request->location_id,true,true);
+            if (is_null($store)){
+                $result['new_stock'] = true;
+            }
         }
+
         return response()->json($result);
     }
 
@@ -279,13 +291,20 @@ class OutWorksheetController extends Controller
                         return redirect()->route('outworksheet.in')->with('error', trans('This part does not exist or is disabled ') . $_part);
                     }
                     /**
-                     * on s'assure qu'il y a bien une pièce avec ce part number dans le stock et
-                     * qu'elle est active
+                     * on s'assure qu'il y a bien une pièce avec ce part number dans dans la localisation
+                     * Dans le cas où il n'y a pas de pièce on va la créer pour cette localisation
                      */
                     $store = Store::getStoreByBarCode($_part, $location->id,true,true);
                     if (is_null($store)){
+                        $store = new Store();
+                        $store->qty = 0;
+                        $store->location()->associate($location);
+                        $store->partmetadata()->associate($partmetadata);
+                        $store->user()->associate(Auth::user());
+                        /** Version précédente
                         DB::rollBack();
                         return redirect()->route('outworksheet.in')->with('error', trans('This part does not exist for this location').$_part);
+                        **/
                     }
                     /**
                      * Recherche le prix de la pièce dans le catalogue
@@ -308,8 +327,7 @@ class OutWorksheetController extends Controller
                     }
                     /**
                      * La méthode de l'objet Store retourne l'objet Reassortement hydraté
-                     * mais augmente aussi la valeur du stock
-                     *
+                     * mais augmente aussi la valeur du stock                     *
                      */
                     $reassort = $store->getReassortementHydrated($_qty,$reason,$worksheet->number);
                     /**
@@ -331,6 +349,7 @@ class OutWorksheetController extends Controller
                      */
                     $store->save();
                     $part->save();
+                    $reassort->store()->associate($store); //cette ligne est nécessaire dans le cas d'une nouvelle entrée dans cette localisation
                     $reassort->save();
                 }
                 return redirect()->route('outworksheet.in')->with('success',trans('The parts have been successfully returned to stock from the worksheet : ').$worksheet->number);

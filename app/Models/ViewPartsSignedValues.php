@@ -37,7 +37,7 @@ class ViewPartsSignedValues extends Model
         if ($value == '')
             return 0;
         else
-            return number_format(intval($value),0,',','.');
+            return number_format(floatval($value),0,',','.');
 
     }
 
@@ -52,7 +52,7 @@ class ViewPartsSignedValues extends Model
         if ($value == '')
             return 0;
         else
-            return number_format(intval($value),2,',','.');
+            return number_format(floatval($value),2,',','.');
     }
 
     /**
@@ -66,7 +66,7 @@ class ViewPartsSignedValues extends Model
         if ($value == '')
             return 0;
         else
-            return number_format(intval($value),2,',','.');
+            return number_format(floatval($value),2,',','.');
     }
 
     /**

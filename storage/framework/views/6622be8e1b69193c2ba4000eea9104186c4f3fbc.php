@@ -292,7 +292,12 @@
                  * Récupère l'index
                  */
                 let index = event.target.id.match(/[0-9]+/g)[0];
-                if (parseInt($('#qty_' + index).val()) < 1 ){
+                /** si le champ est vidé on arrète le processus **/
+                if ($('#qty_' + index).val() == '') {
+                    return;
+                }
+                /** si la valeur du champ est inférieur à 1 on force la valeur à 1 **/
+                if(parseInt($('#qty_' + index).val()) < 1 ){
                     $('#qty_' + index).val(1);
                 }
                 /**
@@ -300,9 +305,10 @@
                  */
                 let _data = {
                     part_number: $('#part_' + index).val(),
-                    qty: parseInt($('#qty_' + index).val())
+                    qty: parseInt($('#qty_' + index).val()),
+                    location_id: $('#location_id').val(),
                 };
-                console.log(index, _data);
+                //console.log(index, _data);
                 /**
                  * Lancement de la requête Ajax
                  */

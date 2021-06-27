@@ -37,10 +37,11 @@
                         <table class="table table-sm table-striped">
                             <thead>
                                 <tr>
-                                    <th class="moco-color-success" style="width: 60%"><?php echo e(__('Part Number')); ?></th>
-                                    <th class="moco-color-success" style="width: 20%"><?php echo e(__('Quantity')); ?></th>
+                                    <th class="moco-color-success" style="width: 30%"><?php echo e(__('Part Number')); ?></th>
+                                    <th class="moco-color-success" style="width: 30%"><?php echo e(__('Bar Code')); ?></th>
+                                    <th class="moco-color-success" style="width: 10%"><?php echo e(__('Quantity')); ?></th>
                                     <th class="moco-color-success" style="width: 20%"><?php echo e(__('Worksheet Quantity')); ?></th>
-                                    <th class="moco-color-success" style="width: 20%"><?php echo e(__('Remove')); ?></th>
+                                    <th class="moco-color-success" style="width: 10%"><?php echo e(__('Remove')); ?></th>
                                 </tr>
 
                             </thead>
@@ -79,6 +80,7 @@
     </div>
     <script id="document-template" type="text/x-handlebars-template">
         <tr id="delete_{{ index }}">
+            <td><input type="text" id="part_number_{{  index }}" class="form-control form-control-sm bg-white" readonly name="part_numbers[]" value="{{ part_number }}"></td>
             <td><input type="text" id="part_{{  index }}" class="form-control form-control-sm bg-white" readonly name="parts[]" value="{{ part }}"></td>
             <td id="_qty"><input type="number" id="qty_{{ index }}" class="form-control form-control-sm bg-white" readonly name="qtys[]" value="{{ qty }}"></td>
             <td><input type="number" id="wks_qty_{{ index }}" class="form-control form-control-sm bg-white" readonly name="wks_qtys[]" value="{{ wks_qty }}"></td>
@@ -86,6 +88,7 @@
                 <div class="d-flex flex-row">
                     <div class="mr-3"><a href="#" id="_remove"><i class="fas fa-trash fa-lg mt-2" style="color: red !important;" id="remove_{{ index }}"></i></a></div>
                     <div class="mr-3" id="hidden_{{ index }}" hidden><a href="#" id="_alert"><i class="fas fa-exclamation-triangle fa-lg mt-2" style="color: red !important;" id="alert_{{ index }}"></i></a></div>
+                    <div class="mr-3" id="hidden_stock_{{ index }}" hidden><a href="#" id="_alert_stock"><i class="fas fa-cart-plus fa-lg mt-2" style="color: darkolivegreen !important;" id="alert_stock_{{ index }}"></i></a></div>
                 </div>
             </td>
         </tr>
@@ -100,10 +103,10 @@
          * Tableau avec les part numbers
          */
         var _parts = new Map();
+        var _url_number = "<?php echo e(route('outworksheet.ajaxworksheetcheck')); ?>";
+        var _url_part_number = "<?php echo e(route('outworksheet.ajaxpartcheck')); ?>";
+        var _url_part_qty = "<?php echo e(route('outworksheet.ajaxpartqtycheck')); ?>";
         $(function (){
-            var _url_number = "<?php echo e(route('outworksheet.ajaxworksheetcheck')); ?>";
-            var _url_part_number = "<?php echo e(route('outworksheet.ajaxpartcheck')); ?>";
-            var _url_part_qty = "<?php echo e(route('outworksheet.ajaxpartqtycheck')); ?>";
             var _init_cookie = $('#cookie').val() == 0 ? false : true;
             $.ajaxSetup({
                 headers: {
@@ -264,23 +267,34 @@
                      * lancement d'une requête ajax afin de savoir
                      * s'il y a assez de pièce disponible sur la fiche de travail
                      */
-                    let _data = {
-                        worksheet_id: parseInt($('#worksheet_id').val()),
-                        part_number: part,
-                        qty: qty
-                    };
-                    /**
-                     * La requète Ajax
-                     */
-                    request(_data, _url_part_qty).then((result) => {
-                        $('#wks_qty_' + index).val(result.wks_qty);
-                        setPartStatus(result, part, index);
-                    });
+                    qtyValidation(part, qty, $('#location_id').val(), index);
                     /**
                      * reset
                      */
                     $(this).val("");
                 }
+                /**
+                 * Changement de valeur sur le champ quantité
+                 */
+                $(document).on('keyup','#_qty', (event) => {
+                    /**
+                     * Récupère l'index
+                     */
+                    let index = event.target.id.match(/[0-9]+/g)[0];
+                    /** si le champ est vidé on arrète le processus **/
+                    if ($('#qty_' + index).val() == '') {
+                        return;
+                    }
+                    /** si la valeur du champ est inférieur à 1 on force la valeur à 1 **/
+                    if(parseInt($('#qty_' + index).val()) < 1 ){
+                        $('#qty_' + index).val(1);
+                    }
+                    /**
+                     * lancement d'une requête ajax afin de savoir
+                     * s'il y a assez de pièce disponible sur la fiche de travail
+                     */
+                    qtyValidation($('#part_' + index).val(), $('#qty_' + index).val(), $('#location_id').val(), index);
+                });
             });
 
             /**
@@ -377,10 +391,12 @@
          * Place le status correct au champ part_number,...
          */
         function setPartStatus(result, part, index) {
+
             if (!result.checked) {
                 /**
                  * Si la qty n'est pas suffisante on disabled le champ
                  */
+                $('#part_number_' + index).attr('disabled', 'disabled').addClass('moco-color-bg-warning').css('text-decoration', 'line-through');
                 $('#part_' + index).attr('disabled', 'disabled').addClass('moco-color-bg-warning').css('text-decoration', 'line-through');
                 $('#qty_' + index).attr('disabled', 'disabled').addClass('moco-color-bg-warning').css('text-decoration', 'line-through');
                 $('#wks_qty_' + index).attr('disabled', 'disabled').addClass('moco-color-bg-warning').css('text-decoration', 'line-through');
@@ -394,7 +410,33 @@
                 _alert.set(part, {
                     msg: result.msg
                 });
+            } else {
+                $('#part_number_' + index).val(result.part_number);
+                /** si la pièce n'existe pas dans le stock choisi, une nouvelle entrée sera créée, on affiche l'icône **/
+                if (result.new_stock) {
+                    $('#hidden_stock_' + index).removeAttr('hidden');
+                }
             }
+        }
+
+        /**
+         * lancement d'une requête ajax afin de savoir
+         * s'il y a assez de pièce disponible sur la fiche de travail
+         */
+        function qtyValidation(part, qty, location, index) {
+            let _data = {
+                worksheet_id: parseInt($('#worksheet_id').val()),
+                part_number: part,
+                location_id: location,
+                qty: qty
+            };
+            /**
+             * La requète Ajax
+             */
+            request(_data, _url_part_qty).then((result) => {
+                $('#wks_qty_' + index).val(result.wks_qty);
+                setPartStatus(result, part, index);
+            });
         }
     </script>
 <?php $__env->stopSection(); ?>

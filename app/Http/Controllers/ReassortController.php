@@ -146,6 +146,7 @@ class ReassortController extends Controller
             $part->price = $price;
             $part->year = Carbon::now()->year;
             $part->type = 'R';
+            $part->location()->associate($store->location()->first());
             $part->user()->associate(Auth::user());
             $part->worksheet()->associate($worksheet);
         }

@@ -48,6 +48,11 @@ class Store extends Model
         return $this->belongsTo(Partmetadata::class);
     }
 
+    /**
+     * Retourne l'objet Location lié à l'objet Store
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function location()
     {
         return $this->belongsTo(Location::class);

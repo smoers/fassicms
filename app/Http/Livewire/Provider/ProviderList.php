@@ -4,8 +4,8 @@ namespace App\Http\Livewire\Provider;
 
 use App\Models\Provider;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Http\Request;
-use phpDocumentor\Reflection\Types\True_;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\HtmlString;
 use Rappasoft\LaravelLivewireTables\TableComponent;
 use Rappasoft\LaravelLivewireTables\Traits\HtmlComponents;
 use Rappasoft\LaravelLivewireTables\Views\Column;
@@ -13,12 +13,16 @@ use Rappasoft\LaravelLivewireTables\Views\Column;
 class ProviderList extends TableComponent
 {
     use HtmlComponents;
-    public $edit = [];
-    public $name = [];
-    public $enabled = [];
-    public $tst;
+    public $edit = null;
+    public Provider $provider;
 
-    protected $rowClass ='';
+    protected string $rowClass ='';
+
+    protected array $rules = [
+        'provider.name' => 'required',
+        'provider.enabled' => 'required',
+    ];
+
 
     /**
      * CustomerList constructor.
@@ -67,19 +71,25 @@ class ProviderList extends TableComponent
                 ->format(function (Provider $model){
                     return view('provider.provider-action',[
                         'model' => $model,
-                        'edit' => (array_key_exists($model->id, $this->edit) && $this->edit[$model->id]),
+                        'edit' => $this->edit == $model->id,
                         ]);
                 })
         ];
     }
 
-    private function nameColumn(Provider $provider)
+
+
+    /**
+     * Retourne la chaine de caractère pour editer le nom du fournisseur
+     *
+     * @param Provider $provider
+     * @return HtmlString
+     */
+    private function nameColumn(Provider $provider): HtmlString
     {
         $html = $provider->name;
-        if (array_key_exists($provider->id, $this->edit) && $this->edit[$provider->id]) {
-            if (!array_key_exists($provider->id,$this->name))
-                $this->name[$provider->id] = $provider->name;
-            $html = '<input wire:model.lazy="name.'.$provider->id.'" class="form-control form-control-sm" value="' . $provider->name . '"/>';
+        if ($this->edit == $provider->id) {
+            $html = '<input wire:model.lazy="provider.name" class="form-control form-control-sm" type="text"/>';
         }
         return $this->html($html);
     }
@@ -88,18 +98,17 @@ class ProviderList extends TableComponent
      * Retourne la chaine de caractère correspondant à un select
      *
      * @param $value
-     * @return string
+     * @return HtmlString
      */
-    function enabledColumn(Provider $provider)
+    function enabledColumn(Provider $provider): HtmlString
     {
         /**
          * contenu par dféaut sans le mode édite
          */
         $html = $provider->enabled ? trans('Yes') : trans('No');
-        if (array_key_exists($provider->id, $this->edit) && $this->edit[$provider->id]) {
-            if (!array_key_exists($provider->id,$this->enabled))
-                $this->enabled[$provider->id] = $provider->enabled;
-            $html = '<select wire:model.lazy="enabled.'.$provider->id.'" class="form-control form-control-sm"><option value="1"' . ($provider->enabled ? 'selected' : '') . '>' . trans('Yes') . '</option><option value="0" ' . (!$provider->enabled ? 'selected' : '') . '>' . trans('No') . '</option></select>';
+        if ($this->edit == $provider->id) {
+            //$html = '<select wire:model.lazy="provider.enabled" class="form-control form-control-sm"><option value="1"' . ($provider->enabled ? 'selected' : '') . '>' . trans('Yes') . '</option><option value="0" ' . (!$provider->enabled ? 'selected' : '') . '>' . trans('No') . '</option></select>';
+            $html = '<select wire:model.lazy="provider.enabled" class="form-control form-control-sm"><option value="1">' . trans('Yes') . '</option><option value="0">' . trans('No') . '</option></select>';
         }
         return $this->html($html);
 
@@ -128,26 +137,51 @@ class ProviderList extends TableComponent
         return $this->rowClass;
     }
 
-
+    /**
+     * On place la ligne en mode édite ou on retire le mode édite
+     *
+     * @param $id
+     */
     public function edit($id)
     {
-        /**
-         * Si la clé existe on change le status
+         /**
+         * Si la clé existe ou est différente on l'enregistre
          */
-        if(array_key_exists($id, $this->edit))
-            $this->edit[$id] = !$this->edit[$id];
-        else
+        if($this->edit != $id){
+            $this->edit = $id;
+            $this->provider = Provider::find($id);
+        }
+        else {
             /**
              * la clé n'existe pas on la crée et attribue la valeur True
              */
-            $this->edit[$id] = true;
+            $this->edit = null;
+            $this->provider = new Provider();
+        }
     }
 
-    public function submit(Request $request,$id)
+    /**
+     * On sauvegarde les changements
+     *
+     * @param $id
+     */
+    public function save($id)
     {
-        unset($this->name[$id]);
-        unset($this->enabled[$id],$this->edit[$id]);
-        //dd($this->name,$this->enabled);
+        /**
+         * On valide
+         */
+        $this->validate();
+        /**
+         * s'il n'y a pas déjà un fournisseur avec le même nom on sauvegarde
+         */
+         $this->provider->user()->associate(Auth::user());
+         $this->provider->save();
+         session()->flash('success',trans('The provider has been saved'));
+        /**
+         * Initialisation de l'edition
+         */
+        $this->edit = null;
+        $this->provider = new Provider();
     }
 
 }

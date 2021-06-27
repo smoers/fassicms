@@ -111,7 +111,7 @@ class MocoSticker
         $this->pdf->ln();
         $this->pdf->setFont('helvetica','B',12);
         $this->pdf->MultiCell( $this->stickerModel->pnw,$this->stickerModel->pnh,$this->part_number,0,'C',false,1,$this->stickerModel->pnx,$this->stickerModel->pny);
-        $this->pdf->write1DBarcode($this->bar_code, 'C39E', $this->stickerModel->bcx, $this->stickerModel->bcy, $this->stickerModel->bcw, $this->stickerModel->bch, 0.2, $style, 'N');
+        $this->pdf->write1DBarcode($this->bar_code, 'C39E', $this->stickerModel->bcx, $this->stickerModel->bcy, $this->stickerModel->bcw, $this->stickerModel->bch, $this->stickerModel->xres, $style, 'N');
 
     }
 
