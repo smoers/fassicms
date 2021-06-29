@@ -35,11 +35,11 @@ class CustomerController extends Controller
     public function create()
     {
         $customer = new Customer();
-        $customer->black_listed = false;
+        $customer->black_listed = 0;
         return view('customer.customer-form',
             [
                 'action' => route('customer.store'),
-                'customer' => new Customer(),
+                'customer' => $customer,
                 'title' => 'Add customer'
             ]);
     }

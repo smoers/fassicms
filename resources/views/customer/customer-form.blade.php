@@ -180,7 +180,7 @@
                 } else {
                     $('#black_listed_fa').attr('class', 'fas fa-thumbs-up green-lighter-hover');
                 }
-                console.log($('#black_listed').val());
+                console.log('black'+$('#black_listed').val());
             }
         })
 

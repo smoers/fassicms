@@ -37,10 +37,11 @@
                         <table class="table table-sm table-striped">
                             <thead>
                                 <tr>
-                                    <th class="moco-color-success" style="width: 40%"><?php echo e(__('Part Number')); ?></th>
-                                    <th class="moco-color-success" style="width: 20%"><?php echo e(__('Quantity')); ?></th>
+                                    <th class="moco-color-success" style="width: 30%"><?php echo e(__('Part Number')); ?></th>
+                                    <th class="moco-color-success" style="width: 30%"><?php echo e(__('Bar Code')); ?></th>
+                                    <th class="moco-color-success" style="width: 10%"><?php echo e(__('Quantity')); ?></th>
                                     <th class="moco-color-success" style="width: 20%"><?php echo e(__('Stock Quantity')); ?></th>
-                                    <th class="moco-color-success" style="width: 20%"><?php echo e(__('Remove')); ?></th>
+                                    <th class="moco-color-success" style="width: 10%"><?php echo e(__('Remove')); ?></th>
                                 </tr>
 
                             </thead>
@@ -79,6 +80,7 @@
     </div>
     <script id="document-template" type="text/x-handlebars-template">
         <tr id="delete_{{ index }}">
+            <td><input type="text" id="part_number_{{  index }}" class="form-control form-control-sm bg-white" readonly name="part_numbers[]" value="{{ part_number }}"></td>
             <td><input type="text" id="part_{{  index }}" class="form-control form-control-sm bg-white" readonly name="parts[]" value="{{ part }}"></td>
             <td id="_qty"><input type="number" id="qty_{{ index }}" class="form-control form-control-sm bg-white" readonly name="qtys[]" value="{{ qty }}"></td>
             <td><input type="number" id="stock_qty_{{ index }}" class="form-control form-control-sm bg-white" readonly name="stock_qtys[]" value="{{ stock_qty }}"></td>
@@ -410,10 +412,12 @@
          * Place le status correct au champ part_number,...
          */
         function setPartStatus(result, part, index){
+            $('#part_number_' + index).val(result.part_number);
             if (!result.checked) {
                 /**
                  * Si la qty n'est pas suffisante on disabled le champ
                  */
+                $('#part_number_' + index).attr('disabled', 'disabled').addClass('moco-color-bg-warning').css('text-decoration', 'line-through');
                 $('#part_' + index).attr('disabled', 'disabled').addClass('moco-color-bg-warning').css('text-decoration', 'line-through');
                 $('#qty_' + index).attr('disabled', 'disabled').addClass('moco-color-bg-warning').css('text-decoration', 'line-through');
                 $('#stock_qty_' + index).attr('disabled', 'disabled').addClass('moco-color-bg-warning').css('text-decoration', 'line-through');

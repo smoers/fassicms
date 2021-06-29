@@ -2,25 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9ec171e7-05c7-490b-8f14-40ae5b7978c4" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/OutController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/OutController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CustomerController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CustomerController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/OutWorksheetController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/OutWorksheetController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ReassortController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ReassortController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/StoreController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/StoreController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Livewire/Provider/ProviderList.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Livewire/Provider/ProviderList.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Moco/Printer/MocoSticker.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Moco/Printer/MocoSticker.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Provider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Provider.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Store.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Store.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/ViewPartsSignedValues.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/ViewPartsSignedValues.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/sticker.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/sticker.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/outworksheet/inworksheet-form.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/outworksheet/inworksheet-form.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/customer/customer-form.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/customer/customer-form.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/outworksheet/outworksheet-form.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/outworksheet/outworksheet-form.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/provider/provider-action.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/provider/provider-action.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/gMMKfUQ0GfNieWtTf7oltgEPdRPxpVxfztE2NaOP" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/views/197db771ff09ea7a71966d31b59b863956397ef2.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/197db771ff09ea7a71966d31b59b863956397ef2.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/25260852830396136ad7a3932c4427c3795c142f.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/25260852830396136ad7a3932c4427c3795c142f.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/storage/framework/views/6622be8e1b69193c2ba4000eea9104186c4f3fbc.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/6622be8e1b69193c2ba4000eea9104186c4f3fbc.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/views/e5afa8da98d4be0dfd232020221573d672f22635.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/e5afa8da98d4be0dfd232020221573d672f22635.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -905,14 +893,10 @@
       <workItem from="1624790004607" duration="1783000" />
       <workItem from="1624791814329" duration="2058000" />
       <workItem from="1624793919975" duration="826000" />
-      <workItem from="1624808146038" duration="1367000" />
-    </task>
-    <task id="LOCAL-00003" summary="20201108 - v1.0">
-      <created>1604864533719</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1604864533719</updated>
+      <workItem from="1624808146038" duration="6222000" />
+      <workItem from="1624982849776" duration="1674000" />
+      <workItem from="1624988826149" duration="867000" />
+      <workItem from="1624996832000" duration="1447000" />
     </task>
     <task id="LOCAL-00004" summary="20201111 - v1.0">
       <created>1605088490985</created>
@@ -1250,7 +1234,14 @@
       <option name="project" value="LOCAL" />
       <updated>1624118219502</updated>
     </task>
-    <option name="localTasksCounter" value="52" />
+    <task id="LOCAL-00052" summary="20210627 - v2.0 Stores by location">
+      <created>1624809714614</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1624809714614</updated>
+    </task>
+    <option name="localTasksCounter" value="53" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -1259,7 +1250,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="20201223 - v1.0" />
     <MESSAGE value="20201226 - v1.0" />
     <MESSAGE value="20201228 - v1.0" />
     <MESSAGE value="20210104 - v1.0" />
@@ -1284,7 +1274,19 @@
     <MESSAGE value="20210602 - v2.0 Stores by location" />
     <MESSAGE value="20210606 - v2.0 Stores by location" />
     <MESSAGE value="20210619 - v2.0 Stores by location" />
-    <option name="LAST_COMMIT_MESSAGE" value="20210619 - v2.0 Stores by location" />
+    <MESSAGE value="20210627 - v2.0 Stores by location" />
+    <option name="LAST_COMMIT_MESSAGE" value="20210627 - v2.0 Stores by location" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/resources/views/outworksheet/inworksheet-form.blade.php</url>
+          <line>84</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

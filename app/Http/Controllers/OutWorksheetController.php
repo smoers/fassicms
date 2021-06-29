@@ -175,12 +175,14 @@ class OutWorksheetController extends Controller
                 $result = [
                     'checked' => true,
                     'stock_qty' => $store->qty,
+                    'part_number' => $store->partmetadata()->first()->part_number,
                     'msg' => null,
                 ];
             } else {
                 $result = [
                     'checked' => false,
                     'stock_qty' => $store->qty,
+                    'part_number' => $store->partmetadata()->first()->part_number,
                     'msg' => trans('The quantity available in stock is not enough')
                 ];
             }
@@ -188,6 +190,7 @@ class OutWorksheetController extends Controller
             $result = [
                 'checked' => false,
                 'stock_qty' => null,
+                'part_number' => null,
                 'msg' => trans('This part does not exist or is disabled'),
             ];
         }
