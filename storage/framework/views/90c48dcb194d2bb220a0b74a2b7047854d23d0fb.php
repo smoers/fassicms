@@ -69,6 +69,7 @@ Date : 27-10-20
     <!-- affichez uniquement si l'utilisateur est authentifié -->
     <?php if(\Illuminate\Support\Facades\Auth::check()): ?>
         <?php echo $__env->make('menus.navbar', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+        <?php echo $__env->make('auth.change', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
     <?php endif; ?>
     <div class="container-fluid">
         <?php echo $__env->make('root.message', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>

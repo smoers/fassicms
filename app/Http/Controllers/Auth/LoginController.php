@@ -67,4 +67,6 @@ class LoginController extends Controller
         Moco::cookie('login_lang',false,$request->lg);
         return redirect()->route('login');
     }
+
+
 }

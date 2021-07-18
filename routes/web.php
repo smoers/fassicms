@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\ChangePasswordController;
 use App\Http\Controllers\ProviderController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
@@ -41,6 +42,12 @@ Route::group(['middleware' => ['auth']],function (){
         return redirect()->route('dashboard');
     })->name('main');
 
+    /**
+     * Change Password Controller
+     */
+    Route::post('/cpassword/current',[ChangePasswordController::class,'ajaxCheckCurrentPassword'])->name('password.checkcurrent')->middleware(['ifnot:password change']);
+    Route::post('/cpassword/format',[ChangePasswordController::class,'ajaxCheckFormatPassword'])->name('password.format')->middleware(['ifnot:password change']);
+    Route::post('/cpassword/store',[ChangePasswordController::class,'ajaxStorePassword'])->name('password.store')->middleware(['ifnot:password change']);
     /**
      * Dashboard Controller
      */

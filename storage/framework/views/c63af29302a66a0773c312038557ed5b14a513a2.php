@@ -54,7 +54,7 @@
                         <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('create worksheet')): ?><a class="dropdown-item" href="<?php echo e(route('worksheet.create')); ?>"><?php echo e(__('Add')); ?></a><?php endif; ?>
                         <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('create worksheet')): ?><a class="dropdown-item" href="<?php echo e(route('worksheet.template.create')); ?>"><?php echo e(__('Template creation')); ?></a><?php endif; ?>
                         <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('clocking worksheet')): ?><div class="dropdown-divider"></div><?php endif; ?>
-                        <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('clocking worksheet')): ?><a class="dropdown-item" href="<?php echo e(route('clocking.technician')); ?>"><?php echo e(__('Technician clocking')); ?></a><?php endif; ?>
+                        <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('clocking technician')): ?><a class="dropdown-item" href="<?php echo e(route('clocking.technician')); ?>"><?php echo e(__('Technician clocking')); ?></a><?php endif; ?>
                     </div>
                 </li>
                 <?php endif; ?>
@@ -84,8 +84,9 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-                        <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('password change')): ?><a class="dropdown-item" href="#"><?php echo e(__('Change Password')); ?></a><?php endif; ?>
+                        <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('password change')): ?><a class="dropdown-item" href="#" id="change_password"><?php echo e(__('Change Password')); ?></a><?php endif; ?>
                         <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('admin')): ?><a class="dropdown-item" href="#"><?php echo e(__('Administration')); ?></a><?php endif; ?>
+                            <a class="dropdown-item" href="https://mo-consult.myjetbrains.com/hub/auth/login?response_type=token&client_id=00c92140-2f38-435b-8aa2-d04f6c33f390&redirect_uri=https:%2F%2Fmo-consult.myjetbrains.com%2Fyoutrack%2Foauth&scope=00c92140-2f38-435b-8aa2-d04f6c33f390%20Upsource%20TeamCity%20YouTrack%2520Slack%2520Integration%200-0-0-0-0&state=2e3e4e9a-184d-4b12-b04a-8da173066702" target="_blank">Bug Tracker</a>
                         <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->any(['admin','password change'])): ?><div class="dropdown-divider"></div><?php endif; ?>
                         <a class="dropdown-item" href="<?php echo e(route('logout')); ?>"
                            onclick="event.preventDefault();

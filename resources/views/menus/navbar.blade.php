@@ -53,7 +53,7 @@
                         @can('create worksheet')<a class="dropdown-item" href="{{route('worksheet.create')}}">{{__('Add')}}</a>@endcan
                         @can('create worksheet')<a class="dropdown-item" href="{{route('worksheet.template.create')}}">{{__('Template creation')}}</a>@endcan
                         @can('clocking worksheet')<div class="dropdown-divider"></div>@endcan
-                        @can('clocking worksheet')<a class="dropdown-item" href="{{route('clocking.technician')}}">{{__('Technician clocking')}}</a>@endcan
+                        @can('clocking technician')<a class="dropdown-item" href="{{route('clocking.technician')}}">{{__('Technician clocking')}}</a>@endcan
                     </div>
                 </li>
                 @endcanany
@@ -82,8 +82,9 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-                        @can('password change')<a class="dropdown-item" href="#">{{ __('Change Password') }}</a>@endcan
+                        @can('password change')<a class="dropdown-item" href="#" id="change_password">{{ __('Change Password') }}</a>@endcan
                         @can('admin')<a class="dropdown-item" href="#">{{ __('Administration') }}</a>@endcan
+                            <a class="dropdown-item" href="https://mo-consult.myjetbrains.com/hub/auth/login?response_type=token&client_id=00c92140-2f38-435b-8aa2-d04f6c33f390&redirect_uri=https:%2F%2Fmo-consult.myjetbrains.com%2Fyoutrack%2Foauth&scope=00c92140-2f38-435b-8aa2-d04f6c33f390%20Upsource%20TeamCity%20YouTrack%2520Slack%2520Integration%200-0-0-0-0&state=2e3e4e9a-184d-4b12-b04a-8da173066702" target="_blank">Bug Tracker</a>
                         @canany(['admin','password change'])<div class="dropdown-divider"></div>@endcan
                         <a class="dropdown-item" href="{{ route('logout') }}"
                            onclick="event.preventDefault();

@@ -68,6 +68,7 @@ Date : 27-10-20
     <!-- affichez uniquement si l'utilisateur est authentifié -->
     @if (\Illuminate\Support\Facades\Auth::check())
         @include('menus.navbar')
+        @include('auth.change')
     @endif
     <div class="container-fluid">
         @include('root.message')

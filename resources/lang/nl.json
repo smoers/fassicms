@@ -48,6 +48,23 @@
     "Please wait ...": "Wacht alsjeblieft ...",
     "Template creation": "Maken van modellen",
 
+
+    "#####": "!! CHANGE PASSWORD !!",
+    "Change your password": "Verander uw wachtwoord",
+    "Current password": "Huidig wachtwoord",
+    "New password": "Nieuw paswoord",
+    "Confirm new password": "Bevestig uw wachtwoord",
+    "The value not match with the new password": "De waarde komt niet overeen met uw wachtwoord",
+    "Your password is not correct": "Uw wachtwoord is niet correct",
+    "be at least 8 characters long": "minstens 8 tekens lang zijn",
+    "include lower case characters": "inclusief kleine letters",
+    "include upper case characters": "hoofdletters opnemen",
+    "include at least one number": "ten minste één nummer bevatten",
+    "include at least one symbol @#$...": "ten minste één @ # $ symbool bevatten ...",
+    "Your password has not been changed": "Uw wachtwoord is niet gewijzigd",
+    "Your password has been changed successfully": "Uw wachtwoord is succesvol gewijzigd",
+
+
     "The serial number of the crane is required": "Het serienummer van de kraan is vereist",
     "The maximum size for a serial is 20 characters": "De maximale grootte voor een serie is 20 tekens",
     "The model of the crane is required": "Kraanmodel is vereist",

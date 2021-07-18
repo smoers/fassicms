@@ -90,47 +90,49 @@ class ClockingController extends Controller
          * Récupère le tableau des imputs
          */
         $input = $request->all();
-        /**
-         * On parcours le tableau des valeurs récupérée
-         */
-        foreach ($input['technician_id'] as $key => $technician_id){
+        if (array_key_exists('technician_id',$input)) {
             /**
-             * Est ce un nouvelle enregistrement ou la modification d'un existant
+             * On parcours le tableau des valeurs récupérée
              */
-            if (is_null($input['id'][$key])) {
-                $clocking = new Clocking();
-            }
-            else {
-                $clocking = Clocking::find($input['id'][$key]);
+            foreach ($input['technician_id'] as $key => $technician_id) {
                 /**
-                 * L'objet Clocking ayant été mis à jour on le conserve
+                 * Est ce un nouvelle enregistrement ou la modification d'un existant
                  */
-                $updateClockings->push($clocking);
+                if (is_null($input['id'][$key])) {
+                    $clocking = new Clocking();
+                } else {
+                    $clocking = Clocking::find($input['id'][$key]);
+                    /**
+                     * L'objet Clocking ayant été mis à jour on le conserve
+                     */
+                    $updateClockings->push($clocking);
+                }
+                /**
+                 * Hydrate l'objet Clocking
+                 */
+                $clocking->technician_id = $technician_id;
+                $clocking->worksheet_id = $id;
+                $clocking->setDateAttribute($input['start_date'][$key]);
+                $clocking->setStartDateTime($input['start_date'][$key], $input['start_time'][$key]);
+                $clocking->setStopDateTime($input['start_date'][$key], $input['stop_time'][$key]);
+                $clocking->user()->associate(Auth::user());
+                array_push($clockings, $clocking);
             }
             /**
-             * Hydrate l'objet Clocking
+             * On sauvegarde les modifications et les nouveaux records
              */
-            $clocking->technician_id = $technician_id;
-            $clocking->worksheet_id = $id;
-            $clocking->setDateAttribute($input['start_date'][$key]);
-            $clocking->setStartDateTime($input['start_date'][$key], $input['start_time'][$key]);
-            $clocking->setStopDateTime($input['start_date'][$key], $input['stop_time'][$key]);
-            $clocking->user()->associate(Auth::user());
-            array_push($clockings,$clocking);
+            foreach ($clockings as $clocking) {
+                $clocking->save();
+            }
+
         }
         /**
          * Récupére la collection des objets qui n'ont pas été mis à jour
          * cela signifie qu'ils doivent être supprimé
          */
         $deleteClockings = $currentClockings->diff($updateClockings);
-        foreach ($deleteClockings as $deleteClocking){
+        foreach ($deleteClockings as $deleteClocking) {
             $deleteClocking->delete();
-        }
-        /**
-         * On sauvegarde les modifications et les nouveaux records
-         */
-        foreach ($clockings as $clocking){
-            $clocking->save();
         }
 
         return redirect()->route('worksheet.index')->with('success', trans('The clockings has been saved with success'));

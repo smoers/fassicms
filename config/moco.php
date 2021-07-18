@@ -39,9 +39,19 @@ return [
      * Version release
      */
     'app' => [
-        'version' => 'Version 2.1',
-        'release' => 'Possibilité de créer un nouveau fournisseur.</br>Création d\'une fiche de travail type modèle.</br>Mogelijkheid om een nieuwe leverancier aan te maken.</br>Creatie van het werkblad van het sjabloontype. '
+        'version' => 'Version 2.3',
+        'release' => '<a class="dropdown-item" href="https://mo-consult.myjetbrains.com/youtrack/issue/SMSF-13" target="_blank">SMSF-13 Accès atelier</a></br><a class="dropdown-item" href="#">Possibilité de modifier votre mot de passe</a></br>'
     ],
+    /**
+     * Regex pour le format du mot de passe
+     */
+    'password' => [
+        'rule01' => ['regex' => '^.{8,40}$', 'msg' => 'be at least 8 characters long'],
+        'rule02' => ['regex' => '[a-z]', 'msg' => 'include lower case characters'],
+        'rule03' => ['regex' => '[A-Z]', 'msg' => 'include upper case characters'],
+        'rule04' => ['regex' => '[0-9]', 'msg' => 'include at least one number'],
+        'rule05' => ['regex' => '['.preg_quote('!"#$%&()*+,-./:;<=>?@[\]^_`{|}~','/').']', 'msg' => 'include at least one symbol @#$...'],
+        ],
     /**
      * Sortie sur Worksheet
      */

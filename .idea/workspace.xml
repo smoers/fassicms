@@ -2,13 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9ec171e7-05c7-490b-8f14-40ae5b7978c4" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/resources/views/auth/change.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CustomerController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CustomerController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/OutWorksheetController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/OutWorksheetController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/customer/customer-form.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/customer/customer-form.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/outworksheet/outworksheet-form.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/outworksheet/outworksheet-form.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/views/25260852830396136ad7a3932c4427c3795c142f.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/25260852830396136ad7a3932c4427c3795c142f.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/views/6622be8e1b69193c2ba4000eea9104186c4f3fbc.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/6622be8e1b69193c2ba4000eea9104186c4f3fbc.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Auth/LoginController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Auth/LoginController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ClockingController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ClockingController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/moco.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/moco.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/lang/fr.json" beforeDir="false" afterPath="$PROJECT_DIR$/resources/lang/fr.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/lang/nl.json" beforeDir="false" afterPath="$PROJECT_DIR$/resources/lang/nl.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/layout.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/layout.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/menus/navbar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/menus/navbar.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/xk8uNOF7sisvIT3YbAlE8J1x8evL0ja5vNnwxdeJ" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/90c48dcb194d2bb220a0b74a2b7047854d23d0fb.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/90c48dcb194d2bb220a0b74a2b7047854d23d0fb.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/c63af29302a66a0773c312038557ed5b14a513a2.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/c63af29302a66a0773c312038557ed5b14a513a2.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -897,13 +904,41 @@
       <workItem from="1624982849776" duration="1674000" />
       <workItem from="1624988826149" duration="867000" />
       <workItem from="1624996832000" duration="1447000" />
-    </task>
-    <task id="LOCAL-00004" summary="20201111 - v1.0">
-      <created>1605088490985</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1605088490985</updated>
+      <workItem from="1624999978523" duration="643000" />
+      <workItem from="1625069781868" duration="2378000" />
+      <workItem from="1625501912939" duration="1884000" />
+      <workItem from="1625503827673" duration="1117000" />
+      <workItem from="1625507514180" duration="1269000" />
+      <workItem from="1625571382693" duration="6000" />
+      <workItem from="1625585575603" duration="1406000" />
+      <workItem from="1625587385916" duration="2025000" />
+      <workItem from="1625589479521" duration="713000" />
+      <workItem from="1625592256018" duration="1642000" />
+      <workItem from="1625674099778" duration="4867000" />
+      <workItem from="1625679019217" duration="49000" />
+      <workItem from="1625679100397" duration="1177000" />
+      <workItem from="1625684283062" duration="1709000" />
+      <workItem from="1625686090135" duration="1936000" />
+      <workItem from="1625759048410" duration="2406000" />
+      <workItem from="1625761496648" duration="791000" />
+      <workItem from="1625762501712" duration="1219000" />
+      <workItem from="1625838883671" duration="1785000" />
+      <workItem from="1625840692648" duration="797000" />
+      <workItem from="1626361333482" duration="595000" />
+      <workItem from="1626365864000" duration="1782000" />
+      <workItem from="1626367680936" duration="14450000" />
+      <workItem from="1626509104831" duration="1782000" />
+      <workItem from="1626510920167" duration="1785000" />
+      <workItem from="1626512730736" duration="1219000" />
+      <workItem from="1626514686842" duration="1821000" />
+      <workItem from="1626516539589" duration="1926000" />
+      <workItem from="1626518504147" duration="1779000" />
+      <workItem from="1626520311696" duration="1669000" />
+      <workItem from="1626523301045" duration="2564000" />
+      <workItem from="1626617200672" duration="1780000" />
+      <workItem from="1626619007868" duration="1782000" />
+      <workItem from="1626620817383" duration="2296000" />
+      <workItem from="1626623147035" duration="273000" />
     </task>
     <task id="LOCAL-00005" summary="20201111 - v1.0">
       <created>1605132378588</created>
@@ -1241,7 +1276,14 @@
       <option name="project" value="LOCAL" />
       <updated>1624809714614</updated>
     </task>
-    <option name="localTasksCounter" value="53" />
+    <task id="LOCAL-00053" summary="20210629 - v2.0 Stores by location">
+      <created>1625000024829</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1625000024829</updated>
+    </task>
+    <option name="localTasksCounter" value="54" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -1250,7 +1292,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="20201226 - v1.0" />
     <MESSAGE value="20201228 - v1.0" />
     <MESSAGE value="20210104 - v1.0" />
     <MESSAGE value="20210110 - v1.0" />
@@ -1275,7 +1316,8 @@
     <MESSAGE value="20210606 - v2.0 Stores by location" />
     <MESSAGE value="20210619 - v2.0 Stores by location" />
     <MESSAGE value="20210627 - v2.0 Stores by location" />
-    <option name="LAST_COMMIT_MESSAGE" value="20210627 - v2.0 Stores by location" />
+    <MESSAGE value="20210629 - v2.0 Stores by location" />
+    <option name="LAST_COMMIT_MESSAGE" value="20210629 - v2.0 Stores by location" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
