@@ -52,7 +52,7 @@
                     @can('consult worksheet')<a class="dropdown-item moco-color-info moco-error-small" href="{{ $_show }}"><i class="fas fa-eye"></i> {{trans('Show')}} </a>@endcan
                 @endif
                 <!-- <a class="dropdown-item moco-color-error moco-error-small" href="{{ $_remove }}"><i class="fas fa-trash-alt"></i> {{trans('Remove')}} </a> -->
-                @can('print worksheet')<a class="dropdown-item moco-color-info moco-error-small" href="{{ $_print }}" id="print_{{$_print_id}}"><i class="fas fa-print"></i> {{trans('Print')}} </a>@endcan
+                @can('print worksheet')<a class="dropdown-item moco-color-info moco-error-small print_id" href="{{ $_print }}" id="print_{{$_print_id}}"><i class="fas fa-print"></i> {{trans('Print')}} </a>@endcan
             </div>
         </div>
         @endcanany

@@ -90,7 +90,7 @@ Date : 27-10-20
 
                 </div>
                 <div class="modal-footer d-flex justify-content-center">
-                    <div>Developed by MO Consult <i class="fas fa-copyright"></i> {{ date('yy') }}</div>
+                    <div>Developed by MO Consult <i class="fas fa-copyright"></i> {{ date('Y') }}</div>
                 </div>
             </div>
         </div>

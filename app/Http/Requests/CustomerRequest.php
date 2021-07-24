@@ -35,6 +35,12 @@ class CustomerRequest extends FormRequest
             'mobile' => 'max:100',
             'vat' => 'max:15',
             'black_listed' => 'required',
+            'contacts.id.*' => 'nullable',
+            'contacts.firstname.*' => 'nullable|max:255',
+            'contacts.lastname.*' => 'required|max:255',
+            'contacts.function.*' => 'nullable|max:255',
+            'contacts.phone.*' => 'nullable|max:100',
+            'contacts.mobile.*' => 'nullable|max:100',
         ];
     }
 
@@ -60,6 +66,11 @@ class CustomerRequest extends FormRequest
             'mobile' => ('Mobile number'),
             'vat' => trans('VAT'),
             'black_listed' => trans('Black listed'),
+            'contacts.firstname.*' => trans('Contact firstname'),
+            'contacts.lastname.*' => trans('Contact lastname'),
+            'contacts.function.*' => trans('Contact function'),
+            'contacts.phone.*' => trans('Contact phone number'),
+            'contacts.mobile.*' => trans('Contact mobile number'),
         ];
     }
 }

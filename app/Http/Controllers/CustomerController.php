@@ -6,9 +6,12 @@ use App\Http\Requests\CustomerRequest;
 use App\Moco\Common\MocoAjaxValidation;
 use App\Moco\Common\MocoModelForConsult;
 use App\Models\Customer;
+use App\Models\CustomerContact;
 use App\Models\Zipcode;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use phpDocumentor\Reflection\Types\Array_;
 
 class CustomerController extends Controller
 {
@@ -40,12 +43,12 @@ class CustomerController extends Controller
             [
                 'action' => route('customer.store'),
                 'customer' => $customer,
-                'title' => 'Add customer'
+                'title' => trans('Add customer'),
             ]);
     }
 
     /**
-     * Charhgement du formulaire permettant la modification d'un client existant
+     * Chargement du formulaire permettant la modification d'un client existant
      *
      * @param $id
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
@@ -56,7 +59,7 @@ class CustomerController extends Controller
             [
                 'action' => route('customer.update', $id),
                 'customer' => $customer = Customer::find($id),
-                'title' => 'Modify customer',
+                'title' => trans('Modify customer'),
                 '_zipcode' => Zipcode::where('zipcode','=',$customer->zipcode)->first(),
             ]
         );
@@ -71,10 +74,28 @@ class CustomerController extends Controller
      */
     public function update(CustomerRequest $request, $id)
     {
+        /**
+         * Obtenir les valeurs validées
+         */
+        $validatedData = $request->validated();
+        /**
+         * Sauvegarde les modifications de l'objet Customer
+         */
         $customer = Customer::find($id);
-        $customer->fill($request->validated());
+        $customer->fill($validatedData);
         $customer->user()->associate(Auth::user());
-        $customer->save();
+        $contacts = $validatedData['contacts'];
+        DB::transaction(function ()  use($customer,$contacts) {
+            $customer->save();
+            /**
+             * Supprime les contacts qui ne font plus partie de la liste POST
+             */
+            CustomerContact::remove($contacts,$customer);
+            /**
+             * Sauvegarde les contacts qui sont dans le liste POST
+             */
+            CustomerContact::hydratedAndSave($contacts,$customer);
+        });
         return redirect()->route('customer.index')->with('success',trans('The customer has been modified with success'));
 
     }
@@ -88,10 +109,27 @@ class CustomerController extends Controller
     public function store(CustomerRequest $request)
     {
         $validateData = $request->validated();
+        /**
+         * Liste des contacts à sauvegarder
+         */
+        $contacts = $validateData['contacts'];
+        /**
+         * Création de l'objet Customer
+         */
         $customer = new Customer();
         $customer->fill($validateData);
         $customer->user()->associate(Auth::user());
-        $customer->save();
+        /**
+         * Sauvegarde
+         */
+        DB::transaction(function () use($customer,$contacts){
+            $customer->save();
+            /**
+             * Sauvegarde les contacts qui sont dans le liste POST
+             */
+            CustomerContact::hydratedAndSave($contacts,$customer);
+        });
+
         /**
          * récupère la route par défaut
          */

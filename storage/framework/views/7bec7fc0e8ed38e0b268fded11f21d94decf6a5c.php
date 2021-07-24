@@ -7,30 +7,30 @@
         <?php
 if (! isset($_instance)) {
     $html = \Livewire\Livewire::mount('worksheet.worksheet-list-head', [])->html();
-} elseif ($_instance->childHasBeenRendered('X1lodzx')) {
-    $componentId = $_instance->getRenderedChildComponentId('X1lodzx');
-    $componentTag = $_instance->getRenderedChildComponentTagName('X1lodzx');
+} elseif ($_instance->childHasBeenRendered('go86ZzP')) {
+    $componentId = $_instance->getRenderedChildComponentId('go86ZzP');
+    $componentTag = $_instance->getRenderedChildComponentTagName('go86ZzP');
     $html = \Livewire\Livewire::dummyMount($componentId, $componentTag);
-    $_instance->preserveRenderedChild('X1lodzx');
+    $_instance->preserveRenderedChild('go86ZzP');
 } else {
     $response = \Livewire\Livewire::mount('worksheet.worksheet-list-head', []);
     $html = $response->html();
-    $_instance->logRenderedChild('X1lodzx', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
+    $_instance->logRenderedChild('go86ZzP', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
 }
 echo $html;
 ?>
         <?php
 if (! isset($_instance)) {
     $html = \Livewire\Livewire::mount('worksheet.worksheet-list', [])->html();
-} elseif ($_instance->childHasBeenRendered('kHyVYVZ')) {
-    $componentId = $_instance->getRenderedChildComponentId('kHyVYVZ');
-    $componentTag = $_instance->getRenderedChildComponentTagName('kHyVYVZ');
+} elseif ($_instance->childHasBeenRendered('mqdJi0R')) {
+    $componentId = $_instance->getRenderedChildComponentId('mqdJi0R');
+    $componentTag = $_instance->getRenderedChildComponentTagName('mqdJi0R');
     $html = \Livewire\Livewire::dummyMount($componentId, $componentTag);
-    $_instance->preserveRenderedChild('kHyVYVZ');
+    $_instance->preserveRenderedChild('mqdJi0R');
 } else {
     $response = \Livewire\Livewire::mount('worksheet.worksheet-list', []);
     $html = $response->html();
-    $_instance->logRenderedChild('kHyVYVZ', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
+    $_instance->logRenderedChild('mqdJi0R', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
 }
 echo $html;
 ?>
@@ -83,7 +83,7 @@ echo $html;
             var id = null;
             var href = null;
 
-            $('[id^=print_]').on('click', function (event) {
+            $(document).on('click','a.print_id', function (event) {
                 event.preventDefault();
                 id = $(this).attr('id').match(/[0-9]+/g);
                 href = $(this).attr('href');
@@ -105,6 +105,7 @@ echo $html;
             });
 
         })
+
 
     </script>
 

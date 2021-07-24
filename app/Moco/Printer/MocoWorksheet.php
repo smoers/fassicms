@@ -350,7 +350,12 @@ class MocoWorksheet
         $this->pdf->global_align = null;
         $split = $this->pdf->splitByPercent([83.5,15]);
         $this->pdf->MultiCellLimitedBold($this->formatLabel('Total', 'Totaal',':','/'),$split[0],$_H,'RM',0,$this::$RED);
-        $this->pdf->MultiCellLimitedFill($hoursTotal->total,MocoPrintTemplate::$MultiCellLimitedBold,$split[1],$_H,'CM',1,$this::$RED);
+        /**
+         * Si il n'y a pas d'heure pour cette fiche de travail
+         * l'objet hoursTotal sera null, pour éviter une erreur on le test avant
+         */
+        if (!is_null($hoursTotal))
+            $this->pdf->MultiCellLimitedFill($hoursTotal->total,MocoPrintTemplate::$MultiCellLimitedBold,$split[1],$_H,'CM',1,$this::$RED);
         /**
          * reset
          */

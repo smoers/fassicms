@@ -57,7 +57,7 @@
             var id = null;
             var href = null;
 
-            $('[id^=print_]').on('click', function (event) {
+            $(document).on('click','a.print_id', function (event) {
                 event.preventDefault();
                 id = $(this).attr('id').match(/[0-9]+/g);
                 href = $(this).attr('href');
@@ -79,6 +79,7 @@
             });
 
         })
+
 
     </script>
 

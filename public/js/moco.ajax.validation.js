@@ -28,7 +28,7 @@ var loadValue = function(objectFields, index){
     if (index == null)
         index = "";
     $.each(objectFields, function (name,value){
-        objectFields[name] = $('#'+name+index).val();
+        objectFields[name] = $('#' + name + index).val();
     });
     return objectFields;
 }
@@ -77,7 +77,6 @@ var mocoURL = function (action) {
     for(let i=1;i<=result.length-2;i++){
         url = url + result[i]+'/';
     }
-    console.log(url);
     return url;
 }
 
@@ -99,7 +98,7 @@ $(function () {
     //Constructeur
     var element = $('input, select, form');
     element.each(function (key, value) {
-        if(element.eq(key).attr('moco-validation') != null || element.eq(key).attr('moco-validation-table') != null ){
+        if(element.eq(key).attr('moco-validation') != null || element.eq(key).attr('moco-validation-table') != null){
             elementId = element.eq(key).attr('id');
             if(element.eq(key).prop('tagName') == 'FORM'){
                 action = element.eq(key).attr('action');
@@ -112,7 +111,6 @@ $(function () {
                     validationFields[elementId.match(/[^\d]+/g)] = "";
                 }
             }
-
         }
     });
 

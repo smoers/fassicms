@@ -39,8 +39,8 @@ return [
      * Version release
      */
     'app' => [
-        'version' => 'Version 2.3',
-        'release' => '<a class="dropdown-item" href="https://mo-consult.myjetbrains.com/youtrack/issue/SMSF-13" target="_blank">SMSF-13 Accès atelier</a></br><a class="dropdown-item" href="#">Possibilité de modifier votre mot de passe</a></br>'
+        'version' => 'Version 2.3.2',
+        'release' => '<a class="dropdown-item" href="https://mo-consult.myjetbrains.com/youtrack/issue/SMSF-3" target="_blank">SMSF-3 Impression d\'une fiche de travail</a></br><a class="dropdown-item" href="https://mo-consult.myjetbrains.com/youtrack/issue/SMSF-13" target="_blank">SMSF-13 Accès atelier</a></br><a class="dropdown-item" href="https://mo-consult.myjetbrains.com/youtrack/issue/SMSF-11" target="_blank">SMSF-11 Impression de fiche de travail</a></br><a class="dropdown-item" href="#">Possibilité de modifier votre mot de passe</a></br>'
     ],
     /**
      * Regex pour le format du mot de passe

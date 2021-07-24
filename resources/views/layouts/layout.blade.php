@@ -57,7 +57,7 @@ Date : 27-10-20
         <script type="text/javascript" src="{{ asset('3rd/iziToast-master/dist/js/iziToast.min.js') }}"></script>
         <!-- Moco -->
         <script type="text/javascript" src="{{ asset('js/moco.request.js') }}"></script>
-
+        <script type="text/javascript" src="{{ asset('js/moco.random.js') }}"></script>
         <!-- Livewire -->
         @livewireStyles
 

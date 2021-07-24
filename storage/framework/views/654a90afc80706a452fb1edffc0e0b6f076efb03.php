@@ -121,7 +121,7 @@ unset($__errorArgs, $__bag); ?>
 
                 </div>
                 <div class="modal-footer d-flex justify-content-center">
-                    <div>Developed by MO Consult <i class="fas fa-copyright"></i> <?php echo e(date('yy')); ?></div>
+                    <div>Developed by MO Consult <i class="fas fa-copyright"></i> <?php echo e(date('Y')); ?></div>
                 </div>
             </div>
         </div>

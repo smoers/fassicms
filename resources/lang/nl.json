@@ -47,6 +47,8 @@
     "Launch" : "Gooien",
     "Please wait ...": "Wacht alsjeblieft ...",
     "Template creation": "Maken van modellen",
+    "The field :attribute is required": "Het veld :attribute is verplicht",
+    "The maximum size for :attribute is :max": "De maximale grootte voor het veld :attribute is :max",
 
 
     "#####": "!! CHANGE PASSWORD !!",
@@ -174,6 +176,7 @@
     "#####": "!! Customer !!",
     "Customer": "Klant",
     "Add customer": "Voeg een klant toe",
+    "Modify customer": "Klant bewerken",
     "Consult Customer": "Raadpleeg de klant",
     "Company name": "Bedrijfsnaam",
     "Address": "Adres",
@@ -185,6 +188,7 @@
     "Phone": "Telefoon",
     "Mobile": "Mobile",
     "VAT": "VAT",
+    "Function": "Functie",
     "Black listed": "Zwarte lijst",
     "Currently selected": "Momenteel geselecteerd",
     "Select and Begin Typing": "Selecteer en begin met typen",
@@ -194,6 +198,15 @@
     "No Results": "Geen resultaat",
     "Searching...": "Zoeken...",
     "Please enter more characters": "Voer alstublieft meer karakters in",
+    "Contact firstname": "voornaam contactpersoon",
+    "Contact lastname": "contactnaam",
+    "Contact function": "Contactfunctie",
+    "Contact phone": "contact telefoon",
+    "Contact mobile": "mobile du contact",
+    "The customer has been modified with success": "De client is succesvol gewijzigd",
+    "The new customer has been saved": "De nieuwe klant is opgeslagen",
+
+
 
     "#####": "!! Out Worksheet !!",
     "Out on worksheet": "Uitvoer op een werkblad",

@@ -52,7 +52,7 @@
                     <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('consult worksheet')): ?><a class="dropdown-item moco-color-info moco-error-small" href="<?php echo e($_show); ?>"><i class="fas fa-eye"></i> <?php echo e(trans('Show')); ?> </a><?php endif; ?>
                 <?php endif; ?>
                 <!-- <a class="dropdown-item moco-color-error moco-error-small" href="<?php echo e($_remove); ?>"><i class="fas fa-trash-alt"></i> <?php echo e(trans('Remove')); ?> </a> -->
-                <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('print worksheet')): ?><a class="dropdown-item moco-color-info moco-error-small" href="<?php echo e($_print); ?>" id="print_<?php echo e($_print_id); ?>"><i class="fas fa-print"></i> <?php echo e(trans('Print')); ?> </a><?php endif; ?>
+                <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('print worksheet')): ?><a class="dropdown-item moco-color-info moco-error-small print_id" href="<?php echo e($_print); ?>" id="print_<?php echo e($_print_id); ?>"><i class="fas fa-print"></i> <?php echo e(trans('Print')); ?> </a><?php endif; ?>
             </div>
         </div>
         <?php endif; ?>
