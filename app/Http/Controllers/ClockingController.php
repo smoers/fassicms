@@ -26,11 +26,13 @@ use App\Moco\Common\Moco;
 use App\Models\Clocking;
 use App\Models\ClockingsDetails;
 use App\Models\Technician;
+use App\Models\ViewClockingsDetailsCorrect;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 use App\Models\Worksheet;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class ClockingController extends Controller
 {
@@ -61,6 +63,19 @@ class ClockingController extends Controller
             'technicians' => Technician::all()->sortBy('lastname'),
             'worksheet' => $worksheet,
             'clockings' => $worksheet->clockings,
+        ]);
+    }
+
+    /**
+     * Ouvre le formulaire avec la liste des pointages jour-1 non cloturés
+     *
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
+    public function correct()
+    {
+        $clockings = ViewClockingsDetailsCorrect::where('status','=',$this->status['activated'])->get();
+        return view('worksheet.clockings-details-correct-list',[
+            'clockings' => $clockings,
         ]);
     }
 
@@ -227,6 +242,67 @@ class ClockingController extends Controller
         }
 
         return response()->json($result);
+    }
+
+    /**
+     * Enregistre une correction suite à une prestation non clôturée
+     *
+     * @param Request $request
+     */
+    public function ajaxCorrect(Request $request)
+    {
+        $result = [
+            'save' => false,
+            'msg' => null,
+        ];
+        /**
+         * récupère l'enregistrement de début
+         */
+        $start = ClockingsDetails::find($request->id);
+        /**
+         * a-t-il été trouvé ?
+         */
+        if (!is_null($start)){
+            /**
+             * Contrôle la validité de la valeur introduite
+             */
+            if ($request->stop_time != ''){
+                $start_time = Carbon::createFromTimeString($start->getTime());
+                $stop_time = Carbon::createFromTimeString($request->stop_time);
+                /**
+                 * S'assure que la valeur de fin est supérieur à la valeur de début
+                 */
+                if ($start_time->lessThan($stop_time)){
+                    /**
+                     * On crée l'enregistrement la fin de prestation
+                     */
+                    $worksheet = Worksheet::find($start->worksheet_id);
+                    $technician = Technician::find($start->technician_id);
+                    $stop = new ClockingsDetails();
+                    $stop->date = $start->getDate();
+                    $stop->setDateTime($start->getDate(), $request->stop_time);
+                    $stop->action = $this->action['stop'];
+                    $stop->status = $this->status['activated'];
+                    $stop->worksheet()->associate($worksheet);
+                    $stop->technician()->associate($technician);
+                    $stop->user()->associate(Auth::user());
+                    $stop->save();
+                    /**
+                     * On crée l'enregistrement de la prestation complète dans la table Clockings
+                     */
+                    $clocking = Clocking::setClocking($start, $stop);
+                    $result['save'] = true;
+                    $result['msg'] = trans('The stop time has been correctly saved');
+                } else {
+                    $result['msg'] = trans('The stop time value is less than the start time value');
+                }
+            } else {
+                $result['msg'] = trans('The time value is not correct');
+            }
+        }
+
+        return response()->json($result);
+
     }
 
 

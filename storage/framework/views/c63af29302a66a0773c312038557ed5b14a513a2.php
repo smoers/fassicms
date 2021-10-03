@@ -55,6 +55,7 @@
                         <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('create worksheet')): ?><a class="dropdown-item" href="<?php echo e(route('worksheet.template.create')); ?>"><?php echo e(__('Template creation')); ?></a><?php endif; ?>
                         <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('clocking worksheet')): ?><div class="dropdown-divider"></div><?php endif; ?>
                         <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('clocking technician')): ?><a class="dropdown-item" href="<?php echo e(route('clocking.technician')); ?>"><?php echo e(__('Technician clocking')); ?></a><?php endif; ?>
+                        <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('clocking correction')): ?><a class="dropdown-item" href="<?php echo e(route('clocking.correct')); ?>"><?php echo e(__('Technician clocking correction')); ?></a><?php endif; ?>
                     </div>
                 </li>
                 <?php endif; ?>

@@ -82,6 +82,35 @@ class ClockingsDetails extends Model
         return $value != '' ? Carbon::parse($value)->format('d/m/Y H:i') : null;
     }
 
+    /**
+     * Retourne uniquement le time
+     *
+     * @return string
+     */
+    public function getTime(): ?string
+    {
+        return Carbon::parse($this->attributes['date_time'])->format('H:i');
+    }
+
+    /**
+     * Retourne uniquement la date
+     *
+     * @return string|null
+     */
+    public function getDate(): ?string
+    {
+        return Carbon::parse($this->attributes['date_time'])->format('d/m/Y');
+    }
+
+    /**
+     * Place la heure en combinaison avec la date
+     *
+     * @param string $time
+     */
+    public function setDateTime(string $date, string $time){
+        $this->attributes['date_time'] = Carbon::parse(str_replace('/','-',"$date $time"));
+    }
+
      /**
      * retourne l'enregsitrement de départ s'il existe
      *      *
@@ -103,7 +132,7 @@ class ClockingsDetails extends Model
     }
 
     /**
-     * retourne l'enregsitrement de fin s'il existe
+     * retourne l'enregistrement de fin s'il existe
      *
      * @param Worksheet $worksheet
      * @param Technician $technician

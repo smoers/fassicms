@@ -54,6 +54,7 @@
                         @can('create worksheet')<a class="dropdown-item" href="{{route('worksheet.template.create')}}">{{__('Template creation')}}</a>@endcan
                         @can('clocking worksheet')<div class="dropdown-divider"></div>@endcan
                         @can('clocking technician')<a class="dropdown-item" href="{{route('clocking.technician')}}">{{__('Technician clocking')}}</a>@endcan
+                        @can('clocking correction')<a class="dropdown-item" href="{{route('clocking.correct')}}">{{__('Technician clocking correction')}}</a>@endcan
                     </div>
                 </li>
                 @endcanany

@@ -138,6 +138,8 @@ Route::group(['middleware' => ['auth']],function (){
      * Clocking Controller
      */
     Route::get('/clocking/{id}/edit',[ClockingController::class,'edit'])->name('clocking.edit')->middleware(['ifnot:clocking worksheet']);
+    Route::get('/clocking/correct',[ClockingController::class,'correct'])->name('clocking.correct')->middleware(['ifnot:clocking correction']);
+    Route::post('/clocking/ajaxcorrect',[ClockingController::class,'ajaxCorrect'])->name('clocking.ajaxcorrect')->middleware(['ifnot:clocking correction']);
     //Route::get('/clocking/{id}/show',[ClockingController::class,'show'])->name('clocking.show');
     Route::get('/clocking/clockingtechnician',[ClockingController::class,'ClockingTechnician'])->name('clocking.technician')->middleware(['ifnot:clocking technician']);
     Route::post('/clocking/{id}/update',[ClockingController::class,'update'])->name('clocking.update')->middleware(['ifnot:clocking worksheet']);
