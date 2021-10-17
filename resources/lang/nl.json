@@ -236,5 +236,17 @@
     "Technician": "Technicien",
     "Start time": "Starttijd",
     "Stop time": "Stoptijd",
-    "Difference": "Verschil"
+    "Difference": "Verschil",
+    "The stop time has been correctly saved": "De eindtijd is correct opgeslagen",
+    "The stop time value is less than the start time value": "De waarde van de eindtijd is minder dan de startwaarde",
+    "The time value is not correct": "Het formaat van de tijd is niet correct",
+    "Technician clocking correction": "Correctie van technicusscores",
+    "Closed": "Om te omsluiten",
+    "Removed": "verwijderen",
+    "Clocking correction": "Correctie van voordelen",
+    "Enter the end time": "Voer de eindtijd in",
+    "Confirmation": "Bevestiging",
+    "Are you sure to remove the start clocking for this worksheet : ": "Weet je zeker dat je het begin van de voordelencore voor dit werkblad wilt verwijderen: ",
+    "This start clocking cannot be flagged as deleted, see with your administrator": "De status van de startdienst kan niet worden gemaakt om te verwijderen, zie bij uw administrat",
+    "This start clocking has been flagged as deleted": "De status van de startservice is gemaakt om te verwijderen"
 }

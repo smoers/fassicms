@@ -7,19 +7,20 @@
         <?php
 if (! isset($_instance)) {
     $html = \Livewire\Livewire::mount('clocking.clockings-details-correct-list', [])->html();
-} elseif ($_instance->childHasBeenRendered('cnUEEu4')) {
-    $componentId = $_instance->getRenderedChildComponentId('cnUEEu4');
-    $componentTag = $_instance->getRenderedChildComponentTagName('cnUEEu4');
+} elseif ($_instance->childHasBeenRendered('aYb3rwk')) {
+    $componentId = $_instance->getRenderedChildComponentId('aYb3rwk');
+    $componentTag = $_instance->getRenderedChildComponentTagName('aYb3rwk');
     $html = \Livewire\Livewire::dummyMount($componentId, $componentTag);
-    $_instance->preserveRenderedChild('cnUEEu4');
+    $_instance->preserveRenderedChild('aYb3rwk');
 } else {
     $response = \Livewire\Livewire::mount('clocking.clockings-details-correct-list', []);
     $html = $response->html();
-    $_instance->logRenderedChild('cnUEEu4', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
+    $_instance->logRenderedChild('aYb3rwk', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
 }
 echo $html;
 ?>
     </div>
+    <!-- Modal pour introduire l'heure de fin -->
     <div class="modal" id="modal_closed" data-backdrop="static" data-keyboard="false">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
@@ -65,11 +66,37 @@ echo $html;
             </div>
         </div>
     </div>
+    <!-- Modal pour la confirmation de suppression d'un début de prestations -->
+    <div class="modal" id="modal_removed" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="container-fluid">
+                        <div class="d-flex justify-content-sm-center">
+                            <p class="moco-color-info h4"> <?php echo e(__('Confirmation')); ?></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-body">
+                    <div class="moco-color-warning moco" id="msgRemoved"><?php echo e(__('Are you sure to remove the start clocking for this worksheet : ')); ?></div>
+                </div>
+                <div class="modal-footer">
+                    <div class="container-fluid">
+                        <div class="d-flex justify-content-md-between">
+                            <button type="button" id="startRemoved" class="btn btn-primary" data-dismiss="modal"><?php echo e(__('Removed')); ?></button>
+                            <button type="button" class="btn btn-danger" data-dismiss="modal"><?php echo e(__('Cancel')); ?></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script type="text/javascript" src="<?php echo e(asset('js/moco.redirect.js')); ?>"></script>
     <script type="text/javascript">
         $(function () {
             var id = null;
-            var _url_ajaxcorrect = '<?php echo e(route('clocking.ajaxcorrect')); ?>'
+            var _url_ajaxcorrect = '<?php echo e(route('clocking.ajaxcorrect')); ?>';
             /** Ajax setup **/
             $.ajaxSetup({
                 headers: {
@@ -94,30 +121,61 @@ echo $html;
             })
             /** affiche le modal pour confirmer la supression du début de prestation **/
             $(document).on('click','a.removed_id', function (event) {
-                id = $(this).attr('id').match(/[0-9]+/g);
+                let obj = getId($(this));
+                let msg = $('#msgRemoved').text();
+                $('#msgRemoved').text(msg + obj.w_number);
+                $('#modal_removed').modal('show');
             })
-
+            /** Sauvegarde l'heure de fin de prestation **/
             $('#startClosed').on('click', () => {
                 let stop_time = $('#mo_stop_time').val();
-                request({id: id, stop_time: stop_time},_url_ajaxcorrect).then((result) => {
-                    if (result.save){
-                        iziToast.success({
-                            title: '<?php echo e(__('Success')); ?>',
-                            message: result.msg,
-                            timeout: 10000,
-                        });
-                    } else {
-                        iziToast.error({
-                            title: '<?php echo e(__('Error')); ?>',
-                            message: result.msg,
-                            timeout: 10000,
-                        })
-                    }
+                request({id: id, stop_time: stop_time, whyis: 'closed'},_url_ajaxcorrect).then((result) => {
+                    showMsg(result);
                     /** recharge le composant livewire **/
                     window.livewire.emit('reload');
                 })
             })
+            /** Place le status du record début de prestation en "remove" **/
+            $('#startRemoved').on('click', () => {
+                request({id: id, whyis: 'removed'},_url_ajaxcorrect).then((result) => {
+                    showMsg(result);
+                    /** recharge le composant livewire **/
+                    window.livewire.emit('reload');
+                });
+            })
+
+            /**
+             * Retourne un objet avec les valeur de la ligne du tableau
+             * @param  element
+             * @returns  {any}
+             */
+            function getId(element){
+                id = element.attr('id').match(/[0-9]+/g)[0];
+                /** Récupére les données de l'objet **/
+                let obj = JSON.parse($('#closed_'+id).attr('object'));
+                return obj;
+            }
         })
+
+        /**
+         * Affiche un message sur base du résultat de la requête Ajax
+         * @param  result
+         */
+        function showMsg(result){
+            if (result.status){
+                iziToast.success({
+                    title: '<?php echo e(__('Success')); ?>',
+                    message: result.msg,
+                    timeout: 10000,
+                });
+            } else {
+                iziToast.error({
+                    title: '<?php echo e(__('Error')); ?>',
+                    message: result.msg,
+                    timeout: 10000,
+                })
+            }
+        }
     </script>
 
 

@@ -131,6 +131,7 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/koolreport/laravel" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/koolreport/core" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/koolreport/bootstrap4" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/arrilot/laravel-widgets" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

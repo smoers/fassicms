@@ -2,27 +2,41 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9ec171e7-05c7-490b-8f14-40ae5b7978c4" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Http/Livewire/Clocking/ClockingsDetailsCorrectList.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Models/ViewClockingsDetailsCorrect.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/livewire/clocking/clockings-details-correct-list.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/worksheet/clocking-correct-action.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/worksheet/clockings-details-correct-list.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/sessions/DG0ANyEERg2CpVHVYFEOW8V7xzMjgFRCLnNraaHa" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/52dd0c2bbad4ab721f9b45efa847fa0397059a8d.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/5de3c6fe5a8aff909e79cc488d65fd2674fb648b.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/8074035a-9972-402f-a879-6c4d22e21adb.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/8074035a-9972-402f-a879-6c4d22e21adb.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/ReportController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Widgets/StockInfo.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Widgets/VersionInfo.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/stock-48.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/version-48.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/koolreport_assets/141511950/table.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/koolreport_assets/141511950/table.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/koolreport_assets/3186757410/KoolReport.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/koolreport_assets/3186757410/KoolReport.subReport.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/koolreport_assets/421826660/jquery-ui.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/koolreport_assets/421826660/jquery.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/widgets/stock_info.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/widgets/template.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/widgets/version_info.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/sessions/8Mm9uk9HEK7HFxjLI2RKEY3jn5HQR3u0rIohoCOB" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/0d95071f8b4632dfb5d4d8c4175e874df59cf3ad.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/4c667b1ad1d00181c73ad21f2ba1ed7d7f128c0e.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/c04aebfcf09c4b3a5abc19835dbb9f73f8c71238.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/fbf85994a6379b5721712588e491b2b3e249b38c.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/fassicms.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/fassicms.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ClockingController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ClockingController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/ClockingsDetails.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/ClockingsDetails.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/menus/navbar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/menus/navbar.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/moco.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/moco.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/all.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/all.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/lang/fr.json" beforeDir="false" afterPath="$PROJECT_DIR$/resources/lang/fr.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/lang/nl.json" beforeDir="false" afterPath="$PROJECT_DIR$/resources/lang/nl.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/root/dashboard.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/root/dashboard.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/worksheet/clockings-details-correct-list.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/worksheet/clockings-details-correct-list.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/F50vgmmqcVA7rgLsPCTNjJffHRBg5gLoIlxZ1fVT" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/views/c63af29302a66a0773c312038557ed5b14a513a2.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/c63af29302a66a0773c312038557ed5b14a513a2.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/DG0ANyEERg2CpVHVYFEOW8V7xzMjgFRCLnNraaHa" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/52dd0c2bbad4ab721f9b45efa847fa0397059a8d.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/52dd0c2bbad4ab721f9b45efa847fa0397059a8d.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/a5b5b0efc4408ad8fbfe882559004f213b5cfe64.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/a5b5b0efc4408ad8fbfe882559004f213b5cfe64.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -182,6 +196,7 @@
       <path value="$PROJECT_DIR$/vendor/koolreport/laravel" />
       <path value="$PROJECT_DIR$/vendor/koolreport/core" />
       <path value="$PROJECT_DIR$/vendor/koolreport/bootstrap4" />
+      <path value="$PROJECT_DIR$/vendor/arrilot/laravel-widgets" />
     </include_path>
   </component>
   <component name="ProjectId" id="1jdZiM5812ctBuM0QfegVcPS6Km" />
@@ -988,14 +1003,10 @@
       <workItem from="1632484518310" duration="9205000" />
       <workItem from="1632935423616" duration="1606000" />
       <workItem from="1633173689424" duration="5271000" />
-      <workItem from="1633252708695" duration="17005000" />
-    </task>
-    <task id="LOCAL-00007" summary="20201116 - v1.0">
-      <created>1605563231110</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1605563231110</updated>
+      <workItem from="1633252708695" duration="17042000" />
+      <workItem from="1633864313114" duration="8265000" />
+      <workItem from="1634309050879" duration="2023000" />
+      <workItem from="1634454693915" duration="11106000" />
     </task>
     <task id="LOCAL-00008" summary="20201118 - v1.0">
       <created>1605737217962</created>
@@ -1333,7 +1344,14 @@
       <option name="project" value="LOCAL" />
       <updated>1627139129021</updated>
     </task>
-    <option name="localTasksCounter" value="56" />
+    <task id="LOCAL-00056" summary="20211003 - v2.0 Stores by location">
+      <created>1633296200756</created>
+      <option name="number" value="00056" />
+      <option name="presentableId" value="LOCAL-00056" />
+      <option name="project" value="LOCAL" />
+      <updated>1633296200756</updated>
+    </task>
+    <option name="localTasksCounter" value="57" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -1342,7 +1360,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="20210110 - v1.0" />
     <MESSAGE value="20210117 - v1.0" />
     <MESSAGE value="20210123 - v1.0" />
     <MESSAGE value="20210130 - v1.0" />
@@ -1367,7 +1384,8 @@
     <MESSAGE value="20210629 - v2.0 Stores by location" />
     <MESSAGE value="20210718 - v2.0 Stores by location" />
     <MESSAGE value="20210724 - v2.0 Stores by location" />
-    <option name="LAST_COMMIT_MESSAGE" value="20210724 - v2.0 Stores by location" />
+    <MESSAGE value="20211003 - v2.0 Stores by location" />
+    <option name="LAST_COMMIT_MESSAGE" value="20211003 - v2.0 Stores by location" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

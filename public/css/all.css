@@ -127,6 +127,11 @@ Date : 09-10-20
     border-radius: 0.2rem;
 }
 
+.moco-widget {
+    background-color: #eaeaea;
+    border-radius: 10%;
+}
+
 #timedate {
     font: small-caps lighter 43px/150% "Segoe UI", Frutiger, "Frutiger Linotype", "Dejavu Sans", "Helvetica Neue", Arial, sans-serif;
     text-align:left;

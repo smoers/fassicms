@@ -232,5 +232,17 @@
     "Technician": "Technicien",
     "Start time": "Heure de début",
     "Stop time": "Heure d'arrêt",
-    "Difference": "Différence"
+    "Difference": "Différence",
+    "The stop time has been correctly saved": "L'heure de fin de prestation a été correctement sauvé",
+    "The stop time value is less than the start time value": "La valeur de l'heure de fin prestation est inférieure à la valeur de début",
+    "The time value is not correct": "Le format de l'heure n'est pas correct",
+    "Technician clocking correction": "Correction des pointages technicien",
+    "Closed": "Clôturer",
+    "Removed": "Supprimer",
+    "Clocking correction": "Correction des prestations",
+    "Enter the end time": "Entrez l'heure de fin de prestation",
+    "Confirmation": "Confirmation",
+    "Are you sure to remove the start clocking for this worksheet : ": "Etes-vous certain de vouloir supprimer le pointage de début de prestations pour cette fiche de travail: ",
+    "This start clocking cannot be flagged as deleted, see with your administrator": "Le statut de la prestation de début n'a pas pu être mis comme SUPPRIMER, voir avec votre administrateur",
+    "This start clocking has been flagged as deleted": "Le statut de la prestation de début a été mis comme SUPPRIMER"
 }

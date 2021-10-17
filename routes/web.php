@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\ChangePasswordController;
 use App\Http\Controllers\ProviderController;
+use App\Http\Controllers\ReportController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\StoreController;
@@ -162,5 +163,10 @@ Route::group(['middleware' => ['auth']],function (){
      * Provider Controller
      */
     Route::get('/provider',[ProviderController::class,'index'])->name('provider.index')->middleware(['ifnot:list provider']);
+
+    /**
+     * Reports
+     */
+    Route::get('/report/reassort',[ReportController::class,'reassortLevel'])->name('report.reassortLevel')->middleware(['ifnot:list provider']);
 });
 
