@@ -362,7 +362,7 @@ return [
                 'name' => [
                     'id' => 'Identifier',
                     'serial' => 'Serial number',
-                    'model' => 'Address',
+                    'model' => 'Model',
                     'plate' => 'Numberplate',
                     'created_at' => 'Create Date',
                     'updated_at' => 'Update Date',
@@ -456,6 +456,17 @@ return [
                     'type' => true,
                 ],
             ],
+            'viewparttotal' => [
+                'name' => [
+                    'worksheet_id' => 'Worksheet',
+                    'part_number' => 'Part Number',
+                    'bar_code' => 'Bar Code',
+                    'qty' => 'Quantity',
+                    'price' => 'Price',
+                    'updated_at' => 'Update Date',
+                ],
+                'show' => [],
+            ]
         ],
     ],
  ];

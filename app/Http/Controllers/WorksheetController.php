@@ -22,6 +22,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\CompleteWorksheetExport;
+use App\Exports\WorksheetExport;
 use App\Http\Requests\WorksheetRequest;
 use App\Moco\Common\Moco;
 use App\Moco\Common\MocoAjaxValidation;
@@ -416,6 +418,11 @@ class WorksheetController extends Controller
             '_reassorts' => $_reassorts,
             '_total' => $_total,
         ]);
+    }
+
+    public function export($id)
+    {
+        return (new CompleteWorksheetExport($id))->download('worksheet.xlsx');
     }
 
 }

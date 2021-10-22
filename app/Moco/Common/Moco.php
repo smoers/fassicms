@@ -34,6 +34,8 @@ use App\Models\Worksheet;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cookie;
+use phpDocumentor\Reflection\Types\Boolean;
+use PhpOffice\PhpSpreadsheet\Shared\Date;
 
 class Moco
 {
@@ -119,5 +121,42 @@ class Moco
     {
         $bytes = random_bytes(8);
         return bin2hex($bytes);
+    }
+
+    /**
+     * Retourne un tableau avec la traduction
+     *
+     * @param array $array
+     * @return array|null
+     */
+    public static function translateArrayValue(array $array): ?array
+    {
+        $result = [];
+        foreach ($array as $key => $value){
+            array_push($result, trans($value));
+        }
+        return $result;
+    }
+
+    /**
+     * Converti en Float après avoir remplacé le ',' par '.'
+     *
+     * @param string $value
+     * @return float|null
+     */
+    public static function floatValReplace(string $value): ?float
+    {
+        return floatval(str_replace(',','.',$value));
+    }
+
+    /**
+     * @param string $time
+     * @param string $format
+     * @return bool|float|int
+     */
+    public static function timeToExcel(string $time, string $format = 'H:i')
+    {
+        $datetimeExcel = Date::PHPToExcel(Carbon::createFromFormat($format,$time));
+        return $datetimeExcel - floor($datetimeExcel);
     }
 }

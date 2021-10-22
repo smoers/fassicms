@@ -9,6 +9,7 @@
     @elseif($whatIs == 'customer')
         @var $_modify = route('customer.edit',$customer->id)
         @var $_show = route('customer.show',$customer->id)
+        @var $_export = ''
         @var $_remove = ''
         @var $_print = ''
         @var $_print_id = ''
@@ -16,6 +17,7 @@
     @elseif($whatIs == 'technician')
         @var $_modify = route('technician.edit',$technician->id)
         @var $_show = route('technician.show',$technician->id)
+        @var $_export = ''
         @var $_remove = ''
         @var $_print = ''
         @var $_print_id = ''
@@ -23,6 +25,7 @@
     @elseif($whatIs == 'worksheet')
         @var $_modify = route('worksheet.edit',$worksheet->id)
         @var $_show = route('worksheet.show',$worksheet->id)
+        @var $_export = route('worksheet.export',$worksheet->id)
         @var $_remove = ''
         @var $_hour = route('clocking.edit',$worksheet->id)
         @var $_part = route('worksheet.part',$worksheet->id)
@@ -50,6 +53,7 @@
             <div class="dropdown-menu">
                 @if($whatIs == 'worksheet')
                     @can('consult worksheet')<a class="dropdown-item moco-color-info moco-error-small" href="{{ $_show }}"><i class="fas fa-eye"></i> {{trans('Show')}} </a>@endcan
+                    @can('consult worksheet')<a class="dropdown-item moco-color-info moco-error-small" href="{{ $_export }}"><i class="fas fa-file-export"></i> {{__('Export')}} </a>@endcan
                 @endif
                 <!-- <a class="dropdown-item moco-color-error moco-error-small" href="{{ $_remove }}"><i class="fas fa-trash-alt"></i> {{trans('Remove')}} </a> -->
                 @can('print worksheet')<a class="dropdown-item moco-color-info moco-error-small print_id" href="{{ $_print }}" id="print_{{$_print_id}}"><i class="fas fa-print"></i> {{trans('Print')}} </a>@endcan

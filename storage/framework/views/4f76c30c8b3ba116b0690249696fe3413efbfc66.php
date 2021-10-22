@@ -9,6 +9,7 @@
     <?php elseif($whatIs == 'customer'): ?>
         <?php  $_modify = route('customer.edit',$customer->id); ?>
         <?php  $_show = route('customer.show',$customer->id); ?>
+        <?php  $_export = ''; ?>
         <?php  $_remove = ''; ?>
         <?php  $_print = ''; ?>
         <?php  $_print_id = ''; ?>
@@ -16,6 +17,7 @@
     <?php elseif($whatIs == 'technician'): ?>
         <?php  $_modify = route('technician.edit',$technician->id); ?>
         <?php  $_show = route('technician.show',$technician->id); ?>
+        <?php  $_export = ''; ?>
         <?php  $_remove = ''; ?>
         <?php  $_print = ''; ?>
         <?php  $_print_id = ''; ?>
@@ -23,6 +25,7 @@
     <?php elseif($whatIs == 'worksheet'): ?>
         <?php  $_modify = route('worksheet.edit',$worksheet->id); ?>
         <?php  $_show = route('worksheet.show',$worksheet->id); ?>
+        <?php  $_export = route('worksheet.export',$worksheet->id); ?>
         <?php  $_remove = ''; ?>
         <?php  $_hour = route('clocking.edit',$worksheet->id); ?>
         <?php  $_part = route('worksheet.part',$worksheet->id); ?>
@@ -50,6 +53,7 @@
             <div class="dropdown-menu">
                 <?php if($whatIs == 'worksheet'): ?>
                     <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('consult worksheet')): ?><a class="dropdown-item moco-color-info moco-error-small" href="<?php echo e($_show); ?>"><i class="fas fa-eye"></i> <?php echo e(trans('Show')); ?> </a><?php endif; ?>
+                    <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('consult worksheet')): ?><a class="dropdown-item moco-color-info moco-error-small" href="<?php echo e($_export); ?>"><i class="fas fa-file-export"></i> <?php echo e(__('Export')); ?> </a><?php endif; ?>
                 <?php endif; ?>
                 <!-- <a class="dropdown-item moco-color-error moco-error-small" href="<?php echo e($_remove); ?>"><i class="fas fa-trash-alt"></i> <?php echo e(trans('Remove')); ?> </a> -->
                 <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('print worksheet')): ?><a class="dropdown-item moco-color-info moco-error-small print_id" href="<?php echo e($_print); ?>" id="print_<?php echo e($_print_id); ?>"><i class="fas fa-print"></i> <?php echo e(trans('Print')); ?> </a><?php endif; ?>
