@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\ChangePasswordController;
 use App\Http\Controllers\ProviderController;
 use App\Http\Controllers\ReportController;
+use App\Http\Controllers\ReportingController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\StoreController;
@@ -128,7 +129,7 @@ Route::group(['middleware' => ['auth']],function (){
     Route::get('/worksheet/{id}/edit',[WorksheetController::class,'edit'])->name('worksheet.edit')->middleware(['ifnot:edit worksheet']);
     Route::get('/worksheet/{id}/part',[WorksheetController::class,'partConsult'])->name('worksheet.part')->middleware(['ifnot:part worksheet']);
     Route::get('/worksheet/{id}/show',[WorksheetController::class,'show'])->name('worksheet.show')->middleware(['ifnot:consult worksheet']);
-    Route::get('/worksheet/{id}/export',[WorksheetController::class,'export'])->name('worksheet.export')->middleware(['ifnot:consult worksheet']);
+    Route::get('/worksheet/{id}/{number}/export',[WorksheetController::class,'export'])->name('worksheet.export')->middleware(['ifnot:consult worksheet']);
     Route::post('/worksheet/print',[WorksheetController::class,'print'])->name('worksheet.print')->middleware(['ifnot:print worksheet']);
     Route::post('/worksheet/store',[worksheetController::class,'store'])->name('worksheet.store')->middleware(['ifnot:create worksheet']);
     Route::post('/worksheet/{id}/update',[worksheetController::class,'update'])->name('worksheet.update')->middleware(['ifnot:edit worksheet']);
@@ -166,8 +167,9 @@ Route::group(['middleware' => ['auth']],function (){
     Route::get('/provider',[ProviderController::class,'index'])->name('provider.index')->middleware(['ifnot:list provider']);
 
     /**
-     * Reports
+     * Reporting
      */
     Route::get('/report/reassort',[ReportController::class,'reassortLevel'])->name('report.reassortLevel')->middleware(['ifnot:list provider']);
+    Route::get('/reporting',[ReportingController::class,'from'])->name('reporting.from');
 });
 

@@ -1,0 +1,2 @@
+<?php echo $__env->make('livewire.data-table.datatable', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+<?php /**PATH /var/www/moco/fassicms/resources/views/livewire/reporting/partmetadata-export-data-table.blade.php ENDPATH**/ ?>

@@ -78,6 +78,15 @@
                     </div>
                 </li>
                 <?php endif; ?>
+                <li class="nav-item dropdown <?php if( Route::is('reporting.*')): ?> active <?php endif; ?>">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <?php echo e(__('Reporting')); ?>
+
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="<?php echo e(route('reporting.from')); ?>"><?php echo e(__('From')); ?></a>
+                    </div>
+                </li>
             </ul>
             <div class="navbar-nav ml-auto ml-md-0 text-white-50"><?php echo e(Auth()->user()->firstname); ?> <?php echo e(Auth()->user()->lastname); ?></div>
 

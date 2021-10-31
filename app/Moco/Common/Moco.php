@@ -159,4 +159,12 @@ class Moco
         $datetimeExcel = Date::PHPToExcel(Carbon::createFromFormat($format,$time));
         return $datetimeExcel - floor($datetimeExcel);
     }
+
+    public static function dateTimeToExcel (?string $date, string $format = 'd/m/Y')
+    {
+        if (!is_null($date)){
+            return Date::dateTimeToExcel(Carbon::createFromFormat($format,$date));
+        }
+        return null;
+    }
 }

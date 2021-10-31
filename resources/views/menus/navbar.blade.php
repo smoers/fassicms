@@ -76,6 +76,14 @@
                     </div>
                 </li>
                 @endcanany
+                <li class="nav-item dropdown @if( Route::is('reporting.*')) active @endif">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        {{ __('Reporting') }}
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="{{route('reporting.from')}}">{{__('From')}}</a>
+                    </div>
+                </li>
             </ul>
             <div class="navbar-nav ml-auto ml-md-0 text-white-50">{{ Auth()->user()->firstname }} {{Auth()->user()->lastname}}</div>
 

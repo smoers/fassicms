@@ -420,9 +420,15 @@ class WorksheetController extends Controller
         ]);
     }
 
-    public function export($id)
+    /**
+     * Export une fiche de travail vers un fichier Excel
+     *
+     * @param $id
+     * @return \Illuminate\Http\Response|\Symfony\Component\HttpFoundation\BinaryFileResponse
+     */
+    public function export($id,$number)
     {
-        return (new CompleteWorksheetExport($id))->download('worksheet.xlsx');
+        return (new CompleteWorksheetExport($id))->download('worksheet_'.$number.'_'.date('Hidmyy',time()).'.xlsx');
     }
 
 }

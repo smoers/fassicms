@@ -466,7 +466,37 @@ return [
                     'updated_at' => 'Update Date',
                 ],
                 'show' => [],
-            ]
+            ],
+            'catalogs' => [
+                'name' => [
+                    'id' => 'Identifier',
+                    'price' =>'Price',
+                    'year' => 'Year',
+                    'provider_id' => 'Provider',
+                    'created_at' => 'Create Date',
+                    'updated_at' => 'Update Date',
+                    'partmetadata_id' => 'Partmetadata',
+                    'user_id' => 'User',
+                ],
+                'show' => [],
+            ],
         ],
     ],
+    'datatable' => [
+        'fields' => [
+            'excluded' => [
+                'id',
+                'created_at',
+                'updated_at',
+                'location_id',
+                'provider_id',
+                'user_id',
+                'customer_id',
+                'crane_id',
+                'worksheet_id',
+                'technician_id',
+                'partmetadata_id'
+            ]
+        ]
+    ]
  ];

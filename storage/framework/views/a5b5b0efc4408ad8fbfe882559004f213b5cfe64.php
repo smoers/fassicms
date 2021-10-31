@@ -1,7 +1,7 @@
 <?php $__env->startSection('content'); ?>
     <div class="container p-5 h-100 moco-layout-height">
         <div class="d-flex flex-wrap">
-            <?php echo app('arrilot.async-widget')->run('VersionInfo'); ?>
+            <?php echo app('arrilot.widget')->run('VersionInfo'); ?>
             <?php if($asReassort && auth()->user()->can('show reassort list')): ?>
                 <?php echo app('arrilot.async-widget')->run('StockInfo'); ?>
             <?php endif; ?>
