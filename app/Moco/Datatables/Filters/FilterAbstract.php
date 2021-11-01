@@ -30,6 +30,7 @@
 namespace App\Moco\Datatables\Filters;
 
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Str;
 
 abstract class FilterAbstract implements FilterInterface
 {
@@ -39,18 +40,28 @@ abstract class FilterAbstract implements FilterInterface
      */
     protected string $name;
     /**
+     * Nom du champ au complet
+     * @var string
+     */
+    protected string $field;
+    /**
      * Valeur par default
      * @var
      */
     protected $defaultValue;
+    /**
+     * Valeur actuelle
+     */
+    protected $value;
 
     /**
-     * @param string $name
+     * @param string $field
      * @param null $defaultValue
      */
-    public function __construct(string $name, $defaultValue = null)
+    public function __construct(string $field, $defaultValue = null)
     {
-        $this->name = $name;
+        $this->field = $field;
+        $this->name = Str::replaceFirst('.','-',$field);
         $this->defaultValue = $defaultValue;
     }
 
@@ -61,6 +72,16 @@ abstract class FilterAbstract implements FilterInterface
     public function getName(): string
     {
         return $this->name;
+    }
+
+    /**
+     * Retourne le nom du champ pour le query
+     *
+     * @return string
+     */
+    public function getField(): string
+    {
+        return $this->field;
     }
 
     /**
@@ -111,5 +132,21 @@ abstract class FilterAbstract implements FilterInterface
      * @return Builder
      */
     abstract public function query(Builder $builder,array $filters): Builder;
+
+    /**
+     * Retourne un tableau permettant de charge la variable $filters
+     * dans le composant Livewire
+     * @return array
+     */
+    public function wireModel(): array
+    {
+        return [$this->getName() => $this->getDefaultValue()];
+    }
+
+    public function getValue()
+    {
+        return $this->value;
+    }
+
 
 }

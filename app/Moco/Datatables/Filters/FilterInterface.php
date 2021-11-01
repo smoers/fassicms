@@ -36,4 +36,8 @@ interface FilterInterface
     public function getName(): string;
 
     public function getDefaultValue();
+
+    public function wireModel(): array;
+
+    public function getValue();
 }

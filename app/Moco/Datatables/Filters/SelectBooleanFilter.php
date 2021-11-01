@@ -17,53 +17,56 @@
  *  Company : Fassi Belgium
  *  Developer : MO Consult
  *  Author : Moers Serge
- *  Date : 31/10/21 15:18
+ *  Date : 1/11/21 14:24
  */
 
 /**
  * Company : Fassi Belgium
  * Developer : MO Consult
  * Authority : Moers Serge
- * Date : 31-10-21
+ * Date : 01-11-21
  */
 
 namespace App\Moco\Datatables\Filters;
 
 use Illuminate\Database\Eloquent\Builder;
 
-class TextFilter extends FilterAbstract
+class SelectBooleanFilter extends FilterAbstract
 {
+
     /**
-     * Applique les conditions sur le Query
-     * @param Builder $builder
-     * @param array $filters
-     * @return Builder
+     * @inheritDoc
+     */
+    protected function getViewParameter(): array
+    {
+        return [
+            'options' => [
+                2 => '',
+                1 => trans('Yes'),
+                0 => trans('No'),
+            ],
+            'selected' => $this->getDefaultValue(),
+        ];
+    }
+
+    /**
+     * @inheritDoc
+     */
+    protected function getViewStringPath(): string
+    {
+        return 'livewire.data-table.filter.select-filter';
+    }
+
+    /**
+     * @inheritDoc
      */
     public function query(Builder $builder, array $filters): Builder
     {
-        if ($filters[$this->getName()] != '' && !is_null($filters[$this->getName()])){
-            $builder = $builder->where($this->getField(),'like','%'.$filters[$this->getName()].'%');
+
+        if ($filters[$this->getName()] != 2 && !is_null($filters[$this->getName()])){
+            $builder = $builder->where($this->getField(),'=',$filters[$this->getName()]);
             $this->value = $filters[$this->getName()];
         }
         return $builder;
     }
-
-    /**
-     * Paramètre a passer vers la vue
-     * @return array
-     */
-    protected function getViewParameter(): array
-    {
-        return [];
-    }
-
-    /**
-     * Chemin vers la vue
-     * @return string
-     */
-    protected function getViewStringPath(): string
-    {
-        return 'livewire.data-table.filter.text-filter';
-    }
-
 }

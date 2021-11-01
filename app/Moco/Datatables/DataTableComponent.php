@@ -63,11 +63,14 @@ abstract class DataTableComponent extends Component
      */
     public array $filters = [];
 
+    /**
+     * Charge la variable filter
+     */
     public function mount()
     {
         foreach ($this->columns() as $column){
             if ($column->isFiltered()){
-                $this->filters[$column->getFilter()->getName()] = null;
+                $this->filters = array_merge($this->filters,$column->getFilter()->wireModel());
             }
         }
     }
@@ -170,6 +173,7 @@ abstract class DataTableComponent extends Component
                 if ($column->isFiltered()){
                     $filter = $column->getFilter();
                     $builder = $filter->query($builder, $this->filters);
+                    $this->filters[$filter->getName()] = $filter->getValue();
                 }
             }
         }
