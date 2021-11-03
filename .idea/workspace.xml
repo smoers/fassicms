@@ -2,17 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9ec171e7-05c7-490b-8f14-40ae5b7978c4" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Moco/Datatables/Filters/NumberFilter.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Moco/Datatables/Filters/SelectBooleanFilter.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/livewire/data-table/filter/number-filter.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/livewire/data-table/filter/select-filter.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Moco/Datatables/Filters/FloatNumberFilter.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Moco/Datatables/Filters/IntNumberFilter.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/livewire/data-table/button.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/livewire/data-table/perpage.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/73bce3137eba2262bc947c8432e1a31b12433503.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/f0f46736f1499aaa1dd1e0e468a1bc597dccf9c0.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Livewire/Reporting/PartmetadataExportDataTable.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Livewire/Reporting/PartmetadataExportDataTable.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Moco/Datatables/DataTableComponent.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Moco/Datatables/DataTableComponent.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Moco/Datatables/Filters/FilterAbstract.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Moco/Datatables/Filters/FilterAbstract.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Moco/Datatables/Filters/FilterInterface.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Moco/Datatables/Filters/FilterInterface.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Moco/Datatables/Filters/TextFilter.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Moco/Datatables/Filters/TextFilter.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/2Zv3zU0rqpe9bAjQFp4jq0JtpfmNvGBV6YKu4kuj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Moco/Datatables/Filters/NumberFilter.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Moco/Datatables/Filters/NumberFilter.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/livewire/data-table/datatable.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/livewire/data-table/datatable.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/M40rM4SJPrCX6GZEP9SVPf23DjePU3sSN77hJtZK" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/sessions/qdos65HpwHZgxspBmBqFTp3LJjFqqwVDd8goZKbP" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/772788232fad24a9c6a3175e53c3309ad50bc34e.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/772788232fad24a9c6a3175e53c3309ad50bc34e.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -1001,14 +1003,8 @@
       <workItem from="1635314831687" duration="9935000" />
       <workItem from="1635432784350" duration="12404000" />
       <workItem from="1635678397124" duration="22327000" />
-      <workItem from="1635772150450" duration="15210000" />
-    </task>
-    <task id="LOCAL-00011" summary="20201121 - v1.0">
-      <created>1605977814783</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1605977814783</updated>
+      <workItem from="1635772150450" duration="15645000" />
+      <workItem from="1635956621546" duration="8793000" />
     </task>
     <task id="LOCAL-00012" summary="20201122 - v1.0">
       <created>1606082651182</created>
@@ -1346,7 +1342,14 @@
       <option name="project" value="LOCAL" />
       <updated>1635717335250</updated>
     </task>
-    <option name="localTasksCounter" value="60" />
+    <task id="LOCAL-00060" summary="20211101 - v2.0 Stores by location">
+      <created>1635792042594</created>
+      <option name="number" value="00060" />
+      <option name="presentableId" value="LOCAL-00060" />
+      <option name="project" value="LOCAL" />
+      <updated>1635792042595</updated>
+    </task>
+    <option name="localTasksCounter" value="61" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -1355,7 +1358,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="20210206 - v1.0" />
     <MESSAGE value="20210216 - v1.0" />
     <MESSAGE value="20210301 - v1.0" />
     <MESSAGE value="20210309 - v1.0" />
@@ -1380,7 +1382,8 @@
     <MESSAGE value="202110171340 - v2.0 Stores by location" />
     <MESSAGE value="202110221220 - v2.0 Stores by location" />
     <MESSAGE value="20211031 - v2.0 Stores by location" />
-    <option name="LAST_COMMIT_MESSAGE" value="20211031 - v2.0 Stores by location" />
+    <MESSAGE value="20211101 - v2.0 Stores by location" />
+    <option name="LAST_COMMIT_MESSAGE" value="20211101 - v2.0 Stores by location" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

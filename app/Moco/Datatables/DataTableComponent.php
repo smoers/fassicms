@@ -41,7 +41,12 @@ abstract class DataTableComponent extends Component
      * Nombre de page par défault
      * @var int
      */
-    protected $pageBy = 10;
+    public $perPage = 10;
+    /**
+     * line par page
+     * @var int[]
+     */
+    public $perPageOptions;
     /**
      * Thème du tableau
      * @var string
@@ -68,6 +73,8 @@ abstract class DataTableComponent extends Component
      */
     public function mount()
     {
+        $this->perPage = config('moco.table.perPage');
+        $this->perPageOptions = config('moco.table.perPageOptions');
         foreach ($this->columns() as $column){
             if ($column->isFiltered()){
                 $this->filters = array_merge($this->filters,$column->getFilter()->wireModel());
@@ -86,7 +93,7 @@ abstract class DataTableComponent extends Component
         if (!is_null($this->renderViewPath)) {
             return view($this->renderViewPath, [
                 'columns' => $this->columns(),
-                'models' => $this->models()->paginate($this->pageBy),
+                'models' => $this->models()->paginate($this->perPage),
             ]);
         }
         /**
@@ -165,6 +172,9 @@ abstract class DataTableComponent extends Component
         }
     }
 
+    /**
+     * @return Builder
+     */
     public function models(): Builder
     {
         $builder = $this->query();
@@ -180,5 +190,12 @@ abstract class DataTableComponent extends Component
         return $builder;
     }
 
+    public function cleanFilter()
+    {
+        foreach ($this->filters as $filter){
+            dd($this->filters);
+            $this->filters[$filter] = '';
+        }
 
+    }
 }

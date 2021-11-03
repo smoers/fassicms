@@ -1,4 +1,8 @@
 <div class="table-responsive">
+    <div class="d-flex flex-row justify-content-between mb-1">
+        @include('livewire.data-table.perpage')
+        @include('livewire.data-table.button')
+    </div>
     <table class="table table-sm table-striped table-bordered">
         @include('livewire.data-table.thead')
         <tbody>

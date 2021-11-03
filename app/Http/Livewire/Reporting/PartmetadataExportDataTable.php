@@ -4,7 +4,8 @@ namespace App\Http\Livewire\Reporting;
 
 use App\Moco\Datatables\Column;
 use App\Moco\Datatables\DataTableComponent;
-use App\Moco\Datatables\Filters\NumberFilter;
+use App\Moco\Datatables\Filters\FloatNumberFilter;
+use App\Moco\Datatables\Filters\IntNumberFilter;
 use App\Moco\Datatables\Filters\SelectBooleanFilter;
 use App\Moco\Datatables\Filters\TextFilter;
 use App\Models\Partmetadata;
@@ -65,22 +66,26 @@ class PartmetadataExportDataTable extends DataTableComponent
                 ->format(function (Partmetadata $model){
                     return number_format($model->reassort_level,0,',','.');
                 })
-                ->setFilter(new NumberFilter('reassort_level')),
+                ->setFilter(new IntNumberFilter('reassort_level')),
 
             /** price **/
             Column::make(trans('Price'),'price')
                 ->format(function(Partmetadata $model){
                     return number_format($model->price,2,',','.');
-                }),
+                })
+                ->setFilter(new FloatNumberFilter('price')),
 
             /** year **/
-            Column::make(trans('Year'),'year'),
+            Column::make(trans('Year'),'year')
+                ->setFilter(new IntNumberFilter('year')),
 
             Column::make(trans('Enabled'),'providers_enabled')
                 ->format(function(Partmetadata $model){
                     return $model->providers_enabled == 1 ? trans('Yes') : trans('No');
-                }),
-            Column::make(trans('Provider'), 'name'),
+                })
+                ->setFilter(new SelectBooleanFilter('providers_enabled')),
+            Column::make(trans('Provider'), 'name')
+                ->setFilter(new TextFilter('name')),
         ];
     }
 
@@ -100,11 +105,11 @@ class PartmetadataExportDataTable extends DataTableComponent
                 $class = 'moco-size-column-table-300';
                 break;
             case 'electrical_part':
-            case 'price':
-            case 'year':
             case 'enabled':
                 $class = 'moco-size-column-table-100';
                 break;
+            case 'year':
+            case 'price':
             case 'reassort_level':
             case 'barcode':
                 $class = 'moco-size-column-table-150';

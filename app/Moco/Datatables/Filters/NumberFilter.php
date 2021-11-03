@@ -32,30 +32,15 @@ namespace App\Moco\Datatables\Filters;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Str;
 
-class NumberFilter extends FilterAbstract
+abstract class NumberFilter extends FilterAbstract
 {
-
-
-    protected string $nameComp;
-    protected string $nameValue;
-
-    public function __construct(string $field, $defaultValue = null)
-    {
-        $this->field = $field;
-        $this->name = Str::replaceFirst('.','-',$field);
-        $this->defaultValue = $defaultValue;
-        $this->makeName();
-    }
-
 
     /**
      *
      */
-    protected function makeName()
+    protected function getNameSelect()
     {
-        $this->nameComp = $this->getName().'_comp';
-        $this->nameValue = $this->getName().'_value';
-        $this->name = $this->nameValue;
+        return $this->getName().'_select';
     }
     /**
      * @inheritDoc
@@ -63,7 +48,7 @@ class NumberFilter extends FilterAbstract
     protected function getViewParameter(): array
     {
         return [
-            'name' => [$this->nameComp, $this->nameValue],
+            'name' => [$this->getNameSelect(), $this->getName()],
             'defaultValue' => $this->getDefaultValue(),
         ];
 
@@ -85,18 +70,12 @@ class NumberFilter extends FilterAbstract
         /**
          * Récupère les données
          */
-        $comparator = $filters[$this->nameComp];
-        $value = $filters[$this->nameValue];
-        /**
-         * Contrôle le format de la valeur
-         */
-        if (Str::contains($value,[',','.'])){
-            $value =  preg_split('/[,]|[.]/',$value)[0];
-        }
+        $comparator = $filters[$this->getNameSelect()];
+        $value = $this->getNumericValue($filters[$this->getName()]);
 
         if ($value != '' && !is_null($value)){
-            $builder = $builder->where($this->getField(),$comparator,intval($value));
-            $this->value = $value;
+            $builder = $builder->where($this->getField(),$comparator,$value);
+            $this->value = $this->getFormattedValue($value);
         }
         return $builder;
     }
@@ -108,6 +87,18 @@ class NumberFilter extends FilterAbstract
      */
     public function wireModel(): array
     {
-        return [$this->nameComp => '=', $this->nameValue => $this->getDefaultValue()];
+        return [$this->getNameSelect() => '=', $this->getName() => $this->getDefaultValue()];
     }
+
+    /**
+     * @param string|null $value
+     * @return int
+     */
+    abstract protected function getNumericValue(?string $value);
+
+    /**
+     * @param $value
+     * @return mixed
+     */
+    abstract protected function getFormattedValue($value);
 }
