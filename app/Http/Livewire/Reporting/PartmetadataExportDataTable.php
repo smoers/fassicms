@@ -24,6 +24,11 @@ class PartmetadataExportDataTable extends DataTableComponent
      * @var bool
      */
     public bool $tableIsFiltered = true;
+    /**
+     * sort field part défaut
+     * @var string
+     */
+    public string $sortField = 'part_number';
 
     public function query(): Builder
     {
@@ -37,10 +42,12 @@ class PartmetadataExportDataTable extends DataTableComponent
         return [
             /** part_number**/
             Column::make(trans('Part Number'),'part_number')
+                ->setSortable()
                 ->setFilter(new TextFilter('part_number')),
 
             /** description **/
             Column::make(trans('Description'),'description')
+                ->setSortable()
                 ->setFilter(new TextFilter('description')),
 
             /** partmetadatas.enabled **/
@@ -59,10 +66,12 @@ class PartmetadataExportDataTable extends DataTableComponent
 
             /** bar_code **/
             Column::make(trans('BarCode'),'bar_code')
+                ->setSortable()
                 ->setFilter(new TextFilter('bar_code')),
 
             /** reassort_level **/
             Column::make(trans('Reassort Level'), 'reassort_level')
+                ->setSortable()
                 ->format(function (Partmetadata $model){
                     return number_format($model->reassort_level,0,',','.');
                 })
@@ -70,6 +79,7 @@ class PartmetadataExportDataTable extends DataTableComponent
 
             /** price **/
             Column::make(trans('Price'),'price')
+                ->setSortable()
                 ->format(function(Partmetadata $model){
                     return number_format($model->price,2,',','.');
                 })
@@ -77,6 +87,7 @@ class PartmetadataExportDataTable extends DataTableComponent
 
             /** year **/
             Column::make(trans('Year'),'year')
+                ->setSortable()
                 ->setFilter(new IntNumberFilter('year')),
 
             Column::make(trans('Enabled'),'providers_enabled')
@@ -85,6 +96,7 @@ class PartmetadataExportDataTable extends DataTableComponent
                 })
                 ->setFilter(new SelectBooleanFilter('providers_enabled')),
             Column::make(trans('Provider'), 'name')
+                ->setSortable()
                 ->setFilter(new TextFilter('name')),
         ];
     }
@@ -110,11 +122,12 @@ class PartmetadataExportDataTable extends DataTableComponent
                 break;
             case 'year':
             case 'price':
-            case 'reassort_level':
             case 'barcode':
                 $class = 'moco-size-column-table-150';
                 break;
-
+            case 'reassort_level':
+                $class = 'moco-size-column-table-200';
+                break;
         }
 
         return $class;

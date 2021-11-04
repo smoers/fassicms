@@ -34,10 +34,26 @@ use App\Moco\Datatables\Filters\FilterInterface;
 
 class Column
 {
+    /**
+     * @var string
+     */
     protected string $name;
+    /**
+     * @var string
+     */
     protected string $attribute;
+    /**
+     * @var
+     */
     protected $formatCallback;
+    /**
+     * @var FilterInterface|null
+     */
     protected ?FilterInterface $filterObject = null;
+    /**
+     * @var bool
+     */
+    protected bool $isSortable = false;
 
     /**
      * @param string $name
@@ -82,8 +98,6 @@ class Column
     {
         return $this->formatCallback;
     }
-
-
 
     /**
      * @param callable $callable
@@ -139,6 +153,24 @@ class Column
     public function isFiltered(): bool
     {
         return !is_null($this->filterObject);
+    }
+
+    /**
+     * @return bool
+     */
+    public function isSortable(): bool
+    {
+        return $this->isSortable;
+    }
+
+    /**
+     * @return $this
+     */
+    public function setSortable(): Column
+    {
+        $this->isSortable = true;
+
+        return $this;
     }
 
 }

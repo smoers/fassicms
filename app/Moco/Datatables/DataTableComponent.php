@@ -29,13 +29,17 @@
 
 namespace App\Moco\Datatables;
 
+use App\Moco\Datatables\Traits\Cleanup;
+use App\Moco\Datatables\Traits\Sorting;
 use Illuminate\Database\Eloquent\Builder;
 use Livewire\Component;
 use Livewire\WithPagination;
 
 abstract class DataTableComponent extends Component
 {
-    use WithPagination;
+    use WithPagination,
+        Sorting,
+        Cleanup;
 
     /**
      * Nombre de page par défault
@@ -66,15 +70,24 @@ abstract class DataTableComponent extends Component
      * Liste des nom de filtre utiliser pour les actions livewire
      * @var array
      */
-    public array $filters = [];
+    public $filters = [];
 
     /**
      * Charge la variable filter
      */
     public function mount()
     {
+        /**
+         * Nombre de ligne par page valeur par défaut
+         */
         $this->perPage = config('moco.table.perPage');
+        /**
+         * liste du nombre possible de ligne par page
+         */
         $this->perPageOptions = config('moco.table.perPageOptions');
+        /**
+         * Initialise le tableau avec le nom des champs disposants d'un filtre
+         */
         foreach ($this->columns() as $column){
             if ($column->isFiltered()){
                 $this->filters = array_merge($this->filters,$column->getFilter()->wireModel());
@@ -160,19 +173,6 @@ abstract class DataTableComponent extends Component
     }
 
     /**
-     * Défini les actions
-     */
-    public function FilterActions(): void
-    {
-        if ($this->tableIsFiltered) {
-            foreach ($this->columns() as $column) {
-                $filter = $column->getFilter();
-                $this->filters[$filter->getName()] = $filter->getDefaultValue();
-            }
-        }
-    }
-
-    /**
      * @return Builder
      */
     public function models(): Builder
@@ -187,15 +187,7 @@ abstract class DataTableComponent extends Component
                 }
             }
         }
-        return $builder;
+        return $builder->orderBy($this->sortField,$this->sortDirection);
     }
 
-    public function cleanFilter()
-    {
-        foreach ($this->filters as $filter){
-            dd($this->filters);
-            $this->filters[$filter] = '';
-        }
-
-    }
 }
