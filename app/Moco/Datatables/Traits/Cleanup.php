@@ -41,4 +41,9 @@ trait Cleanup
         }
 
     }
+
+    public function cleanColumnFilter($attribute): void
+    {
+        $this->filters[$attribute] = null;
+    }
 }

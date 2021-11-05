@@ -116,10 +116,10 @@ class PartmetadataExportDataTable extends DataTableComponent
             case 'description':
                 $class = 'moco-size-column-table-300';
                 break;
-            case 'electrical_part':
             case 'enabled':
                 $class = 'moco-size-column-table-100';
                 break;
+            case 'electrical_part':
             case 'year':
             case 'price':
             case 'barcode':

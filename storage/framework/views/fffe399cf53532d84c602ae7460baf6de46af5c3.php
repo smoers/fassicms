@@ -16,7 +16,7 @@
 
                 <?php endif; ?>
                 <?php if($column->isFiltered()): ?>
-                    <a href="#" class="text-sm-center moco-color-info"><i class="fas fa-filter"></i></a>
+                    <a href="#" class="text-sm-center moco-color-info" wire:click="cleanColumnFilter('<?php echo e($column->getAttribute()); ?>')"><i class="fas fa-filter"></i></a>
                 <?php endif; ?>
             </th>
         <?php else: ?>
@@ -24,7 +24,7 @@
                 <?php echo e($column->getName()); ?>
 
                 <?php if($column->isFiltered()): ?>
-                    <a href="#" class="text-sm-center moco-color-info"><i class="fas fa-filter"></i></a>
+                    <a href="#" class="text-sm-center moco-color-info" wire:click="cleanColumnFilter('<?php echo e($column->getAttribute()); ?>')"><i class="fas fa-filter"></i></a>
                 <?php endif; ?>
             </th>
         <?php endif; ?>

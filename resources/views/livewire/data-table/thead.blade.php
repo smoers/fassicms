@@ -12,14 +12,14 @@
                     {{ new \Illuminate\Support\HtmlString($descSortIcon) }}
                 @endif
                 @if($column->isFiltered())
-                    <a href="#" class="text-sm-center moco-color-info"><i class="fas fa-filter"></i></a>
+                    <a href="#" class="text-sm-center moco-color-info" wire:click="cleanColumnFilter('{{$column->getAttribute()}}')"><i class="fas fa-filter"></i></a>
                 @endif
             </th>
         @else
             <th scope="col" class="{{$this->setTableHeadColumnClass($column)}}">
                 {{$column->getName()}}
                 @if($column->isFiltered())
-                    <a href="#" class="text-sm-center moco-color-info"><i class="fas fa-filter"></i></a>
+                    <a href="#" class="text-sm-center moco-color-info" wire:click="cleanColumnFilter('{{$column->getAttribute()}}')"><i class="fas fa-filter"></i></a>
                 @endif
             </th>
         @endif

@@ -2,14 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9ec171e7-05c7-490b-8f14-40ae5b7978c4" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Moco/Datatables/Traits/Cleanup.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Moco/Datatables/Traits/Sorting.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/sessions/2RNaOAOdPhuNc52c3LgmBrVBLh6v2KOlNKzbXPu5" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Livewire/Reporting/PartmetadataExportDataTable.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Livewire/Reporting/PartmetadataExportDataTable.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Moco/Datatables/Column.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Moco/Datatables/Column.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Moco/Datatables/DataTableComponent.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Moco/Datatables/DataTableComponent.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Moco/Datatables/Traits/Cleanup.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Moco/Datatables/Traits/Cleanup.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/livewire/data-table/thead.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/livewire/data-table/thead.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/qdos65HpwHZgxspBmBqFTp3LJjFqqwVDd8goZKbP" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/sessions/eF1szqda9hkUzoSt0QOEl2dPjIZLLhmV9dFVfdIt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/menus/navbar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/menus/navbar.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/c63af29302a66a0773c312038557ed5b14a513a2.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/c63af29302a66a0773c312038557ed5b14a513a2.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/storage/framework/views/fffe399cf53532d84c602ae7460baf6de46af5c3.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/fffe399cf53532d84c602ae7460baf6de46af5c3.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -1001,14 +1000,8 @@
       <workItem from="1635678397124" duration="22327000" />
       <workItem from="1635772150450" duration="15645000" />
       <workItem from="1635956621546" duration="8816000" />
-      <workItem from="1636045153610" duration="7069000" />
-    </task>
-    <task id="LOCAL-00013" summary="20201125 - v1.0">
-      <created>1606333103197</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1606333103197</updated>
+      <workItem from="1636045153610" duration="7107000" />
+      <workItem from="1636128789183" duration="1866000" />
     </task>
     <task id="LOCAL-00014" summary="20201126 - v1.0">
       <created>1606418593013</created>
@@ -1346,7 +1339,14 @@
       <option name="project" value="LOCAL" />
       <updated>1635977739685</updated>
     </task>
-    <option name="localTasksCounter" value="62" />
+    <task id="LOCAL-00062" summary="20211104 - v2.0 Stores by location">
+      <created>1636063289372</created>
+      <option name="number" value="00062" />
+      <option name="presentableId" value="LOCAL-00062" />
+      <option name="project" value="LOCAL" />
+      <updated>1636063289373</updated>
+    </task>
+    <option name="localTasksCounter" value="63" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -1355,7 +1355,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="20210301 - v1.0" />
     <MESSAGE value="20210309 - v1.0" />
     <MESSAGE value="20210323 - v1.1 Scan New Version" />
     <MESSAGE value="20210411 - v1.1 Scan New Version" />
@@ -1380,7 +1379,8 @@
     <MESSAGE value="20211031 - v2.0 Stores by location" />
     <MESSAGE value="20211101 - v2.0 Stores by location" />
     <MESSAGE value="20211103 - v2.0 Stores by location" />
-    <option name="LAST_COMMIT_MESSAGE" value="20211103 - v2.0 Stores by location" />
+    <MESSAGE value="20211104 - v2.0 Stores by location" />
+    <option name="LAST_COMMIT_MESSAGE" value="20211104 - v2.0 Stores by location" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

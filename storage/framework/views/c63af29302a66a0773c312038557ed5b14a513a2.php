@@ -84,7 +84,8 @@
 
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="<?php echo e(route('reporting.from')); ?>"><?php echo e(__('From')); ?></a>
+                        <a class="dropdown-item" href="<?php echo e(route('reporting.from')); ?>"><?php echo e(__('From Partmetadatas')); ?></a>
+                        <a class="dropdown-item" href="<?php echo e(route('reporting.from')); ?>"><?php echo e(__('From Worksheets')); ?></a>
                     </div>
                 </li>
             </ul>
