@@ -25,7 +25,7 @@ class DatabaseSeeder extends Seeder
             -> create();
         */
         //Provider::factory()->count(10)->create();
-        //Customer::factory(10)->create();
-        Worksheet::factory(1)->create();
+        Customer::factory(20)->create();
+        //Worksheet::factory(1)->create();
     }
 }

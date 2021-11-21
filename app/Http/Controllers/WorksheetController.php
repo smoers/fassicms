@@ -23,7 +23,6 @@
 namespace App\Http\Controllers;
 
 use App\Exports\CompleteWorksheetExport;
-use App\Exports\WorksheetExport;
 use App\Http\Requests\WorksheetRequest;
 use App\Moco\Common\Moco;
 use App\Moco\Common\MocoAjaxValidation;

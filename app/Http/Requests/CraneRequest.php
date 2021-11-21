@@ -28,16 +28,18 @@ class CraneRequest extends FormRequest
     public function rules()
     {
         return [
-            'serial' => ['required','max:20',new CraneUnique($this->getRequestArray())],
-            'model' => 'required|max:255',
-            'plate' => ['required','max:20',new CraneUnique($this->getRequestArray())]
+            'plate' => 'required|max:20',
+            'brand' => 'nullable|max:250',
+            'truck_model' => 'nullable|max:250',
+            'serial' => 'required|max:20',
+            'crane_model' => 'required|max:255',
         ];
     }
 
     public function messages()
     {
         return [
-            'max' => trans('The maximum size for :attribute is :max chraracters'),
+            'max' => trans('The maximum size for :attribute is :max characters'),
             'required' => trans('The :attribute is required'),
         ];
     }
@@ -46,8 +48,10 @@ class CraneRequest extends FormRequest
     {
         return [
             'serial' => trans('Serial number'),
-            'model' => trans('Model'),
+            'crane_model' => trans('Crane model'),
             'plate' => trans('Numberplate'),
+            'brand' => trans('Brand'),
+            'truck_model' => trans('Truck model'),
         ];
     }
 }

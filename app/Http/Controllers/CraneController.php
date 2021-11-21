@@ -36,12 +36,15 @@ class CraneController extends Controller
      */
     public function create()
     {
-        return view('crane.crane',
+        return view('crane.crane-v2',[
+            'title' => trans('Add or modify a crane'),
+        ]);
+        /*return view('crane.crane',
         [
             'action' => route('crane.store'),
             'crane' => new Crane(),
             'title' => trans('Add a crane'),
-        ]);
+        ]);*/
     }
 
     /**

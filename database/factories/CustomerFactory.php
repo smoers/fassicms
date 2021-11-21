@@ -30,6 +30,7 @@ class CustomerFactory extends Factory
             'mail' => $this->faker->companyEmail,
             'phone' => $this->faker->phoneNumber,
             'mobile' => $this->faker->e164PhoneNumber,
+            'user_id' => 1,
             'vat' => 'BE177.255.255'
         ];
     }

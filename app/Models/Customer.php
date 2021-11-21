@@ -80,6 +80,16 @@ class Customer extends Model implements MocoModelForConsultInterface
         return $this->hasMany(CustomerContact::class);
     }
 
+    /**
+     * Retourne les objets Truck lié à l'objet Customer
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function trucks()
+    {
+        return $this->hasMany(TrucksCrane::class);
+    }
+
     public function WithForConsult()
     {
         return $this->withForConsult;
