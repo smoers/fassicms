@@ -33,7 +33,7 @@ class TrucksCrane extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function customers()
+    public function customer()
     {
         return $this->belongsTo(Customer::class);
     }
@@ -66,6 +66,16 @@ class TrucksCrane extends Model
     public function getDateCurrentAttribute($value): ?string
     {
         return $value != '' ? Carbon::parse($value)->format('d/m/Y') : null;
+    }
+
+    /**
+     * Place la date avec le format correct dans l'attribut
+     *
+     * @param $value
+     */
+    public function setDateCurrentAttribute($value)
+    {
+        $this->attributes['date_current'] = Carbon::parse(str_replace('/','-',$value));
     }
 
     /**

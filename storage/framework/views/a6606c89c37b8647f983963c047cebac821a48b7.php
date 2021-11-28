@@ -1,6 +1,6 @@
-<form wire:submit.prevent="save" method="post">
+<form wire:submit.prevent="validated" method="post">
     <div class="row ml-4">
-        <?php if($mode['value'] >= 2 && $mode['value'] <= 4): ?>
+        <?php if($mode['value'] >= 2 && $mode['value'] <= 4 || $mode['value'] == 6 ): ?>
             <p class="red-darker-hover"><i class="fas fa-exclamation-triangle"></i> : <?php echo e($mode['msg']); ?></p>
         <?php elseif($mode['value'] == 1): ?>
             <p class="blue-darker-hover"><i class="fas fa-edit"></i> : <?php echo e($mode['msg']); ?></p>
@@ -16,7 +16,7 @@
 
                 </div>
                 <div class="card-body">
-                    <input id="id" name="id" type="hidden" value="">
+                    <input id="crane_id" name="crane_id" type="hidden" wire:model="crane_id">
                     <div class="form-group">
                         <label for="serial"><?php echo e(__('Serial number')); ?></label>
                         <input type="text" list="listcranes" id="serial" name="serial" class="form-control form-control-sm" autocomplete="off" wire:model="serial">
@@ -46,7 +46,29 @@ if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
                     </div>
-
+                </div>
+            </div>
+            <div class="card mt-3">
+                <div class="card-header moco-title-table"><img src="/images/customer-32.png"> <?php echo e(__("Customer")); ?></div>
+                <div class="card-body">
+                    <input id="customer_id" name="customer_id" type="hidden" value="" wire:model="customer_id">
+                    <div class="form-group">
+                        <label for="customer_name"><?php echo e(__('Company name')); ?></label>
+                        <input type="text" list="listcustomers" id="customer_name" name="customer_name" class="form-control form-control-sm" autocomplete="off" wire:model="customer_name">
+                        <datalist id="listcustomers">
+                            <?php $__currentLoopData = $listCustomers; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $customer): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                <option value="<?php echo e($customer->name); ?>" label="<?php echo e($customer->address); ?> <?php echo e($customer->city); ?>"/>
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                        </datalist>
+                        <?php $__errorArgs = ['customer_name'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?><span class="moco-error-small moco-color-error"><?php echo e($message); ?></span><?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+                    </div>
                 </div>
             </div>
         </div>
@@ -57,7 +79,7 @@ unset($__errorArgs, $__bag); ?>
 
                 </div>
                 <div class="card-body">
-                    <input id="id" name="id" type="hidden" value="">
+                    <input id="truck_id" name="truck_id" type="hidden" wire:model="truck_id">
                     <div class="form-group">
                         <label for="plate"><?php echo e(__('Numberplate')); ?></label>
                         <input type="text" list="listtrucks" id="plate" name="plate" class="form-control form-control-sm" autocomplete="off" wire:model="plate">
@@ -157,4 +179,48 @@ unset($__errorArgs, $__bag); ?>
         </div>
     </div>
 </form>
+
+<!-- Message avant la sauvegarde -->
+<div class="modal" id="modal_message" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="container-fluid">
+                    <div class="d-flex justify-content-sm-center align-items-center">
+                        <p class="moco-color-error h4"><img src="/images/siren-48.png"> <?php echo e(__('Attention')); ?></p>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-body">
+                <div class="moco-color-error moco" id="message"></div>
+            </div>
+            <div class="modal-footer">
+                <div class="container-fluid">
+                    <div class="d-flex justify-content-md-between">
+                        <button type="button" id="saveModal" class="btn btn-danger" data-dismiss="modal"><?php echo e(__('Save')); ?></button>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal"><?php echo e(__('Cancel')); ?></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(function (){
+        $('#customer_name').on('focusout',function (){
+            Livewire.emit('eventCustomerNameFocusOut');
+        })
+        $('#saveModal').on('click',function (){
+            Livewire.emit('save');
+        })
+        window.addEventListener('openMessageModal', event => {
+            $('#message').html(event.detail.message);
+            $("#modal_message").modal('show');
+        })
+        window.addEventListener('closeMessageModal', event => {
+            $("#modal_message").modal('hide');
+        })
+    })
+</script>
 <?php /**PATH /var/www/moco/fassicms/resources/views/crane/crane-livewire.blade.php ENDPATH**/ ?>

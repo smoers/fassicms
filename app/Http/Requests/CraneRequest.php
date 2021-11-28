@@ -28,6 +28,10 @@ class CraneRequest extends FormRequest
     public function rules()
     {
         return [
+            'customer_id' => 'required',
+            'customer_name' => 'required',
+            'crane_id' => 'nullable',
+            'truck_id' => 'nullable',
             'plate' => 'required|max:20',
             'brand' => 'nullable|max:250',
             'truck_model' => 'nullable|max:250',
@@ -52,6 +56,7 @@ class CraneRequest extends FormRequest
             'plate' => trans('Numberplate'),
             'brand' => trans('Brand'),
             'truck_model' => trans('Truck model'),
+            'customer_name' => trans('Company name'),
         ];
     }
 }
