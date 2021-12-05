@@ -33,7 +33,7 @@ class CraneLivewireController extends Component
      * Modele de la grue
      * @var string
      */
-    public string $crane_model;
+    public string $crane_model = '';
     /**
      * Numéro de plaque du camion
      * @var string
@@ -162,10 +162,12 @@ class CraneLivewireController extends Component
         /**
          * sélection du message
          */
+        $modal = true;
         switch ($this->mode['value']) {
             case 5:
             case 1:
                 $this->save();
+                $modal = false;
                 break;
             case 2:
                 $this->saveMessage = trans('You will create a new record with an existing crane and truck.</br>So crane and truck here below will be flagged as obsolete to keep a historical of each crane.</br>');
@@ -187,7 +189,8 @@ class CraneLivewireController extends Component
         /**
          * Ouverture du message en modal
          */
-        $this->openModal();
+        if ($modal)
+            $this->openModal();
     }
 
     /**
@@ -283,18 +286,50 @@ class CraneLivewireController extends Component
              * changement de client
              */
             case 6:
-        }
+                /**
+                 * qui dispose de l'ID du record
+                 */
+                $id = is_null($validatedData['crane_id']) ? $validatedData['truck_id'] : $validatedData['crane_id'];
+                /**
+                 * place les propriétés Current
+                 */
+                $crane = $this->setCurrent($id);
+                /**
+                 * Nouveau record
+                 */
+                $truckCrane = $this->fillNewModel($validatedData);
+                break;
 
-        DB::transaction(function () use ($truckCrane, $crane, $truck){
+        }
+        /**
+         * Sauvegarde des données
+         */
+        $exception = DB::transaction(function () use ($truckCrane, $crane, $truck){
             if (!is_null($crane))
                 $crane->save();
             if (!is_null($truck))
                 $truck->save();
             $truckCrane->save();
         });
+        /**
+         * message de retour
+         */
+        if (is_null($exception)){
+            session()->flash('success',trans('The data have been saved with success'));
+            return redirect()->route('crane.index');
+        } else {
+            session()->flash('error',trans('There is a structure issue in the table.  Please contact your administrator'));
+            return redirect()->route('crane.index');
+        }
 
     }
 
+    /**
+     * Rempli un nouvel enregistrement
+     *
+     * @param $validatedData
+     * @return TrucksCrane|null
+     */
     protected function fillNewModel($validatedData): ?TrucksCrane
     {
         /**
@@ -317,6 +352,13 @@ class CraneLivewireController extends Component
         return $truckCrane;
     }
 
+    /**
+     * on placce l'enregistrement comme inactif
+     *
+     * @param $id
+     * @param false $current
+     * @return TrucksCrane|null
+     */
     protected function setCurrent($id, $current = false): ?TrucksCrane
     {
         $truckCrane = TrucksCrane::find($id);
@@ -525,7 +567,7 @@ class CraneLivewireController extends Component
      */
     protected function getCraneHistory()
     {
-        if (!is_null($crane = TrucksCrane::leftjoin('customers', 'customers.id', '=', 'trucks_cranes.customer_id')->where('serial', $this->serial)->orderBy('date_current', 'desc')->get())) {
+        if (!is_null($crane = TrucksCrane::leftjoin('customers', 'customers.id', '=', 'trucks_cranes.customer_id')->where('serial', $this->serial)->orderBy('current','desc')->orderBy('date_current', 'desc')->get())) {
             return $crane;
         }
         return [];
@@ -538,7 +580,7 @@ class CraneLivewireController extends Component
      */
     protected function getTruckHistory()
     {
-        if (!is_null($truck = TrucksCrane::leftjoin('customers','customers.id','=','trucks_cranes.customer_id')->where('plate',$this->plate)->orderBy('date_current','desc')->get())) {
+        if (!is_null($truck = TrucksCrane::leftjoin('customers','customers.id','=','trucks_cranes.customer_id')->where('plate',$this->plate)->orderBy('current','desc')->orderBy('date_current','desc')->get())) {
             return $truck;
         }
         return [];

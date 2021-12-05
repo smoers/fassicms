@@ -2,18 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9ec171e7-05c7-490b-8f14-40ae5b7978c4" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/public/images/customer-32.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/siren-128.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/siren-48.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/warning-32.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CraneLivewireController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CraneLivewireController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Requests/CraneRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/CraneRequest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/TrucksCrane.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/TrucksCrane.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/crane/crane-livewire.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/crane/crane-livewire.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/KYSL35WLgO0gnkP9UBzDrjKtdbT6NBY0aDr9Wz3k" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/sessions/9XmkPImai08rtIzxxtBFTMaZhSwtPcSHassb37dW" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/views/a6606c89c37b8647f983963c047cebac821a48b7.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/a6606c89c37b8647f983963c047cebac821a48b7.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/views/df24578d2dbe3f28227f58398996865c3124bd35.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/df24578d2dbe3f28227f58398996865c3124bd35.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/9XmkPImai08rtIzxxtBFTMaZhSwtPcSHassb37dW" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/sessions/uwfJACWhgfAtmxOhRFzp4BbeUlxyAoN7e4w2aKRZ" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -1014,14 +1005,8 @@
       <workItem from="1637171705479" duration="940000" />
       <workItem from="1637488609574" duration="23657000" />
       <workItem from="1637916670642" duration="20077000" />
-      <workItem from="1638104280657" duration="12833000" />
-    </task>
-    <task id="LOCAL-00016" summary="20201130 - v1.0">
-      <created>1606775648675</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1606775648675</updated>
+      <workItem from="1638104280657" duration="13447000" />
+      <workItem from="1638698576516" duration="5994000" />
     </task>
     <task id="LOCAL-00017" summary="20201204 - v1.0">
       <created>1607104075874</created>
@@ -1359,7 +1344,14 @@
       <option name="project" value="LOCAL" />
       <updated>1637520145019</updated>
     </task>
-    <option name="localTasksCounter" value="65" />
+    <task id="LOCAL-00065" summary="20211128 - v1.2 Cranes Trucks Customers Link">
+      <created>1638118676345</created>
+      <option name="number" value="00065" />
+      <option name="presentableId" value="LOCAL-00065" />
+      <option name="project" value="LOCAL" />
+      <updated>1638118676346</updated>
+    </task>
+    <option name="localTasksCounter" value="66" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -1369,7 +1361,6 @@
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="20210411 - v1.1 Scan New Version" />
     <MESSAGE value="20210422 - v1.1 Scan New Version" />
     <MESSAGE value="20210428 - v2.0 Stores by location" />
     <MESSAGE value="20210502 - v2.0 Stores by location" />
@@ -1394,7 +1385,8 @@
     <MESSAGE value="20211104 - v2.0 Stores by location" />
     <MESSAGE value="20211105 - v2.0 Stores by location" />
     <MESSAGE value="20211121 - v1.2 Cranes Trucks Customers Link" />
-    <option name="LAST_COMMIT_MESSAGE" value="20211121 - v1.2 Cranes Trucks Customers Link" />
+    <MESSAGE value="20211128 - v1.2 Cranes Trucks Customers Link" />
+    <option name="LAST_COMMIT_MESSAGE" value="20211128 - v1.2 Cranes Trucks Customers Link" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
