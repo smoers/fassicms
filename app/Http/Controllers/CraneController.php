@@ -6,6 +6,7 @@ use App\Http\Requests\CraneRequest;
 use App\Moco\Common\MocoAjaxValidation;
 use App\Moco\Common\MocoModelForConsult;
 use App\Models\Crane;
+use App\Models\TrucksCrane;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
@@ -110,6 +111,12 @@ class CraneController extends Controller
      */
     public function edit($id)
     {
+        $trucksCrane = TrucksCrane::find($id);
+        return view('crane.crane-v2',[
+            'title' => trans('Add or modify a crane'),
+            'serial' => $trucksCrane->serial,
+        ]);
+        /**
         $crane = Crane::find($id);
         return view('crane.crane',
             [
@@ -117,6 +124,7 @@ class CraneController extends Controller
                 'action' => route('crane.update',$id),
                 'title' => trans('Modify a crane'),
             ]);
+         */
     }
 
     /**

@@ -2,7 +2,7 @@
 
 namespace App\Http\Livewire\Crane;
 
-use App\Models\Crane;
+use App\Models\TrucksCrane;
 use Illuminate\Database\Eloquent\Builder;
 use Rappasoft\LaravelLivewireTables\TableComponent;
 use Rappasoft\LaravelLivewireTables\Traits\HtmlComponents;
@@ -35,7 +35,7 @@ class CraneList extends TableComponent
      */
     public function query(): Builder
     {
-        return Crane::select();
+        return TrucksCrane::query()->where('current','=',true);
     }
 
     /**
@@ -47,14 +47,14 @@ class CraneList extends TableComponent
             Column::make(trans('Serial number'), 'serial')
                 ->searchable()
                 ->sortable(),
-            Column::make(trans('Model'), 'model')
+            Column::make(trans('Model'), 'crane_model')
                 ->searchable()
                 ->sortable(),
             Column::make(trans('Numberplate'), 'plate')
                 ->searchable()
                 ->sortable(),
             Column::make(trans('Actions'),'actions')
-                ->format(function (Crane $model){
+                ->format(function (TrucksCrane $model){
                    return view('menus.list-submenu',['whatIs' => 'crane', 'crane' => $model]);
                 }),
         ];

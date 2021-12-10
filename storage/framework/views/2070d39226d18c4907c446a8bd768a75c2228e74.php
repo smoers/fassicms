@@ -36,4 +36,4 @@
         </div>
     </body>
 </html>
-<?php /**PATH /var/www/Moco/fassicms/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/views/minimal.blade.php ENDPATH**/ ?>
+<?php /**PATH /var/www/moco/fassicms/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/views/minimal.blade.php ENDPATH**/ ?>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CraneRequest;
+use App\Moco\Common\TruckCraneHistory;
 use App\Models\Customer;
 use App\Models\TrucksCrane;
 use Carbon\Carbon;
@@ -48,7 +49,7 @@ class CraneLivewireController extends Component
      * Modèle du camion
      * @var
      */
-    public $truck_model;
+    public $truck_model = '';
     /**
      * identifiant du client
      * @var
@@ -359,10 +360,10 @@ class CraneLivewireController extends Component
      * @param false $current
      * @return TrucksCrane|null
      */
-    protected function setCurrent($id, $current = false): ?TrucksCrane
+    protected function setCurrent($id, bool $current = false): ?TrucksCrane
     {
         $truckCrane = TrucksCrane::find($id);
-        $truckCrane->current = false;
+        $truckCrane->current = $current;
         $truckCrane->date_current = Carbon::now()->format('d/m/Y');
         return $truckCrane;
     }
@@ -467,16 +468,17 @@ class CraneLivewireController extends Component
                  */
                 $this->crane_id = $crane->id;
                 $this->crane_model = $crane->crane_model;
+                $this->customer_id = $crane->customer_id;
+                $this->customer_name = $this->getCustomer(true)->name;
                 if ($this->plate === '') {
+
                     /**
                      * pas de camion défini
                      */
+                    $this->truck_id = $crane->id;
                     $this->plate = $crane->plate;
                     $this->brand = $crane->brand;
                     $this->truck_model = $crane->truck_model;
-                    $this->customer_id = $crane->customer_id;
-                    $this->customer_name = $this->getCustomer(true)->name;
-
                 }
             } elseif ($previousSerial !== $this->serial) {
                 /**
@@ -484,6 +486,7 @@ class CraneLivewireController extends Component
                  * et n'est pas connue dans la table
                  */
                 $this->crane_model = '';
+                $this->crane_id = null;
             }
         } elseif ($this->getLastChangedField() === 'plate') {
             /**
@@ -498,14 +501,16 @@ class CraneLivewireController extends Component
                 $this->truck_id = $truck->id;
                 $this->brand = $truck->brand;
                 $this->truck_model = $truck->truck_model;
-                if ($this->serial === '')
+                $this->customer_id = $truck->customer_id;
+                $this->customer_name = $this->getCustomer(true)->name;
+                if ($this->serial === '') {
                     /**
                      * pas de grue définie
                      */
+                    $this->crane_id = $truck->id;
                     $this->serial = $truck->serial;
                     $this->crane_model = $truck->crane_model;
-                    $this->customer_id = $truck->customer_id;
-                    $this->customer_name = $this->getCustomer(true)->name;
+                }
             } elseif ($previousPlate !== $this->plate) {
                 /**
                  * Si la valeur de Plate a été modifiée par rapport à la session précédante
@@ -513,6 +518,7 @@ class CraneLivewireController extends Component
                  */
                 $this->brand = '';
                 $this->truck_model = '';
+                $this->truck_id = null;
             }
         } elseif ($this->getLastChangedField() === 'customer_name'){
             if($this->customer_name !== '' && $previousCustomer_name !== $this->customer_name && !is_null($customer = $this->getCustomer())){
@@ -534,56 +540,14 @@ class CraneLivewireController extends Component
     /**
      * Récupère l'historique de la grue et du camion afin de les lister
      *
-     * @return array[]
+     * @return \Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection
      */
-    protected function getHistory(): array
+    protected function getHistory()
     {
-        $history = [
-            'crane' => [],
-            'truck' => [],
-        ];
-        switch ($this->mode['value']){
-            case 6:
-            case 4:
-            case 1:
-                $history['crane'] = $this->getCraneHistory();
-                break;
-            case 2:
-                $history['crane'] = $this->getCraneHistory();
-                $history['truck'] = $this->getTruckHistory();
-                break;
-            case 3:
-                $history['truck'] = $this->getTruckHistory();
-                break;
-        }
-        $this->hasHistoric = $history['crane'] != [] || $history['truck'] != [];
+        $truckCraneHistory = new TruckCraneHistory($this->serial,$this->plate);
+        $history = $truckCraneHistory->getHistory();
+        $this->hasHistoric = $history->count() != 0;
         return $history;
-    }
-
-    /**
-     * Query pour récupérer l'historique d'une grue
-     *
-     * @return array
-     */
-    protected function getCraneHistory()
-    {
-        if (!is_null($crane = TrucksCrane::leftjoin('customers', 'customers.id', '=', 'trucks_cranes.customer_id')->where('serial', $this->serial)->orderBy('current','desc')->orderBy('date_current', 'desc')->get())) {
-            return $crane;
-        }
-        return [];
-    }
-
-    /**
-     * Query pour récupérer l'historique d'un camion
-     *
-     * @return array
-     */
-    protected function getTruckHistory()
-    {
-        if (!is_null($truck = TrucksCrane::leftjoin('customers','customers.id','=','trucks_cranes.customer_id')->where('plate',$this->plate)->orderBy('current','desc')->orderBy('date_current','desc')->get())) {
-            return $truck;
-        }
-        return [];
     }
 
     /**
@@ -660,10 +624,6 @@ class CraneLivewireController extends Component
     public function openModal()
     {
         $this->dispatchBrowserEvent('openMessageModal',['message' => $this->saveMessage] );
-    }
-    public function closeModal()
-    {
-        $this->dispatchBrowserEvent('closeMessageModal');
     }
 
 }

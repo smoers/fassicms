@@ -291,7 +291,7 @@
                     'value': obj.id,
                     'text': obj.serial,
                     'data': {
-                        'subtext': obj.model+', '+obj.plate,
+                        'subtext': obj.model+'</br>'+obj.plate,
                     },
                     'disabled': false,
                 }

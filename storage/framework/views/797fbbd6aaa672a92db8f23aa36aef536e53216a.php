@@ -1,2 +1,0 @@
-<input type="text" class="form-control form-control-sm" wire:model="filters.<?php echo e($name); ?>" value=""/>
-<?php /**PATH /var/www/moco/fassicms/resources/views/livewire/data-table/filter/text-filter.blade.php ENDPATH**/ ?>

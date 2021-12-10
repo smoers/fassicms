@@ -59,8 +59,9 @@ Route::group(['middleware' => ['auth']],function (){
      * Crane Controller
      */
     Route::get('/crane',[CraneController::class,'index'])->name('crane.index')->middleware(['ifnot:list crane']);
-    Route::get('/crane/create',[CraneController::class,'create'])->name('crane.create')->middleware(['ifnot:create crane']);
-    Route::get('/crane/{id}/edit',[CraneController::class,'edit'])->name('crane.edit')->middleware(['ifnot:edit crane']);
+    Route::get('/crane/actions',[CraneController::class,'create'])->name('crane.create')->middleware(['ifnot:create crane']);
+    Route::get('/crane/{id}/actions',[CraneController::class,'edit'])->name('crane.edit')->middleware(['ifnot:edit crane']);
+    //Route::get('/crane/{id}/edit',[CraneController::class,'edit'])->name('crane.edit')->middleware(['ifnot:edit crane']);
     Route::get('/crane/{id}/show',[CraneController::class,'show'])->name('crane.show')->middleware(['ifnot:consult crane']);
     Route::post('/crane/store',[CraneController::class,'store'])->name('crane.store')->middleware(['ifnot:create crane']);
     Route::post('/crane/{id}/update',[CraneController::class,'update'])->name('crane.update')->middleware(['ifnot:edit crane']);

@@ -1,1 +1,0 @@
-<?php /**PATH /var/www/moco/fassicms/resources/views/livewire/data-table/view.blade.php ENDPATH**/ ?>

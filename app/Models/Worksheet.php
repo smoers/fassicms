@@ -48,24 +48,15 @@ class Worksheet extends Model implements MocoModelForConsultInterface
      *
      * @var string[]
      */
-    protected $withForConsult = ['customer','crane','parts','clockings','user'];
+    protected $withForConsult = ['trucks_cranes','parts','clockings','user'];
 
     /**
      * Retourne l'objet Customer lié à l'objet Worksheet
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function customer(){
-        return $this->belongsTo(Customer::class);
-    }
-
-    /**
-     * Retourne l'objet Crane lié à l'objet Worksheet
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function crane(){
-        return $this->belongsTo(Crane::class);
+    public function truckscrane(){
+        return $this->belongsTo(TrucksCrane::class);
     }
 
     /**

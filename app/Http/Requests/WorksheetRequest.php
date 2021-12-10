@@ -24,15 +24,14 @@ class WorksheetRequest extends FormRequest
     public function rules()
     {
         return [
-            'number' => 'required|numeric|integer',
-            'date' => 'required|date_format:d/m/Y',
-            'crane_id' => 'required',
-            'customer_id' => 'required',
-            'remarks' => 'nullable',
-            'work' => 'nullable',
-            'oil_replace' => array('nullable','regex:'.config('moco.worksheet.formatOilReplace')),
-            'oil_filtered' => 'required|boolean',
-            'warranty' => 'required|boolean',
+            'worksheet.number' => 'required|numeric|integer',
+            'worksheet.date' => 'required|date_format:d/m/Y',
+            'worksheet.truckscrane_id' => 'required',
+            'worksheet.remarks' => 'nullable',
+            'worksheet.work' => 'nullable',
+            'worksheet.oil_replace' => 'nullable', //array('nullable','regex:'.config('moco.worksheet.formatOilReplace'))
+            'worksheet.oil_filtered' => 'required|boolean',
+            'worksheet.warranty' => 'required|boolean',
         ];
     }
 

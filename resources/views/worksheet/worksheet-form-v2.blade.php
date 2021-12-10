@@ -7,11 +7,7 @@
                 <h2 class="blue-grey-darker-hover">{{ $title }}</h2>
             </div>
             <div class="card-body">
-                @if(isset($serial))
-                    <livewire:crane.crane-livewire :serial="$serial"/>
-                @else
-                    <livewire:crane.crane-livewire/>
-                @endif
+                <livewire:worksheet.worksheet-livewire :worksheet="$worksheet"/>
             </div>
         </div>
     </div>

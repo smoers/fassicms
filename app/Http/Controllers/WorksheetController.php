@@ -33,6 +33,7 @@ use App\Moco\Common\MocoOptionsListWorksheetPrint;
 use App\Moco\Printer\MocoWorksheet;
 use App\Models\Crane;
 use App\Models\Customer;
+use App\Models\TrucksCrane;
 use App\Models\ViewPartsSignedValues;
 use App\Models\Worksheet;
 use Carbon\Carbon;
@@ -118,11 +119,9 @@ class WorksheetController extends Controller
             $worksheet->oil_filtered = false;
             $worksheet->warranty = false;
         }
-        $worksheet->crane()->associate(new Crane());
-        $worksheet->customer()->associate(new Customer());
+        $worksheet->truckscrane()->associate(new TrucksCrane());
 
-        return view('worksheet.worksheet-form',[
-                'action' => route('worksheet.store'),
+        return view('worksheet.worksheet-form-v2',[
                 'worksheet' => $worksheet,
                 'info_fields' => $this->info_fields,
                 'title' =>trans('Add a worksheet'),
@@ -312,12 +311,15 @@ class WorksheetController extends Controller
      */
     public function ajaxSelect(Request $request)
     {
-        $return = null;
-        if ($request->post('whatIs') == 'customer'){
-            $return = Customer::where('name','like','%'.$request->post('name').'%' )->where('black_listed','=',false)->orderBy('name')->get();
-        } elseif ($request->post('whatIs') == 'crane'){
-            $return = Crane::where('serial','like','%'.$request->post('serial').'%')->orderBy('serial')->get();
-        }
+        $return = TrucksCrane::query()->leftJoin('customers','customers.id','=','trucks_cranes.customer_id')
+            ->where('serial','like','%'.$request->search.'%')
+            ->orWhere('plate','like','%'.$request->search.'%')
+            ->orWhere('crane_model','like','%'.$request->search.'%')
+            ->orWhere('brand','like','%'.$request->search.'%')
+            ->orWhere('name','like','%'.$request->search.'%')
+            ->orWhere('address','like','%'.$request->search.'%')
+            ->orWhere('city','like','%'.$request->search.'%')
+            ->get();
         return response()->json($return);
     }
 

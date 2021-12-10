@@ -101,7 +101,7 @@
                     <table class="table table-bordered table-striped table-sm">
                         <thead class="moco-title-table">
                         <tr>
-                            <th>{{__('Source')}}</th>
+                            <th></th>
                             <th>{{__('Serial Number')}}</th>
                             <th>{{__('Numberplate')}}</th>
                             <th>{{__('Customer')}}</th>
@@ -109,22 +109,13 @@
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($histories['crane'] as $crane)
+                        @foreach($histories as $history)
                             <tr>
-                                <td><img src="/images/crane-32.png"></td>
-                                <td>{{$crane->serial}}</td>
-                                <td>{{$crane->plate}}</td>
-                                <td>{{$crane->name}}</td>
-                                <td>{{$crane->date_current}}</td>
-                            </tr>
-                        @endforeach
-                        @foreach($histories['truck'] as $truck)
-                            <tr>
-                                <td><img src="/images/truck-32.png"></td>
-                                <td>{{$truck->serial}}</td>
-                                <td>{{$truck->plate}}</td>
-                                <td>{{$truck->name}}</td>
-                                <td>{{$truck->date_current}}</td>
+                                <td><img src="/images/history-32.png"></td>
+                                <td>{{$history->serial}}</td>
+                                <td>{{$history->plate}}</td>
+                                <td>{{$history->name}}</td>
+                                <td>{{$history->date_current}}</td>
                             </tr>
                         @endforeach
                         </tbody>

@@ -146,7 +146,7 @@ unset($__errorArgs, $__bag); ?>
                     <table class="table table-bordered table-striped table-sm">
                         <thead class="moco-title-table">
                         <tr>
-                            <th><?php echo e(__('Source')); ?></th>
+                            <th></th>
                             <th><?php echo e(__('Serial Number')); ?></th>
                             <th><?php echo e(__('Numberplate')); ?></th>
                             <th><?php echo e(__('Customer')); ?></th>
@@ -154,22 +154,13 @@ unset($__errorArgs, $__bag); ?>
                         </tr>
                         </thead>
                         <tbody>
-                        <?php $__currentLoopData = $histories['crane']; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $crane): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                        <?php $__currentLoopData = $histories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $history): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                             <tr>
-                                <td><img src="/images/crane-32.png"></td>
-                                <td><?php echo e($crane->serial); ?></td>
-                                <td><?php echo e($crane->plate); ?></td>
-                                <td><?php echo e($crane->name); ?></td>
-                                <td><?php echo e($crane->date_current); ?></td>
-                            </tr>
-                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                        <?php $__currentLoopData = $histories['truck']; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $truck): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                            <tr>
-                                <td><img src="/images/truck-32.png"></td>
-                                <td><?php echo e($truck->serial); ?></td>
-                                <td><?php echo e($truck->plate); ?></td>
-                                <td><?php echo e($truck->name); ?></td>
-                                <td><?php echo e($truck->date_current); ?></td>
+                                <td><img src="/images/history-32.png"></td>
+                                <td><?php echo e($history->serial); ?></td>
+                                <td><?php echo e($history->plate); ?></td>
+                                <td><?php echo e($history->name); ?></td>
+                                <td><?php echo e($history->date_current); ?></td>
                             </tr>
                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                         </tbody>
