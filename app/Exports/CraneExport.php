@@ -30,12 +30,11 @@
 namespace App\Exports;
 
 use App\Moco\Common\Moco;
-use App\Models\Crane;
+use App\Models\Truckscrane;
 use Illuminate\Database\Query\Builder;
 use Maatwebsite\Excel\Concerns\Exportable;
 use Maatwebsite\Excel\Concerns\FromQuery;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
-use Maatwebsite\Excel\Concerns\WithColumnFormatting;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\WithStyles;
 use Maatwebsite\Excel\Concerns\WithTitle;
@@ -61,12 +60,12 @@ class CraneExport implements FromQuery, WithHeadings, ShouldAutoSize, WithStyles
      */
     public function query()
     {
-        return Crane::query()->whereKey($this->id);
+        return Truckscrane::query()->whereKey($this->id);
     }
 
     public function headings(): array
     {
-        return Moco::translateArrayValue(config('moco.consult.fields.cranes.name'));
+        return Moco::translateArrayValue(config('moco.consult.fields.trucks_cranes.name'));
     }
 
     public function styles(Worksheet $sheet)

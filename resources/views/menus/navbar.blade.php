@@ -81,8 +81,8 @@
                         {{ __('Reporting') }}
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="{{route('reporting.from')}}">{{__('From Partmetadatas')}}</a>
-                        <a class="dropdown-item" href="{{route('reporting.from')}}">{{__('From Worksheets')}}</a>
+                        <a class="dropdown-item" href="{{route('reporting.from','partmetadata-export-data-table')}}">{{__('From Partmetadatas')}}</a>
+                        <a class="dropdown-item" href="{{route('reporting.from','report-truckscrane-history')}}">{{__('From Crane History')}}</a>
                     </div>
                 </li>
             </ul>

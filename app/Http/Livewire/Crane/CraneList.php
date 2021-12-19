@@ -35,7 +35,7 @@ class CraneList extends TableComponent
      */
     public function query(): Builder
     {
-        return TrucksCrane::query()->where('current','=',true);
+        return Truckscrane::query()->where('current','=',true);
     }
 
     /**
@@ -54,7 +54,7 @@ class CraneList extends TableComponent
                 ->searchable()
                 ->sortable(),
             Column::make(trans('Actions'),'actions')
-                ->format(function (TrucksCrane $model){
+                ->format(function (Truckscrane $model){
                    return view('menus.list-submenu',['whatIs' => 'crane', 'crane' => $model]);
                 }),
         ];

@@ -31,6 +31,7 @@ namespace App\Moco\Datatables;
 
 
 use App\Moco\Datatables\Filters\FilterInterface;
+use Illuminate\Database\Eloquent\Model;
 
 class Column
 {
@@ -106,6 +107,18 @@ class Column
     public function format(callable $callable): Column
     {
         $this->formatCallback = $callable;
+
+        return $this;
+    }
+
+    /**
+     * @return $this
+     */
+    public function formatYesNo()
+    {
+        $this->format(function (Model $model, Column $column){
+            return $model[$column->getAttribute()] == 1 ? trans('Yes') : trans('No');
+        });
 
         return $this;
     }

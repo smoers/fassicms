@@ -5,6 +5,10 @@ Authority : Moers Serge
 Date : 09-10-20
 */
 
+#datatablesrolling th td{
+    white-space: nowrap;
+}
+
 .moco-layout-height{
     min-height: 750px;
 }

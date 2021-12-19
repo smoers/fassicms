@@ -31,10 +31,10 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\WorksheetRequest;
 use App\Models\Customer;
-use App\Models\TrucksCrane;
+use App\Models\Truckscrane;
 use App\Models\Worksheet;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 class WorksheetLivewireController extends Component
@@ -53,7 +53,7 @@ class WorksheetLivewireController extends Component
      * Modèle TrucksCrane
      * @var TrucksCrane|null
      */
-    public ?TrucksCrane $trucksCrane = null;
+    public ?Truckscrane $truckscrane = null;
     /**
      * Modèle Customer
      * @var Customer|null
@@ -98,6 +98,59 @@ class WorksheetLivewireController extends Component
     {
         $this->tab_general = true;
         $this->tab_data = false;
+        $this->truckscrane = $this->worksheet->truckscrane()->get()->first();
+        if (!is_null($this->truckscrane)){
+            $this->customer = Customer::find($this->truckscrane->customer_id);
+        }
+    }
+
+    /**
+     * Validation en temps réél
+     *
+     * @param $propertyName
+     * @throws \Illuminate\Validation\ValidationException
+     */
+    public function updated($propertyName)
+    {
+        /**
+         * Permet de correctement placer la valeur des champs warranty & oil_replace
+         * suite à la valeur retournée par le select
+         */
+        if ($propertyName === 'worksheet.warranty')
+            $this->worksheet->warranty = $this->worksheet->warranty === 'true' ? true : false;
+        if ($propertyName === 'worksheet.oil_filtered')
+            $this->worksheet->oil_filtered = $this->worksheet->oil_filtered === 'true' ? true : false;
+        /**
+         * Validation
+         */
+        $this->validateOnly(
+            $propertyName,
+            $this->formRequest->rules(),
+            $this->formRequest->messages(),
+            $this->formRequest->attributes()
+        );
+    }
+
+    /**
+     * Sauvegarde des données
+     */
+    public function save(){
+
+        /**
+         * Validation
+         */
+        $this->validate(
+            $this->formRequest->rules(),
+            $this->formRequest->messages(),
+            $this->formRequest->attributes()
+        );
+        /**
+         * Sauvegarde
+         */
+        $this->worksheet->user()->associate(Auth::user());
+        $this->worksheet->save();
+        session()->flash('success',trans('The data have been saved with success'));
+        return redirect()->route('worksheet.index');
     }
 
     /**
@@ -134,10 +187,10 @@ class WorksheetLivewireController extends Component
         $result = [];
         $searchCrane = $this->searchCrane;
         if ($this->searchCrane !== ''){
-            $result = TrucksCrane::query()
+            $result = Truckscrane::query()
                 ->select()
-                ->addSelect('trucks_cranes.id AS tc_id')
-                ->leftJoin('customers','customers.id','=','trucks_cranes.customer_id')
+                ->addSelect('truckscranes.id AS tc_id')
+                ->leftJoin('customers','customers.id','=','truckscranes.customer_id')
                 ->where('current','=',true)
                 ->where(function($query) use ($searchCrane)  {
                     $query->orwhere('serial', 'like', '%' . $searchCrane . '%')
@@ -168,8 +221,10 @@ class WorksheetLivewireController extends Component
      */
     public function getTruckCrane($id)
     {
-        $this->trucksCrane = TrucksCrane::find($id);
-        $this->customer = Customer::find($this->trucksCrane->customer_id);
+        $this->truckscrane = Truckscrane::find($id);
+        $this->customer = Customer::find($this->truckscrane->customer_id);
+        $this->worksheet->truckscrane()->associate($this->truckscrane);
+        $this->worksheet->truckscrane_id = $this->truckscrane->id;
     }
 
     /**
@@ -177,9 +232,17 @@ class WorksheetLivewireController extends Component
      */
     public function removeTruckCrane()
     {
-        $this->trucksCrane = null;
+        $this->truckscrane = null;
         $this->customer = null;
+        $this->worksheet->truckscrane()->dissociate();
+        $this->worksheet->truckscrane_id = null;
     }
 
+    public function addTrucksCrane()
+    {
+        session()->put('worksheet_form',$this->worksheet);
+        return redirect()->route('crane.create');
+
+    }
 
 }

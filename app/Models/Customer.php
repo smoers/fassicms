@@ -51,7 +51,7 @@ class Customer extends Model implements MocoModelForConsultInterface
      *
      * @var string[]
      */
-    protected $withForConsult = ['worksheets','user','customerscontacts'];
+    protected $withForConsult = ['truckscranes','user','customerscontacts'];
 
     /**
      * Retourne l'objet User lié à l'objet Worksheet
@@ -87,7 +87,7 @@ class Customer extends Model implements MocoModelForConsultInterface
      */
     public function trucks()
     {
-        return $this->hasMany(TrucksCrane::class);
+        return $this->hasMany(Truckscrane::class);
     }
 
     public function WithForConsult()

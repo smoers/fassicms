@@ -30,6 +30,7 @@
 namespace App\Moco\Datatables;
 
 use App\Moco\Datatables\Traits\Cleanup;
+use App\Moco\Datatables\Traits\Export;
 use App\Moco\Datatables\Traits\Sorting;
 use Illuminate\Database\Eloquent\Builder;
 use Livewire\Component;
@@ -39,7 +40,8 @@ abstract class DataTableComponent extends Component
 {
     use WithPagination,
         Sorting,
-        Cleanup;
+        Cleanup,
+        Export;
 
     /**
      * Nombre de page par défault
@@ -60,7 +62,7 @@ abstract class DataTableComponent extends Component
      * Chemin de la vue à afficher
      * @var null
      */
-    protected ?string $renderViewPath = null;
+    public ?string $renderViewPath = null;
     /**
      * Faut-il checker si des filtres doivent être appliqués
      * @var bool

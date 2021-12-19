@@ -149,10 +149,12 @@ class MocoModelForConsult
                  */
                 $randomKey = 'k'.Moco::randomKey();
                 $model = $this->model->$relation;
-                $layout .= $this->insertRow(
-                    $this->insertCollapseHref($randomKey,$relation),
-                    $this->insertCollapseContent($randomKey,$this->getAttributesLayoutTable($model))
-                );
+                if (!is_null($model)) {
+                    $layout .= $this->insertRow(
+                        $this->insertCollapseHref($randomKey, $relation),
+                        $this->insertCollapseContent($randomKey, $this->getAttributesLayoutTable($model))
+                    );
+                }
             }
         }
         return $layout;

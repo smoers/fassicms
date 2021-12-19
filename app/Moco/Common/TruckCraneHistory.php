@@ -53,7 +53,7 @@ class TruckCraneHistory
      */
     public function getHistory()
     {
-        return TrucksCrane::query()->leftjoin('customers', 'customers.id', '=', 'trucks_cranes.customer_id')
+        return Truckscrane::query()->leftjoin('customers', 'customers.id', '=', 'truckscranes.customer_id')
                 ->where('serial','=',$this->serial)
                 ->orWhere('plate','=',$this->plate)
                 ->orderBy('current','desc')

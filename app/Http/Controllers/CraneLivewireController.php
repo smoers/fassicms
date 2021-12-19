@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CraneRequest;
 use App\Moco\Common\TruckCraneHistory;
 use App\Models\Customer;
-use App\Models\TrucksCrane;
+use App\Models\Truckscrane;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
@@ -214,9 +214,9 @@ class CraneLivewireController extends Component
         /**
          *
          */
-        $truckCrane = null;
-        $crane = null;
-        $truck = null;
+        $truckscrane = null;
+        $crane = null;  //object TrucksCrane changement de status Current depuis un serial
+        $truck = null;  //object TrucksCrane changement de status Current depuis un plate
         switch ($this->mode['value']){
             /**
              * modification
@@ -229,13 +229,13 @@ class CraneLivewireController extends Component
                 /**
                  * recherche le record
                  */
-                $truckCrane = TrucksCrane::find($id);
+                $truckscrane = Truckscrane::find($id);
                 /**
                  * Charge les données
                  */
-                $truckCrane->crane_model = $validatedData['crane_model'];
-                $truckCrane->brand = $validatedData['brand'];
-                $truckCrane->truck_model = $validatedData['truck_model'];
+                $truckscrane->crane_model = $validatedData['crane_model'];
+                $truckscrane->brand = $validatedData['brand'];
+                $truckscrane->truck_model = $validatedData['truck_model'];
                 break;
             /**
              * nouveau avec une grue et camion existant
@@ -249,7 +249,7 @@ class CraneLivewireController extends Component
                 /**
                  * Nouveau record
                  */
-                $truckCrane = $this->fillNewModel($validatedData);
+                $truckscrane = $this->fillNewModel($validatedData);
                 break;
             /**
              * nouvelle grue, camion existant
@@ -262,7 +262,7 @@ class CraneLivewireController extends Component
                 /**
                  * Nouveau record
                  */
-                $truckCrane = $this->fillNewModel($validatedData);
+                $truckscrane = $this->fillNewModel($validatedData);
                 break;
             /**
              * nouveau camion, grue existante
@@ -275,13 +275,13 @@ class CraneLivewireController extends Component
                 /**
                  * Nouveau record
                  */
-                $truckCrane = $this->fillNewModel($validatedData);
+                $truckscrane = $this->fillNewModel($validatedData);
                 break;
             /**
              * nouvelle grue et nouveau camion
              */
             case 5:
-                $truckCrane = $this->fillNewModel($validatedData);
+                $truckscrane = $this->fillNewModel($validatedData);
                 break;
             /**
              * changement de client
@@ -298,26 +298,40 @@ class CraneLivewireController extends Component
                 /**
                  * Nouveau record
                  */
-                $truckCrane = $this->fillNewModel($validatedData);
+                $truckscrane = $this->fillNewModel($validatedData);
                 break;
 
         }
         /**
          * Sauvegarde des données
          */
-        $exception = DB::transaction(function () use ($truckCrane, $crane, $truck){
+        $exception = DB::transaction(function () use ($truckscrane, $crane, $truck){
             if (!is_null($crane))
                 $crane->save();
             if (!is_null($truck))
                 $truck->save();
-            $truckCrane->save();
+            $truckscrane->save();
         });
         /**
          * message de retour
          */
         if (is_null($exception)){
             session()->flash('success',trans('The data have been saved with success'));
-            return redirect()->route('crane.index');
+            $route = route('crane.index');
+            /**
+             * controle si la variable de session worksheet_form existe
+             * si oui, cela signifie que le formulaire a été ouvert depuis le formulaire Worksheet
+             */
+            if (session()->exists('worksheet_form')) {
+                /**
+                 * associe le nouvel objet TrucksCrane à la Worksheet stockée dans la session
+                 */
+                $worksheet = session()->pull('worksheet_form');
+                $worksheet->truckscrane()->associate($truckscrane);
+                session()->put('worksheet_form',$worksheet);
+                $route = session()->get('worksheet_source');
+            }
+            return redirect($route);
         } else {
             session()->flash('error',trans('There is a structure issue in the table.  Please contact your administrator'));
             return redirect()->route('crane.index');
@@ -340,17 +354,17 @@ class CraneLivewireController extends Component
         /**
          * Nouveau record
          */
-        $truckCrane = new TrucksCrane();
-        $truckCrane->current =  true;
-        $truckCrane->serial = $validatedData['serial'];
-        $truckCrane->crane_model = $validatedData['crane_model'];
-        $truckCrane->plate = $validatedData['plate'];
-        $truckCrane->brand = $validatedData['brand'];
-        $truckCrane->truck_model = $validatedData['truck_model'];
-        $truckCrane->user()->associate(Auth::user());
-        $truckCrane->customer()->associate($customer);
+        $truckscrane = new TrucksCrane();
+        $truckscrane->current =  true;
+        $truckscrane->serial = $validatedData['serial'];
+        $truckscrane->crane_model = $validatedData['crane_model'];
+        $truckscrane->plate = $validatedData['plate'];
+        $truckscrane->brand = $validatedData['brand'];
+        $truckscrane->truck_model = $validatedData['truck_model'];
+        $truckscrane->user()->associate(Auth::user());
+        $truckscrane->customer()->associate($customer);
 
-        return $truckCrane;
+        return $truckscrane;
     }
 
     /**
@@ -362,10 +376,10 @@ class CraneLivewireController extends Component
      */
     protected function setCurrent($id, bool $current = false): ?TrucksCrane
     {
-        $truckCrane = TrucksCrane::find($id);
-        $truckCrane->current = $current;
-        $truckCrane->date_current = Carbon::now()->format('d/m/Y');
-        return $truckCrane;
+        $truckscrane = TrucksCrane::find($id);
+        $truckscrane->current = $current;
+        $truckscrane->date_current = Carbon::now()->format('d/m/Y');
+        return $truckscrane;
     }
 
     /**
@@ -385,7 +399,7 @@ class CraneLivewireController extends Component
      */
     protected function getListCranes()
     {
-        return $this->serial === '' ? [] : TrucksCrane::query()->where('current','=',true)->where('serial','like','%'.$this->serial.'%')->orderBy('serial')->get();
+        return $this->serial === '' ? [] : Truckscrane::query()->where('current','=',true)->where('serial','like','%'.$this->serial.'%')->orderBy('serial')->get();
     }
 
     /**
@@ -395,7 +409,7 @@ class CraneLivewireController extends Component
      */
     protected function getCrane(): ?Model
     {
-        return TrucksCrane::where('current','=',true)->where('serial',$this->serial)->first();
+        return Truckscrane::where('current','=',true)->where('serial',$this->serial)->first();
     }
 
     /**
@@ -405,7 +419,7 @@ class CraneLivewireController extends Component
      */
     protected function getListTrucks()
     {
-        return $this->plate === '' ? [] : TrucksCrane::query()->where('current','=',true)->where('plate','like','%'.$this->plate.'%')->orderBy('plate')->get();
+        return $this->plate === '' ? [] : Truckscrane::query()->where('current','=',true)->where('plate','like','%'.$this->plate.'%')->orderBy('plate')->get();
     }
 
     /**
@@ -415,7 +429,7 @@ class CraneLivewireController extends Component
      */
     protected function getTruck(): ?Model
     {
-        return TrucksCrane::where('current','=',true)->where('plate',$this->plate)->first();
+        return Truckscrane::where('current','=',true)->where('plate',$this->plate)->first();
     }
 
     /**
@@ -544,8 +558,8 @@ class CraneLivewireController extends Component
      */
     protected function getHistory()
     {
-        $truckCraneHistory = new TruckCraneHistory($this->serial,$this->plate);
-        $history = $truckCraneHistory->getHistory();
+        $truckscraneHistory = new truckCraneHistory($this->serial,$this->plate);
+        $history = $truckscraneHistory->getHistory();
         $this->hasHistoric = $history->count() != 0;
         return $history;
     }

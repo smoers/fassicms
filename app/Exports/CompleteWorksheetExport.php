@@ -59,8 +59,8 @@ class CompleteWorksheetExport implements WithMultipleSheets
         $worksheet = Worksheet::query()->find($this->id);
         return [
             new WorksheetExport($this->id),
-            new CraneExport($worksheet->crane->id),
-            new CustomerExport($worksheet->customer->id),
+            new CraneExport($worksheet->truckscrane->id),
+            new CustomerExport($worksheet->truckscrane->customer_id),
             new WorksheetPartExport($this->id),
             new WorksheetClockingExport($this->id),
         ];

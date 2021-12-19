@@ -167,4 +167,27 @@ class Moco
         }
         return null;
     }
+
+    /**
+     * S'assure que la date à le bon format
+     *
+     * @param string $date
+     * @param string $separator
+     * @return bool
+     */
+    public static function isDateValidFormat($date, string $separator = '/')
+    {
+        dd($date);
+        $dateParts = explode($separator,$date);
+        if (count($dateParts) !== 3) return false;
+
+        [$day, $month, $year] = $dateParts;
+
+        if ($day !== 2) return false;
+        if ($month !== 2) return false;
+        if ($year !== 4) return false;
+
+        return true;
+
+    }
 }

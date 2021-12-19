@@ -31,9 +31,7 @@ use App\Moco\Common\MocoModelForConsult;
 use App\Moco\Common\MocoOptions;
 use App\Moco\Common\MocoOptionsListWorksheetPrint;
 use App\Moco\Printer\MocoWorksheet;
-use App\Models\Crane;
-use App\Models\Customer;
-use App\Models\TrucksCrane;
+use App\Models\Truckscrane;
 use App\Models\ViewPartsSignedValues;
 use App\Models\Worksheet;
 use Carbon\Carbon;
@@ -97,17 +95,9 @@ class WorksheetController extends Controller
          */
         if ($request->session()->exists('worksheet_form')){
             /**
-             * On hydrate l'objet et le table
+             * Récupère l'objet Worksheet dans la session
              */
-            $this->hydrateWorksheetForm(
-                /**
-                 * On récupère la valeur des champs info pour le formulaire
-                 * depuis la variable de session.
-                 * La variable de session est détruite lors de la récupération
-                 */
-                $request->session()->pull('worksheet_form'),
-                $worksheet
-            );
+            $worksheet = $request->session()->pull('worksheet_form');
 
         } else {
             /**
@@ -118,12 +108,11 @@ class WorksheetController extends Controller
             $worksheet->date = Carbon::now('Europe/Brussels')->format('d/m/Y');
             $worksheet->oil_filtered = false;
             $worksheet->warranty = false;
+            $worksheet->truckscrane()->associate(new Truckscrane());
         }
-        $worksheet->truckscrane()->associate(new TrucksCrane());
 
         return view('worksheet.worksheet-form-v2',[
                 'worksheet' => $worksheet,
-                'info_fields' => $this->info_fields,
                 'title' =>trans('Add a worksheet'),
             ]);
     }
@@ -155,47 +144,9 @@ class WorksheetController extends Controller
     }
 
     /**
-     * Sauvegarde la nouvelle fiche de travail
-     *
-     * @param WorksheetRequest $request
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    public function store(WorksheetRequest $request)
-    {
-        /**
-         * Récupère les données validées
-         */
-        $validatedData = $request->validated();
-
-        /**
-         * Recherche les objects liés
-         */
-        $crane = Crane::find($validatedData['crane_id']);
-        $customer = Customer::find($validatedData['customer_id']);
-
-        /**
-         * Hydrate le nouvel object worksheet
-         */
-        $worksheet = new Worksheet();
-        $worksheet->fill($validatedData);
-        $worksheet->customer()->associate($customer);
-        $worksheet->crane()->associate($crane);
-        $worksheet->user()->associate(Auth::user());
-
-        /**
-         * sauvegarde l'objet
-         */
-        $worksheet->save();
-
-        /**
-         * redirection
-         */
-        return redirect()->route('worksheet.index')->with('success',trans('The worksheet has been saved'));
-    }
-
-    /**
      * Permet de modifier une fiche de travail existante
      *
+     * @param Request $request
      * @param $id
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
@@ -206,80 +157,24 @@ class WorksheetController extends Controller
          */
         $request->session()->put('worksheet_source',route('worksheet.edit',['id'=>$id]));
         /**
-         * Récupère les objets
-         */
-        $worksheet = Worksheet::find($id);
-        $crane = Crane::find($worksheet->crane()->get('id'))->first();
-        $customer = Customer::find($worksheet->customer()->get('id'))->first();
-        /**
          * Test l'existence d'une session avec la clé worksheet_form
          */
         if ($request->session()->exists('worksheet_form')) {
             /**
-             * On hydrate l'objet et le table
+             * Récupère l'objet Worksheet dans la session
              */
-            $this->hydrateWorksheetForm(
-                /**
-                 * On récupère la valeur des champs info pour le formulaire
-                 * depuis la variable de session.
-                 * La variable de session est détruite lors de la récupération
-                 */
-                $request->session()->pull('worksheet_form'),
-                $worksheet
-            );
+            $worksheet = $request->session()->pull('worksheet_form');
 
         } else {
             /**
-             * on charge le tableau
+             * Récupère les objets
              */
-            $this->info_fields = $this->arrayFieldsValues($this->info_fields,$customer,['id' => 'customer_id']);
-            $this->info_fields = $this->arrayFieldsValues($this->info_fields,$crane,['id' => 'crane_id' ]);
-
+            $worksheet = Worksheet::find($id);
         }
-        return view('worksheet.worksheet-form',[
-            'action' => route('worksheet.update',$id),
+        return view('worksheet.worksheet-form-v2',[
             'title' => trans('Modify a worksheet'),
             'worksheet' => $worksheet,
-            'info_fields' => $this->info_fields,
         ]);
-    }
-
-    public function update(WorksheetRequest $request, $id)
-    {
-        /**
-         * Recherche l'objet à modifier
-         */
-        $worksheet = Worksheet::find($id);
-
-        /**
-         * Récupère les données validées
-         */
-        $validatedData = $request->validated();
-
-        /**
-         * Recherche les objects liés
-         */
-        $crane = Crane::find($validatedData['crane_id']);
-        $customer = Customer::find($validatedData['customer_id']);
-
-        /**
-         * Hydrate le nouvel object worksheet
-         */
-        $worksheet->fill($validatedData);
-        $worksheet->customer()->associate($customer);
-        $worksheet->crane()->associate($crane);
-        $worksheet->user()->associate(Auth::user());
-
-        /**
-         * sauvegarde l'objet
-         */
-        $worksheet->save();
-
-        /**
-         * redirection
-         */
-        return redirect()->route('worksheet.index')->with('success',trans('The worksheet has been saved'));
-
     }
 
     /**
@@ -311,7 +206,7 @@ class WorksheetController extends Controller
      */
     public function ajaxSelect(Request $request)
     {
-        $return = TrucksCrane::query()->leftJoin('customers','customers.id','=','trucks_cranes.customer_id')
+        $return = Truckscrane::query()->leftJoin('customers','customers.id','=','truckscranes.customer_id')
             ->where('serial','like','%'.$request->search.'%')
             ->orWhere('plate','like','%'.$request->search.'%')
             ->orWhere('crane_model','like','%'.$request->search.'%')
@@ -321,25 +216,6 @@ class WorksheetController extends Controller
             ->orWhere('city','like','%'.$request->search.'%')
             ->get();
         return response()->json($return);
-    }
-
-    /**
-     * Ceci permet d'ouvrir le formulaire pour ajouter une nouvelle grue
-     * ou un nouveau client tout en conservant les valeurs déjà introduite.
-     *
-     * @param Request $request
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
-     */
-    public function addOption(Request $request)
-    {
-        $request->session()->put('worksheet_form',$request->all());
-        $route = route('worksheet.index');
-        if ($request->post('whatIs') == 'add_customer'){
-            $route = route('customer.create');
-        } elseif ($request->post('whatIs') == 'add_crane'){
-            $route = route('crane.create');
-        }
-        return redirect($route);
     }
 
     /**
@@ -358,41 +234,6 @@ class WorksheetController extends Controller
         $pdf->build();
         $pdf->Output();
 
-    }
-
-    /**
-     * Création de la liste des champs info avec la valeur
-     * contenue dans le tableau
-     *
-     * @param array $worksheet_form
-     * @param Worksheet $worksheet
-     * @return Worksheet
-     */
-    private function hydrateWorksheetForm(array $worksheet_form, Worksheet $worksheet): Worksheet
-    {
-        /**
-         * On récupère la valeur des champs info pour le formulaire
-         * depuis la variable de session.
-         * La variable de session est détruite lors de la récupération
-         */
-        foreach ($this->info_fields as $key => $field){
-            if (array_key_exists($key,$worksheet_form))
-                $this->info_fields[$key] = $worksheet_form[$key];
-        }
-
-        /**
-         * on hydrate l'objet Worksheet avec les valeurs
-         * de la variable de session
-         */
-        $worksheet->number = $worksheet_form['number'];
-        $worksheet->date = $worksheet_form['date'];
-        $worksheet->remarks = $worksheet_form['remarks'];
-        $worksheet->work = $worksheet_form['work'];
-        $worksheet->oil_replace = $worksheet_form['oil_replace'];
-        $worksheet->oil_filtered = $worksheet_form['oil_filtered'];
-        $worksheet->warranty = $worksheet_form['warranty'];
-
-        return $worksheet;
     }
 
     /**

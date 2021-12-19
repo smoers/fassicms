@@ -7,10 +7,10 @@ use Illuminate\Http\Request;
 
 class ReportingController extends Controller
 {
-    public function from(){
-
-        return view('reporting.from_worksheet',[
+    public function from(string $view){
+        return view('reporting.from',[
             'title' => trans('Reporting from Worksheet'),
+            'livewire' => 'report.'.$view,
         ]);
     }
 }

@@ -63,9 +63,9 @@ Route::group(['middleware' => ['auth']],function (){
     Route::get('/crane/{id}/actions',[CraneController::class,'edit'])->name('crane.edit')->middleware(['ifnot:edit crane']);
     //Route::get('/crane/{id}/edit',[CraneController::class,'edit'])->name('crane.edit')->middleware(['ifnot:edit crane']);
     Route::get('/crane/{id}/show',[CraneController::class,'show'])->name('crane.show')->middleware(['ifnot:consult crane']);
-    Route::post('/crane/store',[CraneController::class,'store'])->name('crane.store')->middleware(['ifnot:create crane']);
-    Route::post('/crane/{id}/update',[CraneController::class,'update'])->name('crane.update')->middleware(['ifnot:edit crane']);
-    Route::post('/crane/ajaxvalidation',[CraneController::class,'ajaxValidation'])->name('crane.ajaxvalidation')->middleware(['ifnot:create crane|edit crane']);
+    //Route::post('/crane/store',[CraneController::class,'store'])->name('crane.store')->middleware(['ifnot:create crane']);
+    //Route::post('/crane/{id}/update',[CraneController::class,'update'])->name('crane.update')->middleware(['ifnot:edit crane']);
+    //Route::post('/crane/ajaxvalidation',[CraneController::class,'ajaxValidation'])->name('crane.ajaxvalidation')->middleware(['ifnot:create crane|edit crane']);
 
     /**
      * Store Controller
@@ -171,6 +171,6 @@ Route::group(['middleware' => ['auth']],function (){
      * Reporting
      */
     Route::get('/report/reassort',[ReportController::class,'reassortLevel'])->name('report.reassortLevel')->middleware(['ifnot:list provider']);
-    Route::get('/reporting',[ReportingController::class,'from'])->name('reporting.from');
+    Route::get('/reporting/{view}',[ReportingController::class,'from'])->name('reporting.from');
 });
 

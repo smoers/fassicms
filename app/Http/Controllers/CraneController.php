@@ -5,10 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CraneRequest;
 use App\Moco\Common\MocoAjaxValidation;
 use App\Moco\Common\MocoModelForConsult;
-use App\Models\Crane;
-use App\Models\TrucksCrane;
-use Illuminate\Http\Request;
-use Illuminate\Http\Response;
+use App\Models\Truckscrane;
 use Illuminate\Support\Facades\Auth;
 
 class CraneController extends Controller
@@ -40,46 +37,6 @@ class CraneController extends Controller
         return view('crane.crane-v2',[
             'title' => trans('Add or modify a crane'),
         ]);
-        /*return view('crane.crane',
-        [
-            'action' => route('crane.store'),
-            'crane' => new Crane(),
-            'title' => trans('Add a crane'),
-        ]);*/
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return Response
-     */
-    public function store(Request $request)
-    {
-        $this->formRequest->setRequestArray($request->all());
-        $validatedData = $this->validate($request,$this->formRequest->rules(),$this->formRequest->messages(),$this->formRequest->attributes());
-        $crane = new Crane();
-        $crane->fill($validatedData);
-        $crane->user()->associate(Auth::user());
-        $crane->save();
-        /**
-         * récupère la route par défaut
-         */
-        $route = route('dashboard');
-        /**
-         * On controle si la demande d'ajout a été faite depuis le formulaire d'ajout d'une fiche de travail
-         */
-        if ($request->session()->exists('worksheet_form')){
-            $worksheet_form = $request->session()->get('worksheet_form');
-            $worksheet_form['crane_id'] = $crane->id;
-            $worksheet_form['serial'] = $crane->serial;
-            $worksheet_form['model'] = $crane->model;
-            $worksheet_form['plate'] = $crane->plate;
-            $request->session()->put('worksheet_form',$worksheet_form);
-            $route = $request->session()->get('worksheet_source');
-        }
-
-        return redirect($route)->with('success','The crane has been saved');
     }
 
     /**
@@ -90,9 +47,9 @@ class CraneController extends Controller
      */
     public function show($id)
     {
-        $crane = Crane::find($id);
-        if (!is_null($crane)){
-            $mocoModelForConsult = new MocoModelForConsult($crane,Auth::user()->can('consult crane extended'));
+        $truckscrane = Truckscrane::find($id);
+        if (!is_null($truckscrane)){
+            $mocoModelForConsult = new MocoModelForConsult($truckscrane,Auth::user()->can('consult crane extended'));
             return view('consult.consult',
                 [
                     'title' => trans('Consult Crane'),
@@ -111,48 +68,11 @@ class CraneController extends Controller
      */
     public function edit($id)
     {
-        $trucksCrane = TrucksCrane::find($id);
+        $trucksCrane = Truckscrane::find($id);
         return view('crane.crane-v2',[
             'title' => trans('Add or modify a crane'),
             'serial' => $trucksCrane->serial,
         ]);
-        /**
-        $crane = Crane::find($id);
-        return view('crane.crane',
-            [
-                'crane' => $crane,
-                'action' => route('crane.update',$id),
-                'title' => trans('Modify a crane'),
-            ]);
-         */
-    }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return Response
-     */
-    public function update(Request $request, $id)
-    {
-        $this->formRequest->setRequestArray($request->all());
-        $validatedData = $this->validate($request,$this->formRequest->rules(),$this->formRequest->messages(),$this->formRequest->attributes());
-        $crane = Crane::find($id);
-        $crane->fill($validatedData);
-        $crane->user()->associate(Auth::user());
-        $crane->save();
-        return redirect()->route('crane.index')->with('success', trans('The crane has been modified with success'));
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function destroy($id)
-    {
-        //
     }
 }

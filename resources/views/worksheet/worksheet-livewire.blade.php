@@ -1,4 +1,4 @@
-<form wire:submit.prevent="validated" method="post">
+<form wire:submit.prevent="save" method="post">
     @csrf
     <div class="row">
         <div class="col-4">
@@ -6,12 +6,12 @@
             <div class="form-group">
                 <label for="date">{{__('Date')}}</label>
                 <div class="input-group mb-3">
-                    <input type="text" id="date" name="date" class="form-control form-control-sm" placeholder="{{__('DD/MM/YYYY')}}" aria-label="date" aria-describedby="basic-addon1" wire:model="worksheet.date"/>
+                    <input type="text" id="date" name="date" class="form-control form-control-sm" placeholder="{{__('DD/MM/YYYY')}}" aria-label="date" aria-describedby="basic-addon1" wire:model.debounce.2000ms="worksheet.date"/>
                     <div class="input-group-prepend">
                         <span class="input-group-text" id="basic-addon1"><i class="fa fa-calendar-alt"></i></span>
                     </div>
                 </div>
-                <div class="moco-error-small danger-darker-hover" id="dateError"></div>
+                @error('worksheet.date')<span class="moco-error-small moco-color-error">{{$message}}</span>@enderror
             </div>
         </div>
         <div class="col-4">
@@ -26,10 +26,10 @@
             <div class="form-group">
                 <label for="warranty">{{ __('Warranty')  }}</label>
                 <select id="warranty" name="warranty" class="form-control form-control-sm" wire:model="worksheet.warranty">
-                    <option value="true">{{__('Yes')}}</option>
-                    <option value="false">{{__('No')}}</option>
+                    <option value=true>{{__('Yes')}}</option>
+                    <option value=false>{{__('No')}}</option>
                 </select>
-                <div class="moco-error-small danger-darker-hover" id="warrantyError"></div>
+                @error('worksheet.warranty')<span class="moco-error-small moco-color-error">{{$message}}</span>@enderror
             </div>
         </div>
     </div>
@@ -52,7 +52,7 @@
                     <!-- Search -->
                     <div class="col-6">
                         <div class="form-group">
-                            <label for="searchCrane">{{__('Search crane')}} <a href="#" id="add_crane"><img src="/images/crane-24.png"/></a> </label>
+                            <label for="searchCrane">{{__('Search crane')}} <a href="#" id="add_crane" wire:click="addTrucksCrane"><img src="/images/crane-24.png" /></a> </label>
                             <input id="searchCrane" name="searchCrane" class="form-control form-control-sm" placeholder="{{__('Search ...')}}" autocomplete="off" wire:model="searchCrane"/>
                             <div class="position-absolute mt-1" style="border-radius: 4px; border: lightgray 1px solid;z-index: 9999; height: 300px; width: 475px; background-color: white; overflow: auto; padding: 10px" @if(count($search) == 0) hidden @endif>
                                 @foreach($search as $item)
@@ -79,8 +79,9 @@
                     <!-- TrucksCrane -->
                     <div class="col-6">
                         <div class="form-group">
-                            <label>{{__('Crane')}} <a href="#" id="add_crane"><img src="/images/crane-24.png"/></a> </label>
-                            @if(is_null($trucksCrane))
+                            <label>{{__('Crane')}} <a href="#" id="add_crane" wire:click="addTrucksCrane"><img src="/images/crane-24.png"/></a> </label>
+                            <input type="number" hidden wire:model="worksheet.truckscrane.id"/>
+                            @if(is_null($truckscrane))
                                 <div class="card" style="height: 200px">
                                     <div class="card-body" id="cardBody">
                                         <p style="color: lightgray">{{__('No crane selected')}}</p>
@@ -91,9 +92,9 @@
                                     <div class="d-flex d-sm-flex flex-sm-column">
                                         <div class="row">
                                             <div class="col-sm-10 border-right">
-                                                <div class="red-lighter-hover font-weight-bold">{{$trucksCrane->serial}}  </div>
-                                                <div>{{$trucksCrane->crane_model}}</div>
-                                                <div>{{$trucksCrane->plate}} - {{$trucksCrane->brand}} - {{$trucksCrane->truck_model}}</div>
+                                                <div class="red-lighter-hover font-weight-bold">{{$truckscrane->serial}}  </div>
+                                                <div>{{$truckscrane->crane_model}}</div>
+                                                <div>{{$truckscrane->plate}} - {{$truckscrane->brand}} - {{$truckscrane->truck_model}}</div>
                                                 <div class="red-lighter-hover font-weight-bold">{{$customer->name}}</div>
                                                 <div>{{$customer->address}}</div>
                                                 <div>{{$customer->zipcode}} - {{$customer->city}} - {{$customer->country}}</div>
@@ -103,14 +104,10 @@
                                     </div>
                                 </div>
                             @endif
-
-                            <div class="moco-error-small danger-darker-hover" id="customer_idError"></div>
+                            @error('worksheet.truckscrane_id')<span class="moco-error-small moco-color-error">{{$message}}</span>@enderror
                         </div>
-
                     </div>
-
                 </div>
-
             </div>
 
             <!-- TAB DATA -->
@@ -136,7 +133,7 @@
                         <div class="form-group">
                             <label for="oil_replace">{{__('Oil replaced (liter)')}}</label>
                             <input type="text" id="oil_replace" name="oil_replace" class="form-control form-control-sm" wire:model.debounce.5000ms="worksheet.oil_replace">
-                            <div class="moco-error-small danger-darker-hover" id="oil_replaceError"></div>
+                            @error('worksheet.oil_replace')<span class="moco-error-small moco-color-error">{{$message}}</span>@enderror
                         </div>
                     </div>
                     <div class="col-2">
@@ -148,7 +145,7 @@
                                 <option value="true">{{__('Yes')}}</option>
                                 <option value="false">{{__('No')}}</option>
                             </select>
-                            <div class="moco-error-small danger-darker-hover" id="oil_filteredError"></div>
+                            @error('worksheet.oil_filtered')<span class="moco-error-small moco-color-error">{{$message}}</span>@enderror
                         </div>
                     </div>
 

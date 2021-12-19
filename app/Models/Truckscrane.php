@@ -3,11 +3,12 @@
 namespace App\Models;
 
 use App\Moco\Common\MocoModelCreatedUpdatedAt;
+use App\Moco\Common\MocoModelForConsultInterface;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class TrucksCrane extends Model
+class Truckscrane extends Model implements MocoModelForConsultInterface
 {
     use HasFactory,MocoModelCreatedUpdatedAt;
 
@@ -26,7 +27,7 @@ class TrucksCrane extends Model
      *
      * @var string[]
      */
-    protected $withForConsult = ['worksheets','user'];
+    protected $withForConsult = ['worksheets','customer','user'];
 
     /**
      * Retourne l'objet Customer lié à l'objet TrucksCrane

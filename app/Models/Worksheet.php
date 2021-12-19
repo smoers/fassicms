@@ -48,7 +48,7 @@ class Worksheet extends Model implements MocoModelForConsultInterface
      *
      * @var string[]
      */
-    protected $withForConsult = ['trucks_cranes','parts','clockings','user'];
+    protected $withForConsult = ['truckscrane','parts','clockings','user'];
 
     /**
      * Retourne l'objet Customer lié à l'objet Worksheet
@@ -56,7 +56,7 @@ class Worksheet extends Model implements MocoModelForConsultInterface
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function truckscrane(){
-        return $this->belongsTo(TrucksCrane::class);
+        return $this->belongsTo(Truckscrane::class);
     }
 
     /**
@@ -144,4 +144,6 @@ class Worksheet extends Model implements MocoModelForConsultInterface
     {
         return $this->withForConsult;
     }
+
+
 }
