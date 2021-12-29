@@ -44,6 +44,12 @@ abstract class DataTableComponent extends Component
         Export;
 
     /**
+     * Titre du rapport
+     *
+     * @var string
+     */
+    public string $title = '';
+    /**
      * Nombre de page par défault
      * @var int
      */

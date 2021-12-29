@@ -49,6 +49,22 @@
     "Template creation": "Maken van modellen",
     "The field :attribute is required": "Het veld :attribute is verplicht",
     "The maximum size for :attribute is :max": "De maximale grootte voor het veld :attribute is :max",
+    "Add or modify a crane": "Een kraan toevoegen of bewerken",
+    "Truck": "Vrachtauto",
+    "Brand": "Mark",
+    "Search crane ": "Zoek naar een kraan",
+    "From Partmetadatas": "Van onderdelen metadata",
+    "From Crane History": "Sinds de geschiedenis van kranen",
+    "Reporting from Part Metadata": "Verslag van onderdelen metadata",
+    "Electrical Part": "Elektrische kamer",
+    "Clear filter": "Verwijder het filter",
+    "Export to xls": "Exporteren naar XLS",
+    "Reporting Crane History": "Verslag van de geschiedenis van kranen",
+    "Crane model": "Kraan",
+    "Truck model": "Vrachtwagenpatroon",
+    "Current": "Stroom",
+    "Current date": "Wijziging datum",
+
 
 
     "#####": "!! CHANGE PASSWORD !!",

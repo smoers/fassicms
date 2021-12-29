@@ -33,10 +33,10 @@ use App\Moco\Datatables\Exports\ExportDataTable;
 
 trait Export
 {
-
     public function export()
     {
         $export = new ExportDataTable($this->models(), $this->columns());
+        return $export->download(str_replace(' ','_',$this->title).'_'.date('Hidmyy',time()).'.xlsx');
     }
 
 }

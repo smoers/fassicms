@@ -52,13 +52,13 @@ class ReportTruckscraneHistory extends DataTableComponent
     public function columns(): array
     {
         return [
-            Column::make(trans('Serial'),'serial')
+            Column::make(trans('Serial number'),'serial')
                 ->setSortable()
                 ->setFilter(new TextFilter('serial')),
             Column::make(trans('Crane model'),'crane_model')
                 ->setSortable()
                 ->setFilter(new TextFilter('crane_model')),
-            Column::make(trans('Plate'),'plate')
+            Column::make(trans('Plate number'),'plate')
                 ->setSortable()
                 ->setFilter(new TextFilter('plate')),
             Column::make(trans('Brand'),'brand')

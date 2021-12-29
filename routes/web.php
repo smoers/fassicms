@@ -171,6 +171,6 @@ Route::group(['middleware' => ['auth']],function (){
      * Reporting
      */
     Route::get('/report/reassort',[ReportController::class,'reassortLevel'])->name('report.reassortLevel')->middleware(['ifnot:list provider']);
-    Route::get('/reporting/{view}',[ReportingController::class,'from'])->name('reporting.from');
+    Route::get('/reporting/{id}',[ReportingController::class,'from'])->name('reporting.from');
 });
 

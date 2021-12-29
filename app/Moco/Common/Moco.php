@@ -34,7 +34,6 @@ use App\Models\Worksheet;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cookie;
-use phpDocumentor\Reflection\Types\Boolean;
 use PhpOffice\PhpSpreadsheet\Shared\Date;
 
 class Moco
@@ -160,6 +159,11 @@ class Moco
         return $datetimeExcel - floor($datetimeExcel);
     }
 
+    /**
+     * @param string|null $date
+     * @param string $format
+     * @return float|int|null
+     */
     public static function dateTimeToExcel (?string $date, string $format = 'd/m/Y')
     {
         if (!is_null($date)){

@@ -29,8 +29,9 @@
 
 namespace App\Moco\Datatables\Exports;
 
+use App\Moco\Common\Moco;
 use App\Moco\Datatables\Column;
-use Doctrine\DBAL\Schema\Schema;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Eloquent\Builder;
 use Maatwebsite\Excel\Concerns\Exportable;
 use Maatwebsite\Excel\Concerns\FromQuery;
@@ -54,25 +55,30 @@ class ExportDataTable implements FromQuery, WithHeadings, WithTitle, ShouldAutoS
     protected array $fieldType = [];
     protected array $heading = [];
     protected array $columnFormats = [];
+    protected array $map = [];
     protected array $typeConversion = [
-        'string' => NumberFormat::FORMAT_GENERAL,
+        'string' => NumberFormat::FORMAT_TEXT,
         'date' => NumberFormat::FORMAT_DATE_DDMMYYYY,
         'datetime' => NumberFormat::FORMAT_DATE_DDMMYYYY,
         'bigint' => NumberFormat::FORMAT_NUMBER,
-        'decimal' => NumberFormat::FORMAT_NUMBER_COMMA_SEPARATED1
+        'decimal' => NumberFormat::FORMAT_NUMBER_COMMA_SEPARATED1,
+        'boolean' => '',
     ];
 
     /**
      * Constructeur
      *
      * @param Builder $builder
-     * @param array $column
+     * @param array $columns
+     * @param string $title
      */
-    public function __construct(Builder $builder, array $columns)
+    public function __construct(Builder $builder, array $columns, string $title = 'Default')
     {
         $this->builder = $builder;
         $this->columns = $columns;
+        $this->title = $title;
         $this->retrieveTables();
+        $this->load();
     }
 
     /**
@@ -86,21 +92,40 @@ class ExportDataTable implements FromQuery, WithHeadings, WithTitle, ShouldAutoS
         }
     }
 
-    protected function build()
+    /**
+     * Charge l'objet
+     */
+    protected function load()
     {
         foreach ($this->columns as $column){
-            $this->buildHeadings($column);
+            $this->loadHeadings($column);
+            $this->loadColumnFormats($column);
         }
     }
 
-    protected function buildHeadings(Column $column)
+    /**
+     * Charge l'entête de la colonne
+     *
+     * @param Column $column
+     */
+    protected function loadHeadings(Column $column)
     {
         array_push($this->heading, $column->getName());
     }
 
-    protected function buildColumnFormats()
+    /**
+     * Charge le format de la colonne
+     *
+     * @param Column $column
+     */
+    protected function loadColumnFormats(Column $column)
     {
-
+        $lastIndex = array_key_last($this->columnFormats);
+        if (is_null($lastIndex))
+            $lastIndex = 'A';
+        else
+            $lastIndex++;
+        $this->columnFormats[$lastIndex] = $this->getFieldFormat($column);
     }
 
     /**
@@ -109,15 +134,21 @@ class ExportDataTable implements FromQuery, WithHeadings, WithTitle, ShouldAutoS
      * @param Column $column
      * @return NumberFormat|null
      */
-    protected function getFieldType(Column $column): ?NumberFormat
+    protected function getFieldFormat(Column $column): ?string
+    {
+        $type = $this->getFieldType($column);
+        if (array_key_exists($type, $this->typeConversion)){
+            return $this->typeConversion[$type];
+        }
+        return '';
+    }
+
+    protected function getFieldType(Column $column): ?string
     {
         foreach ($this->tables as $table){
             if (Schema::hasTable($table)){
                 if (Schema::hasColumn($table, $column->getAttribute())){
-                    $type = Schema::getColumnType($table, $column->getAttribute());
-                    if (array_key_exists($this->typeConversion)){
-                        return $this->typeConversion[$type];
-                    }
+                    return Schema::getColumnType($table, $column->getAttribute());
                 }
             }
         }
@@ -175,6 +206,25 @@ class ExportDataTable implements FromQuery, WithHeadings, WithTitle, ShouldAutoS
 
     public function map($row): array
     {
-        // TODO: Implement map() method.
+        $map = [];
+        foreach ($this->columns as $column){
+            switch ($this->getFieldType($column)){
+                case 'date':
+                    array_push($map,Moco::dateTimeToExcel($row[$column->getAttribute()]));
+                    break;
+                case 'datetime':
+                    array_push($map,Moco::dateTimeToExcel($row[$column->getAttribute()],'d/m/Y H:i'));
+                    break;
+                case 'decimal':
+                    array_push($map,Moco::floatValReplace($row[$column->getAttribute()]));
+                    break;
+                case 'boolean':
+                    array_push($map,$row[$column->getAttribute()] === 1);
+                    break;
+                default:
+                    array_push($map,$row[$column->getAttribute()]);
+            }
+        }
+        return $map;
     }
 }

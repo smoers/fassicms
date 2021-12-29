@@ -490,6 +490,16 @@ return [
         ],
     ],
     'datatable' => [
+        'report' => [
+            1 => [
+                'view' => 'report.partmetadata-export-data-table',
+                'title' => 'Reporting from Part Metadata',
+            ],
+            2 => [
+                'view' => 'report.report-truckscrane-history',
+                'title' => 'Reporting Crane History'
+            ],
+        ],
         'fields' => [
             'excluded' => [
                 'id',

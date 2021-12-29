@@ -1,21 +1,18 @@
 <?php $__env->startSection('content'); ?>
     <div class="container-fluid p-2 h-100 moco-layout-height">
         <div class="container-fluid text-center mb-3">
-            <div class="container-fluid text-center mb-3">
-                <div class="moco-title brown-lighter-hover"><?php echo e($title); ?></div>
-            </div>
             <?php
 if (! isset($_instance)) {
-    $html = \Livewire\Livewire::mount($livewire,['renderViewPath' => $livewire])->html();
-} elseif ($_instance->childHasBeenRendered('15zFl0x')) {
-    $componentId = $_instance->getRenderedChildComponentId('15zFl0x');
-    $componentTag = $_instance->getRenderedChildComponentTagName('15zFl0x');
+    $html = \Livewire\Livewire::mount($livewire,['renderViewPath' => $livewire,'title' => $title])->html();
+} elseif ($_instance->childHasBeenRendered('okswnj1')) {
+    $componentId = $_instance->getRenderedChildComponentId('okswnj1');
+    $componentTag = $_instance->getRenderedChildComponentTagName('okswnj1');
     $html = \Livewire\Livewire::dummyMount($componentId, $componentTag);
-    $_instance->preserveRenderedChild('15zFl0x');
+    $_instance->preserveRenderedChild('okswnj1');
 } else {
-    $response = \Livewire\Livewire::mount($livewire,['renderViewPath' => $livewire]);
+    $response = \Livewire\Livewire::mount($livewire,['renderViewPath' => $livewire,'title' => $title]);
     $html = $response->html();
-    $_instance->logRenderedChild('15zFl0x', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
+    $_instance->logRenderedChild('okswnj1', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
 }
 echo $html;
 ?>
