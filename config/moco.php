@@ -470,6 +470,7 @@ return [
                     'bar_code' => 'Bar Code',
                     'qty' => 'Quantity',
                     'price' => 'Price',
+                    'price_total' => 'Total Price',
                     'updated_at' => 'Update Date',
                 ],
                 'show' => [],

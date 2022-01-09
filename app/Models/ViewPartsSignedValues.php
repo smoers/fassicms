@@ -83,4 +83,17 @@ class ViewPartsSignedValues extends Model
         }
         return $return;
     }
+
+    /**
+     * @param $value
+     * @return string|null
+     */
+    public function getPriceAttribute($value)
+    {
+        if($value == ''){
+            return null;
+        } else {
+            return number_format(floatval(str_replace(',', '.', $value)), 2, ',', '.');
+        }
+    }
 }

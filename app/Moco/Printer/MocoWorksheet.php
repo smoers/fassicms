@@ -34,7 +34,9 @@ use App\Moco\Common\MocoOptions;
 use App\Models\Part;
 use App\Models\ViewClockingExtended;
 use App\Models\ViewClockingTotal;
+use App\Models\ViewPartsSignedValues;
 use App\Models\Worksheet;
+use Illuminate\Support\Facades\DB;
 
 
 class MocoWorksheet
@@ -108,8 +110,8 @@ class MocoWorksheet
 
     public function build()
     {
-        $crane = $this->worksheet->crane()->first();
-        $customer = $this->worksheet->customer()->first();
+        $truckscrane = $this->worksheet->truckscrane()->first();
+        $customer = $truckscrane->customer()->first();
         $this->pdf->addPage();
         /**
          * Positionne le curseur
@@ -143,7 +145,7 @@ class MocoWorksheet
          * Modèle, Nom du client
          */
         $this->pdf->MultiCellLimitedItalic($this->formatLabel('Modèle','Model'),$split[0],0,'R',0, $this::$DARK_GREY);
-        $this->pdf->MultiCellLimited($crane->model,$split[1],0,'L',0);
+        $this->pdf->MultiCellLimited($truckscrane->crane_model,$split[1],0,'L',0);
         $this->pdf->MultiCellLimitedItalic($this->formatLabel('Nom du client','Klantnaam'),$split[2],0,'R',0, $this::$DARK_GREY);
         $this->pdf->MultiCellLimited($customer->name,$split[3],0,'L',0);
         $this->pdf->Ln($this->pdf->getMaxCellHeight() * $this->pdf->getLineHeight());
@@ -151,7 +153,7 @@ class MocoWorksheet
          * Plaque, Adresse
          */
         $this->pdf->MultiCellLimitedItalic($this->formatLabel('Plaque','Plaat'),$split[0],0,'R',0, $this::$DARK_GREY);
-        $this->pdf->MultiCellLimited($crane->plate,$split[1],0,'L',);
+        $this->pdf->MultiCellLimited($truckscrane->plate,$split[1],0,'L',);
         $this->pdf->MultiCellLimitedItalic($this->formatLabel('Adresse','Adres'),$split[2],0,'R',0, $this::$DARK_GREY);
         $this->pdf->MultiCellLimited("$customer->address\n\r$customer->zipcode, $customer->city",$split[3],0,'L',0);
         $this->pdf->Ln($this->pdf->getMaxCellHeight() * $this->pdf->getLineHeight());
@@ -164,7 +166,7 @@ class MocoWorksheet
             $phone = $customer->phone.$customer->mobile;
         }
         $this->pdf->MultiCellLimitedItalic($this->formatLabel('N° de série','Serienummer'),$split[0],0,'R',0, $this::$DARK_GREY);
-        $this->pdf->MultiCellLimited($crane->serial,$split[1],0,'L',0);
+        $this->pdf->MultiCellLimited($truckscrane->serial,$split[1],0,'L',0);
         $this->pdf->MultiCellLimitedItalic($this->formatLabel('Tél / GSM','Telefoon / GSM'),$split[2],0,'R',0, $this::$DARK_GREY);
         $this->pdf->MultiCellLimited($phone,$split[3],0,'L',0);
         $this->pdf->Ln($this->pdf->getMaxCellHeight() * $this->pdf->getLineHeight());
@@ -344,7 +346,7 @@ class MocoWorksheet
             $this->pdf->Ln();
         }
         /**
-         * format la coleur vers null
+         * format la couleur vers null
          */
         $this->pdf->global_font_color = null;
         $this->pdf->global_align = null;
@@ -369,7 +371,10 @@ class MocoWorksheet
         /**
          * liste des pièces
          */
-        $parts = Part::where('worksheet_id','=',$this->worksheet->id)->orderBy('part_number')->get();
+        $parts = ViewPartsSignedValues::groupBy('worksheet_id','part_number')
+            ->select('worksheet_id','part_number','description','year', 'price', DB::raw('sum(qty_signed) as qty'), DB::raw('sum(total_price_signed) as total_price_signed'))
+            ->where('worksheet_id','=',$this->worksheet->id)->get();
+        $partsTotals = ViewPartsSignedValues::groupBy('worksheet_id')->select(DB::raw('sum(total_price_signed) as total_price_signed'))->first();
         /**
          * Ajoute une nouvelle page
          */
@@ -417,9 +422,22 @@ class MocoWorksheet
             $this->pdf->MultiCellLimitedFill($part->year,MocoPrintTemplate::$MultiCellLimited,$split[2],$_H,'RM',1,$this::$BLACK,$this::$LIGHT_GREY);
             $this->pdf->MultiCellLimitedFill($part->qty,MocoPrintTemplate::$MultiCellLimited,$split[3],$_H,'RM',1,$this::$BLACK,$this::$LIGHT_GREY);
             $this->pdf->MultiCellLimitedFill($part->price,MocoPrintTemplate::$MultiCellLimited,$split[4],$_H,'RM',1,$this::$BLACK,$this::$LIGHT_GREY);
-            $this->pdf->MultiCellLimitedFill($part->getTotal(),MocoPrintTemplate::$MultiCellLimited,$split[5],$_H,'RM',1,$this::$BLACK,$this::$LIGHT_GREY);
+            $this->pdf->MultiCellLimitedFill($part->total_price_signed,MocoPrintTemplate::$MultiCellLimited,$split[5],$_H,'RM',1,$this::$BLACK,$this::$LIGHT_GREY);
             $this->pdf->Ln();
         }
+        /**
+         * format la couleur vers null
+         */
+        $this->pdf->global_font_color = null;
+        $this->pdf->global_align = null;
+        $split = $this->pdf->splitByPercent([85,10]);
+        $this->pdf->MultiCellLimitedBold($this->formatLabel('Total', 'Totaal',':','/'),$split[0],$_H,'RM',0,$this::$RED);
+        /**
+         * Si il n'y a pas d'heure pour cette fiche de travail
+         * l'objet hoursTotal sera null, pour éviter une erreur on le test avant
+         */
+        if (!is_null($partsTotals))
+            $this->pdf->MultiCellLimitedFill($partsTotals->total_price_signed,MocoPrintTemplate::$MultiCellLimitedBold,$split[1],$_H,'RM',1,$this::$RED);
         /**
          * reset
          */
