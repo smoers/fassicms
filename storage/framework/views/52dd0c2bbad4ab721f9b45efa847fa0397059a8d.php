@@ -7,15 +7,15 @@
         <?php
 if (! isset($_instance)) {
     $html = \Livewire\Livewire::mount('clocking.clockings-details-correct-list', [])->html();
-} elseif ($_instance->childHasBeenRendered('dlts8Oy')) {
-    $componentId = $_instance->getRenderedChildComponentId('dlts8Oy');
-    $componentTag = $_instance->getRenderedChildComponentTagName('dlts8Oy');
+} elseif ($_instance->childHasBeenRendered('27pcVyQ')) {
+    $componentId = $_instance->getRenderedChildComponentId('27pcVyQ');
+    $componentTag = $_instance->getRenderedChildComponentTagName('27pcVyQ');
     $html = \Livewire\Livewire::dummyMount($componentId, $componentTag);
-    $_instance->preserveRenderedChild('dlts8Oy');
+    $_instance->preserveRenderedChild('27pcVyQ');
 } else {
     $response = \Livewire\Livewire::mount('clocking.clockings-details-correct-list', []);
     $html = $response->html();
-    $_instance->logRenderedChild('dlts8Oy', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
+    $_instance->logRenderedChild('27pcVyQ', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
 }
 echo $html;
 ?>

@@ -16,6 +16,7 @@ use App\Http\Controllers\WorksheetController;
 use App\Http\Controllers\ClockingController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\TechnicianController;
+use Infureal\Http\Controllers\GuiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -172,5 +173,8 @@ Route::group(['middleware' => ['auth']],function (){
      */
     Route::get('/report/reassort',[ReportController::class,'reassortLevel'])->name('report.reassortLevel')->middleware(['ifnot:list provider']);
     Route::get('/reporting/{id}',[ReportingController::class,'from'])->name('reporting.from');
+
+    Route::get('/artisan', [GuiController::class, 'index'])->name('gui.index');
+    Route::post('/artisan/{command}', [GuiController::class, 'run'])->name('gui.run');
 });
 

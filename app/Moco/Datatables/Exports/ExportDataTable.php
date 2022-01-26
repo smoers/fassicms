@@ -87,8 +87,13 @@ class ExportDataTable implements FromQuery, WithHeadings, WithTitle, ShouldAutoS
     protected function retrieveTables(): void
     {
         array_push($this->tables, $this->builder->getQuery()->from);
-        foreach ($this->builder->getQuery()->joins as $join){
-            array_push($this->tables, $join->table);
+        /**
+         * Si des relations existent ont les places dans le tableau des tables
+         */
+        if (!is_null($joins = $this->builder->getQuery()->joins)) {
+            foreach ($joins as $join) {
+                array_push($this->tables, $join->table);
+            }
         }
     }
 

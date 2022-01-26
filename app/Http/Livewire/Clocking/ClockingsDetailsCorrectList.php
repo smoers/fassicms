@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Clocking;
 
+use App\Moco\Common\MocoLivewireSearchSession;
 use App\Models\ViewClockingsDetailsCorrect;
 use Illuminate\Database\Eloquent\Builder;
 use Rappasoft\LaravelLivewireTables\TableComponent;
@@ -10,7 +11,7 @@ use Rappasoft\LaravelLivewireTables\Views\Column;
 
 class ClockingsDetailsCorrectList extends TableComponent
 {
-    use HtmlComponents;
+    use HtmlComponents, MocoLivewireSearchSession;
 
     private $action = null;
     private $actionCurrent = null;
@@ -36,6 +37,7 @@ class ClockingsDetailsCorrectList extends TableComponent
         $this->sortDefaultIcon = '<i class="fas fa-sort-alpha-down"></i>';
         $this->ascSortIcon = '<i class="fas fa-sort-alpha-up"></i>';
         $this->descSortIcon = '<i class="fas fa-sort-alpha-down"></i>';
+        $this->loadSearchSessionValue();
         parent::__construct($id);
     }
 

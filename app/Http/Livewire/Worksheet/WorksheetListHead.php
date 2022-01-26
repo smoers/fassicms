@@ -22,18 +22,27 @@
 
 namespace App\Http\Livewire\Worksheet;
 
+use App\Moco\Common\MocoLivewireSearchSession;
 use Carbon\Carbon;
 use Livewire\Component;
 
 class WorksheetListHead extends Component
 {
+    use MocoLivewireSearchSession;
+
+    /**
+     * propriété utilisée par le trait MocoLivewireSearchSession
+     * @var array|string[]
+     */
+    protected array $properties =  ['year','template','validate'];
+
     public $year = null;
     public $template = false;
     public $validate = false;
 
     public function mount()
     {
-        $this->year = Carbon::now()->year;
+        $this->loadSearchSessionValue();
     }
 
     /**
@@ -43,10 +52,12 @@ class WorksheetListHead extends Component
      */
     public function render()
     {
-        if ($this->year < 2000 and $this->year > 2100){
+        if (is_null($this->year) || ($this->year < 2000 and $this->year > 2100)){
             $this->year = Carbon::now()->year;
         }
         $this->emit('headerChange',$this->year, $this->template,$this->validate);
         return view('livewire.worksheet.worksheet-list-head');
     }
+
+
 }

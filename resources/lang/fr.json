@@ -56,6 +56,8 @@
     "Search crane ": "Rechercher une grue",
     "From Partmetadatas": "Depuis les méta-données des pièces",
     "From Crane History": "Depuis l'historique des grues",
+    "From Stock Reassortment": "Depuis la liste des pièces à réassortir",
+    "Reporting": "Rapports",
     "Reporting from Part Metadata": "Rapport depuis les méta-données des pièces",
     "Electrical Part": "Pièce électrique",
     "Clear filter": "Supprimer le filtre",
@@ -65,6 +67,9 @@
     "truck model": "Modèle de camion",
     "Current": "Actuel",
     "Current date": "Date de Modification",
+    "Stock info": "Informations sur le stock",
+    "Spares to restock": "Pièces à réassortir",
+    "Show report": "Afficher le rapport",
 
 
     "#####": "!! CHANGE PASSWORD !!",

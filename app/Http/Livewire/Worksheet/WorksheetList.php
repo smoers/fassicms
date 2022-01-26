@@ -22,6 +22,7 @@
 
 namespace App\Http\Livewire\Worksheet;
 
+use App\Moco\Common\MocoLivewireSearchSession;
 use App\Models\ViewWorksheetCustomerCrane;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
@@ -31,7 +32,13 @@ use Rappasoft\LaravelLivewireTables\Views\Column;
 
 class WorksheetList extends TableComponent
 {
-    use HtmlComponents;
+    use HtmlComponents, MocoLivewireSearchSession;
+
+    /**
+     * propriété utilisée par le trait MocoLivewireSearchSession
+     * @var array|string[]
+     */
+    protected array $properties =  ['year','template','validate'];
     protected $rowClass ='';
     public $year = null;
     public $template = false;
@@ -45,6 +52,7 @@ class WorksheetList extends TableComponent
     {
         $this->year = Carbon::now()->year;
         $this->template = false;
+        $this->loadSearchSessionValue();
     }
 
     /**
@@ -162,6 +170,12 @@ class WorksheetList extends TableComponent
         $this->year = $year;
         $this->template = $template;
         $this->validate = $validate;
+        /**
+         * nécessaire pour le trait MocoLivewireSearchSession
+         * afin de sauvegarder les valeurs des propriétés dans la session
+         */
+
+        $this->updated();
     }
 
 }

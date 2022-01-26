@@ -39,12 +39,9 @@ return [
      * Version release
      */
     'app' => [
-        'version' => 'Version 2.3.2',
+        'version' => 'Version 3.0.1',
         'release' => [
-            '<a class="links" href="https://mo-consult.myjetbrains.com/youtrack/issue/SMSF-3" target="_blank">SMSF-3 Impression d\'une fiche de travail</a>',
-            '<a class="links" href="https://mo-consult.myjetbrains.com/youtrack/issue/SMSF-13" target="_blank">SMSF-13 Accès atelier</a>',
-            '<a class="links" href="https://mo-consult.myjetbrains.com/youtrack/issue/SMSF-11" target="_blank">SMSF-11 Impression de fiche de travail</a>',
-            '<a class="links" href="#">Possibilité de modifier votre mot de passe</a></br>',
+            '<a class="links" href="https://mo-consult.myjetbrains.com/youtrack/issue/SMSF-15" target="_blank">SMSF-15 Ajout d\'un client ou d\'une grue ne fonctionne pas</a>',
             ]
     ],
     /**
@@ -499,6 +496,10 @@ return [
             2 => [
                 'view' => 'report.report-truckscrane-history',
                 'title' => 'Reporting Crane History'
+            ],
+            3 => [
+                'view' => 'report.report-stock-reassortment',
+                'title' => 'Reassortment List',
             ],
         ],
         'fields' => [

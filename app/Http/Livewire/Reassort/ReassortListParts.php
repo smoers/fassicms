@@ -22,6 +22,7 @@
 
 namespace App\Http\Livewire\Reassort;
 
+use App\Moco\Common\MocoLivewireSearchSession;
 use App\Models\Partmetadata;
 use App\Models\Store;
 use Illuminate\Database\Eloquent\Builder;
@@ -31,8 +32,13 @@ use Rappasoft\LaravelLivewireTables\Views\Column;
 
 class ReassortListParts extends TableComponent
 {
-    use HtmlComponents;
+    use HtmlComponents, MocoLivewireSearchSession;
 
+    /**
+     * propriété utilisée par le trait MocoLivewireSearchSession
+     * @var array|string[]
+     */
+    protected array $properties =  ['locationId'];
     public $locationId = null;
     protected $listeners = ['headerChange'];
 
@@ -60,6 +66,7 @@ class ReassortListParts extends TableComponent
     public function mount()
     {
         $this->locationId = config('moco.reassort.defaultLocation');
+        $this->loadSearchSessionValue();
     }
 
     /**
@@ -138,6 +145,11 @@ class ReassortListParts extends TableComponent
     public function headerChange($locationId)
     {
         $this->locationId = $locationId;
+        /**
+         * nécessaire pour le trait MocoLivewireSearchSession
+         * afin de sauvegarder les valeurs des propriétés dans la session
+         */
+        $this->updated();
     }
 
 }

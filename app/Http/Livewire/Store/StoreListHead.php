@@ -22,11 +22,19 @@
 
 namespace App\Http\Livewire\Store;
 
+use App\Moco\Common\MocoLivewireSearchSession;
 use Carbon\Carbon;
 use Livewire\Component;
 
 class StoreListHead extends Component
 {
+    use MocoLivewireSearchSession;
+
+    /**
+     * propriété utilisée par le trait MocoLivewireSearchSession
+     * @var array|string[]
+     */
+    protected array $properties =  ['year','enabled'];
     public $year = null;
     public $enabled = null;
 
@@ -37,6 +45,7 @@ class StoreListHead extends Component
     {
         $this->year = Carbon::now()->year;
         $this->enabled = true;
+        $this->loadSearchSessionValue();
     }
 
     /**

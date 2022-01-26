@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Provider;
 
+use App\Moco\Common\MocoLivewireSearchSession;
 use App\Models\Provider;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Auth;
@@ -12,7 +13,7 @@ use Rappasoft\LaravelLivewireTables\Views\Column;
 
 class ProviderList extends TableComponent
 {
-    use HtmlComponents;
+    use HtmlComponents, MocoLivewireSearchSession;
     public $edit = null;
     public Provider $provider;
 
@@ -38,6 +39,7 @@ class ProviderList extends TableComponent
         $this->ascSortIcon = '<i class="fas fa-sort-alpha-up"></i>';
         $this->descSortIcon = '<i class="fas fa-sort-alpha-down"></i>';
         $this->rowClass = 'moco-row-table-height-small';
+        $this->loadSearchSessionValue();
         parent::__construct($id);
     }
 

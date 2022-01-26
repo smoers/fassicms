@@ -76,7 +76,7 @@ class CustomerContact extends Model
     {
         $currentContacts = CustomerContact::where('customer_id','=',$customer->id)->get();
         foreach ($currentContacts as $currentContact){
-            if (!in_array($currentContact->id, $contacts['id']))
+            if (empty($contacts) || !in_array($currentContact->id, $contacts['id']))
                 $currentContact->delete();
         }
     }

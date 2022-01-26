@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Customer;
 
+use App\Moco\Common\MocoLivewireSearchSession;
 use App\Models\Customer;
 use Illuminate\Database\Eloquent\Builder;
 use Rappasoft\LaravelLivewireTables\TableComponent;
@@ -10,7 +11,7 @@ use Rappasoft\LaravelLivewireTables\Views\Column;
 
 class CustomerList extends TableComponent
 {
-    use HtmlComponents;
+    use HtmlComponents, MocoLivewireSearchSession;
     protected $rowClass ='';
 
     /**
@@ -26,6 +27,7 @@ class CustomerList extends TableComponent
         $this->sortDefaultIcon = '<i class="fas fa-sort-alpha-down"></i>';
         $this->ascSortIcon = '<i class="fas fa-sort-alpha-up"></i>';
         $this->descSortIcon = '<i class="fas fa-sort-alpha-down"></i>';
+        $this->loadSearchSessionValue();
         parent::__construct($id);
     }
 

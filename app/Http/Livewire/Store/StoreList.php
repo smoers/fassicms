@@ -27,20 +27,23 @@
 namespace App\Http\Livewire\Store;
 
 
-use App\Models\Catalog;
+use App\Moco\Common\MocoLivewireSearchSession;
 use App\Models\Partmetadata;
-use App\Models\Store;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
-
-use Illuminate\View\View;
 use Rappasoft\LaravelLivewireTables\TableComponent;
 use Rappasoft\LaravelLivewireTables\Traits\HtmlComponents;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 
 class StoreList extends TableComponent
 {
-    use HtmlComponents;
+    use HtmlComponents, MocoLivewireSearchSession;
+
+    /**
+     * propriété utilisée par le trait MocoLivewireSearchSession
+     * @var array|string[]
+     */
+    protected array $properties =  ['year','enabled'];
     public $year = null;
     public $enabled = null;
     protected $listeners = ['headerChange'];
@@ -69,6 +72,7 @@ class StoreList extends TableComponent
     {
         $this->year = Carbon::now()->year;
         $this->enabled = true;
+        $this->loadSearchSessionValue();
     }
 
     /**
@@ -118,6 +122,11 @@ class StoreList extends TableComponent
     {
         $this->year = $year;
         $this->enabled = $enabled;
+        /**
+         * nécessaire pour le trait MocoLivewireSearchSession
+         * afin de sauvegarder les valeurs des propriétés dans la session
+         */
+        $this->updated();
     }
 
     /**

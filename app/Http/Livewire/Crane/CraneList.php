@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Crane;
 
+use App\Moco\Common\MocoLivewireSearchSession;
 use App\Models\TrucksCrane;
 use Illuminate\Database\Eloquent\Builder;
 use Rappasoft\LaravelLivewireTables\TableComponent;
@@ -10,7 +11,7 @@ use Rappasoft\LaravelLivewireTables\Views\Column;
 
 class CraneList extends TableComponent
 {
-    use HtmlComponents;
+    use HtmlComponents, MocoLivewireSearchSession;
     protected $rowClass ='';
 
     /**
@@ -27,8 +28,10 @@ class CraneList extends TableComponent
         $this->sortDefaultIcon = '<i class="fas fa-sort-alpha-down"></i>';
         $this->ascSortIcon = '<i class="fas fa-sort-alpha-up"></i>';
         $this->descSortIcon = '<i class="fas fa-sort-alpha-down"></i>';
+        $this->loadSearchSessionValue();
         parent::__construct($id);
     }
+
 
     /**
      * @return Builder

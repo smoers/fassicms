@@ -4,6 +4,8 @@ namespace App\Console\Commands;
 
 use Carbon\Carbon;
 use Illuminate\Console\Command;
+use Monolog\Handler\StreamHandler;
+use Monolog\Logger;
 
 class DbBackup extends Command
 {
@@ -12,7 +14,7 @@ class DbBackup extends Command
      *
      * @var string
      */
-    protected $signature = 'db:backup {--D|data_only} {--T|tables=*}';
+    protected $signature = 'db:backup {--D|data_only} {--T|tables=*} {--W|where=}';
 
     /**
      * The console command description.
@@ -39,11 +41,28 @@ class DbBackup extends Command
     public function handle()
     {
         /**
+         * Log
+         */
+        $log = new Logger('backup');
+        $log->pushHandler(new StreamHandler(storage_path('logs/backup/log-backup-'. Carbon::now()->isoFormat('Y-MM-DD-HHmmss').'.log')));
+        /**
+         * Log paramêtres
+         */
+        $log->info($this->option('data_only'));
+        $log->info(implode(' ',$this->option('tables')));
+        $log->info($this->option('where'));
+        /**
          * construit la liste des tables, si des tables sont listées
          */
         $tables='';
         if (!empty($this->option('tables')))
             $tables = implode('-',$this->option('tables')).'-';
+        /**
+         * intègre la clause Where
+         */
+        $where = '';
+        if ($this->option('where'))
+            $where = ' --where="'.$this->option('where').'"';
         /**
          * Doit-on uniquement sauvegarder les données
          */
@@ -57,13 +76,17 @@ class DbBackup extends Command
         /**
          * Construit la chaine aved la commande
          */
-        $command = "mysqldump --user=" . env('DB_USERNAME') ." --password=" . env('DB_PASSWORD') . " --host=" . env('DB_HOST') . " " . env('DB_DATABASE') . " ". implode(' ', $this->option('tables')) . $data_only . " --skip-extended-insert  > " . storage_path('backup') . "/" . $filename;
+        $command = "mysqldump --user=" . env('DB_USERNAME') ." --password=" . env('DB_PASSWORD') . " --host=" . env('DB_HOST') . " " . env('DB_DATABASE') . " ". implode(' ', $this->option('tables')) . $where . $data_only . " --skip-extended-insert  > " . storage_path('backup') . "/" . $filename;
+        /**
+         * Log la ligne de commande
+         */
+        $log->info($command);
         /**
          * Exécute la commande
          */
         $returnVar = NULL;
         $output  = NULL;
         exec($command, $output, $returnVar);
-        return 0;
+        return $command;
     }
 }

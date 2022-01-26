@@ -37,7 +37,7 @@ class DashboardController extends Controller
             if (count(ViewPartmetadatasReassort::all()))
                 $asReassort = true;
 
-        return view('root/dashboard',[
+        return view('root.dashboard',[
             'asReassort' => $asReassort,
         ]);
     }

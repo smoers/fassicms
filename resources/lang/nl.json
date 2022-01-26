@@ -55,6 +55,8 @@
     "Search crane ": "Zoek naar een kraan",
     "From Partmetadatas": "Van onderdelen metadata",
     "From Crane History": "Sinds de geschiedenis van kranen",
+    "From Stock Reassortment": "Uit de lijst met onderdelen om opnieuw te lokken.",
+    "Reporting": "Rapporten",
     "Reporting from Part Metadata": "Verslag van onderdelen metadata",
     "Electrical Part": "Elektrische kamer",
     "Clear filter": "Verwijder het filter",
@@ -64,7 +66,9 @@
     "Truck model": "Vrachtwagenpatroon",
     "Current": "Stroom",
     "Current date": "Wijziging datum",
-
+    "Stock info": "Voorraadinformatie",
+    "Spares to restock": "Ressortische onderdelen",
+    "Show report": "Bekijk het rapport",
 
 
     "#####": "!! CHANGE PASSWORD !!",

@@ -84,7 +84,13 @@ class CustomerController extends Controller
         $customer = Customer::find($id);
         $customer->fill($validatedData);
         $customer->user()->associate(Auth::user());
-        $contacts = $validatedData['contacts'];
+        /**
+         * Y a t il des contacts
+         */
+        $contacts = [];
+        if(array_key_exists('contacts',$validatedData))
+            $contacts = $validatedData['contacts'];
+
         DB::transaction(function ()  use($customer,$contacts) {
             $customer->save();
             /**
@@ -93,8 +99,10 @@ class CustomerController extends Controller
             CustomerContact::remove($contacts,$customer);
             /**
              * Sauvegarde les contacts qui sont dans le liste POST
+             * Si il y en a !!
              */
-            CustomerContact::hydratedAndSave($contacts,$customer);
+            if (!empty($contacts))
+                CustomerContact::hydratedAndSave($contacts,$customer);
         });
         return redirect()->route('customer.index')->with('success',trans('The customer has been modified with success'));
 

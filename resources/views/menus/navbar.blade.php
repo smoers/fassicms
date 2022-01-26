@@ -83,6 +83,7 @@
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="{{route('reporting.from',1)}}">{{__('From Partmetadatas')}}</a>
                         <a class="dropdown-item" href="{{route('reporting.from',2)}}">{{__('From Crane History')}}</a>
+                        <a class="dropdown-item" href="{{route('reporting.from',3)}}">{{__('From Stock Reassortment')}}</a>
                     </div>
                 </li>
             </ul>

@@ -4,7 +4,7 @@
             <div class="input-group-prepend">
                 <div class="input-group-text"><?php echo e(__('Worksheets for')); ?></div>
             </div>
-            <input wire:model='year' type="text" class="form-control" id="_year" placeholder="<?php echo e(__('Year')); ?>" value="<?php echo e($year); ?>" <?php if($template): ?> readonly <?php endif; ?>>
+            <input wire:model='year' type="text" class="form-control" id="_year" placeholder="<?php echo e(__('Year')); ?>" <?php if($template): ?> readonly <?php endif; ?>>
         </div>
     </div>
     <div class="mr-3">

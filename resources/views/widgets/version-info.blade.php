@@ -1,5 +1,3 @@
-@extends('widgets.template')
-@section('body')
 <div class="d-flex flex-sm-row">
     <div class="d-flex flex-sm-column mr-2">
         <img src="{{asset('images/version-48.png')}}">
@@ -12,4 +10,3 @@
         @endforeach
     </div>
 </div>
-@endsection

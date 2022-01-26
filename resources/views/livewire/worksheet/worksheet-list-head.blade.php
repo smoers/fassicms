@@ -4,7 +4,7 @@
             <div class="input-group-prepend">
                 <div class="input-group-text">{{__('Worksheets for')}}</div>
             </div>
-            <input wire:model='year' type="text" class="form-control" id="_year" placeholder="{{__('Year')}}" value="{{ $year }}" @if($template) readonly @endif>
+            <input wire:model='year' type="text" class="form-control" id="_year" placeholder="{{__('Year')}}" @if($template) readonly @endif>
         </div>
     </div>
     <div class="mr-3">
