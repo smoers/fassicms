@@ -39,9 +39,11 @@ return [
      * Version release
      */
     'app' => [
-        'version' => 'Version 3.0.1',
+        'version' => 'Version 3.1.1',
         'release' => [
-            '<a class="links" href="https://mo-consult.myjetbrains.com/youtrack/issue/SMSF-15" target="_blank">SMSF-15 Ajout d\'un client ou d\'une grue ne fonctionne pas</a>',
+            '* La possibilité de générer un PDF avec la liste des techniciens et leur code barre a été ajoutée</br>* De mogelijkheid om een PDF te genereren met de lijst met technici en hun streepjescode is toegevoegd',
+            '* Les critères de recherche dans les listes sont sauvegarder durant la session</br>* De zoekcriteria in de lijsten worden tijdens de sessie opgeslagen',
+            '* Correction du bug sur l\'affichage des widget sur le tableau de bord</br>* Correctie van de bug op het display van widget op het dashboard'
             ]
     ],
     /**
@@ -141,6 +143,28 @@ return [
      */
     'print' => [
         /**
+        * Pour l'impression des code bar des techniciens
+        */
+        'technician_list' => [
+            'text_font_size' => 12,
+            'margin_left' => 15,
+            'margin_top' => 15,
+            'margin_right' => 15,
+            'footer_margin' => 25,
+            'top_margin' => 5,
+            'by_line' => 2,
+            'inter_line' => 20,
+            'align' => 'C',
+            'padding_left' => 4,
+            'padding_top' => 4,
+            'padding_right' => 4,
+            'padding_bottom' => 4,
+            'type_bc' => 'C39E',
+            'height_bc' => 40,
+            'width_bc' => 0.2,
+            'align_bc' => 'M',
+        ],
+        /**
          * Adresse pour les documents à imprimer
          */
         'address' => "FASSI BE sa/nv\n\rAvenue de l'espèrence, 68\n\rB-6220 Fleurus\n\rTél : +32 (0)71 43 43 35",
@@ -160,6 +184,7 @@ return [
          * paramêtres pour les codes barre
          */
         'barcode' => [
+
             /**
              * Style à utiliser
              */
@@ -500,6 +525,10 @@ return [
             3 => [
                 'view' => 'report.report-stock-reassortment',
                 'title' => 'Reassortment List',
+            ],
+            4 => [
+                'view' => 'report.report-worksheets-clockings',
+                'title' => 'Worksheets Clockings List'
             ],
         ],
         'fields' => [

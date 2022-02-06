@@ -1,4 +1,4 @@
-<div style="overflow-x: auto">
+<article>
     <div class="container-fluid text-center mb-3">
         <div class="moco-title brown-lighter-hover">{{$title}}</div>
     </div>
@@ -7,7 +7,7 @@
         @include('livewire.data-table.perpage')
         @include('livewire.data-table.button')
     </div>
-    <table class="table table-sm table-striped table-bordered" style="white-space: nowrap">
+    <table class="data table table-sm table-striped table-bordered" style="white-space: nowrap" data-rtc-resizable-table="table.one">
         @include('livewire.data-table.thead')
         <tbody>
         @include('livewire.data-table.filter')
@@ -16,5 +16,5 @@
         </tbody>
     </table>
     @include("livewire.data-table.pagination")
-</div>
+</article>
 @include("livewire.data-table.common")

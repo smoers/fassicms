@@ -32,6 +32,7 @@
                         <li><a class="dropdown-item" href="{{ route('technician.index') }}"> {{ __('Technicians') }}   <i class="fa fa-caret-right"></i></a>
                             <ul class="submenu dropdown-menu">
                                 @can('list technician')<li><a class="dropdown-item" href="{{ route('technician.index') }}">{{ __('List') }}</a></li>@endcan
+                                @can('list technician')<li><a class="dropdown-item" href="{{ route('technician.printlist') }}">{{ __('List Codebar for technicians') }}</a></li>@endcan
                                 @can('create technician')<li><a class="dropdown-item" href="{{ route('technician.create') }}">{{ __('Add') }}</a></li>@endcan
                             </ul>
                         </li>
@@ -84,6 +85,7 @@
                         <a class="dropdown-item" href="{{route('reporting.from',1)}}">{{__('From Partmetadatas')}}</a>
                         <a class="dropdown-item" href="{{route('reporting.from',2)}}">{{__('From Crane History')}}</a>
                         <a class="dropdown-item" href="{{route('reporting.from',3)}}">{{__('From Stock Reassortment')}}</a>
+                        <a class="dropdown-item" href="{{route('reporting.from',4)}}">{{__('From Worksheets Clockings')}}</a>
                     </div>
                 </li>
             </ul>

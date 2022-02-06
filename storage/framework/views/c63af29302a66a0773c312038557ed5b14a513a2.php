@@ -32,6 +32,7 @@
                         <li><a class="dropdown-item" href="<?php echo e(route('technician.index')); ?>"> <?php echo e(__('Technicians')); ?>   <i class="fa fa-caret-right"></i></a>
                             <ul class="submenu dropdown-menu">
                                 <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('list technician')): ?><li><a class="dropdown-item" href="<?php echo e(route('technician.index')); ?>"><?php echo e(__('List')); ?></a></li><?php endif; ?>
+                                <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('list technician')): ?><li><a class="dropdown-item" href="<?php echo e(route('technician.printlist')); ?>"><?php echo e(__('List Codebar for technicians')); ?></a></li><?php endif; ?>
                                 <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('create technician')): ?><li><a class="dropdown-item" href="<?php echo e(route('technician.create')); ?>"><?php echo e(__('Add')); ?></a></li><?php endif; ?>
                             </ul>
                         </li>
@@ -87,6 +88,7 @@
                         <a class="dropdown-item" href="<?php echo e(route('reporting.from',1)); ?>"><?php echo e(__('From Partmetadatas')); ?></a>
                         <a class="dropdown-item" href="<?php echo e(route('reporting.from',2)); ?>"><?php echo e(__('From Crane History')); ?></a>
                         <a class="dropdown-item" href="<?php echo e(route('reporting.from',3)); ?>"><?php echo e(__('From Stock Reassortment')); ?></a>
+                        <a class="dropdown-item" href="<?php echo e(route('reporting.from',4)); ?>"><?php echo e(__('From Worksheets Clockings')); ?></a>
                     </div>
                 </li>
             </ul>

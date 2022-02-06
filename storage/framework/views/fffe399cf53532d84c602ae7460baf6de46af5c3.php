@@ -2,25 +2,27 @@
 <tr class="<?php echo e($this->setTableHeadClass()); ?>">
     <?php $__currentLoopData = $columns; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $column): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
         <?php if($column->isSortable()): ?>
-            <th scope="col" class="<?php echo e($this->setTableHeadColumnClass($column)); ?>" wire:click="sort('<?php echo e($column->getAttribute()); ?>')" style="cursor: pointer;">
+            <th scope="col" class="<?php echo e($this->setTableHeadColumnClass($column)); ?>" data-rtc-resizable="<?php echo e($column->getRandomKey()); ?>">
                 <?php echo e($column->getName()); ?>
 
-                <?php if($sortField !== $column->getAttribute()): ?>
-                    <?php echo e(new \Illuminate\Support\HtmlString($sortDefaultIcon)); ?>
+                <a href="#" class="text-sm-center moco-color-info" wire:click="sort('<?php echo e($column->getAttribute()); ?>')">
+                    <?php if($sortField !== $column->getAttribute()): ?>
+                        <?php echo e(new \Illuminate\Support\HtmlString($sortDefaultIcon)); ?>
 
-                <?php elseif($sortDirection === 'asc'): ?>
-                    <?php echo e(new \Illuminate\Support\HtmlString($ascSortIcon)); ?>
+                    <?php elseif($sortDirection === 'asc'): ?>
+                        <?php echo e(new \Illuminate\Support\HtmlString($ascSortIcon)); ?>
 
-                <?php else: ?>
-                    <?php echo e(new \Illuminate\Support\HtmlString($descSortIcon)); ?>
+                    <?php else: ?>
+                        <?php echo e(new \Illuminate\Support\HtmlString($descSortIcon)); ?>
 
-                <?php endif; ?>
+                    <?php endif; ?>
+                </a>
                 <?php if($column->isFiltered()): ?>
                     <a href="#" class="text-sm-center moco-color-info" wire:click="cleanColumnFilter('<?php echo e($column->getAttribute()); ?>')"><i class="fas fa-filter"></i></a>
                 <?php endif; ?>
             </th>
         <?php else: ?>
-            <th scope="col" class="<?php echo e($this->setTableHeadColumnClass($column)); ?>">
+            <th scope="col" class="<?php echo e($this->setTableHeadColumnClass($column)); ?>" data-rtc-resizable="<?php echo e($column->getRandomKey()); ?>">
                 <?php echo e($column->getName()); ?>
 
                 <?php if($column->isFiltered()): ?>

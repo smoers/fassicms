@@ -61,7 +61,7 @@ abstract class FilterAbstract implements FilterInterface
     public function __construct(string $field, $defaultValue = null)
     {
         $this->field = $field;
-        $this->name = Str::replaceFirst('.','-',$field);
+        $this->name = $this::formatAttribute($field);
         $this->defaultValue = $defaultValue;
     }
 
@@ -143,9 +143,21 @@ abstract class FilterAbstract implements FilterInterface
         return [$this->getName() => $this->getDefaultValue()];
     }
 
+    /**
+     * @return mixed
+     */
     public function getValue()
     {
         return $this->value;
+    }
+
+    /**
+     * @param string $attribute
+     * @return string
+     */
+    public static function formatAttribute(string $attribute): string
+    {
+        return Str::replaceFirst('.','-',$attribute);
     }
 
 

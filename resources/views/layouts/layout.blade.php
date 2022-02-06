@@ -32,6 +32,8 @@ Date : 27-10-20
         <link href="{{ asset('3rd/bttn.css-v0.2.4/bttn.css') }}" rel="stylesheet">
         <!-- iziToast -->
         <link href="{{ asset('3rd/iziToast-master/dist/css/iziToast.min.css') }}" rel="stylesheet">
+        <!-- resizable-table-columns -->
+        <link href="{{ asset('3rd/resizable-table-columns-2.0.5/css/resizable-table-columns.min.css') }}" rel="stylesheet">
         <!-- CSS MOCO -->
         <link href="{{ asset('css/all.css') }}" rel="stylesheet" type="text/css">
 

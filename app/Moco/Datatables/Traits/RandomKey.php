@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright (c) 2021. MO Consult
+ * Copyright (c) 2022. MO Consult
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,36 +17,30 @@
  *  Company : Fassi Belgium
  *  Developer : MO Consult
  *  Author : Moers Serge
- *  Date : 4/11/21 19:27
+ *  Date : 6/02/22 18:16
  */
 
 /**
  * Company : Fassi Belgium
  * Developer : MO Consult
  * Authority : Moers Serge
- * Date : 04-11-21
+ * Date : 06-02-22
  */
 
 namespace App\Moco\Datatables\Traits;
 
-use App\Moco\Datatables\Filters\FilterAbstract;
-
-trait Cleanup
+trait RandomKey
 {
     /**
-     * supprime tous les filtres
+     * retourne une clé aléatoire
+     *
+     * @param int $length
+     * @return string
+     * @throws \Exception
      */
-    public function cleanFilter()
+    public function getRandomKey(int $length = 16): string
     {
-        foreach ($this->columns() as $column){
-            $this->filters[FilterAbstract::formatAttribute($column->getAttribute())] = null;
-        }
-
-    }
-
-    public function cleanColumnFilter($attribute): void
-    {
-        dd($attribute,$this->filters,FilterAbstract::formatAttribute($attribute));
-        $this->filters[FilterAbstract::formatAttribute($attribute)] = null;
+        $bytes = random_bytes($length);
+        return bin2hex($bytes);
     }
 }

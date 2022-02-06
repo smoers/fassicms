@@ -6,6 +6,9 @@ use App\Http\Requests\TechnicianRequest;
 use App\Moco\Common\Moco;
 use App\Moco\Common\MocoAjaxValidation;
 use App\Moco\Common\MocoModelForConsult;
+use App\Moco\Common\MocoOptions;
+use App\Moco\Common\MocoOptionsTechnicianPrintList;
+use App\Moco\Printer\MocoTechniciansListCodebar;
 use App\Models\Technician;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -143,5 +146,16 @@ class TechnicianController extends Controller
                 ]);
         }
         return redirect()->route('technicien.index');
+    }
+
+    public function printList()
+    {
+        if(!is_null($technicians = Technician::query()->where('enabled','=',true)->get())){
+            $options = new MocoOptions(new MocoOptionsTechnicianPrintList());
+            $pdf = new MocoTechniciansListCodebar($technicians, $options);
+            $pdf->build();
+            $pdf->Output();
+        }
+
     }
 }

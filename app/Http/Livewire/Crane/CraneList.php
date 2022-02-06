@@ -3,7 +3,7 @@
 namespace App\Http\Livewire\Crane;
 
 use App\Moco\Common\MocoLivewireSearchSession;
-use App\Models\TrucksCrane;
+use App\Models\Truckscrane;
 use Illuminate\Database\Eloquent\Builder;
 use Rappasoft\LaravelLivewireTables\TableComponent;
 use Rappasoft\LaravelLivewireTables\Traits\HtmlComponents;

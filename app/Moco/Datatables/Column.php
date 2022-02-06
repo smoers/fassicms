@@ -30,11 +30,15 @@
 namespace App\Moco\Datatables;
 
 
+use App\Moco\Common\Moco;
 use App\Moco\Datatables\Filters\FilterInterface;
+use App\Moco\Datatables\Traits\RandomKey;
 use Illuminate\Database\Eloquent\Model;
 
 class Column
 {
+    use RandomKey;
+
     /**
      * @var string
      */
@@ -42,7 +46,7 @@ class Column
     /**
      * @var string
      */
-    protected string $attribute;
+    protected ?string $attribute;
     /**
      * @var
      */
@@ -60,7 +64,7 @@ class Column
      * @param string $name
      * @param string $attribute
      */
-    public function __construct(string $name, string $attribute)
+    public function __construct(string $name, ?string $attribute)
     {
         $this->name = $name;
         $this->attribute = $attribute;
@@ -71,7 +75,7 @@ class Column
      * @param string $attribute
      * @return Column
      */
-    public static function make(string $name, string $attribute): Column
+    public static function make(string $name, ?string $attribute = null): Column
     {
         return new static($name, $attribute);
     }
@@ -87,7 +91,7 @@ class Column
     /**
      * @return string
      */
-    public function getAttribute(): string
+    public function getAttribute(): ?string
     {
         return $this->attribute;
     }

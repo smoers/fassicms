@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright (c) 2021. MO Consult
+ * Copyright (c) 2022. MO Consult
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,36 +17,36 @@
  *  Company : Fassi Belgium
  *  Developer : MO Consult
  *  Author : Moers Serge
- *  Date : 4/11/21 19:27
+ *  Date : 28/01/22 20:29
  */
 
 /**
  * Company : Fassi Belgium
  * Developer : MO Consult
  * Authority : Moers Serge
- * Date : 04-11-21
+ * Date : 28-01-22
  */
 
-namespace App\Moco\Datatables\Traits;
+namespace App\Moco\Common;
 
-use App\Moco\Datatables\Filters\FilterAbstract;
-
-trait Cleanup
+class MocoOptionsTechnicianPrintList implements MocoOptionsListInterface
 {
-    /**
-     * supprime tous les filtres
-     */
-    public function cleanFilter()
-    {
-        foreach ($this->columns() as $column){
-            $this->filters[FilterAbstract::formatAttribute($column->getAttribute())] = null;
-        }
+    private array $options;
 
+    /**
+     * @param array $options
+     */
+    public function __construct(array $options = [])
+    {
+        if (empty($options))
+            $this->options = config('moco.print.technician_list');
+        else
+            $this->options = $options;
     }
 
-    public function cleanColumnFilter($attribute): void
+
+    public function get(): array
     {
-        dd($attribute,$this->filters,FilterAbstract::formatAttribute($attribute));
-        $this->filters[FilterAbstract::formatAttribute($attribute)] = null;
+        return $this->options;
     }
 }

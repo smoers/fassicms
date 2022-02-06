@@ -155,6 +155,7 @@ Route::group(['middleware' => ['auth']],function (){
      * Technician Controller
      */
     Route::get('/technician',[TechnicianController::class,'index'])->name('technician.index')->middleware(['ifnot:list technician']);
+    Route::get('/technician/printlist',[TechnicianController::class,'printList'])->name('technician.printlist')->middleware(['ifnot:list technician']);
     Route::get('/technician/create',[TechnicianController::class,'create'])->name('technician.create')->middleware(['ifnot:create technician']);
     Route::get('/technician/{id}/edit',[TechnicianController::class,'edit'])->name('technician.edit')->middleware(['ifnot:edit technician']);
     Route::get('/technician/{id}/show',[TechnicianController::class,'show'])->name('technician.show')->middleware(['ifnot:consult technician']);

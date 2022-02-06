@@ -109,6 +109,10 @@ abstract class DataTableComponent extends Component
     public function render()
     {
         /**
+         * déclenche l'event javascript pour le resizing des colonnes
+         */
+        $this->dispatchBrowserEvent('resizable');
+        /**
          * une vue est-elle définie
          */
         if (!is_null($this->renderViewPath)) {
@@ -197,5 +201,7 @@ abstract class DataTableComponent extends Component
         }
         return $builder->orderBy($this->sortField,$this->sortDirection);
     }
+
+
 
 }
