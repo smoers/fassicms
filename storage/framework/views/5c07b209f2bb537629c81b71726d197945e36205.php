@@ -6,7 +6,7 @@
                     <?php echo e($column->formatted($model, $column)); ?>
 
                 <?php else: ?>
-                    <?php echo e(data_get($model, $column->getAttribute())); ?>
+                    <?php echo e(data_get($model, $column->getAlias())); ?>
 
                 <?php endif; ?>
             </td>

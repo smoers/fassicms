@@ -31,13 +31,13 @@ namespace App\Reports;
 
 use App\Moco\Datatables\Column;
 use App\Moco\Datatables\DataTableComponent;
+use App\Moco\Datatables\DataTableQueryBuilder;
 use App\Moco\Datatables\Filters\DateFilter;
 use App\Moco\Datatables\Filters\SelectBooleanFilter;
 use App\Moco\Datatables\Filters\TextFilter;
 use App\Models\Worksheet;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Support\Facades\DB;
 
 class ReportWorksheetsClockings extends DataTableComponent
 {
@@ -46,23 +46,22 @@ class ReportWorksheetsClockings extends DataTableComponent
 
     public function query(): Builder
     {
-        return Worksheet::query()
-            ->select('worksheets.*','technicians.firstname','technicians.lastname as technicians_lastname','technicians.number as technicians.number','technicians.enabled','clockings.date as clockings.date','clockings.start_date','clockings.stop_date')
-            ->leftJoin('clockings','worksheets.id','=','clockings.worksheet_id')->leftJoin('technicians','technicians.id','=','clockings.technician_id')->where('truckscrane_id','<>',null);
+        return DataTableQueryBuilder::make('worksheets','clockings','technicians')->builder()->leftJoin('clockings','worksheets.id','=','clockings.worksheet_id')->leftJoin('technicians','technicians.id','=','clockings.technician_id')->where('truckscrane_id','<>',null);
     }
 
     public function columns(): array
     {
         return [
             /*** Worksheet Number ***/
-            Column::make(trans('Number'),'number')
+            Column::make(trans('Number'),'worksheets.number')
                 ->setSortable()
-                ->setFilter(new TextFilter('number')),
+                ->setFilter(new TextFilter('worksheets.number')),
 
             /*** Date ***/
-            Column::make(trans('Date'),'date')
+            Column::make(trans('Date'),'worksheets.date')
                 ->setSortable()
-                ->setFilter(new DateFilter('date')),
+                ->formatDate()
+                ->setFilter(new DateFilter('worksheets.date')),
 
             /*** Technician number ***/
             Column::make(trans('Technician number'),'technicians.number')
@@ -70,12 +69,12 @@ class ReportWorksheetsClockings extends DataTableComponent
                 ->setFilter(new TextFilter('technicians.number')),
 
             /*** Technicien Firstname ***/
-            Column::make(trans('Firstname'),'firstname')
+            Column::make(trans('Firstname'),'technicians.firstname')
                 ->setSortable()
                 ->setFilter(new TextFilter('technicians.firstname')),
 
             /*** Technicien Lastname ***/
-            Column::make(trans('Lastname'),'technicians_lastname')
+            Column::make(trans('Lastname'),'technicians.lastname')
                 ->setSortable()
                 ->setFilter(new TextFilter('technicians.lastname')),
 
@@ -87,25 +86,26 @@ class ReportWorksheetsClockings extends DataTableComponent
             /*** Clocking Date ***/
             Column::make(trans('Clocking date'),'clockings.date')
                 ->setSortable()
+                ->formatDate()
                 ->setFilter(new DateFilter('clockings.date')),
 
             /*** Clocking Start_date ***/
-            Column::make(trans('Clocking start'),'start_date')
-                ->format(function (Worksheet $model){
-                    return !is_null($model->t_number) ? Carbon::parse($model->start_date)->format('H:i') : null;
+            Column::make(trans('Clocking start'),'clockings.start_date')
+                ->format(function (Worksheet $model, Column $column){
+                    return !is_null($model[$column->getAlias()]) ? Carbon::parse($model[$column->getAlias()])->format('H:i') : null;
                 }),
 
             /*** Clocking Stop_date ***/
-            Column::make(trans('Clocking stop'),'stop_date')
-                ->format(function (Worksheet $model){
-                    return !is_null($model->t_number) ? Carbon::parse($model->stop_date)->format('H:i') : null;
+            Column::make(trans('Clocking stop'),'clockings.stop_date')
+                ->format(function (Worksheet $model, Column $column){
+                    return !is_null($model[$column->getAlias()]) ? Carbon::parse($model[$column->getAlias()])->format('H:i') : null;
                 }),
 
             /*** Hours ***/
             Column::make(trans('Clocking hours'))
-                ->format(function (Worksheet $model){
-                    $start = Carbon::parse($model->start_date);
-                    $stop = Carbon::parse($model->stop_date);
+                ->format(function (Worksheet $model, Column $column){
+                    $start = Carbon::parse($model[DataTableQueryBuilder::alias('clockings.start_date')]);
+                    $stop = Carbon::parse($model[DataTableQueryBuilder::alias('clockings.stop_date')]);
                     return $start->diff($stop)->format('%H:%I');
                 }),
         ];

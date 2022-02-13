@@ -30,10 +30,11 @@
 namespace App\Moco\Datatables;
 
 
-use App\Moco\Common\Moco;
 use App\Moco\Datatables\Filters\FilterInterface;
 use App\Moco\Datatables\Traits\RandomKey;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class Column
 {
@@ -44,9 +45,13 @@ class Column
      */
     protected string $name;
     /**
-     * @var string
+     * @var string|null
      */
     protected ?string $attribute;
+    /**
+     * @var string|null
+     */
+    protected ?string $alias;
     /**
      * @var
      */
@@ -67,7 +72,8 @@ class Column
     public function __construct(string $name, ?string $attribute)
     {
         $this->name = $name;
-        $this->attribute = $attribute;
+        $this->attribute = $attribute ?? Str::snake(Str::lower($name));;
+        $this->alias = DataTableQueryBuilder::alias($this->attribute);
     }
 
     /**
@@ -97,6 +103,15 @@ class Column
     }
 
     /**
+     * @return string|null
+     */
+    public function getAlias(): ?string
+    {
+        return $this->alias;
+    }
+
+
+    /**
      * @return mixed
      */
     public function getFormatCallback()
@@ -121,7 +136,16 @@ class Column
     public function formatYesNo()
     {
         $this->format(function (Model $model, Column $column){
-            return $model[$column->getAttribute()] == 1 ? trans('Yes') : trans('No');
+            return $model[$column->getAlias()] == 1 ? trans('Yes') : trans('No');
+        });
+
+        return $this;
+    }
+
+    public function formatDate()
+    {
+        $this->format(function (Model $model, Column $column){
+            return !is_null($model[$this->getAlias()]) ? Carbon::parse($model[$this->getAlias()])->format('d/m/Y') : null;
         });
 
         return $this;

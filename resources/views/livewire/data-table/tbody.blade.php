@@ -5,7 +5,7 @@
                 @if($column->isFormatted())
                     {{ $column->formatted($model, $column) }}
                 @else
-                    {{ data_get($model, $column->getAttribute()) }}
+                    {{ data_get($model, $column->getAlias()) }}
                 @endif
             </td>
         @endforeach

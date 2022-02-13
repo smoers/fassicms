@@ -30,7 +30,6 @@
 namespace App\Moco\Datatables\Filters;
 
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Support\Str;
 
 abstract class NumberFilter extends FilterAbstract
 {

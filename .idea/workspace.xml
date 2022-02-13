@@ -2,65 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9ec171e7-05c7-490b-8f14-40ae5b7978c4" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Moco/Common/MocoOptionsTechnicianPrintList.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Moco/Datatables/Traits/RandomKey.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Moco/Printer/MocoTechniciansListCodebar.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Reports/ReportWorksheetsClockings.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/3rd/resizable-table-columns-2.0.5/css/resizable-table-columns.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/3rd/resizable-table-columns-2.0.5/css/resizable-table-columns.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/3rd/resizable-table-columns-2.0.5/js/bundle/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/3rd/resizable-table-columns-2.0.5/js/bundle/index.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/3rd/resizable-table-columns-2.0.5/js/bundle/index.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/3rd/resizable-table-columns-2.0.5/js/es6/index.d.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/3rd/resizable-table-columns-2.0.5/js/es6/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/3rd/resizable-table-columns-2.0.5/js/es6/index.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/3rd/resizable-table-columns-2.0.5/js/es6/resizable-constants.d.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/3rd/resizable-table-columns-2.0.5/js/es6/resizable-constants.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/3rd/resizable-table-columns-2.0.5/js/es6/resizable-constants.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/3rd/resizable-table-columns-2.0.5/js/es6/resizable-event-data.d.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/3rd/resizable-table-columns-2.0.5/js/es6/resizable-event-data.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/3rd/resizable-table-columns-2.0.5/js/es6/resizable-event-data.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/3rd/resizable-table-columns-2.0.5/js/es6/resizable-options.d.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/3rd/resizable-table-columns-2.0.5/js/es6/resizable-options.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/3rd/resizable-table-columns-2.0.5/js/es6/resizable-options.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/3rd/resizable-table-columns-2.0.5/js/es6/resizable-table-columns.d.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/3rd/resizable-table-columns-2.0.5/js/es6/resizable-table-columns.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/3rd/resizable-table-columns-2.0.5/js/es6/resizable-table-columns.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/3rd/resizable-table-columns-2.0.5/js/es6/utilities-dom.d.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/3rd/resizable-table-columns-2.0.5/js/es6/utilities-dom.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/3rd/resizable-table-columns-2.0.5/js/es6/utilities-dom.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/3rd/resizable-table-columns-2.0.5/js/es6/utilities.d.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/3rd/resizable-table-columns-2.0.5/js/es6/utilities.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/3rd/resizable-table-columns-2.0.5/js/es6/utilities.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/3rd/resizable-table-columns-2.0.5/js/index.es2015.d.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/report/report-worksheets-clockings.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/sessions/lqnxvD99wlNFMxm957zXOwI6eldWE8caDpFVm3bH" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/2070d39226d18c4907c446a8bd768a75c2228e74.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/2463bd88e03a90a50ff58710cbae31f59c3645fb.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/98572a6cfc5ed060e1b36f926575779961429050.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Moco/Datatables/DataTableQueryBuilder.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/sessions/BtUZri1Va7N2jWwDDCjKjo4Aq3ijDT0o9TjkEjwY" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/abc9e8b2f61041af011f4ea82562b40c8f37498b.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/TechnicianController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/TechnicianController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Livewire/Crane/CraneList.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Livewire/Crane/CraneList.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Moco/Datatables/Column.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Moco/Datatables/Column.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Moco/Datatables/DataTableComponent.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Moco/Datatables/DataTableComponent.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Moco/Datatables/Filters/FilterAbstract.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Moco/Datatables/Filters/FilterAbstract.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Moco/Datatables/Exports/ExportDataTable.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Moco/Datatables/Exports/ExportDataTable.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Moco/Datatables/Filters/Filter.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Moco/Datatables/Filters/NumberFilter.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Moco/Datatables/Filters/NumberFilter.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Moco/Datatables/Traits/Cleanup.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Moco/Datatables/Traits/Cleanup.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Reports/ReportingWorksheetsClockings.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/moco.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/moco.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/lang/fr.json" beforeDir="false" afterPath="$PROJECT_DIR$/resources/lang/fr.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/lang/nl.json" beforeDir="false" afterPath="$PROJECT_DIR$/resources/lang/nl.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/layout.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/layout.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/livewire/data-table/common.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/livewire/data-table/common.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/livewire/data-table/datatable.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/livewire/data-table/datatable.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/livewire/data-table/thead.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/livewire/data-table/thead.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/menus/navbar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/menus/navbar.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/kLM7MxYNXhCAe38BUSRDTWq2s4ehdBmizpxTN5Lk" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/views/36f0e3cfde108fcbf9d276674a52b913553cf9a9.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/36f0e3cfde108fcbf9d276674a52b913553cf9a9.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/views/772788232fad24a9c6a3175e53c3309ad50bc34e.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/772788232fad24a9c6a3175e53c3309ad50bc34e.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/views/90c48dcb194d2bb220a0b74a2b7047854d23d0fb.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/90c48dcb194d2bb220a0b74a2b7047854d23d0fb.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/views/c63af29302a66a0773c312038557ed5b14a513a2.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/c63af29302a66a0773c312038557ed5b14a513a2.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/views/fffe399cf53532d84c602ae7460baf6de46af5c3.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/fffe399cf53532d84c602ae7460baf6de46af5c3.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Reports/ReportWorksheetsClockings.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Reports/ReportWorksheetsClockings.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/livewire/data-table/tbody.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/livewire/data-table/tbody.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/lqnxvD99wlNFMxm957zXOwI6eldWE8caDpFVm3bH" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/5c07b209f2bb537629c81b71726d197945e36205.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/5c07b209f2bb537629c81b71726d197945e36205.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -244,7 +198,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views/report" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/Moco/Datatables" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="php.override.implement.member.chooser.php.doc" value="NONE" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
@@ -259,11 +213,11 @@
       <recent name="D:\fassicms\app\Models" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\fassicms\app\Moco\Datatables" />
       <recent name="D:\fassicms\app\Reports" />
       <recent name="D:\fassicms\resources\views\report" />
       <recent name="D:\fassicms\resources\views" />
       <recent name="D:\fassicms\app\Http\Controllers" />
-      <recent name="D:\fassicms\resources\views\crane" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -1099,14 +1053,13 @@
       <workItem from="1644066437640" duration="8978000" />
       <workItem from="1644154536508" duration="1313000" />
       <workItem from="1644159104257" duration="5048000" />
-      <workItem from="1644166016933" duration="7735000" />
-    </task>
-    <task id="LOCAL-00022" summary="202012191134 - v1.0">
-      <created>1608374089815</created>
-      <option name="number" value="00022" />
-      <option name="presentableId" value="LOCAL-00022" />
-      <option name="project" value="LOCAL" />
-      <updated>1608374089815</updated>
+      <workItem from="1644166016933" duration="7818000" />
+      <workItem from="1644256274940" duration="646000" />
+      <workItem from="1644341568361" duration="6262000" />
+      <workItem from="1644435310479" duration="4147000" />
+      <workItem from="1644518052977" duration="470000" />
+      <workItem from="1644519586697" duration="1951000" />
+      <workItem from="1644762240294" duration="9060000" />
     </task>
     <task id="LOCAL-00023" summary="202012191825 - v1.0">
       <created>1608398768151</created>
@@ -1444,7 +1397,14 @@
       <option name="project" value="LOCAL" />
       <updated>1643229708163</updated>
     </task>
-    <option name="localTasksCounter" value="71" />
+    <task id="LOCAL-00071" summary="20220206 - v3.2.0 Cranes Trucks Customers Link">
+      <created>1644185033767</created>
+      <option name="number" value="00071" />
+      <option name="presentableId" value="LOCAL-00071" />
+      <option name="project" value="LOCAL" />
+      <updated>1644185033768</updated>
+    </task>
+    <option name="localTasksCounter" value="72" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -1454,7 +1414,6 @@
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="20210523 - v2.0 Stores by location" />
     <MESSAGE value="20210524 - v2.0 Stores by location" />
     <MESSAGE value="20210528 - v2.0 Stores by location" />
     <MESSAGE value="20210602 - v2.0 Stores by location" />
@@ -1479,7 +1438,8 @@
     <MESSAGE value="20211219 - v1.2 Cranes Trucks Customers Link" />
     <MESSAGE value="20220109 - v1.2 Cranes Trucks Customers Link" />
     <MESSAGE value="20220126 - v1.2 Cranes Trucks Customers Link" />
-    <option name="LAST_COMMIT_MESSAGE" value="20220126 - v1.2 Cranes Trucks Customers Link" />
+    <MESSAGE value="20220206 - v3.2.0 Cranes Trucks Customers Link" />
+    <option name="LAST_COMMIT_MESSAGE" value="20220206 - v3.2.0 Cranes Trucks Customers Link" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

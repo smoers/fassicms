@@ -29,8 +29,6 @@
 
 namespace App\Moco\Datatables\Traits;
 
-use App\Moco\Datatables\Filters\FilterAbstract;
-
 trait Cleanup
 {
     /**
@@ -39,14 +37,13 @@ trait Cleanup
     public function cleanFilter()
     {
         foreach ($this->columns() as $column){
-            $this->filters[FilterAbstract::formatAttribute($column->getAttribute())] = null;
+            $this->filters[$column->getAlias()] = null;
         }
 
     }
 
-    public function cleanColumnFilter($attribute): void
+    public function cleanColumnFilter($alias): void
     {
-        dd($attribute,$this->filters,FilterAbstract::formatAttribute($attribute));
-        $this->filters[FilterAbstract::formatAttribute($attribute)] = null;
+        $this->filters[$alias] = null;
     }
 }

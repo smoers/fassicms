@@ -87,6 +87,7 @@ class ExportDataTable implements FromQuery, WithHeadings, WithTitle, ShouldAutoS
     protected function retrieveTables(): void
     {
         array_push($this->tables, $this->builder->getQuery()->from);
+
         /**
          * Si des relations existent ont les places dans le tableau des tables
          */
@@ -153,6 +154,7 @@ class ExportDataTable implements FromQuery, WithHeadings, WithTitle, ShouldAutoS
         foreach ($this->tables as $table){
             if (Schema::hasTable($table)){
                 if (Schema::hasColumn($table, $column->getAttribute())){
+                    dd(Schema::getColumnType($table, $column->getAttribute()), $column->getAttribute());
                     return Schema::getColumnType($table, $column->getAttribute());
                 }
             }
