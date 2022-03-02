@@ -31,8 +31,10 @@ namespace App\Moco\Datatables\Exports;
 
 use App\Moco\Common\Moco;
 use App\Moco\Datatables\Column;
+use App\Moco\Datatables\Traits\Relationship;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Str;
 use Maatwebsite\Excel\Concerns\Exportable;
 use Maatwebsite\Excel\Concerns\FromQuery;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
@@ -46,7 +48,8 @@ use PhpOffice\PhpSpreadsheet\Style\NumberFormat;
 
 class ExportDataTable implements FromQuery, WithHeadings, WithTitle, ShouldAutoSize, WithStrictNullComparison, WithStyles, WithColumnFormatting, WithMapping
 {
-    use Exportable;
+    use Exportable,
+        Relationship;
 
     protected string $title;
     protected Builder $builder;
@@ -63,6 +66,7 @@ class ExportDataTable implements FromQuery, WithHeadings, WithTitle, ShouldAutoS
         'bigint' => NumberFormat::FORMAT_NUMBER,
         'decimal' => NumberFormat::FORMAT_NUMBER_COMMA_SEPARATED1,
         'boolean' => '',
+        'time' => NumberFormat::FORMAT_DATE_TIME3,
     ];
 
     /**
@@ -149,13 +153,25 @@ class ExportDataTable implements FromQuery, WithHeadings, WithTitle, ShouldAutoS
         return '';
     }
 
+    /**
+     * retourne le type du champ
+     *
+     * @param Column $column
+     * @return string|null
+     */
     protected function getFieldType(Column $column): ?string
     {
+        if (!is_null($column->getExportFormat()))
+            return $column->getExportFormat();
+
         foreach ($this->tables as $table){
             if (Schema::hasTable($table)){
-                if (Schema::hasColumn($table, $column->getAttribute())){
-                    dd(Schema::getColumnType($table, $column->getAttribute()), $column->getAttribute());
-                    return Schema::getColumnType($table, $column->getAttribute());
+                $attribute = $column->getAttribute();
+                if (Str::contains($attribute,'.')) {
+                    $attribute = $this->relationship($column->getAttribute())->attribute;
+                }
+                if (Schema::hasColumn($table, $attribute)){
+                    return Schema::getColumnType($table,$attribute);
                 }
             }
         }
@@ -211,25 +227,40 @@ class ExportDataTable implements FromQuery, WithHeadings, WithTitle, ShouldAutoS
         return $this->columnFormats;
     }
 
+    /**
+     * @param mixed $row
+     * @return array
+     */
     public function map($row): array
     {
         $map = [];
         foreach ($this->columns as $column){
-            switch ($this->getFieldType($column)){
-                case 'date':
-                    array_push($map,Moco::dateTimeToExcel($row[$column->getAttribute()]));
-                    break;
-                case 'datetime':
-                    array_push($map,Moco::dateTimeToExcel($row[$column->getAttribute()],'d/m/Y H:i'));
-                    break;
-                case 'decimal':
-                    array_push($map,Moco::floatValReplace($row[$column->getAttribute()]));
-                    break;
-                case 'boolean':
-                    array_push($map,$row[$column->getAttribute()] === 1);
-                    break;
-                default:
-                    array_push($map,$row[$column->getAttribute()]);
+            if ($column->isExportFormatted()){
+                array_push($map, $column->exportFormatted($row, $column));
+            } else {
+                $type = is_null($column->getExportFormat()) ? $this->getFieldType($column) : $column->getExportFormat();
+                switch ($type) {
+                    case 'date':
+                        $date = Moco::formatDate($row[$column->getAlias()]);
+                        array_push($map, Moco::dateTimeToExcel($date));
+                        break;
+                    case 'datetime':
+                        $date_time = Moco::formatDateTime($row[$column->getAlias()]);
+                        array_push($map, Moco::dateTimeToExcel($date_time, 'd/m/Y H:i'));
+                        break;
+                    case 'decimal':
+                        array_push($map, Moco::floatValReplace($row[$column->getAlias()]));
+                        break;
+                    case 'boolean':
+                        array_push($map, $row[$column->getAlias()] === 1);
+                        break;
+                    case 'time':
+                        $time = Moco::formatTime($row[$column->getAlias()]);
+                        array_push($map, Moco::timeToExcel($time));
+                        break;
+                    default:
+                        array_push($map, $row[$column->getAlias()]);
+                }
             }
         }
         return $map;

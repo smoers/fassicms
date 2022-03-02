@@ -108,6 +108,7 @@ class WorksheetController extends Controller
             $worksheet->date = Carbon::now('Europe/Brussels')->format('d/m/Y');
             $worksheet->oil_filtered = false;
             $worksheet->warranty = false;
+            $worksheet->validated = false;
             $worksheet->truckscrane()->associate(new Truckscrane());
         }
 

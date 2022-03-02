@@ -1,7 +1,7 @@
 <form wire:submit.prevent="save" method="post">
     <?php echo csrf_field(); ?>
     <div class="row">
-        <div class="col-4">
+        <div class="col-3">
             <!-- Date -->
             <div class="form-group">
                 <label for="date"><?php echo e(__('Date')); ?></label>
@@ -21,7 +21,7 @@ endif;
 unset($__errorArgs, $__bag); ?>
             </div>
         </div>
-        <div class="col-4">
+        <div class="col-2">
             <!-- Number -->
             <div class="form-group">
                 <label for="number"><?php echo e(__('Number')); ?></label>
@@ -32,9 +32,9 @@ unset($__errorArgs, $__bag); ?>
             <!-- Warranty -->
             <div class="form-group">
                 <label for="warranty"><?php echo e(__('Warranty')); ?></label>
-                <select id="warranty" name="warranty" class="form-control form-control-sm" wire:model="worksheet.warranty">
-                    <option value=true><?php echo e(__('Yes')); ?></option>
-                    <option value=false><?php echo e(__('No')); ?></option>
+                <select id="warranty" name="warranty" class="form-control form-control-sm" wire:model="warranty">
+                    <option value="1"><?php echo e(__('Yes')); ?></option>
+                    <option value="0"><?php echo e(__('No')); ?></option>
                 </select>
                 <?php $__errorArgs = ['worksheet.warranty'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
@@ -44,6 +44,31 @@ $message = $__bag->first($__errorArgs[0]); ?><span class="moco-error-small moco-
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
+            </div>
+        </div>
+        <div class="col-2">
+            <!-- Validated -->
+            <div class="form-group">
+                <label for="validated"><?php echo e(__('Validated')); ?></label>
+                <select id="validated" name="validated" class="form-control form-control-sm" wire:model="validated">
+                    <option value="1" ><?php echo e(__('Yes')); ?></option>
+                    <option value="0" ><?php echo e(__('No')); ?></option>
+                </select>
+                <?php $__errorArgs = ['worksheet.validated'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?><span class="moco-error-small moco-color-error"><?php echo e($message); ?></span><?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+            </div>
+        </div>
+        <div class="col-3">
+            <!-- Validated date -->
+            <div class="form-group">
+                <label for="validated_date"><?php echo e(__('Validated date')); ?></label>
+                <input type="text" id="validated_date" name="validated_date" class="form-control form-control-sm" value="" readonly wire:model="validated_date"/>
             </div>
         </div>
     </div>
@@ -66,7 +91,7 @@ unset($__errorArgs, $__bag); ?>
                     <!-- Search -->
                     <div class="col-6">
                         <div class="form-group">
-                            <label for="searchCrane"><?php echo e(__('Search crane')); ?> <a href="#" id="add_crane" wire:click="addTrucksCrane"><img src="/images/crane-24.png" /></a> </label>
+                            <label for="searchCrane"><?php echo e(__('Search crane')); ?> <a href="#" id="add_crane" wire:click="addTrucksCrane"><img src=<?php echo e(asset('/images/crane-24.png')); ?>/></a> </label>
                             <input id="searchCrane" name="searchCrane" class="form-control form-control-sm" placeholder="<?php echo e(__('Search ...')); ?>" autocomplete="off" wire:model="searchCrane"/>
                             <div class="position-absolute mt-1" style="border-radius: 4px; border: lightgray 1px solid;z-index: 9999; height: 300px; width: 475px; background-color: white; overflow: auto; padding: 10px" <?php if(count($search) == 0): ?> hidden <?php endif; ?>>
                                 <?php $__currentLoopData = $search; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
@@ -93,7 +118,7 @@ unset($__errorArgs, $__bag); ?>
                     <!-- TrucksCrane -->
                     <div class="col-6">
                         <div class="form-group">
-                            <label><?php echo e(__('Crane')); ?> <a href="#" id="add_crane" wire:click="addTrucksCrane"><img src="/images/crane-24.png"/></a> </label>
+                            <label><?php echo e(__('Crane')); ?> <a href="#" id="add_crane" wire:click="addTrucksCrane"><img src=<?php echo e(asset('/images/crane-24.png')); ?>/></a> </label>
                             <input type="number" hidden wire:model="worksheet.truckscrane.id"/>
                             <?php if(is_null($truckscrane)): ?>
                                 <div class="card" style="height: 200px">
@@ -169,9 +194,9 @@ unset($__errorArgs, $__bag); ?>
                         <!-- Oil filtered -->
                         <div class="form-group">
                             <label for="oil_filtered"><?php echo e(__('Oil filtered')); ?></label>
-                            <select id="oil_filtered" name="oil_filtered" class="form-control form-control-sm" wire:model="worksheet.oil_filtered">
-                                <option value="true"><?php echo e(__('Yes')); ?></option>
-                                <option value="false"><?php echo e(__('No')); ?></option>
+                            <select id="oil_filtered" name="oil_filtered" class="form-control form-control-sm" wire:model="oil_filtered">
+                                <option value="1"><?php echo e(__('Yes')); ?></option>
+                                <option value="0"><?php echo e(__('No')); ?></option>
                             </select>
                             <?php $__errorArgs = ['worksheet.oil_filtered'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');

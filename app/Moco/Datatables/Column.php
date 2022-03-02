@@ -57,6 +57,10 @@ class Column
      */
     protected $formatCallback;
     /**
+     * @var
+     */
+    protected $exportFormatCallback;
+    /**
      * @var FilterInterface|null
      */
     protected ?FilterInterface $filterObject = null;
@@ -64,6 +68,10 @@ class Column
      * @var bool
      */
     protected bool $isSortable = false;
+    /**
+     * @var string|null
+     */
+    protected ?string $exportFormat = null;
 
     /**
      * @param string $name
@@ -131,6 +139,17 @@ class Column
     }
 
     /**
+     * @param callable $callable
+     * @return $this
+     */
+    public function exportFormat(callable $callable): Column
+    {
+        $this->exportFormatCallback = $callable;
+
+        return $this;
+    }
+
+    /**
      * @return $this
      */
     public function formatYesNo()
@@ -160,6 +179,14 @@ class Column
     }
 
     /**
+     * @return bool
+     */
+    public function isExportFormatted(): bool
+    {
+        return is_callable($this->exportFormatCallback);
+    }
+
+    /**
      * @param $model
      * @param $column
      *
@@ -168,6 +195,16 @@ class Column
     public function formatted($model, $column)
     {
         return app()->call($this->formatCallback, ['model' => $model, 'column' => $column]);
+    }
+
+    /**
+     * @param $row
+     * @param $column
+     * @return mixed
+     */
+    public function exportFormatted($row, $column)
+    {
+        return app()->call($this->exportFormatCallback,['row' => $row, 'column' => $column]);
     }
 
     /**
@@ -213,5 +250,25 @@ class Column
 
         return $this;
     }
+
+    /**
+     * @return string|null
+     */
+    public function getExportFormat(): ?string
+    {
+        return $this->exportFormat;
+    }
+
+    /**
+     * @param string|null $exportFormat
+     * @return Column
+     */
+    public function setExportFormat(?string $exportFormat): Column
+    {
+        $this->exportFormat = $exportFormat;
+        return $this;
+    }
+
+
 
 }

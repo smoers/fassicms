@@ -29,6 +29,7 @@
 
 namespace App\Reports;
 
+use App\Moco\Common\Moco;
 use App\Moco\Datatables\Column;
 use App\Moco\Datatables\DataTableComponent;
 use App\Moco\Datatables\DataTableQueryBuilder;
@@ -93,13 +94,15 @@ class ReportWorksheetsClockings extends DataTableComponent
             Column::make(trans('Clocking start'),'clockings.start_date')
                 ->format(function (Worksheet $model, Column $column){
                     return !is_null($model[$column->getAlias()]) ? Carbon::parse($model[$column->getAlias()])->format('H:i') : null;
-                }),
+                })
+                ->setExportFormat('time'),
 
             /*** Clocking Stop_date ***/
             Column::make(trans('Clocking stop'),'clockings.stop_date')
                 ->format(function (Worksheet $model, Column $column){
                     return !is_null($model[$column->getAlias()]) ? Carbon::parse($model[$column->getAlias()])->format('H:i') : null;
-                }),
+                })
+                ->setExportFormat('time'),
 
             /*** Hours ***/
             Column::make(trans('Clocking hours'))
@@ -107,7 +110,13 @@ class ReportWorksheetsClockings extends DataTableComponent
                     $start = Carbon::parse($model[DataTableQueryBuilder::alias('clockings.start_date')]);
                     $stop = Carbon::parse($model[DataTableQueryBuilder::alias('clockings.stop_date')]);
                     return $start->diff($stop)->format('%H:%I');
-                }),
+                })
+                ->exportFormat(function ($row, Column $column){
+                    $start = Carbon::parse($row[DataTableQueryBuilder::alias('clockings.start_date')]);
+                    $stop = Carbon::parse($row[DataTableQueryBuilder::alias('clockings.stop_date')]);
+                    return Moco::timeToExcel($start->diff($stop)->format('%H:%I'));
+                })
+                ->setExportFormat('time'),
         ];
     }
 

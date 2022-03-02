@@ -57,6 +57,7 @@
     "From Partmetadatas": "Depuis les méta-données des pièces",
     "From Crane History": "Depuis l'historique des grues",
     "From Stock Reassortment": "Depuis la liste des pièces à réassortir",
+    "From Worksheets Clockings": "Depuis les fiches de travail et des pointages",
     "Reporting": "Rapports",
     "Reporting from Part Metadata": "Rapport depuis les méta-données des pièces",
     "Electrical Part": "Pièce électrique",
@@ -75,6 +76,14 @@
     "List of barcode technicians": "Liste des codes barres pour les techniciens / Lijst van streepjescodes voor technici",
     "INTERNAL DOCUMENT": "DOCUMENT INTERNE / INTERN DOCUMENT",
     "List Codebar for technicians": "Liste des codes barres pour les techniciens",
+    "Worksheets Clockings List": "Fiches de travail et pointages",
+    "Technician number": "Numéro technicien",
+    "Clocking date": "Date du pointage",
+    "Clocking start": "Heure de début",
+    "Clocking stop": "Heure de fin",
+    "Clocking hours": "Heures pointées",
+    "Plate number": "Numéro de plaque",
+    "Truck model": "Modèle du camion",
 
 
     "#####": "!! CHANGE PASSWORD !!",
@@ -140,6 +149,8 @@
     "Number of worksheet": "Nombre de fiche de travail",
     "The worksheet template have been saved": "Les fiches de travail modèles ont été sauvées",
     "The following worksheet template have not been saved : ": "Les fiches de travail modèles suivantes n'ont pas pu être sauvées",
+    "Validated": "Validé",
+    "Validated date": "Date de validation",
 
     "#####": "!! STORE !!",
     "Quantity": "Quantité",

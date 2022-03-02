@@ -39,11 +39,10 @@ return [
      * Version release
      */
     'app' => [
-        'version' => 'Version 3.1.1',
+        'version' => 'Version 3.1.2',
         'release' => [
-            '* La possibilité de générer un PDF avec la liste des techniciens et leur code barre a été ajoutée</br>* De mogelijkheid om een PDF te genereren met de lijst met technici en hun streepjescode is toegevoegd',
-            '* Les critères de recherche dans les listes sont sauvegarder durant la session</br>* De zoekcriteria in de lijsten worden tijdens de sessie opgeslagen',
-            '* Correction du bug sur l\'affichage des widget sur le tableau de bord</br>* Correctie van de bug op het display van widget op het dashboard'
+            '* Correction d\'un bug au niveau de la fiche de travail</br>* Een bug opgelost op het niveau van het werkblad',
+            '* Ajout du champ validé dans le formulaire de la fiche de travail</br>* Het toevoegen van het gevalideerde veld in de vorm van het werkblad',
             ]
     ],
     /**

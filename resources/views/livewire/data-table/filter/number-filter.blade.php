@@ -7,5 +7,5 @@
         <option value="<=" ><=</option>
         <option value="<>" ><></option>
     </select>
-    <input type="number" class="form-control form-control-sm" wire:model="filters.{{$name[1]}}" value="{{$defaultValue}}">
+    <input type="number" class="form-control form-control-sm" wire:model.debounce.750ms="filters.{{$name[1]}}" value="{{$defaultValue}}">
 </div>

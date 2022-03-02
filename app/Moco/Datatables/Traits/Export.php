@@ -30,13 +30,42 @@
 namespace App\Moco\Datatables\Traits;
 
 use App\Moco\Datatables\Exports\ExportDataTable;
+use Illuminate\Support\Facades\Storage;
 
 trait Export
 {
+    /**
+     * un export est encours de génération
+     * @var bool
+     */
+    public $exporting = false;
+    /**
+     * Le nom du fichier
+     * @var null
+     */
+    public $name = null;
+
+    /**
+     * Export les données le query builder
+     */
     public function export()
     {
+        /**
+         * Démarre un exeport
+         */
+        $this->exporting = true;
         $export = new ExportDataTable($this->models(), $this->columns());
-        return $export->download(str_replace(' ','_',$this->title).'_'.date('Hidmyy',time()).'.xlsx');
+        $this->name = str_replace(' ','_',$this->title).'_'.date('Hidmyy',time()).'.xlsx';
+        $export->store($this->name,'public');
     }
 
+    /**
+     * download le fichier généré
+     * @return mixed
+     */
+    public function downloadExport()
+    {
+        $this->exporting = false;
+        return Storage::download('public/'.$this->name);
+    }
 }

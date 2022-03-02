@@ -33,6 +33,7 @@ use App\Http\Requests\WorksheetRequest;
 use App\Models\Customer;
 use App\Models\Truckscrane;
 use App\Models\Worksheet;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
@@ -82,6 +83,11 @@ class WorksheetLivewireController extends Component
      */
     protected $formRequest;
 
+    public int $validated;
+    public int $warranty;
+    public int $oil_filtered;
+    public $validated_date;
+
     /**
      * Constructeur
      */
@@ -98,6 +104,11 @@ class WorksheetLivewireController extends Component
     {
         $this->tab_general = true;
         $this->tab_data = false;
+        $this->validated = $this->worksheet->validated;
+        $this->warranty = $this->worksheet->warranty;
+        $this->oil_filtered = $this->worksheet->oil_filtered;
+        $this->validated_date = $this->worksheet->validated_date;
+        #dd($this->worksheet->validated);
         $this->truckscrane = $this->worksheet->truckscrane()->get()->first();
         if (!is_null($this->truckscrane)){
             $this->customer = Customer::find($this->truckscrane->customer_id);
@@ -116,10 +127,22 @@ class WorksheetLivewireController extends Component
          * Permet de correctement placer la valeur des champs warranty & oil_replace
          * suite à la valeur retournée par le select
          */
-        if ($propertyName === 'worksheet.warranty')
-            $this->worksheet->warranty = $this->worksheet->warranty === 'true' ? true : false;
-        if ($propertyName === 'worksheet.oil_filtered')
-            $this->worksheet->oil_filtered = $this->worksheet->oil_filtered === 'true' ? true : false;
+        if ($propertyName === 'warranty')
+            $this->worksheet->warranty = $this->warranty;
+        if ($propertyName === 'oil_filtered')
+            $this->worksheet->oil_filtered = $this->oil_filtered;
+        if ($propertyName === 'validated') {
+            $this->worksheet->validated = $this->validated;
+            if ($this->worksheet->validated){
+                $this->worksheet->validated_date = Carbon::now()->format('d/m/Y');
+                $this->validated_date = $this->worksheet->validated_date;
+            } else {
+                $this->worksheet->validated_date = null;
+                $this->validated_date = null;
+            }
+            #dd($this->worksheet);
+
+        }
         /**
          * Validation
          */
@@ -149,7 +172,7 @@ class WorksheetLivewireController extends Component
          */
         $this->worksheet->user()->associate(Auth::user());
         $this->worksheet->save();
-        session()->flash('success',trans('The data have been saved with success'));
+        session()->flash('success',trans('The worksheet has been saved'));
         return redirect()->route('worksheet.index');
     }
 
@@ -207,7 +230,7 @@ class WorksheetLivewireController extends Component
     }
 
     /**
-     * Celanup lorsque le champ search perd le focus
+     * Cleanup lorsque le champ search perd le focus
      */
     public function eventSearchCraneFocusOut()
     {

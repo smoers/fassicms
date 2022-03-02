@@ -139,6 +139,30 @@ class Worksheet extends Model implements MocoModelForConsultInterface
         return $return;
     }
 
+    /**
+     * Place la date avec le format correct dans l'attribut
+     *
+     * @param $value
+     */
+    public function setValidatedDateAttribute($value)
+    {
+        $this->attributes['validated_date'] = Carbon::parse(str_replace('/','-',$value));
+    }
+
+    /**
+     * Retourne la date au format correct
+     *
+     * @param $value
+     * @return string|null
+     */
+    public function getValidatedDateAttribute($value)
+    {
+        $return = null;
+        if ($value != ''){
+            $return = Carbon::parse($value)->format('d/m/Y');
+        }
+        return $return;
+    }
 
     public function WithForConsult()
     {

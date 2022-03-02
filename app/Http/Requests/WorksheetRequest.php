@@ -32,6 +32,8 @@ class WorksheetRequest extends FormRequest
             'worksheet.oil_replace' => array('nullable','regex:'.config('moco.worksheet.formatOilReplace')),
             'worksheet.oil_filtered' => 'required|boolean',
             'worksheet.warranty' => 'required|boolean',
+            'worksheet.validated' => 'required|boolean',
+            'worksheet.validated_date' => 'nullable|date_format:d/m/Y',
         ];
     }
 
@@ -64,6 +66,7 @@ class WorksheetRequest extends FormRequest
             'truckscrane_id' => trans('Crane'),
             'customer_id' => trans('Customer'),
             'oil_replace' => trans('Oil replace'),
+
         ];
     }
 }

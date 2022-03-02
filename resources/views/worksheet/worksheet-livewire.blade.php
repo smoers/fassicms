@@ -1,7 +1,7 @@
 <form wire:submit.prevent="save" method="post">
     @csrf
     <div class="row">
-        <div class="col-4">
+        <div class="col-3">
             <!-- Date -->
             <div class="form-group">
                 <label for="date">{{__('Date')}}</label>
@@ -14,7 +14,7 @@
                 @error('worksheet.date')<span class="moco-error-small moco-color-error">{{$message}}</span>@enderror
             </div>
         </div>
-        <div class="col-4">
+        <div class="col-2">
             <!-- Number -->
             <div class="form-group">
                 <label for="number">{{__('Number')}}</label>
@@ -25,11 +25,29 @@
             <!-- Warranty -->
             <div class="form-group">
                 <label for="warranty">{{ __('Warranty')  }}</label>
-                <select id="warranty" name="warranty" class="form-control form-control-sm" wire:model="worksheet.warranty">
-                    <option value=true>{{__('Yes')}}</option>
-                    <option value=false>{{__('No')}}</option>
+                <select id="warranty" name="warranty" class="form-control form-control-sm" wire:model="warranty">
+                    <option value="1">{{__('Yes')}}</option>
+                    <option value="0">{{__('No')}}</option>
                 </select>
                 @error('worksheet.warranty')<span class="moco-error-small moco-color-error">{{$message}}</span>@enderror
+            </div>
+        </div>
+        <div class="col-2">
+            <!-- Validated -->
+            <div class="form-group">
+                <label for="validated">{{ __('Validated')  }}</label>
+                <select id="validated" name="validated" class="form-control form-control-sm" wire:model="validated">
+                    <option value="1" >{{__('Yes')}}</option>
+                    <option value="0" >{{__('No')}}</option>
+                </select>
+                @error('worksheet.validated')<span class="moco-error-small moco-color-error">{{$message}}</span>@enderror
+            </div>
+        </div>
+        <div class="col-3">
+            <!-- Validated date -->
+            <div class="form-group">
+                <label for="validated_date">{{__('Validated date')}}</label>
+                <input type="text" id="validated_date" name="validated_date" class="form-control form-control-sm" value="" readonly wire:model="validated_date"/>
             </div>
         </div>
     </div>
@@ -52,7 +70,7 @@
                     <!-- Search -->
                     <div class="col-6">
                         <div class="form-group">
-                            <label for="searchCrane">{{__('Search crane')}} <a href="#" id="add_crane" wire:click="addTrucksCrane"><img src="/images/crane-24.png" /></a> </label>
+                            <label for="searchCrane">{{__('Search crane')}} <a href="#" id="add_crane" wire:click="addTrucksCrane"><img src={{asset('/images/crane-24.png')}}/></a> </label>
                             <input id="searchCrane" name="searchCrane" class="form-control form-control-sm" placeholder="{{__('Search ...')}}" autocomplete="off" wire:model="searchCrane"/>
                             <div class="position-absolute mt-1" style="border-radius: 4px; border: lightgray 1px solid;z-index: 9999; height: 300px; width: 475px; background-color: white; overflow: auto; padding: 10px" @if(count($search) == 0) hidden @endif>
                                 @foreach($search as $item)
@@ -79,7 +97,7 @@
                     <!-- TrucksCrane -->
                     <div class="col-6">
                         <div class="form-group">
-                            <label>{{__('Crane')}} <a href="#" id="add_crane" wire:click="addTrucksCrane"><img src="/images/crane-24.png"/></a> </label>
+                            <label>{{__('Crane')}} <a href="#" id="add_crane" wire:click="addTrucksCrane"><img src={{asset('/images/crane-24.png')}}/></a> </label>
                             <input type="number" hidden wire:model="worksheet.truckscrane.id"/>
                             @if(is_null($truckscrane))
                                 <div class="card" style="height: 200px">
@@ -141,9 +159,9 @@
                         <!-- Oil filtered -->
                         <div class="form-group">
                             <label for="oil_filtered">{{ __('Oil filtered')  }}</label>
-                            <select id="oil_filtered" name="oil_filtered" class="form-control form-control-sm" wire:model="worksheet.oil_filtered">
-                                <option value="true">{{__('Yes')}}</option>
-                                <option value="false">{{__('No')}}</option>
+                            <select id="oil_filtered" name="oil_filtered" class="form-control form-control-sm" wire:model="oil_filtered">
+                                <option value="1">{{__('Yes')}}</option>
+                                <option value="0">{{__('No')}}</option>
                             </select>
                             @error('worksheet.oil_filtered')<span class="moco-error-small moco-color-error">{{$message}}</span>@enderror
                         </div>

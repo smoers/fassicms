@@ -56,6 +56,7 @@
     "From Partmetadatas": "Van onderdelen metadata",
     "From Crane History": "Sinds de geschiedenis van kranen",
     "From Stock Reassortment": "Uit de lijst met onderdelen om opnieuw te lokken.",
+    "From Worksheets Clockings": "Van de werkbladen en scores",
     "Reporting": "Rapporten",
     "Reporting from Part Metadata": "Verslag van onderdelen metadata",
     "Electrical Part": "Elektrische kamer",
@@ -74,6 +75,14 @@
     "List of barcode technicians": "Lijst van streepjescodes voor technici / Liste des codes barres pour les techniciens",
     "INTERNAL DOCUMENT": "INTERN DOCUMENT / DOCUMENT INTERNE",
     "List Codebar for technicians": "Lijst van streepjescodes voor technici",
+    "Worksheets Clockings List": "Werkbladen en scorekaarten",
+    "Technician number": "Technicusnummer",
+    "Clocking date": "Datum van tijd",
+    "Clocking start": "Starttijd",
+    "Clocking stop": "Eindtijd",
+    "Clocking hours": "Gerichte uren",
+    "Plate number": "Kentekenplaatnummer",
+    "Truck model": "Vrachtauto",
 
 
     "#####": "!! CHANGE PASSWORD !!",
@@ -140,6 +149,8 @@
     "Number of worksheet": "Aantal werkbladen",
     "The worksheet template have been saved": "De sjabloonwerkbladen zijn opgeslagen",
     "The following worksheet template have not been saved : ": "De volgende sjabloonwerkbladen kunnen niet worden opgeslagen",
+    "Validated": "Geldig",
+    "Validated date": "Validatie datum",
 
     "#####": "!! STORE !!",
     "Quantity": "Kwantiteit",

@@ -85,6 +85,7 @@ abstract class DataTableComponent extends Component
      */
     public function mount()
     {
+
         /**
          * Nombre de ligne par page valeur par défaut
          */

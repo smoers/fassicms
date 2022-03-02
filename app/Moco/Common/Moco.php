@@ -153,10 +153,13 @@ class Moco
      * @param string $format
      * @return bool|float|int
      */
-    public static function timeToExcel(string $time, string $format = 'H:i')
+    public static function timeToExcel(?string $time, string $format = 'H:i')
     {
-        $datetimeExcel = Date::PHPToExcel(Carbon::createFromFormat($format,$time));
-        return $datetimeExcel - floor($datetimeExcel);
+        if (!is_null($time)) {
+            $datetimeExcel = Date::PHPToExcel(Carbon::createFromFormat($format, $time));
+            return $datetimeExcel - floor($datetimeExcel);
+        }
+        return null;
     }
 
     /**
@@ -173,6 +176,39 @@ class Moco
     }
 
     /**
+     * Format une date 2021-12-11 vers 11/12/2021
+     *
+     * @param string|null $date
+     * @return string|null
+     */
+    public static function formatDate(? string $date): ?string
+    {
+        return !is_null($date) && $date !='' ? Carbon::parse($date)->format('d/m/Y') : null;
+    }
+
+    /**
+     * Format une date 2021-12-11 23:12:45.000 vers 11/12/2021 23:45
+     *
+     * @param string|null $date
+     * @return string|null
+     */
+    public static function formatDateTime(?string $date): ?string
+    {
+        return !is_null($date) && $date !='' ? Carbon::parse($date)->format('d/m/Y H:i') : null;
+    }
+
+    /**
+     * Format une date 2021-12-11 23:12:45.000 vers 23:45
+     *
+     * @param string|null $date
+     * @return string|null
+     */
+    public static function formatTime(?string $date): ?string
+    {
+        return !is_null($date) && $date !='' ? Carbon::parse($date)->format('H:i') : null;
+    }
+
+    /**
      * S'assure que la date à le bon format
      *
      * @param string $date
@@ -181,15 +217,14 @@ class Moco
      */
     public static function isDateValidFormat($date, string $separator = '/')
     {
-        dd($date);
         $dateParts = explode($separator,$date);
         if (count($dateParts) !== 3) return false;
 
         [$day, $month, $year] = $dateParts;
 
-        if ($day !== 2) return false;
-        if ($month !== 2) return false;
-        if ($year !== 4) return false;
+        if (strlen($day) !== 2) return false;
+        if (strlen($month) !== 2) return false;
+        if (strlen($year) !== 4) return false;
 
         return true;
 

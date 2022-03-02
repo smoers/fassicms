@@ -14,14 +14,14 @@
                     @endif
                 </a>
                 @if($column->isFiltered())
-                    <a href="#" class="text-sm-center moco-color-info" wire:click="cleanColumnFilter('{{$column->getAttribute()}}')"><i class="fas fa-filter"></i></a>
+                    <a href="#" class="text-sm-center moco-color-info" wire:click="cleanColumnFilter('{{$column->getAlias()}}')"><i class="fas fa-filter"></i></a>
                 @endif
             </th>
         @else
             <th scope="col" class="{{$this->setTableHeadColumnClass($column)}}" data-rtc-resizable="{{$column->getRandomKey()}}">
                 {{$column->getName()}}
                 @if($column->isFiltered())
-                    <a href="#" class="text-sm-center moco-color-info" wire:click="cleanColumnFilter('{{$column->getAttribute()}}')"><i class="fas fa-filter"></i></a>
+                    <a href="#" class="text-sm-center moco-color-info" wire:click="cleanColumnFilter('{{$column->getAlias()}}')"><i class="fas fa-filter"></i></a>
                 @endif
             </th>
         @endif
