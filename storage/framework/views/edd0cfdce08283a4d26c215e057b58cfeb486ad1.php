@@ -258,6 +258,9 @@ unset($__errorArgs, $__bag); ?>
             language: 'fr',
             todayBtn: "linked",
             autoclose: true,
+        }).on('changeDate',(event) => {
+            livewire.emit('eventDatePickerChange',moment(event.date).format('DD/MM/YYYY'));
+            //console.log(moment(event.date).format('DD/MM/YYYY'));
         });
     })
 </script>

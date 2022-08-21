@@ -76,6 +76,7 @@ class WorksheetLivewireController extends Component
      */
     protected $listeners = [
         'eventSearchCraneFocusOut' => 'eventSearchCraneFocusOut',
+        'eventDatePickerChange' => 'eventDatePickerChange',
     ];
     /**
      * form request pour la validation des champs
@@ -113,6 +114,7 @@ class WorksheetLivewireController extends Component
         if (!is_null($this->truckscrane)){
             $this->customer = Customer::find($this->truckscrane->customer_id);
         }
+
     }
 
     /**
@@ -235,6 +237,11 @@ class WorksheetLivewireController extends Component
     public function eventSearchCraneFocusOut()
     {
         $this->searchCrane = '';
+    }
+
+    public function eventDatePickerChange($date)
+    {
+        $this->worksheet->date = $date;
     }
 
     /**

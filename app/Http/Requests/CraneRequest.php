@@ -37,6 +37,7 @@ class CraneRequest extends FormRequest
             'truck_model' => 'nullable|max:250',
             'serial' => 'required|max:20',
             'crane_model' => 'required|max:255',
+            'year_production' => 'nullable|integer',
         ];
     }
 

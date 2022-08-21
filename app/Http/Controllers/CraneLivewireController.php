@@ -60,6 +60,11 @@ class CraneLivewireController extends Component
      * @var string
      */
     public $customer_name = '';
+    /**
+     * Année de production
+     * @var null
+     */
+    public $year_production = null;
 
     /**
      * Mode d'action sur l'enregistrement
@@ -144,7 +149,7 @@ class CraneLivewireController extends Component
     }
 
     /**
-     * On valide mle contenu des champs et on ouvre le message d'avertissement
+     * On valide le contenu des champs et on ouvre le message d'avertissement
      */
     public function validated()
     {
@@ -236,6 +241,7 @@ class CraneLivewireController extends Component
                 $truckscrane->crane_model = $validatedData['crane_model'];
                 $truckscrane->brand = $validatedData['brand'];
                 $truckscrane->truck_model = $validatedData['truck_model'];
+                $truckscrane->year_production = $validatedData['year_production'] === '' ? null : $validatedData['year_production'];
                 break;
             /**
              * nouveau avec une grue et camion existant
@@ -316,7 +322,7 @@ class CraneLivewireController extends Component
          * message de retour
          */
         if (is_null($exception)){
-            session()->flash('success',trans('The data have been saved with success'));
+            session()->flash('success',trans('The crane and truck data have been saved'));
             $route = route('crane.index');
             /**
              * controle si la variable de session worksheet_form existe
@@ -361,8 +367,10 @@ class CraneLivewireController extends Component
         $truckscrane->plate = $validatedData['plate'];
         $truckscrane->brand = $validatedData['brand'];
         $truckscrane->truck_model = $validatedData['truck_model'];
+        $truckscrane->year_production = $validatedData['year_production'] === '' ? null : $validatedData['year_production'];
         $truckscrane->user()->associate(Auth::user());
         $truckscrane->customer()->associate($customer);
+        dd($truckscrane);
 
         return $truckscrane;
     }
@@ -482,6 +490,7 @@ class CraneLivewireController extends Component
                  */
                 $this->crane_id = $crane->id;
                 $this->crane_model = $crane->crane_model;
+                $this->year_production = $crane->year_production;
                 $this->customer_id = $crane->customer_id;
                 $this->customer_name = $this->getCustomer(true)->name;
                 if ($this->plate === '') {

@@ -37,6 +37,10 @@
                         <input type="text" class="form-control form-control-sm" name="contacts[mobile][]" id="mobile" value="{{$contact->mobile}}" autocomplete="off" moco-validation-array="contacts"/>
                     </div>
                 </div>
+                <div class="form-group">
+                    <label for="cmail">{{ __('Email address') }}</label>
+                    <input type="text" class="form-control form-control-sm" name="contacts[mail][]" id="mail" value="{{$contact->mail}}" autocomplete="off" moco-validation-array="contacts"/>
+                </div>
             </div>
         @endforeach
     @else
@@ -75,6 +79,10 @@
                         <label for="cmobile">{{__('Mobile')}}</label>
                         <input type="text" class="form-control form-control-sm" name="contacts[mobile][]" id="mobile" value="{{old('contacts')['mobile'][$index]}}" autocomplete="off" moco-validation-array="contacts"/>
                     </div>
+                </div>
+                <div class="form-group">
+                    <label for="cmail">{{ __('Email address') }}</label>
+                    <input type="text" class="form-control form-control-sm" name="contacts[mail][]" id="mail" value="{{$contact->mail}}" autocomplete="off" moco-validation-array="contacts"/>
                 </div>
             </div>
 
@@ -118,6 +126,10 @@
                 <label for="cmobile">{{__('Mobile')}}</label>
                 <input type="text" class="form-control form-control-sm" name="contacts[mobile][]" id="mobile_@{{ uid }}" value="" autocomplete="off" moco-validation-array="contacts.mobile"/>
             </div>
+        </div>
+        <div class="form-group">
+            <label for="cmail">{{ __('Email address') }}</label>
+            <input type="text" class="form-control form-control-sm" name="contacts[mail][]" id="mail_@{{ uid }}" value="" autocomplete="off" moco-validation-array="contacts"/>
         </div>
     </div>
 </script>

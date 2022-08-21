@@ -39,10 +39,10 @@ return [
      * Version release
      */
     'app' => [
-        'version' => 'Version 3.1.2',
+        'version' => 'Version 3.2.0',
         'release' => [
-            '* Correction d\'un bug au niveau de la fiche de travail</br>* Een bug opgelost op het niveau van het werkblad',
-            '* Ajout du champ validé dans le formulaire de la fiche de travail</br>* Het toevoegen van het gevalideerde veld in de vorm van het werkblad',
+            '* Modification du filtre sur la liste des fiches de travail pour ne pas afficher les fiches validées</br>* Het filter wijzigen op de lijst met werkbladen om de gevalideerde kaarten niet weer te geven',
+            '* Ajout du champ année de production sur la fiche de la grue</br>* Toevoeging van het productiejaar van de productie op het vel van de kraan',
             ]
     ],
     /**

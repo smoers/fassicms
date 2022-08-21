@@ -12,7 +12,7 @@
         <div class="col-6 mb-3">
             <div class="card">
                 <div class="card-header moco-title-table">
-                    <img src="/images/crane-32.png"> {{__('Crane')}}
+                    <img src="{{asset('/images/crane-32.png')}}"> {{__('Crane')}}
                 </div>
                 <div class="card-body">
                     <input id="crane_id" name="crane_id" type="hidden" wire:model="crane_id">
@@ -31,10 +31,15 @@
                         <input type="text" id="crane_model" name="crane_model" class="form-control form-control-sm" autocomplete="off" wire:model="crane_model"/>
                         @error('crane_model')<span class="moco-error-small moco-color-error">{{$message}}</span>@enderror
                     </div>
+                    <div class="form-group">
+                        <label for="crane_model">{{ __('Year of production')  }}</label>
+                        <input type="number" id="year_production" name="year_production" class="form-control form-control-sm" autocomplete="off" wire:model="year_production"/>
+                        @error('year_production')<span class="moco-error-small moco-color-error">{{$message}}</span>@enderror
+                    </div>
                 </div>
             </div>
             <div class="card mt-3">
-                <div class="card-header moco-title-table"><img src="/images/customer-32.png"> {{__("Customer")}}</div>
+                <div class="card-header moco-title-table"><img src="{{asset('/images/customer-32.png')}}"> {{__("Customer")}}</div>
                 <div class="card-body">
                     <input id="customer_id" name="customer_id" type="hidden" value="" wire:model="customer_id">
                     <div class="form-group">
@@ -53,7 +58,7 @@
         <div class="col-6 mb-3">
             <div class="card">
                 <div class="card-header moco-title-table">
-                    <img src="/images/truck-32.png"> {{__('Truck')}}
+                    <img src="{{asset('/images/truck-32.png')}}"> {{__('Truck')}}
                 </div>
                 <div class="card-body">
                     <input id="truck_id" name="truck_id" type="hidden" wire:model="truck_id">
@@ -111,7 +116,7 @@
                         <tbody>
                         @foreach($histories as $history)
                             <tr>
-                                <td><img src="/images/history-32.png"></td>
+                                <td><img src={{asset('/images/history-32.png')}}></td>
                                 <td>{{$history->serial}}</td>
                                 <td>{{$history->plate}}</td>
                                 <td>{{$history->name}}</td>

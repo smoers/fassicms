@@ -105,7 +105,7 @@ class WorksheetController extends Controller
              * Place les valeur par défaut
              */
             $worksheet->number = Moco::worksheetNumber();
-            $worksheet->date = Carbon::now('Europe/Brussels')->format('d/m/Y');
+            //$worksheet->date = Carbon::now('Europe/Brussels')->format('d/m/Y');
             $worksheet->oil_filtered = false;
             $worksheet->warranty = false;
             $worksheet->validated = false;

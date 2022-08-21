@@ -173,9 +173,9 @@ class MocoWorksheet
         /**
          * Empty, Mail
          */
-        $this->pdf->MultiCellLimitedItalic('',$split[0],0,'R',0, $this::$DARK_GREY);
-        $this->pdf->MultiCellLimited('',$split[1],0,'L',0);
-        $this->pdf->MultiCellLimitedItalic('Mail : ',$split[2],0,'R',0, $this::$DARK_GREY);
+        $this->pdf->MultiCellLimitedItalic($this->formatLabel('Année prod.','Productiejaar'),$split[0],0,'R',0, $this::$DARK_GREY);
+        $this->pdf->MultiCellLimited($truckscrane->year_production,$split[1],0,'L',0);
+        $this->pdf->MultiCellLimitedItalic($this->formatLabel('Adresse e-mail','e-mailadres'),$split[2],0,'R',0, $this::$DARK_GREY);
         $this->pdf->MultiCellLimited($customer->mail,$split[3],0,'L',0);
         $this->pdf->Ln($this->pdf->getMaxCellHeight() * $this->pdf->getLineHeight());
         /**
@@ -374,7 +374,7 @@ class MocoWorksheet
         $parts = ViewPartsSignedValues::groupBy('worksheet_id','part_number')
             ->select('worksheet_id','part_number','description','year', 'price', DB::raw('sum(qty_signed) as qty'), DB::raw('sum(total_price_signed) as total_price_signed'))
             ->where('worksheet_id','=',$this->worksheet->id)->get();
-        $partsTotals = ViewPartsSignedValues::groupBy('worksheet_id')->select(DB::raw('sum(total_price_signed) as total_price_signed'))->first();
+        $partsTotals = ViewPartsSignedValues::groupBy('worksheet_id')->select(DB::raw('sum(total_price_signed) as total_price_signed'))->where('worksheet_id','=',$this->worksheet->id)->first();
         /**
          * Ajoute une nouvelle page
          */

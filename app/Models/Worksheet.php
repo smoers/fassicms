@@ -121,7 +121,8 @@ class Worksheet extends Model implements MocoModelForConsultInterface
      */
     public function setDateAttribute($value)
     {
-        $this->attributes['date'] = Carbon::parse(str_replace('/','-',$value));
+        if (!is_null($value))
+            $this->attributes['date'] = Carbon::parse(str_replace('/','-',$value));
     }
 
     /**
@@ -146,7 +147,8 @@ class Worksheet extends Model implements MocoModelForConsultInterface
      */
     public function setValidatedDateAttribute($value)
     {
-        $this->attributes['validated_date'] = Carbon::parse(str_replace('/','-',$value));
+        if (!is_null($value))
+            $this->attributes['validated_date'] = Carbon::parse(str_replace('/','-',$value));
     }
 
     /**

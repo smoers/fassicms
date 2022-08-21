@@ -1,41 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9ec171e7-05c7-490b-8f14-40ae5b7978c4" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Moco/Datatables/Traits/Relationship.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/migrations/2022_02_28_194632_create_jobs_table.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/migrations/2022_03_01_182256_create_job_batches_table.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/backup/backup-2022-02-28-203228.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/laravel-excel/laravel-excel-B3zE00oSDzCqIyeJoCdOjw6vMToUQeoZ.xlsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/laravel-excel/laravel-excel-QYcPcULzfirl0WiZEAX3qtsNBRsDr1Bu.xlsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/sessions/7oe5JEI1HkCaZBkVHJTAjzaA6nkASqjobjcGOgmj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/523b1a5710afb7bc69be41c6fec32eb9b498ac4d.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/ac3c96cf1a768cced82534420a844a273578f896.php" afterDir="false" />
+    <list default="true" id="9ec171e7-05c7-490b-8f14-40ae5b7978c4" name="Default Changelist" comment="20220302 - v3.2.0 Cranes Trucks Customers Link">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/8074035a-9972-402f-a879-6c4d22e21adb.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/8074035a-9972-402f-a879-6c4d22e21adb.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CraneLivewireController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CraneLivewireController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CustomerController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CustomerController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/WorksheetController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/WorksheetController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/WorksheetLivewireController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/WorksheetLivewireController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Requests/WorksheetRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/WorksheetRequest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Moco/Common/Moco.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Moco/Common/Moco.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Moco/Datatables/Column.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Moco/Datatables/Column.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Moco/Datatables/DataTableComponent.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Moco/Datatables/DataTableComponent.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Moco/Datatables/Exports/ExportDataTable.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Moco/Datatables/Exports/ExportDataTable.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Moco/Datatables/Traits/Export.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Moco/Datatables/Traits/Export.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Livewire/Worksheet/WorksheetList.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Livewire/Worksheet/WorksheetList.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Requests/CraneRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/CraneRequest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Requests/CustomerRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/CustomerRequest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Moco/Printer/MocoWorksheet.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Moco/Printer/MocoWorksheet.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/CustomerContact.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/CustomerContact.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Models/Worksheet.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Worksheet.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Reports/ReportWorksheetsClockings.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Reports/ReportWorksheetsClockings.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config/moco.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/moco.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/lang/fr.json" beforeDir="false" afterPath="$PROJECT_DIR$/resources/lang/fr.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/lang/nl.json" beforeDir="false" afterPath="$PROJECT_DIR$/resources/lang/nl.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/livewire/data-table/button.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/livewire/data-table/button.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/livewire/data-table/filter/number-filter.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/livewire/data-table/filter/number-filter.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/livewire/data-table/filter/text-filter.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/livewire/data-table/filter/text-filter.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/livewire/data-table/thead.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/livewire/data-table/thead.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/crane/crane-livewire.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/crane/crane-livewire.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/customer/customer-contact-form.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/customer/customer-contact-form.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/store/store-part-form.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/store/store-part-form.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/worksheet/worksheet-livewire.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/worksheet/worksheet-livewire.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/BtUZri1Va7N2jWwDDCjKjo4Aq3ijDT0o9TjkEjwY" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/views/797fbbd6aaa672a92db8f23aa36aef536e53216a.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/797fbbd6aaa672a92db8f23aa36aef536e53216a.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/views/99b20726da24b985bf46392d54f97a8db867992f.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/99b20726da24b985bf46392d54f97a8db867992f.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/7oe5JEI1HkCaZBkVHJTAjzaA6nkASqjobjcGOgmj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/4249ae2de851a6ea93eb0db16c73371a13f7c389.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/4249ae2de851a6ea93eb0db16c73371a13f7c389.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/a6606c89c37b8647f983963c047cebac821a48b7.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/a6606c89c37b8647f983963c047cebac821a48b7.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/storage/framework/views/edd0cfdce08283a4d26c215e057b58cfeb486ad1.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/edd0cfdce08283a4d26c215e057b58cfeb486ad1.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/views/f0f46736f1499aaa1dd1e0e468a1bc597dccf9c0.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/f0f46736f1499aaa1dd1e0e468a1bc597dccf9c0.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/views/fffe399cf53532d84c602ae7460baf6de46af5c3.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/fffe399cf53532d84c602ae7460baf6de46af5c3.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,6 +60,9 @@
       <filtered-out-file-type name="TAG" />
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
   </component>
   <component name="PhpWorkspaceProjectConfiguration">
     <include_path>
@@ -213,18 +206,15 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">
-    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
-    <property name="DatabaseDriversLRU" value="mysql" />
-    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="WebServerToolWindowFactoryState" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/Moco/Datatables" />
-    <property name="list.type.of.created.stylesheet" value="CSS" />
-    <property name="php.override.implement.member.chooser.php.doc" value="NONE" />
-    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
-    <property name="vue.rearranger.settings.migration" value="true" />
-  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.sourceCode&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\fassicms\resources\views\report" />
@@ -1087,14 +1077,17 @@
       <workItem from="1645975412931" duration="8210000" />
       <workItem from="1646068069172" duration="6565000" />
       <workItem from="1646154258511" duration="6704000" />
-      <workItem from="1646225323468" duration="11360000" />
-    </task>
-    <task id="LOCAL-00024" summary="20201220 - v1.0">
-      <created>1608476443718</created>
-      <option name="number" value="00024" />
-      <option name="presentableId" value="LOCAL-00024" />
-      <option name="project" value="LOCAL" />
-      <updated>1608476443718</updated>
+      <workItem from="1646225323468" duration="11404000" />
+      <workItem from="1646319109782" duration="1703000" />
+      <workItem from="1646579179915" duration="5494000" />
+      <workItem from="1647867360714" duration="2000" />
+      <workItem from="1655146558208" duration="57000" />
+      <workItem from="1655146824003" duration="2443000" />
+      <workItem from="1655312148332" duration="4738000" />
+      <workItem from="1655558884389" duration="2986000" />
+      <workItem from="1660672311187" duration="3437000" />
+      <workItem from="1660842961313" duration="1992000" />
+      <workItem from="1661074053258" duration="337000" />
     </task>
     <task id="LOCAL-00025" summary="20201223 - v1.0">
       <created>1608759271230</created>
@@ -1432,17 +1425,34 @@
       <option name="project" value="LOCAL" />
       <updated>1644772152988</updated>
     </task>
-    <option name="localTasksCounter" value="73" />
+    <task id="LOCAL-00073" summary="20220302 - v3.2.0 Cranes Trucks Customers Link">
+      <created>1646258061105</created>
+      <option name="number" value="00073" />
+      <option name="presentableId" value="LOCAL-00073" />
+      <option name="project" value="LOCAL" />
+      <updated>1646258061106</updated>
+    </task>
+    <option name="localTasksCounter" value="74" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="20210528 - v2.0 Stores by location" />
     <MESSAGE value="20210602 - v2.0 Stores by location" />
     <MESSAGE value="20210606 - v2.0 Stores by location" />
     <MESSAGE value="20210619 - v2.0 Stores by location" />
@@ -1467,7 +1477,8 @@
     <MESSAGE value="20220126 - v1.2 Cranes Trucks Customers Link" />
     <MESSAGE value="20220206 - v3.2.0 Cranes Trucks Customers Link" />
     <MESSAGE value="20220213 - v3.2.0 Cranes Trucks Customers Link" />
-    <option name="LAST_COMMIT_MESSAGE" value="20220213 - v3.2.0 Cranes Trucks Customers Link" />
+    <MESSAGE value="20220302 - v3.2.0 Cranes Trucks Customers Link" />
+    <option name="LAST_COMMIT_MESSAGE" value="20220302 - v3.2.0 Cranes Trucks Customers Link" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

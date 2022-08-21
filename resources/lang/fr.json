@@ -115,9 +115,9 @@
     "Model": "Modèle",
     "Numberplate": "Numéro de plaque",
     "Expert mode": "Mode expert",
-    "The crane has been saved": "La grue a été sauvée",
-    "The crane has been modified with success": "La grue a été modifiée avec succès",
+    "The crane and truck data have been saved": "Les données de la grue et du camion ont été sauvée",
     "The combination between the serial and the plate already exist": "La combinaison entre le numéro de série et la plaque existe déjà",
+    "Year of production": "Année de production",
 
     "#####": "!! TECHNICIAN !!",
     "Technicians": "Techniciens",

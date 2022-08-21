@@ -115,9 +115,9 @@
     "Model": "Model",
     "Numberplate": "Kentekenplaatnummer",
     "Expert mode": "Expert modus",
-    "The crane has been saved": "De kraan is gered",
-    "The crane has been modified with success": "De kraan is succesvol aangepast",
+    "The crane and truck data have been saved": "De gegevens van de kraan en een vrachtwagen zijn opgeslagen",
     "The combination between the serial and the plate already exist": "De combinatie tussen het serienummer en het plaatje bestaat al",
+    "Year of production": "Productiejaar",
 
     "#####": "!! TECHNICIAN !!",
     "Technicians": "Technici",

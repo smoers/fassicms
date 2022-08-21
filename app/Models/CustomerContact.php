@@ -60,6 +60,7 @@ class CustomerContact extends Model
             $contact->function = $contacts['function'][$index];
             $contact->phone = $contacts['phone'][$index];
             $contact->mobile = $contacts['mobile'][$index];
+            $contact->mail = $contacts['mail'][$index];
             $contact->user()->associate(Auth::user());
             $contact->customer()->associate($customer);
             $contact->save();

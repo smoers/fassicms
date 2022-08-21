@@ -46,6 +46,18 @@ if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
                     </div>
+                    <div class="form-group">
+                        <label for="crane_model"><?php echo e(__('Year of production')); ?></label>
+                        <input type="number" id="year_production" name="year_production" class="form-control form-control-sm" autocomplete="off" wire:model="year_production"/>
+                        <?php $__errorArgs = ['year_production'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?><span class="moco-error-small moco-color-error"><?php echo e($message); ?></span><?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+                    </div>
                 </div>
             </div>
             <div class="card mt-3">

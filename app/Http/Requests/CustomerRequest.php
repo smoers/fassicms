@@ -41,6 +41,7 @@ class CustomerRequest extends FormRequest
             'contacts.function.*' => 'nullable|max:255',
             'contacts.phone.*' => 'nullable|max:100',
             'contacts.mobile.*' => 'nullable|max:100',
+            'contacts.mail.*' => 'nullable|max:100',
         ];
     }
 

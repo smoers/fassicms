@@ -116,16 +116,22 @@ class CustomerController extends Controller
      */
     public function store(CustomerRequest $request)
     {
-        $validateData = $request->validated();
+        $validatedData = $request->validated();
         /**
-         * Liste des contacts à sauvegarder
+         * Y a t il des contacts
          */
-        $contacts = $validateData['contacts'];
+        $contacts = [];
+        if(array_key_exists('contacts',$validatedData))
+            /**
+             * Liste des contacts à sauvegarder
+             */
+
+            $contacts = $validatedData['contacts'];
         /**
          * Création de l'objet Customer
          */
         $customer = new Customer();
-        $customer->fill($validateData);
+        $customer->fill($validatedData);
         $customer->user()->associate(Auth::user());
         /**
          * Sauvegarde
@@ -134,8 +140,10 @@ class CustomerController extends Controller
             $customer->save();
             /**
              * Sauvegarde les contacts qui sont dans le liste POST
+             * Si il y en a !!
              */
-            CustomerContact::hydratedAndSave($contacts,$customer);
+            if (!empty($contacts))
+                CustomerContact::hydratedAndSave($contacts,$customer);
         });
 
         /**

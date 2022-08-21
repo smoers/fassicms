@@ -78,10 +78,7 @@ class WorksheetList extends TableComponent
     public function query(): Builder
     {
         $year = $this->template ? null : $this->year;
-        $builder = ViewWorksheetCustomerCrane::select()->where('year','=',$year);
-        if ($this->validate)
-            $builder = $builder->where('validated','=',true);
-        return $builder;
+        return ViewWorksheetCustomerCrane::select()->where('year','=',$year)->where('validated','=',$this->validate);;
     }
 
     /**
