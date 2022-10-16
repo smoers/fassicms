@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\ChangePasswordController;
 use App\Http\Controllers\ProviderController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\ReportingController;
+use App\Http\Controllers\Spreadsheet\SpreadsheetController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\StoreController;
@@ -174,6 +175,12 @@ Route::group(['middleware' => ['auth']],function (){
      */
     Route::get('/report/reassort',[ReportController::class,'reassortLevel'])->name('report.reassortLevel')->middleware(['ifnot:list provider']);
     Route::get('/reporting/{id}',[ReportingController::class,'from'])->name('reporting.from');
+
+    /**
+     * Spreadsheets
+     */
+    Route::get('/spreadsheet/catalog',[SpreadsheetController::class,'catalog'])->name('spreadsheet.catalog')->middleware(['ifnot:list provider']);
+
 
     Route::get('/artisan', [GuiController::class, 'index'])->name('gui.index');
     Route::post('/artisan/{command}', [GuiController::class, 'run'])->name('gui.run');

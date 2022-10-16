@@ -1,2 +1,0 @@
-<?php echo $__env->make('livewire.data-table.datatable', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
-<?php /**PATH /var/www/moco/fassicms/resources/views/report/report-worksheets-clockings.blade.php ENDPATH**/ ?>

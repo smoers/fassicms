@@ -79,21 +79,41 @@ abstract class DataTableComponent extends Component
      * @var array
      */
     public $filters = [];
+    /**
+     * Détermine si nous sommes en mode edit
+     * @var bool
+     */
+    public bool $editMode = false;
+    /**
+     * des données ont-elle été modifiées dans le tableau
+     * Détermine si un filtre ou un changement de page peut-être possible ou pas
+     * @var bool
+     */
+    public bool $edit = false;
+    /**
+     * Le chemin dans le fichier de config avec la valeur par défaut par page
+     * @var string
+     */
+    public string $perPageConfig = 'moco.table.perPage';
+    /**
+     * Le chemin dans le fichier de config avec la valeur des par page options
+     * @var string
+     */
+    public string $perPageOptionsConfig = 'moco.table.perPageOptions';
 
     /**
      * Charge la variable filter
      */
     public function mount()
     {
-
         /**
          * Nombre de ligne par page valeur par défaut
          */
-        $this->perPage = config('moco.table.perPage');
+        $this->perPage = config($this->perPageConfig);
         /**
          * liste du nombre possible de ligne par page
          */
-        $this->perPageOptions = config('moco.table.perPageOptions');
+        $this->perPageOptions = config($this->perPageOptionsConfig);
         /**
          * Initialise le tableau avec le nom des champs disposants d'un filtre
          */
@@ -156,7 +176,7 @@ abstract class DataTableComponent extends Component
      * @param Column $column
      * @return null
      */
-    public function setTableHeadColumnClass(Column $column): ?string
+    public function setTableHeadColumnClass(ColumnInterface $column): ?string
     {
         return null;
     }
@@ -168,7 +188,7 @@ abstract class DataTableComponent extends Component
      * @param Column $column
      * @return string|null
      */
-    public function setTableDataClass(): ?string
+    public function setTableDataRowClass(): ?string
     {
         return 'text-left';
     }
@@ -180,9 +200,20 @@ abstract class DataTableComponent extends Component
      * @param Column $column
      * @return string|null
      */
-    public function setTableDataColumnClass(Column $column): ?string
+    public function setTableDataColumnClass(ColumnInterface $column): ?string
     {
         return null;
+    }
+
+    /**
+     * Class pour le tableau complet
+     * peut être surchargé
+     *
+     * @return string|null
+     */
+    public function setTableDataClass(): ?string
+    {
+        return 'data table table-striped table-bordered table-sm';
     }
 
     /**
@@ -202,6 +233,7 @@ abstract class DataTableComponent extends Component
         }
         return $builder->orderBy($this->sortField,$this->sortDirection);
     }
+
 
 
 

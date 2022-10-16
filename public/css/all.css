@@ -5,6 +5,28 @@ Authority : Moers Serge
 Date : 09-10-20
 */
 
+.moco-table-vsm th,
+.moco-table-vsm td {
+    padding: 0.2rem !important;
+}
+
+.moco-form-control-vsm {
+    height: calc(1em + 0.5rem + 2px);
+    padding: 0.25rem 0.5rem;
+    font-size: 0.7rem;
+    line-height: 1.5;
+    border-radius: 5px;
+}
+
+.moco-font-important {
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.moco-edit-mode {
+    border-color: #D32F2F;
+}
+
 #datatablesrolling th td{
     white-space: nowrap;
 }

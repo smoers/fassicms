@@ -30,6 +30,7 @@
 namespace App\Reports;
 
 use App\Moco\Datatables\Column;
+use App\Moco\Datatables\ColumnInterface;
 use App\Moco\Datatables\DataTableComponent;
 use App\Moco\Datatables\Filters\DateFilter;
 use App\Moco\Datatables\Filters\SelectBooleanFilter;
@@ -95,7 +96,7 @@ class ReportTruckscraneHistory extends DataTableComponent
         ];
     }
 
-    public function setTableDataColumnClass(Column $column): ?string
+    public function setTableDataColumnClass(ColumnInterface $column): ?string
     {
         $class = '';
         switch ($column->getAttribute()){

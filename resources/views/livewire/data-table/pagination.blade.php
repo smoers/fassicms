@@ -1,5 +1,5 @@
 <div class="row">
-    <div class="col">
+    <div class="col @if($this->edit) disabled @endif">
         {{ $models->links() }}
     </div>
 

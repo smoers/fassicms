@@ -23,6 +23,7 @@
 namespace App\Reports;
 
 use App\Moco\Datatables\Column;
+use App\Moco\Datatables\ColumnInterface;
 use App\Moco\Datatables\DataTableComponent;
 use App\Moco\Datatables\Filters\FloatNumberFilter;
 use App\Moco\Datatables\Filters\IntNumberFilter;
@@ -120,7 +121,7 @@ class PartmetadataExportDataTable extends DataTableComponent
      * @param Column $column
      * @return string|null
      */
-    public function setTableHeadColumnClass(Column $column): ?string
+    public function setTableHeadColumnClass(ColumnInterface $column): ?string
     {
         $class = '';
         switch ($column->getAttribute()){
@@ -152,7 +153,7 @@ class PartmetadataExportDataTable extends DataTableComponent
      * @param Column $column
      * @return string|null
      */
-    public function setTableDataColumnClass(Column $column): ?string
+    public function setTableDataColumnClass(ColumnInterface $column): ?string
     {
         $class = '';
         switch ($column->getAttribute()){

@@ -66,6 +66,7 @@
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         @can('list catalog')<a class="dropdown-item" href="{{route('store.index')}}">{{__('Catalog')}}</a>@endcan
+                        @can('list catalog')<a class="dropdown-item" href="{{route('spreadsheet.catalog')}}">{{__('Catalog spreadsheet')}}</a>@endcan
                         @can('create catalog')<a class="dropdown-item" href="{{route('store.create')}}">{{__('Add a part to the catalog')}}</a>@endcan
                         @can('list stock')<div class="dropdown-divider"></div>@endcan
                         @can('list stock')<a class="dropdown-item" href="{{route('reassort.index')}}">{{__('Movement of stock')}}</a>@endcan

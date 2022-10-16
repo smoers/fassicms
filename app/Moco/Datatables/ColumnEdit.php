@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright (c) 2021. MO Consult
+ * Copyright (c) 2022. MO Consult
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,26 +17,24 @@
  *  Company : Fassi Belgium
  *  Developer : MO Consult
  *  Author : Moers Serge
- *  Date : 26/10/21 18:34
+ *  Date : 2/10/22 14:20
  */
 
 /**
  * Company : Fassi Belgium
  * Developer : MO Consult
  * Authority : Moers Serge
- * Date : 26-10-21
+ * Date : 02-10-22
  */
 
 namespace App\Moco\Datatables;
 
-
+use App\Moco\Datatables\EditFields\EditFieldInterface;
 use App\Moco\Datatables\Filters\FilterInterface;
 use App\Moco\Datatables\Traits\RandomKey;
-use Carbon\Carbon;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 
-class Column implements ColumnInterface
+class ColumnEdit implements ColumnInterface
 {
     use RandomKey;
 
@@ -53,14 +51,6 @@ class Column implements ColumnInterface
      */
     protected ?string $alias;
     /**
-     * @var
-     */
-    protected $formatCallback;
-    /**
-     * @var
-     */
-    protected $exportFormatCallback;
-    /**
      * @var FilterInterface|null
      */
     protected ?FilterInterface $filterObject = null;
@@ -68,10 +58,8 @@ class Column implements ColumnInterface
      * @var bool
      */
     protected bool $isSortable = false;
-    /**
-     * @var string|null
-     */
-    protected ?string $exportFormat = null;
+
+    protected EditFieldInterface $editField;
 
     /**
      * @param string $name
@@ -89,7 +77,7 @@ class Column implements ColumnInterface
      * @param string $attribute
      * @return Column
      */
-    public static function make(string $name, ?string $attribute = null): Column
+    public static function make(string $name, ?string $attribute = null): ColumnEdit
     {
         return new static($name, $attribute);
     }
@@ -118,93 +106,16 @@ class Column implements ColumnInterface
         return $this->alias;
     }
 
-
-    /**
-     * @return mixed
-     */
-    public function getFormatCallback()
+    public function getEditField(int $index,ColumnInterface $column)
     {
-        return $this->formatCallback;
+        return $this->editField->show($index, $column);
     }
 
-    /**
-     * @param callable $callable
-     * @return $this
-     */
-    public function format(callable $callable): Column
+    public function setEditField(EditFieldInterface $editField): ColumnEdit
     {
-        $this->formatCallback = $callable;
+        $this->editField = $editField;
 
         return $this;
-    }
-
-    /**
-     * @param callable $callable
-     * @return $this
-     */
-    public function exportFormat(callable $callable): Column
-    {
-        $this->exportFormatCallback = $callable;
-
-        return $this;
-    }
-
-    /**
-     * @return $this
-     */
-    public function formatYesNo(): Column
-    {
-        $this->format(function (Model $model, Column $column){
-            return $model[$column->getAlias()] == 1 ? trans('Yes') : trans('No');
-        });
-
-        return $this;
-    }
-
-    public function formatDate(): Column
-    {
-        $this->format(function (Model $model, Column $column){
-            return !is_null($model[$this->getAlias()]) ? Carbon::parse($model[$this->getAlias()])->format('d/m/Y') : null;
-        });
-
-        return $this;
-    }
-
-    /**
-     * @return bool
-     */
-    public function isFormatted(): bool
-    {
-        return is_callable($this->formatCallback);
-    }
-
-    /**
-     * @return bool
-     */
-    public function isExportFormatted(): bool
-    {
-        return is_callable($this->exportFormatCallback);
-    }
-
-    /**
-     * @param $model
-     * @param $column
-     *
-     * @return mixed
-     */
-    public function formatted($model, $column)
-    {
-        return app()->call($this->formatCallback, ['model' => $model, 'column' => $column]);
-    }
-
-    /**
-     * @param $row
-     * @param $column
-     * @return mixed
-     */
-    public function exportFormatted($row, $column)
-    {
-        return app()->call($this->exportFormatCallback,['row' => $row, 'column' => $column]);
     }
 
     /**
@@ -218,7 +129,7 @@ class Column implements ColumnInterface
     /**
      * @param FilterInterface $filterObject
      */
-    public function setFilter(FilterInterface $filter): Column
+    public function setFilter(FilterInterface $filter): ColumnEdit
     {
         $this->filterObject = $filter;
 
@@ -244,31 +155,11 @@ class Column implements ColumnInterface
     /**
      * @return $this
      */
-    public function setSortable(): Column
+    public function setSortable(): ColumnEdit
     {
         $this->isSortable = true;
 
         return $this;
     }
-
-    /**
-     * @return string|null
-     */
-    public function getExportFormat(): ?string
-    {
-        return $this->exportFormat;
-    }
-
-    /**
-     * @param string|null $exportFormat
-     * @return Column
-     */
-    public function setExportFormat(?string $exportFormat): Column
-    {
-        $this->exportFormat = $exportFormat;
-        return $this;
-    }
-
-
 
 }

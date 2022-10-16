@@ -5,9 +5,13 @@
 
     <div class="d-flex flex-row justify-content-between mb-1">
         @include('livewire.data-table.perpage')
-        @include('livewire.data-table.button')
+        @if(!$this->editMode)
+            @include('livewire.data-table.button')
+        @else
+            @include('livewire.data-table.edit-button')
+        @endif
     </div>
-    <table class="data table table-sm table-striped table-bordered" style="white-space: nowrap" data-rtc-resizable-table="table.one">
+    <table class="{{ $this->setTableDataClass() }}" style="white-space: nowrap;" data-rtc-resizable-table="table.one">
         @include('livewire.data-table.thead')
         <tbody>
         @include('livewire.data-table.filter')

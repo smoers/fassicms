@@ -53,6 +53,11 @@ abstract class FilterAbstract implements FilterInterface
      * Valeur actuelle
      */
     protected $value;
+    /**
+     * Le filtre doit-il être en readonly ?
+     * @var bool
+     */
+    protected bool $readOnly = false;
 
     /**
      * @param string $field
@@ -100,7 +105,10 @@ abstract class FilterAbstract implements FilterInterface
      */
     private function getViewParameters(): array
     {
-        return array_merge(['name' => $this->getName()], $this->getViewParameter());
+        return array_merge([
+            'name' => $this->getName(),
+            'readonly' => $this->getReadOnly()
+        ],$this->getViewParameter());
     }
 
     /**
@@ -149,6 +157,25 @@ abstract class FilterAbstract implements FilterInterface
     public function getValue()
     {
         return $this->value;
+    }
+
+    /**
+     * Place le filtre en mode readonly
+     *
+     * @param bool $readOnly
+     * @return void
+     */
+    public function setReadOnly(bool $readOnly)
+    {
+        $this->readOnly = $readOnly;
+    }
+
+    /**
+     * @return bool
+     */
+    public function getReadOnly(): bool
+    {
+        return $this->readOnly;
     }
 
     /**

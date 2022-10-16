@@ -39,10 +39,9 @@ return [
      * Version release
      */
     'app' => [
-        'version' => 'Version 3.2.0',
+        'version' => 'Version 3.3.0',
         'release' => [
-            '* Modification du filtre sur la liste des fiches de travail pour ne pas afficher les fiches validées</br>* Het filter wijzigen op de lijst met werkbladen om de gevalideerde kaarten niet weer te geven',
-            '* Ajout du champ année de production sur la fiche de la grue</br>* Toevoeging van het productiejaar van de productie op het vel van de kraan',
+            '* Mise à jour pour PHP 8.1</br>* Update voor PHP 8.1',
             ]
     ],
     /**
@@ -134,6 +133,16 @@ return [
          * Les classes pour le format de la ligne 'class1 class2 ...'
          */
         'rowClass' => 'moco-row-table-font-small',
+        'edit' => [
+            /**
+             * Nombre par défaut d'item par page
+             */
+            'perPage' => 20,
+            /**
+             * Nombre d'item possible par page
+             */
+            'perPageOptions' => [20,40,60],
+        ],
 
     ],
 
