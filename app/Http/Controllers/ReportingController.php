@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Moco\Reporting\MocoSelectRender;
-use Illuminate\Http\Request;
 
 class ReportingController extends Controller
 {

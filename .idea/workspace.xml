@@ -1,124 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9ec171e7-05c7-490b-8f14-40ae5b7978c4" name="Default Changelist" comment="20220302 - v3.2.1 Correction Worksheet and Add production year into Worksheet.">
-      <change afterPath="H://SQL de création des vues.sql" afterDir="false" />
-      <change afterPath="H://app/Moco/Datatables/ColumnEdit.php" afterDir="false" />
-      <change afterPath="H://app/Moco/Datatables/EditFields/SelectBooleanFieldEdit.php" afterDir="false" />
-      <change afterPath="H://app/Moco/Datatables/SpreadsheetDataTableComponent.php" afterDir="false" />
-      <change afterPath="H://app/Spreadsheets/SpreadsheetCatalog.php" afterDir="false" />
-      <change afterPath="H://dump-fassi_cms_02-202208211312.sql" afterDir="false" />
-      <change afterPath="H://dump-fassi_cms_03-202208211441.sql" afterDir="false" />
-      <change afterPath="H://resources/views/spreadsheet/spreadsheet-catalog.blade.php" afterDir="false" />
-      <change afterPath="H://resources/views/spreadsheet/spreadsheets.blade.php" afterDir="false" />
-      <change afterPath="H://storage/backup/backup-partmetadatas-catalogs-stores-outs-reassortements-2022-08-21-131247.sql" afterDir="false" />
-      <change afterPath="H://storage/backup/backup-partmetadatas-catalogs-stores-outs-reassortements-2022-08-21-131721.sql" afterDir="false" />
-      <change afterPath="H://storage/backup/backup-partmetadatas-catalogs-stores-outs-reassortements-2022-08-21-141829.sql" afterDir="false" />
-      <change beforePath="H://.idea/fassicms.iml" beforeDir="false" afterPath="H://.idea/fassicms.iml" afterDir="false" />
-      <change beforePath="H://.idea/php.xml" beforeDir="false" afterPath="H://.idea/php.xml" afterDir="false" />
-      <change beforePath="H://.idea/vcs.xml" beforeDir="false" afterPath="H://.idea/vcs.xml" afterDir="false" />
+    <list default="true" id="9ec171e7-05c7-490b-8f14-40ae5b7978c4" name="Default Changelist" comment="20221016 - v3.4.0 New features">
       <change beforePath="H://.idea/workspace.xml" beforeDir="false" afterPath="H://.idea/workspace.xml" afterDir="false" />
-      <change beforePath="H://app/Moco/Datatables/Column.php" beforeDir="false" afterPath="H://app/Moco/Datatables/Column.php" afterDir="false" />
-      <change beforePath="H://app/Moco/Datatables/DataTableComponent.php" beforeDir="false" afterPath="H://app/Moco/Datatables/DataTableComponent.php" afterDir="false" />
-      <change beforePath="H://app/Moco/Datatables/Filters/FilterAbstract.php" beforeDir="false" afterPath="H://app/Moco/Datatables/Filters/FilterAbstract.php" afterDir="false" />
-      <change beforePath="H://app/Reports/PartmetadataExportDataTable.php" beforeDir="false" afterPath="H://app/Reports/PartmetadataExportDataTable.php" afterDir="false" />
-      <change beforePath="H://app/Reports/ReportStockReassortment.php" beforeDir="false" afterPath="H://app/Reports/ReportStockReassortment.php" afterDir="false" />
-      <change beforePath="H://app/Reports/ReportTruckscraneHistory.php" beforeDir="false" afterPath="H://app/Reports/ReportTruckscraneHistory.php" afterDir="false" />
-      <change beforePath="H://composer.json" beforeDir="false" afterPath="H://composer.json" afterDir="false" />
-      <change beforePath="H://composer.lock" beforeDir="false" afterPath="H://composer.lock" afterDir="false" />
-      <change beforePath="H://config/moco.php" beforeDir="false" afterPath="H://config/moco.php" afterDir="false" />
+      <change beforePath="H://app/Http/Controllers/CraneLivewireController.php" beforeDir="false" afterPath="H://app/Http/Controllers/CraneLivewireController.php" afterDir="false" />
+      <change beforePath="H://app/Http/Controllers/OutWorksheetController.php" beforeDir="false" afterPath="H://app/Http/Controllers/OutWorksheetController.php" afterDir="false" />
+      <change beforePath="H://app/Http/Controllers/ReassortController.php" beforeDir="false" afterPath="H://app/Http/Controllers/ReassortController.php" afterDir="false" />
+      <change beforePath="H://app/Http/Controllers/ReportingController.php" beforeDir="false" afterPath="H://app/Http/Controllers/ReportingController.php" afterDir="false" />
+      <change beforePath="H://app/Http/Controllers/StoreController.php" beforeDir="false" afterPath="H://app/Http/Controllers/StoreController.php" afterDir="false" />
+      <change beforePath="H://app/Http/Controllers/WorksheetLivewireController.php" beforeDir="false" afterPath="H://app/Http/Controllers/WorksheetLivewireController.php" afterDir="false" />
+      <change beforePath="H://app/Moco/Datatables/ColumnEdit.php" beforeDir="false" afterPath="H://app/Moco/Datatables/ColumnEdit.php" afterDir="false" />
+      <change beforePath="H://app/Moco/Datatables/EditFields/EditFieldAbstract.php" beforeDir="false" afterPath="H://app/Moco/Datatables/EditFields/EditFieldAbstract.php" afterDir="false" />
+      <change beforePath="H://app/Moco/Datatables/Filters/SelectBooleanFilter.php" beforeDir="false" afterPath="H://app/Moco/Datatables/Filters/SelectBooleanFilter.php" afterDir="false" />
+      <change beforePath="H://app/Moco/Datatables/SpreadsheetDataTableComponent.php" beforeDir="false" afterPath="H://app/Moco/Datatables/SpreadsheetDataTableComponent.php" afterDir="false" />
+      <change beforePath="H://app/Spreadsheets/SpreadsheetCatalog.php" beforeDir="false" afterPath="H://app/Spreadsheets/SpreadsheetCatalog.php" afterDir="false" />
       <change beforePath="H://public/css/all.css" beforeDir="false" afterPath="H://public/css/all.css" afterDir="false" />
-      <change beforePath="H://public/vendor/livewire/livewire.js" beforeDir="false" afterPath="H://public/vendor/livewire/livewire.js" afterDir="false" />
-      <change beforePath="H://public/vendor/livewire/livewire.js.map" beforeDir="false" afterPath="H://public/vendor/livewire/livewire.js.map" afterDir="false" />
-      <change beforePath="H://public/vendor/livewire/manifest.json" beforeDir="false" afterPath="H://public/vendor/livewire/manifest.json" afterDir="false" />
-      <change beforePath="H://resources/lang/fr.json" beforeDir="false" afterPath="H://resources/lang/fr.json" afterDir="false" />
-      <change beforePath="H://resources/lang/nl.json" beforeDir="false" afterPath="H://resources/lang/nl.json" afterDir="false" />
-      <change beforePath="H://resources/views/livewire/data-table/datatable.blade.php" beforeDir="false" afterPath="H://resources/views/livewire/data-table/datatable.blade.php" afterDir="false" />
-      <change beforePath="H://resources/views/livewire/data-table/filter.blade.php" beforeDir="false" afterPath="H://resources/views/livewire/data-table/filter.blade.php" afterDir="false" />
+      <change beforePath="H://resources/views/livewire/data-table/filter/date-filter.blade.php" beforeDir="false" afterPath="H://resources/views/livewire/data-table/filter/date-filter.blade.php" afterDir="false" />
+      <change beforePath="H://resources/views/livewire/data-table/filter/number-filter.blade.php" beforeDir="false" afterPath="H://resources/views/livewire/data-table/filter/number-filter.blade.php" afterDir="false" />
+      <change beforePath="H://resources/views/livewire/data-table/filter/select-filter.blade.php" beforeDir="false" afterPath="H://resources/views/livewire/data-table/filter/select-filter.blade.php" afterDir="false" />
       <change beforePath="H://resources/views/livewire/data-table/filter/text-filter.blade.php" beforeDir="false" afterPath="H://resources/views/livewire/data-table/filter/text-filter.blade.php" afterDir="false" />
-      <change beforePath="H://resources/views/livewire/data-table/pagination.blade.php" beforeDir="false" afterPath="H://resources/views/livewire/data-table/pagination.blade.php" afterDir="false" />
-      <change beforePath="H://resources/views/livewire/data-table/perpage.blade.php" beforeDir="false" afterPath="H://resources/views/livewire/data-table/perpage.blade.php" afterDir="false" />
       <change beforePath="H://resources/views/livewire/data-table/tbody.blade.php" beforeDir="false" afterPath="H://resources/views/livewire/data-table/tbody.blade.php" afterDir="false" />
-      <change beforePath="H://resources/views/livewire/data-table/thead.blade.php" beforeDir="false" afterPath="H://resources/views/livewire/data-table/thead.blade.php" afterDir="false" />
-      <change beforePath="H://resources/views/menus/navbar.blade.php" beforeDir="false" afterPath="H://resources/views/menus/navbar.blade.php" afterDir="false" />
-      <change beforePath="H://routes/web.php" beforeDir="false" afterPath="H://routes/web.php" afterDir="false" />
-      <change beforePath="H://storage/debugbar/.gitignore" beforeDir="false" />
-      <change beforePath="H://storage/framework/sessions/B17oA3aqUDJ9aehJzaWI8TkmEidpK5zjBz1fokfi" beforeDir="false" />
-      <change beforePath="H://storage/framework/views/012bfdb2c8f39f75dee6dbf1b5ccce42ec13c095.php" beforeDir="false" />
-      <change beforePath="H://storage/framework/views/057f2ec40336d41086b8def596585c2ea9e2fad4.php" beforeDir="false" />
-      <change beforePath="H://storage/framework/views/0ba889b3687cf500cee460b8c856fc72b73c43d3.php" beforeDir="false" />
-      <change beforePath="H://storage/framework/views/0ce1329378cbe62ee30ab466371d76c5ff61d8cf.php" beforeDir="false" />
-      <change beforePath="H://storage/framework/views/0d95071f8b4632dfb5d4d8c4175e874df59cf3ad.php" beforeDir="false" />
-      <change beforePath="H://storage/framework/views/1603400f5a7c53bcd4b259225a493fab2611a11c.php" beforeDir="false" />
-      <change beforePath="H://storage/framework/views/197db771ff09ea7a71966d31b59b863956397ef2.php" beforeDir="false" />
-      <change beforePath="H://storage/framework/views/2070d39226d18c4907c446a8bd768a75c2228e74.php" beforeDir="false" />
-      <change beforePath="H://storage/framework/views/2463bd88e03a90a50ff58710cbae31f59c3645fb.php" beforeDir="false" />
-      <change beforePath="H://storage/framework/views/25260852830396136ad7a3932c4427c3795c142f.php" beforeDir="false" />
-      <change beforePath="H://storage/framework/views/2a2ad9aab63493d07903b15983b86a7b13a5aa91.php" beforeDir="false" />
-      <change beforePath="H://storage/framework/views/2b607f14c6de0dba42dc30e45e82a32f91ed30eb.php" beforeDir="false" />
-      <change beforePath="H://storage/framework/views/2ca0d8f9baf46333a99f9d2bf3c965ac5ebdbbe7.php" beforeDir="false" />
-      <change beforePath="H://storage/framework/views/30285ec8684b360b574906dc96e69ca8d39d5c0d.php" beforeDir="false" />
-      <change beforePath="H://storage/framework/views/357f0130539d550c00ec9e0977bbe4e857371e51.php" beforeDir="false" />
-      <change beforePath="H://storage/framework/views/36f0e3cfde108fcbf9d276674a52b913553cf9a9.php" beforeDir="false" />
-      <change beforePath="H://storage/framework/views/38413bc136cb1c465a248724c4cdd21e47ec5b1a.php" beforeDir="false" />
-      <change beforePath="H://storage/framework/views/3fb92c8408452c293a1852916095b08f1bbac216.php" beforeDir="false" />
-      <change beforePath="H://storage/framework/views/418f865b405b1a84857a121b078c1762b524923f.php" beforeDir="false" />
-      <change beforePath="H://storage/framework/views/4249ae2de851a6ea93eb0db16c73371a13f7c389.php" beforeDir="false" />
-      <change beforePath="H://storage/framework/views/4b9a316458dd62781cf0837c10f9eaac8779e568.php" beforeDir="false" />
-      <change beforePath="H://storage/framework/views/4d5bc0f4f6f704f78f096f8dd2e2b9b62547e2a0.php" beforeDir="false" />
-      <change beforePath="H://storage/framework/views/4f76c30c8b3ba116b0690249696fe3413efbfc66.php" beforeDir="false" />
-      <change beforePath="H://storage/framework/views/523b1a5710afb7bc69be41c6fec32eb9b498ac4d.php" beforeDir="false" />
-      <change beforePath="H://storage/framework/views/5256a08130ab2c890fa47822609d549649ee6520.php" beforeDir="false" />
-      <change beforePath="H://storage/framework/views/52dd0c2bbad4ab721f9b45efa847fa0397059a8d.php" beforeDir="false" />
-      <change beforePath="H://storage/framework/views/53d364c888f85074bfa119516ed8ac80a62d2290.php" beforeDir="false" />
-      <change beforePath="H://storage/framework/views/53fd60962b50afb3459b3cd9201f6ea36bc3470a.php" beforeDir="false" />
-      <change beforePath="H://storage/framework/views/564ceecd33345465e85d1e0812916c597361b19f.php" beforeDir="false" />
-      <change beforePath="H://storage/framework/views/5b88c7c4d84639ceeeb6cbc0f0390d4de1297009.php" beforeDir="false" />
-      <change beforePath="H://storage/framework/views/5c07b209f2bb537629c81b71726d197945e36205.php" beforeDir="false" />
-      <change beforePath="H://storage/framework/views/600f619b4c9b22861485fd4aaa156724c5e6d0a3.php" beforeDir="false" />
-      <change beforePath="H://storage/framework/views/62bb53d18378a7bbf5b1a84f24dea67b0a0457ad.php" beforeDir="false" />
-      <change beforePath="H://storage/framework/views/654a90afc80706a452fb1edffc0e0b6f076efb03.php" beforeDir="false" />
-      <change beforePath="H://storage/framework/views/6588ccaf56e86096df6ccee89a87beb9aee93567.php" beforeDir="false" />
-      <change beforePath="H://storage/framework/views/6622be8e1b69193c2ba4000eea9104186c4f3fbc.php" beforeDir="false" />
-      <change beforePath="H://storage/framework/views/66e5c1a2733047657c380e29e0bc92c6411801b4.php" beforeDir="false" />
-      <change beforePath="H://storage/framework/views/671465d71e88ee5541011503fc09215555fa01e5.php" beforeDir="false" />
-      <change beforePath="H://storage/framework/views/70541efa41ef9e0c022ee49a6deb6b94dc6f98e1.php" beforeDir="false" />
-      <change beforePath="H://storage/framework/views/73bce3137eba2262bc947c8432e1a31b12433503.php" beforeDir="false" />
-      <change beforePath="H://storage/framework/views/772788232fad24a9c6a3175e53c3309ad50bc34e.php" beforeDir="false" />
-      <change beforePath="H://storage/framework/views/797fbbd6aaa672a92db8f23aa36aef536e53216a.php" beforeDir="false" />
-      <change beforePath="H://storage/framework/views/7bec7fc0e8ed38e0b268fded11f21d94decf6a5c.php" beforeDir="false" />
-      <change beforePath="H://storage/framework/views/7f96d952f1a9eabc67f45aad1ebe69a54b461017.php" beforeDir="false" />
-      <change beforePath="H://storage/framework/views/806bee585d5daade004766f2ec7e03d75da00edd.php" beforeDir="false" />
-      <change beforePath="H://storage/framework/views/870fccd02bfe2959cd07330da54f9d42321b3515.php" beforeDir="false" />
-      <change beforePath="H://storage/framework/views/8e6a5dfaf5e73e0e4dc8506a4109cc250005af85.php" beforeDir="false" />
-      <change beforePath="H://storage/framework/views/90c48dcb194d2bb220a0b74a2b7047854d23d0fb.php" beforeDir="false" />
-      <change beforePath="H://storage/framework/views/9478e79a334db9a48dc152e4b32b216814ba6781.php" beforeDir="false" />
-      <change beforePath="H://storage/framework/views/98572a6cfc5ed060e1b36f926575779961429050.php" beforeDir="false" />
-      <change beforePath="H://storage/framework/views/99b20726da24b985bf46392d54f97a8db867992f.php" beforeDir="false" />
-      <change beforePath="H://storage/framework/views/a5b5b0efc4408ad8fbfe882559004f213b5cfe64.php" beforeDir="false" />
-      <change beforePath="H://storage/framework/views/a6606c89c37b8647f983963c047cebac821a48b7.php" beforeDir="false" />
-      <change beforePath="H://storage/framework/views/abc9e8b2f61041af011f4ea82562b40c8f37498b.php" beforeDir="false" />
-      <change beforePath="H://storage/framework/views/ac3c96cf1a768cced82534420a844a273578f896.php" beforeDir="false" />
-      <change beforePath="H://storage/framework/views/b5ff465058c9315f66c21f3a57b98df2a2bad194.php" beforeDir="false" />
-      <change beforePath="H://storage/framework/views/b60d07b3ff400382138811bf4675c0f48df8e6ce.php" beforeDir="false" />
-      <change beforePath="H://storage/framework/views/ba6b7b75613e5f49547719653776cbf163519926.php" beforeDir="false" />
-      <change beforePath="H://storage/framework/views/be3c7a939ae44357dbc5de038e719170902fe354.php" beforeDir="false" />
-      <change beforePath="H://storage/framework/views/c04aebfcf09c4b3a5abc19835dbb9f73f8c71238.php" beforeDir="false" />
-      <change beforePath="H://storage/framework/views/c63af29302a66a0773c312038557ed5b14a513a2.php" beforeDir="false" />
-      <change beforePath="H://storage/framework/views/cdcd951931f10b8426d893ff0c66c224064fab24.php" beforeDir="false" />
-      <change beforePath="H://storage/framework/views/d86ca92238b3a7ce21b52ae856775b8c4b5119e5.php" beforeDir="false" />
-      <change beforePath="H://storage/framework/views/dd6659c5ef02e0c1f72011bbf3ec59d559bd4276.php" beforeDir="false" />
-      <change beforePath="H://storage/framework/views/df24578d2dbe3f28227f58398996865c3124bd35.php" beforeDir="false" />
-      <change beforePath="H://storage/framework/views/e5afa8da98d4be0dfd232020221573d672f22635.php" beforeDir="false" />
-      <change beforePath="H://storage/framework/views/e931e69ec430bc880a13ca330d7b526a609e4eee.php" beforeDir="false" />
-      <change beforePath="H://storage/framework/views/edd0cfdce08283a4d26c215e057b58cfeb486ad1.php" beforeDir="false" />
-      <change beforePath="H://storage/framework/views/f0f46736f1499aaa1dd1e0e468a1bc597dccf9c0.php" beforeDir="false" />
-      <change beforePath="H://storage/framework/views/f18a12971f12b796eefc113da7a15b2a8c069ae2.php" beforeDir="false" />
-      <change beforePath="H://storage/framework/views/f87d55381518e133395b7e21200f4e7b43437135.php" beforeDir="false" />
-      <change beforePath="H://storage/framework/views/fbf85994a6379b5721712588e491b2b3e249b38c.php" beforeDir="false" />
-      <change beforePath="H://storage/framework/views/fe0da5b7a3c05309fe9997a7b490455bcf035ffa.php" beforeDir="false" />
-      <change beforePath="H://storage/framework/views/ff3d2a6df213922bc346cf49996a560b513beeb7.php" beforeDir="false" />
-      <change beforePath="H://storage/framework/views/fffe399cf53532d84c602ae7460baf6de46af5c3.php" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -305,24 +206,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "H:/resources/views/spreadsheet",
-    "php.override.implement.member.chooser.php.doc": "NONE",
-    "settings.editor.selected.configurable": "editor.preferences.tabs",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;H:/app/Moco/Datatables/EditFields&quot;,
+    &quot;php.override.implement.member.chooser.php.doc&quot;: &quot;NONE&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;editor.preferences.tabs&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="H:\app\Moco\Datatables\EditFields" />
+      <recent name="H:\resources\views\livewire\data-table\edit-field" />
+      <recent name="H:\app\Moco\Datatables" />
       <recent name="H:\resources\views\spreadsheet" />
       <recent name="D:\fassicms\resources\views\report" />
-      <recent name="D:\fassicms\resources\views\worksheet" />
-      <recent name="D:\fassicms\resources\views\crane" />
-      <recent name="D:\fassicms\resources\views\livewire\data-table" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="H:\app\Http\Controllers" />
@@ -1195,14 +1096,13 @@
       <workItem from="1664706598147" duration="21716000" />
       <workItem from="1665410647390" duration="12606000" />
       <workItem from="1665592619230" duration="3726000" />
-      <workItem from="1665914764912" duration="21276000" />
-    </task>
-    <task id="LOCAL-00026" summary="20201226 - v1.0">
-      <created>1609002750956</created>
-      <option name="number" value="00026" />
-      <option name="presentableId" value="LOCAL-00026" />
-      <option name="project" value="LOCAL" />
-      <updated>1609002750956</updated>
+      <workItem from="1665914764912" duration="21909000" />
+      <workItem from="1666111999420" duration="2018000" />
+      <workItem from="1666516083775" duration="14643000" />
+      <workItem from="1666627464386" duration="65000" />
+      <workItem from="1667731572780" duration="23692000" />
+      <workItem from="1668101297894" duration="3036000" />
+      <workItem from="1668170357019" duration="14568000" />
     </task>
     <task id="LOCAL-00027" summary="20201228 - v1.0">
       <created>1609195491416</created>
@@ -1540,7 +1440,14 @@
       <option name="project" value="LOCAL" />
       <updated>1661074535822</updated>
     </task>
-    <option name="localTasksCounter" value="75" />
+    <task id="LOCAL-00075" summary="20221016 - v3.4.0 New features">
+      <created>1665938684123</created>
+      <option name="number" value="00075" />
+      <option name="presentableId" value="LOCAL-00075" />
+      <option name="project" value="LOCAL" />
+      <updated>1665938684123</updated>
+    </task>
+    <option name="localTasksCounter" value="76" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -1561,7 +1468,6 @@
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="20210606 - v2.0 Stores by location" />
     <MESSAGE value="20210619 - v2.0 Stores by location" />
     <MESSAGE value="20210627 - v2.0 Stores by location" />
     <MESSAGE value="20210629 - v2.0 Stores by location" />
@@ -1586,7 +1492,8 @@
     <MESSAGE value="20220213 - v3.2.0 Cranes Trucks Customers Link" />
     <MESSAGE value="20220302 - v3.2.0 Cranes Trucks Customers Link" />
     <MESSAGE value="20220302 - v3.2.1 Correction Worksheet and Add production year into Worksheet." />
-    <option name="LAST_COMMIT_MESSAGE" value="20220302 - v3.2.1 Correction Worksheet and Add production year into Worksheet." />
+    <MESSAGE value="20221016 - v3.4.0 New features" />
+    <option name="LAST_COMMIT_MESSAGE" value="20221016 - v3.4.0 New features" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -370,7 +370,7 @@ class CraneLivewireController extends Component
         $truckscrane->year_production = $validatedData['year_production'] === '' ? null : $validatedData['year_production'];
         $truckscrane->user()->associate(Auth::user());
         $truckscrane->customer()->associate($customer);
-        dd($truckscrane);
+        //dd($truckscrane);
 
         return $truckscrane;
     }

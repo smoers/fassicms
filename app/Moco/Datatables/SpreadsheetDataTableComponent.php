@@ -29,8 +29,9 @@
 
 namespace App\Moco\Datatables;
 
-use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Str;
+use Illuminate\Support\ViewErrorBag;
 
 abstract class SpreadsheetDataTableComponent extends DataTableComponent
 {
@@ -39,6 +40,11 @@ abstract class SpreadsheetDataTableComponent extends DataTableComponent
      * @var array
      */
     public array $wireData;
+    /**
+     * Tabelau contenant les index des données modifiées
+     * @var array
+     */
+    protected array $wireDataKeyModified = [];
     /**
      * Place le tableau en mode édition
      * @var bool
@@ -61,7 +67,11 @@ abstract class SpreadsheetDataTableComponent extends DataTableComponent
      */
     public string $perPageOptionsConfig = 'moco.table.edit.perPageOptions';
 
-    public int $currentYear = 0;
+    public function __construct()
+    {
+        parent::__construct();
+    }
+
     /**
      * @inheritDoc
      */
@@ -71,6 +81,36 @@ abstract class SpreadsheetDataTableComponent extends DataTableComponent
      * @inheritDoc
      */
     public abstract function columns(): array;
+
+    /**
+     * Permet de sauvegarder les modifications
+     * @return mixed
+     */
+    public abstract function save();
+
+    /**
+     * @return array
+     */
+    protected function getRules(): array
+    {
+        return [];
+    }
+
+    /**
+     * @return array
+     */
+    protected function getMessages(): array
+    {
+        return [];
+    }
+
+    /**
+     * @return array
+     */
+    protected function getAttributes(): array
+    {
+        return [];
+    }
 
     /**
      * Modifie l'affichage du tableau complet
@@ -92,17 +132,11 @@ abstract class SpreadsheetDataTableComponent extends DataTableComponent
     {
         $models = parent::models();
         /**
-         * on ne peut modifier que les données de l'année encours
-         */
-        $this->currentYear = Carbon::now()->year;
-        $models = $models->where('year','=',$this->currentYear);
-        /**
          * On charge le tableau avec les données provenant du query
          * mais uniquement si l'on n'est pas en mode edit
          */
         if (!$this->edit)
             $this->wireData = $models->paginate($this->perPage)->items();
-        //dd($this->wireData);
         return $models;
     }
 
@@ -111,6 +145,7 @@ abstract class SpreadsheetDataTableComponent extends DataTableComponent
      *
      * @param $propertyName
      * @return void
+     * @throws \Illuminate\Validation\ValidationException
      */
     public function updated($propertyName)
     {
@@ -119,7 +154,10 @@ abstract class SpreadsheetDataTableComponent extends DataTableComponent
          */
         if(!str_starts_with($propertyName,'filters.') && $propertyName != 'perPage' ) {
             $this->edit = true;
+            $this->addModified($propertyName);
+            $this->validate($this->getRules(),$this->getMessages(),$this->getAttributes());
         }
+
     }
 
     /**
@@ -131,18 +169,35 @@ abstract class SpreadsheetDataTableComponent extends DataTableComponent
     public function editMode(bool $value)
     {
         $this->edit = $value;
+        //On vide le error bag
+        $this->resetValidation();
+    }
+
+    public static function getErrorMessageHTML(int $index, string $alias, ViewErrorBag $errorBag)
+    {
+        $return = '';
+        if ($errorBag->isNotEmpty()){
+            $return = implode(', ', $errorBag->get('wireData.' . $index . '.' . $alias));
+        }
+        return $return;
     }
 
     /**
-     * On retourne la chaine de caractère a utilisée lors de la construction
-     * de la chaine HTML pour permettre l'édition.
-     *
-     * @param int $index
-     * @param ColumnEdit $editColumn
-     * @return string
+     * @param $propertyName
+     * @return void
      */
-    public static function getWireModel(int $index, ColumnEdit $editColumn): string
+    protected function addModified($propertyName)
     {
-        return 'wire:model.lazy="wireData.'.$index.'.'.$editColumn->getAlias().'"';
+        /**
+         * on divise le chemin
+         */
+        $index = Str::between($propertyName,'.','.');
+        /**
+         * on marque le record comme ayant été modifier
+         */
+        array_push($this->wireDataKeyModified,$index);
+        dd($this->wireDataKeyModified);
+
     }
+
 }

@@ -33,6 +33,7 @@ use App\Moco\Datatables\EditFields\EditFieldInterface;
 use App\Moco\Datatables\Filters\FilterInterface;
 use App\Moco\Datatables\Traits\RandomKey;
 use Illuminate\Support\Str;
+use Illuminate\Support\ViewErrorBag;
 
 class ColumnEdit implements ColumnInterface
 {
@@ -58,8 +59,14 @@ class ColumnEdit implements ColumnInterface
      * @var bool
      */
     protected bool $isSortable = false;
-
+    /**
+     * @var EditFieldInterface
+     */
     protected EditFieldInterface $editField;
+    /**
+     * @var bool
+     */
+    protected bool $isEditMode = false;
 
     /**
      * @param string $name
@@ -160,6 +167,23 @@ class ColumnEdit implements ColumnInterface
         $this->isSortable = true;
 
         return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isEditMode(): bool
+    {
+        return $this->isEditMode;
+    }
+
+    /**
+     * @param bool $edit
+     * @return void
+     */
+    public function setEditMode(bool $edit)
+    {
+        $this->isEditMode = $edit;
     }
 
 }

@@ -62,7 +62,6 @@ class SelectBooleanFilter extends FilterAbstract
      */
     public function query(Builder $builder, array $filters): Builder
     {
-
         if ($filters[$this->getName()] != 2 && !is_null($filters[$this->getName()])){
             $builder = $builder->where($this->getField(),'=',$filters[$this->getName()]);
             $this->value = $filters[$this->getName()];

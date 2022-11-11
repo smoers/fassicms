@@ -1,5 +1,5 @@
 <div class="d-sm-flex flex-sm-row">
-    <input type="text" class="form-control form-control-sm" id="filter-date-{{$name}}" placeholder="{{__('DD/MM/YYYY')}}" aria-label="date" aria-describedby="basic-addon1" wire:model.debounce.2000ms="filters.{{$name}}"/>
+    <input type="text" class="form-control form-control-sm moco-filter-border-color" id="filter-date-{{$name}}" placeholder="{{__('DD/MM/YYYY')}}" aria-label="date" aria-describedby="basic-addon1" wire:model.debounce.2000ms="filters.{{$name}}" @if($readonly) readonly="readonly" @endif/>
     <div class="input-group-prepend">
         <span class="input-group-text" id="basic-addon1"><i class="fa fa-calendar-alt"></i></span>
     </div>

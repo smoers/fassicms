@@ -95,7 +95,7 @@ class WorksheetLivewireController extends Component
     public function __construct()
     {
         $this->formRequest = new WorksheetRequest();
-        $this->rules = $this->formRequest->rules();
+
     }
 
     /**
@@ -145,6 +145,7 @@ class WorksheetLivewireController extends Component
             #dd($this->worksheet);
 
         }
+
         /**
          * Validation
          */

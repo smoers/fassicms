@@ -29,6 +29,7 @@
 
 namespace App\Moco\Datatables\EditFields;
 
+use App\Moco\Datatables\ColumnEdit;
 use App\Moco\Datatables\ColumnInterface;
 
 abstract class EditFieldAbstract implements EditFieldInterface
@@ -43,6 +44,7 @@ abstract class EditFieldAbstract implements EditFieldInterface
         return view($this->getViewStringPath(),$this->getViewParameters([
             'index' => $index,
             'alias' => $column->getAlias(),
+            'class' => $this->setFormClass($column),
         ]));
     }
 
@@ -58,5 +60,12 @@ abstract class EditFieldAbstract implements EditFieldInterface
     protected function getViewParameters(array $common): array
     {
         return array_merge($common,$this->getViewParameter());
+    }
+    protected function setFormClass(ColumnEdit $columnEdit): string
+    {
+        if ($columnEdit->isEditMode())
+            return 'form-control moco-form-control-vsm moco-edit-mode';
+        else
+            return 'form-control moco-form-control-vsm';
     }
 }
